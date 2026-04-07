@@ -1,183 +1,117 @@
-<a name="readme-top"></a>
+<!-- omit in toc -->
+# Contributing to Space Portfolio
 
-# Modern Space Theme Portfolio using Next.js 14 and Three.js
+First off, thanks for taking the time to contribute! ❤️
 
-![Modern Space Theme Portfolio using Next.js 14 and Three.js](/.github/images/img_main.png "Modern Space Theme Portfolio using Next.js 14 and Three.js")
+All types of contributions are encouraged and valued. See the [Table of Contents](#table-of-contents) for different ways to help and details about how this project handles them. Please make sure to read the relevant section before making your contribution. It will make it a lot easier for us maintainers and smooth out the experience for all involved. The community looks forward to your contributions. 🎉
 
-[![Ask Me Anything!](https://flat.badgen.net/static/Ask%20me/anything?icon=github&color=black&scale=1.01)](https://github.com/sanidhyy "Ask Me Anything!")
-[![GitHub license](https://flat.badgen.net/github/license/sanidhyy/space-portfolio?icon=github&color=black&scale=1.01)](https://github.com/sanidhyy/space-portfolio/blob/main/LICENSE "GitHub license")
-[![Maintenance](https://flat.badgen.net/static/Maintained/yes?icon=github&color=black&scale=1.01)](https://github.com/sanidhyy/space-portfolio/commits/main "Maintenance")
-[![GitHub branches](https://flat.badgen.net/github/branches/sanidhyy/space-portfolio?icon=github&color=black&scale=1.01)](https://github.com/sanidhyy/space-portfolio/branches "GitHub branches")
-[![Github commits](https://flat.badgen.net/github/commits/sanidhyy/space-portfolio?icon=github&color=black&scale=1.01)](https://github.com/sanidhyy/space-portfolio/commits "Github commits")
-[![GitHub issues](https://flat.badgen.net/github/issues/sanidhyy/space-portfolio?icon=github&color=black&scale=1.01)](https://github.com/sanidhyy/space-portfolio/issues "GitHub issues")
-[![GitHub pull requests](https://flat.badgen.net/github/prs/sanidhyy/space-portfolio?icon=github&color=black&scale=1.01)](https://github.com/sanidhyy/space-portfolio/pulls "GitHub pull requests")
-[![Netlify Status](https://api.netlify.com/api/v1/badges/451ed0e0-3541-474e-896a-4987e30a7722/deploy-status)](https://spaceportfolio.netlify.app/ "Netlify Status")
+> And if you like the project, but just don't have time to contribute, that's fine. There are other easy ways to support the project and show your appreciation, which we would also be very happy about:
+> - Star the project
+> - Tweet about it
+> - Refer this project in your project's readme
+> - Mention the project at local meetups and tell your friends/colleagues
 
-<!-- Table of Contents -->
-<details>
+<!-- omit in toc -->
+## Table of Contents
 
-<summary>
+- [Code of Conduct](#code-of-conduct)
+- [I Have a Question](#i-have-a-question)
+- [I Want To Contribute](#i-want-to-contribute)
+- [Reporting Bugs](#reporting-bugs)
+- [Suggesting Enhancements](#suggesting-enhancements)
+- [Your First Code Contribution](#your-first-code-contribution)
+- [Improving The Documentation](#improving-the-documentation)
+- [Styleguides](#styleguides)
+- [Commit Messages](#commit-messages)
+- [Join The Project Team](#join-the-project-team)
 
-# :notebook_with_decorative_cover: Table of Contents
 
-</summary>
+## Code of Conduct
 
-- [Folder Structure](#bangbang-folder-structure)
-- [Getting Started](#toolbox-getting-started)
-- [Screenshots](#camera-screenshots)
-- [Tech Stack](#gear-tech-stack)
-- [Stats](#wrench-stats)
-- [Contribute](#raised_hands-contribute)
-- [Acknowledgements](#gem-acknowledgements)
-- [Buy Me a Coffee](#coffee-buy-me-a-coffee)
-- [Follow Me](#rocket-follow-me)
-- [Learn More](#books-learn-more)
-- [Deploy on Vercel](#page_with_curl-deploy-on-vercel)
-- [Give A Star](#star-give-a-star)
-- [Star History](#star2-star-history)
-- [Give A Star](#star-give-a-star)
+This project and everyone participating in it is governed by the
+[Space Portfolio Code of Conduct](https://github.com/SchaideNunes/My-Portifolioblob/master/CODE_OF_CONDUCT.md).
+By participating, you are expected to uphold this code. Please report unacceptable behavior
+to .
 
-</details>
 
-## :bangbang: Folder Structure
+## I Have a Question
 
-Here is the folder structure of this app.
+> If you want to ask a question, we assume that you have read the available [Documentation](https://github.com/SchaideNunes/My-Portifolio/wiki).
 
-<!--- FOLDER_STRUCTURE_START --->
-```bash
-space-portfolio/
-  |- app/
-    |-- apple-icon.png
-    |-- favicon.ico
-    |-- globals.css
-    |-- icon1.png
-    |-- icon2.png
-    |-- layout.tsx
-    |-- page.tsx
-  |- components/
-    |-- main/
-    |-- sub/
-  |- config/
-    |-- index.ts
-  |- constants/
-    |-- index.ts
-  |- lib/
-    |-- motion.ts
-    |-- utils.ts
-  |- public/
-  |- .eslintrc.json
-  |- .gitignore
-  |- eslint.config.mjs
-  |- netlify.toml
-  |- next.config.js
-  |- package-lock.json
-  |- package.json
-  |- postcss.config.js
-  |- tailwind.config.ts
-  |- tsconfig.json
-```
-<!--- FOLDER_STRUCTURE_END --->
+Before you ask a question, it is best to search for existing [Issues](https://github.com/SchaideNunes/My-Portifolio/issues) that might help you. In case you have found a suitable issue and still need clarification, you can write your question in this issue. It is also advisable to search the internet for answers first.
 
-<br />
+If you then still feel the need to ask a question and need clarification, we recommend the following:
 
-## :toolbox: Getting Started
+- Open an [Issue](https://github.com/SchaideNunes/My-Portifolio/issues/new).
+- Provide as much context as you can about what you're running into.
+- Provide project and platform versions (nodejs, npm, etc), depending on what seems relevant.
 
-1. Make sure **Git** and **NodeJS** is installed.
+We will then take care of the issue as soon as possible.
 
-2. Clone this repository to your local computer.
+## I Want To Contribute
 
-3. Open terminal in root directory. Run `npm install --legacy-peer-deps` or `yarn install --legacy-peer-deps`.
+> ### Legal Notice <!-- omit in toc -->
+> When contributing to this project, you must agree that you have authored 100% of the content, that you have the necessary rights to the content and that the content you contribute may be provided under the project license.
 
-4. Now app is fully configured 👍 and you can start using this app using `npm run dev` or `yarn dev`.
+### Reporting Bugs
 
-## :camera: Screenshots:
+<!-- omit in toc -->
+#### Before Submitting a Bug Report
 
-![Modern UI/UX](/.github/images/img1.png "Modern UI/UX")
+A good bug report shouldn't leave others needing to chase you up for more information. Therefore, we ask you to investigate carefully, collect information and describe the issue in detail in your report. Please complete the following steps in advance to help us fix any potential bug as fast as possible.
 
-![Showcase your skills](/.github/images/img2.png "Showcase your skills")
+- Make sure that you are using the latest version.
+- Determine if your bug is really a bug and not an error on your side e.g. using incompatible environment components/versions (Make sure that you have read the [documentation](https://github.com/SchaideNunes/My-Portifolio/wiki). If you are looking for support, you might want to check [this section](#i-have-a-question)).
+- To see if other users have experienced (and potentially already solved) the same issue you are having, check if there is not already a bug report existing for your bug or error in the [bug tracker](https://github.com/SchaideNunes/My-Portifolioissues?q=label%3Abug).
+- Also make sure to search the internet (including Stack Overflow) to see if users outside of the GitHub community have discussed the issue.
+- Collect information about the bug:
+- Stack trace (Traceback)
+- OS, Platform and Version (Windows, Linux, macOS, x86, ARM)
+- Version of the interpreter, compiler, SDK, runtime environment, package manager, depending on what seems relevant.
+- Possibly your input and the output
+- Can you reliably reproduce the issue? And can you also reproduce it with older versions?
 
-![Built with Typescript](/.github/images/img3.png "Built with Typescript")
+<!-- omit in toc -->
+#### How Do I Submit a Good Bug Report?
 
-![Showcase your projects](/.github/images/img4.png "Showcase your projects")
+> You must never report security related issues, vulnerabilities or bugs including sensitive information to the issue tracker, or elsewhere in public. Instead sensitive bugs must be sent by email to .
 
-## :gear: Tech Stack
+We use GitHub issues to track bugs and errors. If you run into an issue with the project:
 
-[![React JS](https://skillicons.dev/icons?i=react "React JS")](https://react.dev/ "React JS") [![Next JS](https://skillicons.dev/icons?i=next "Next JS")](https://nextjs.org/ "Next JS") [![Typescript](https://skillicons.dev/icons?i=ts "Typescript")](https://www.typescriptlang.org/ "Typescript") [![Tailwind CSS](https://skillicons.dev/icons?i=tailwind "Tailwind CSS")](https://tailwindcss.com/ "Tailwind CSS") [![Netlify](https://skillicons.dev/icons?i=netlify "Netlify")](https://netlify.app/ "Netlify") [![Three.js](https://skillicons.dev/icons?i=threejs "Three.js")](https://threejs.org/ "Three.js")
+- Open an [Issue](https://github.com/SchaideNunes/My-Portifolio/issues/new). (Since we can't be sure at this point whether it is a bug or not, we ask you not to talk about a bug yet and not to label the issue.)
+- Explain the behavior you would expect and the actual behavior.
+- Please provide as much context as possible and describe the *reproduction steps* that someone else can follow to recreate the issue on their own. This usually includes your code. For good bug reports you should isolate the problem and create a reduced test case.
+- Provide the information you collected in the previous section.
 
-## :wrench: Stats
+Once it's filed:
 
-[![Stats for Space Portfolio](/.github/images/stats.svg "Stats for Space Portfolio")](https://pagespeed.web.dev/analysis/https-spaceportfolio-netlify-app/2efbmg117d "Stats for Space Portfolio")
+- The project team will label the issue accordingly.
+- A team member will try to reproduce the issue with your provided steps. If there are no reproduction steps or no obvious way to reproduce the issue, the team will ask you for those steps and mark the issue as `needs-repro`. Bugs with the `needs-repro` tag will not be addressed until they are reproduced.
+- If the team is able to reproduce the issue, it will be marked `needs-fix`, as well as possibly other tags (such as `critical`), and the issue will be left to be [implemented by someone](#your-first-code-contribution).
 
-## :raised_hands: Contribute
+### Suggesting Enhancements
 
-You might encounter some bugs while using this app. You are more than welcome to contribute. Just submit changes via pull request and I will review them before merging. Make sure you follow community guidelines.
+This section guides you through submitting an enhancement suggestion for Space Portfolio, **including completely new features and minor improvements to existing functionality**. Following these guidelines will help maintainers and the community to understand your suggestion and find related suggestions.
 
-## :gem: Acknowledgements
+<!-- omit in toc -->
+#### Before Submitting an Enhancement
 
-Useful resources and dependencies that are used in Space Portfolio.
+- Make sure that you are using the latest version.
+- Read the [documentation](https://github.com/SchaideNunes/My-Portifolio/wiki) carefully and find out if the functionality is already covered, maybe by an individual configuration.
+- Perform a [search](https://github.com/SchaideNunes/My-Portifolio/issues) to see if the enhancement has already been suggested. If it has, add a comment to the existing issue instead of opening a new one.
+- Find out whether your idea fits with the scope and aims of the project. It's up to you to make a strong case to convince the project's developers of the merits of this feature. Keep in mind that we want features that will be useful to the majority of our users and not just a small subset. If you're just targeting a minority of users, consider writing an add-on/plugin library.
 
-<!--- DEPENDENCIES_START --->
-- [@heroicons/react](https://www.npmjs.com/package/@heroicons/react): ^2.2.0
-- [@react-three/drei](https://www.npmjs.com/package/@react-three/drei): ^10.7.7
-- [@react-three/fiber](https://www.npmjs.com/package/@react-three/fiber): ^9.5.0
-- [@types/node](https://www.npmjs.com/package/@types/node): ^25
-- [@types/react](https://www.npmjs.com/package/@types/react): 19.2.14
-- [@types/react-dom](https://www.npmjs.com/package/@types/react-dom): 19.2.3
-- [autoprefixer](https://www.npmjs.com/package/autoprefixer): ^10.4.27
-- [clsx](https://www.npmjs.com/package/clsx): ^2.1.1
-- [eslint](https://www.npmjs.com/package/eslint): ^10.1.0
-- [eslint-config-next](https://www.npmjs.com/package/eslint-config-next): 16.2.2
-- [framer-motion](https://www.npmjs.com/package/framer-motion): ^12.38.0
-- [next](https://www.npmjs.com/package/next): 16.2.2
-- [postcss](https://www.npmjs.com/package/postcss): ^8
-- [react](https://www.npmjs.com/package/react): 19.2.4
-- [react-dom](https://www.npmjs.com/package/react-dom): 19.2.4
-- [react-icons](https://www.npmjs.com/package/react-icons): ^5.6.0
-- [react-intersection-observer](https://www.npmjs.com/package/react-intersection-observer): ^10.0.3
-- [tailwind-merge](https://www.npmjs.com/package/tailwind-merge): ^3.5.0
-- [tailwindcss](https://www.npmjs.com/package/tailwindcss): ^3.3.0
-- [three](https://www.npmjs.com/package/three): ^0.183.2
-- [typescript](https://www.npmjs.com/package/typescript): ^6
+<!-- omit in toc -->
+#### How Do I Submit a Good Enhancement Suggestion?
 
-<!--- DEPENDENCIES_END --->
+Enhancement suggestions are tracked as [GitHub issues](https://github.com/SchaideNunes/My-Portifolio/issues).
 
-## :coffee: Buy Me a Coffee
+- Use a **clear and descriptive title** for the issue to identify the suggestion.
+- Provide a **step-by-step description of the suggested enhancement** in as many details as possible.
+- **Describe the current behavior** and **explain which behavior you expected to see instead** and why. At this point you can also tell which alternatives do not work for you.
+- You may want to **include screenshots and animated GIFs** which help you demonstrate the steps or point out the part which the suggestion is related to. You can use [this tool](https://www.cockos.com/licecap/) to record GIFs on macOS and Windows, and [this tool](https://github.com/colinkeenan/silentcast) or [this tool](https://github.com/GNOME/byzanz) on Linux. <!-- this should only be included if the project has a GUI -->
+- **Explain why this enhancement would be useful** to most Space Portfolio users. You may also want to point out the other projects that solved it better and which could serve as inspiration.
 
-[<img src="https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" width="200" />](https://www.buymeacoffee.com/sanidhy "Buy me a Coffee")
-
-## :rocket: Follow Me
-
-[![GitHub followers](https://img.shields.io/github/followers/sanidhyy?style=social&label=Follow&maxAge=2592000)](https://github.com/sanidhyy "Follow Me")
-[![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fx.com%2F_sanidhyy)](https://x.com/intent/tweet?text=Check+out+this+amazing+app:&url=https%3A%2F%2Fgithub.com%2Fsanidhyy%2Fspace-portfolio "Tweet")
-
-## :books: Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## :page_with_curl: Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-## :star: Give A Star
-
-You can also give this repository a star to show more people and they can use this repository.
-
-## :star2: Star History
-
-<a href="https://star-history.com/#sanidhyy/space-portfolio&Timeline">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=sanidhyy/space-portfolio&type=Timeline&theme=dark" />
-  <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=sanidhyy/space-portfolio&type=Timeline" />
-  <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=sanidhyy/space-portfolio&type=Timeline" />
-</picture>
-</a>
-
-<br />
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<!-- omit in toc -->
+## Attribution
+This guide is based on the **contributing-gen**. [Make your own](https://github.com/bttger/contributing-gen)!

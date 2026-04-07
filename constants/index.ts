@@ -102,7 +102,7 @@ export const SOCIALS = [
   {
     name: "Twitter",
     icon: RxTwitterLogo,
-    link: "https://x.com/_sanidhyy",
+    link: "https://x.com",
   },
 ] as const;
 
@@ -313,7 +313,7 @@ export const FOOTER_DATA = [
       {
         name: "Twitter",
         icon: RxTwitterLogo,
-        link: "https://x.com/_sanidhyy",
+        link: "https://x.com",
       },
       {
         name: "Linkedin",
@@ -326,19 +326,14 @@ export const FOOTER_DATA = [
     title: "About",
     data: [
       {
-        name: "Become Sponsor",
-        icon: null,
-        link: "https://youtube.com",
-      },
-      {
         name: "Learning about me",
         icon: null,
-        link: "https://example.com",
+        link: "#about-me",
       },
       {
         name: "Contact Me",
         icon: null,
-        link: "mailto:contact@example.com",
+        link: "mailto:schaide.nunes@gmail.com",
       },
     ],
   },
@@ -360,5 +355,5 @@ export const NAV_LINKS = [
 ] as const;
 
 export const LINKS = {
-  sourceCode: "https://github.com/sanidhyy/space-portfolio",
+  sourceCode: "https://github.com/SchaideNunes/My-Portifolio",
 };

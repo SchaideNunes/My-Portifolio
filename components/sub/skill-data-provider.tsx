@@ -38,8 +38,24 @@ export const SkillDataProvider = ({
       animate={inView ? "visible" : "hidden"}
       custom={index}
       transition={{ delay: index * animationDelay }}
+      whileHover={{ 
+        scale: 1.25,
+        filter: "drop-shadow(0px 0px 8px rgba(112, 66, 248, 0.8))"
+      }}
+      className="cursor-pointer relative group flex items-center justify-center"
     >
-      <Image src={`/skills/${src}`} width={width} height={height} alt={name} />
+      <Image 
+        src={`/skills/${src}`} 
+        width={width} 
+        height={height} 
+        alt={name} 
+        className="transition-all duration-300"
+      />
+      
+      {/* Tooltip on hover */}
+      <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#030014] border border-[#7042f88b] text-white text-[10px] px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50 pointer-events-none">
+        {name}
+      </span>
     </motion.div>
   );
 };

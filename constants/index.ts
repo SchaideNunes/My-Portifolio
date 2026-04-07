@@ -39,18 +39,6 @@ export const SKILL_DATA = [
     height: 80,
   },
   {
-    skill_name: "Redux",
-    image: "redux.png",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "React Query",
-    image: "reactquery.png",
-    width: 80,
-    height: 80,
-  },
-  {
     skill_name: "TypeScript",
     image: "ts.png",
     width: 80,
@@ -69,16 +57,22 @@ export const SKILL_DATA = [
     height: 80,
   },
   {
-    skill_name: "Stripe",
-    image: "stripe.png",
-    width: 80,
-    height: 80,
-  },
-  {
     skill_name: "Node.js",
     image: "node.png",
     width: 80,
     height: 80,
+  },
+  {
+    skill_name: "AWS",
+    image: "aws.png", // Ensure this exists in public/
+    width: 80,
+    height: 80,
+  },
+  {
+    skill_name: "PostgreSQL",
+    image: "postgresql.png",
+    width: 70,
+    height: 70,
   },
   {
     skill_name: "MongoDB",
@@ -86,23 +80,29 @@ export const SKILL_DATA = [
     width: 40,
     height: 40,
   },
+  {
+    skill_name: "Figma",
+    image: "figma.png",
+    width: 50,
+    height: 50,
+  },
 ] as const;
 
 export const SOCIALS = [
   {
+    name: "Github",
+    icon: RxGithubLogo,
+    link: "https://github.com/SchaideNunes",
+  },
+  {
+    name: "Linkedin",
+    icon: RxLinkedinLogo,
+    link: "https://www.linkedin.com/in/schaidenunes/",
+  },
+  {
     name: "Instagram",
     icon: RxInstagramLogo,
-    link: "https://instagram.com",
-  },
-  {
-    name: "Facebook",
-    icon: FaFacebook,
-    link: "https://facebook.com",
-  },
-  {
-    name: "Twitter",
-    icon: RxTwitterLogo,
-    link: "https://x.com",
+    link: "https://www.instagram.com/schaide_nunes/",
   },
 ] as const;
 
@@ -132,26 +132,8 @@ export const FRONTEND_SKILL = [
     height: 80,
   },
   {
-    skill_name: "Material UI",
-    image: "mui.png",
-    width: 80,
-    height: 80,
-  },
-  {
     skill_name: "React",
     image: "react.png",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "Redux",
-    image: "redux.png",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "React Query",
-    image: "reactquery.png",
     width: 80,
     height: 80,
   },
@@ -177,10 +159,10 @@ export const BACKEND_SKILL = [
     height: 80,
   },
   {
-    skill_name: "Express.js",
-    image: "express.png",
-    width: 80,
-    height: 80,
+    skill_name: "PostgreSQL",
+    image: "postgresql.png",
+    width: 70,
+    height: 70,
   },
   {
     skill_name: "MongoDB",
@@ -189,14 +171,8 @@ export const BACKEND_SKILL = [
     height: 40,
   },
   {
-    skill_name: "Firebase",
-    image: "firebase.png",
-    width: 55,
-    height: 55,
-  },
-  {
-    skill_name: "PostgreSQL",
-    image: "postgresql.png",
+    skill_name: "Prisma",
+    image: "prisma.png",
     width: 70,
     height: 70,
   },
@@ -206,32 +182,14 @@ export const BACKEND_SKILL = [
     width: 70,
     height: 70,
   },
-  {
-    skill_name: "Prisma",
-    image: "prisma.png",
-    width: 70,
-    height: 70,
-  },
-  {
-    skill_name: "Graphql",
-    image: "graphql.png",
-    width: 80,
-    height: 80,
-  },
 ] as const;
 
-export const FULLSTACK_SKILL = [
+export const CLOUD_SKILL = [
   {
-    skill_name: "React Native",
-    image: "reactnative.png",
-    width: 70,
-    height: 70,
-  },
-  {
-    skill_name: "Tauri",
-    image: "tauri.png",
-    width: 70,
-    height: 70,
+    skill_name: "AWS",
+    image: "aws.png",
+    width: 80,
+    height: 80,
   },
   {
     skill_name: "Docker",
@@ -239,7 +197,6 @@ export const FULLSTACK_SKILL = [
     width: 70,
     height: 70,
   },
-
   {
     skill_name: "Figma",
     image: "figma.png",
@@ -248,90 +205,54 @@ export const FULLSTACK_SKILL = [
   },
 ] as const;
 
-export const OTHER_SKILL = [
-  {
-    skill_name: "Go",
-    image: "go.png",
-    width: 60,
-    height: 60,
-  },
-] as const;
-
 export const PROJECTS = [
   {
-    title: "Modern Next.js 14 Portfolio",
+    title: "Freelance Project - Specialized Solution",
     description:
-      'Embark on a journey through my professional evolution with the "Modern Next.js Portfolio" - a dynamic showcase of my skills, experiences, and passion for web development. Crafted with precision and powered by Next.js, this portfolio is more than just a static display; it\'s an immersive experience that reflects the cutting edge of modern web technologies.',
+      "A custom-coded web application focusing on high performance and unique UI/UX, built with modern stacks to solve specific client needs.",
     image: "/projects/project-1.png",
-    link: "https://example.com",
+    link: "https://github.com/SchaideNunes",
   },
   {
-    title: "Interactive Cards Portfolio",
+    title: "Advanced Web Application",
     description:
-      'Step into the extraordinary world of my professional journey through the "Interactive Cards Portfolio" - an innovative and visually captivating platform that redefines the traditional portfolio experience. Ditching the conventional static layout, this portfolio leverages interactive cards to showcase my skills, projects, and personality in an engaging and dynamic manner.',
+      "A full-stack platform emphasizing clean architecture and professional system design principles, showcasing creative problem-solving.",
     image: "/projects/project-2.png",
-    link: "https://example.com",
-  },
-  {
-    title: "Space Themed Website",
-    description:
-      'Embark on an interstellar journey with my "Space Themed Website", a mesmerizing space-themed website that invites you to explore the cosmic wonders beyond our world. Immerse yourself in an awe-inspiring digital experience that blends cutting-edge design with the mysteries of the universe.',
-    image: "/projects/project-3.png",
-    link: "https://example.com",
+    link: "https://github.com/SchaideNunes",
   },
 ] as const;
 
 export const FOOTER_DATA = [
   {
-    title: "Community",
+    title: "Connect",
     data: [
-      {
-        name: "YouTube",
-        icon: FaYoutube,
-        link: "https://youtube.com",
-      },
       {
         name: "GitHub",
         icon: RxGithubLogo,
-        link: "https://github.com",
+        link: "https://github.com/SchaideNunes",
       },
       {
-        name: "Discord",
-        icon: RxDiscordLogo,
-        link: "https://discord.com",
+        name: "LinkedIn",
+        icon: RxLinkedinLogo,
+        link: "https://www.linkedin.com/in/schaidenunes/",
       },
     ],
   },
   {
-    title: "Social Media",
+    title: "Social",
     data: [
       {
         name: "Instagram",
         icon: RxInstagramLogo,
-        link: "https://instagram.com",
-      },
-      {
-        name: "Twitter",
-        icon: RxTwitterLogo,
-        link: "https://x.com",
-      },
-      {
-        name: "Linkedin",
-        icon: RxLinkedinLogo,
-        link: "https://linkedin.com",
+        link: "https://www.instagram.com/schaide_nunes/",
       },
     ],
   },
   {
-    title: "About",
+    title: "Contact",
     data: [
       {
-        name: "Learning about me",
-        icon: null,
-        link: "#about-me",
-      },
-      {
-        name: "Contact Me",
+        name: "schaide.nunes@gmail.com",
         icon: null,
         link: "mailto:schaide.nunes@gmail.com",
       },

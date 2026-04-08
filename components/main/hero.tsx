@@ -1,9 +1,20 @@
+"use client";
+
+import { useRef, useEffect } from "react";
 import { HeroContent } from "@/components/sub/hero-content";
 
 export const Hero = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.75;
+    }
+  }, []);
   return (
     <div className="relative flex flex-col h-full w-full">
       <video
+        ref={videoRef}
         autoPlay
         muted
         loop

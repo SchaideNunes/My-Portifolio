@@ -2,22 +2,27 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useRef, useEffect } from "react";
 import { slideInFromTop } from "@/lib/motion";
 import { ShieldCheckIcon, KeyIcon, CircleStackIcon } from "@heroicons/react/24/outline";
 
 export const Encryption = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.5;
+    }
+  }, []);
+
   return (
     <div className="flex flex-row relative items-center justify-center min-h-screen w-full h-full">
       <div className="absolute w-auto h-auto top-0 z-[5]">
         <motion.div
           variants={slideInFromTop}
-          className="text-[40px] font-bold text-center text-gray-200 tracking-[-2%]"
+          className="text-[40px] font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] tracking-[-2%]"
         >
-          Performance{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f59e0b] to-[#fbbf24]">
-            &
-          </span>{" "}
-          security.
+          Performance & security.
         </motion.div>
       </div>
 
@@ -51,6 +56,7 @@ export const Encryption = () => {
 
       <div className="w-full flex items-start justify-center absolute opacity-15">
         <video
+          ref={videoRef}
           loop
           muted
           autoPlay

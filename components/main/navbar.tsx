@@ -9,7 +9,7 @@ export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="w-full h-[84px] fixed top-0 bg-transparent z-50 px-10 transition-all duration-300">
+    <div className="w-full h-[65px] fixed top-0 shadow shadow-[#f59e0b]/5 bg-[#03001417] backdrop-blur-xl z-50 px-10 transition-all duration-300">
       {/* Navbar Container */}
       <div className="w-full h-full flex items-center justify-between m-auto px-[10px]">
         {/* Logo + Name */}
@@ -20,17 +20,19 @@ export const Navbar = () => {
           <Image
             src="/logo.png"
             alt="Logo"
-            width={70}
-            height={70}
+            width={50}
+            height={50}
             draggable={false}
-            className="cursor-pointer mix-blend-lighten"
+            className="cursor-pointer hover:animate-slowspin mix-blend-lighten"
           />
-          <div className="hidden md:flex font-bold ml-3 text-gray-300 tracking-tighter">Schaide Nunes</div>
+          <span className="font-bold ml-[10px] hidden md:block text-gray-300">
+            Schaide Nunes
+          </span>
         </Link>
 
         {/* Web Navbar Pill */}
-        <div className="hidden md:flex w-[400px] h-full flex-row items-center justify-between">
-          <div className="flex items-center justify-between w-full h-auto border border-white/10 bg-white/[0.03] backdrop-blur-xl shadow-[0_0_20px_rgba(0,0,0,0.5)] px-8 py-2 rounded-full text-gray-200 gap-10">
+        <div className="hidden md:flex w-[500px] h-full flex-row items-center justify-between">
+          <div className="flex items-center justify-between w-full h-auto border border-[#f59e0b]/20 bg-[#0300145e] backdrop-blur-md mr-[15px] px-[20px] py-[10px] rounded-full text-gray-200">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.title}
@@ -44,7 +46,7 @@ export const Navbar = () => {
         </div>
 
         {/* Social Icons (Web) */}
-        <div className="hidden md:flex flex-row gap-10">
+        <div className="hidden md:flex flex-row gap-5">
           {SOCIALS.map(({ link, name, icon: Icon }) => (
             <Link
               href={link}

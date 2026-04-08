@@ -9,6 +9,7 @@ import { siteConfig } from "@/config";
 import { cn } from "@/lib/utils";
 
 import { Preloader } from "@/components/main/preloader";
+import { SmoothScroll } from "@/components/main/smooth-scroll";
 
 import "./globals.css";
 
@@ -32,11 +33,13 @@ export default function RootLayout({ children }: PropsWithChildren) {
           inter.className
         )}
       >
-        <Preloader />
-        <StarsCanvas />
-        <Navbar />
-        {children}
-        <Footer />
+        <SmoothScroll>
+          <Preloader />
+          <StarsCanvas />
+          <Navbar />
+          {children}
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );

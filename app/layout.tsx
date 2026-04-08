@@ -25,7 +25,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <head>
-        <link rel="preload" as="video" href="/videos/hero_new.mp4" type="video/mp4" />
+        <link rel="preload" as="video" href="/videos/hero_new.webm" type="video/webm" />
       </head>
       <body
         className={cn(

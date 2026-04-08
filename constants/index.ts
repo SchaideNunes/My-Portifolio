@@ -219,6 +219,10 @@ export const PROJECTS = [
     technologies: ["Next.js", "TailwindCSS", "PostgreSQL", "Prisma"],
     image: "/projects/atualestilo.png",
     link: "https://atualestilo.com/",
+    testimonial: {
+      text: "O Schaide entendeu perfeitamente a visão do nosso negócio. O sistema de agendamento não só ficou com um design premium como facilitou a vida de todos os nossos clientes!",
+      author: "Geilson, Atual Estilo"
+    }
   },
   {
     title: "Milena Reis Arquitetura",
@@ -227,6 +231,10 @@ export const PROJECTS = [
     technologies: ["React", "Vite", "Framer Motion", "Firebase"],
     image: "/projects/milenareis.png",
     link: "https://milenareis-fbff1.web.app/",
+    testimonial: {
+      text: "O portfólio superou minhas expectativas. A forma como as imagens são apresentadas consegue transmitir exatamente a essência e elegância dos meus projetos de arquitetura.",
+      author: "Milena Reis"
+    }
   },
 ] as const;
 

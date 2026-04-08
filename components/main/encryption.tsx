@@ -74,7 +74,7 @@ export const Encryption = () => {
           <ShieldCheckIcon className="w-8 h-8 text-amber-500" />
           <div className="text-center">
             <h3 className="text-white font-medium text-sm">SSL/TLS Security</h3>
-            <p className="text-gray-400 text-xs mt-1 w-40">Criptografia de ponta a ponta em todas as transações.</p>
+            <p className="text-gray-400 text-xs mt-1 w-40">End-to-end encryption across all transactions.</p>
           </div>
         </motion.div>
 
@@ -88,8 +88,8 @@ export const Encryption = () => {
         >
           <KeyIcon className="w-8 h-8 text-amber-500" />
           <div className="text-center">
-            <h3 className="text-white font-medium text-sm">Autenticação JWT</h3>
-            <p className="text-gray-400 text-xs mt-1 w-40">Arquitetura Zero-Trust e gestão robusta de sessões.</p>
+            <h3 className="text-white font-medium text-sm">JWT Authentication</h3>
+            <p className="text-gray-400 text-xs mt-1 w-40">Zero-Trust architecture and robust session management.</p>
           </div>
         </motion.div>
 
@@ -103,8 +103,8 @@ export const Encryption = () => {
         >
           <CircleStackIcon className="w-8 h-8 text-amber-500" />
           <div className="text-center">
-            <h3 className="text-white font-medium text-sm">Proteção de Dados</h3>
-            <p className="text-gray-400 text-xs mt-1 w-48">Banco de dados com injeção SQL mitigada e backups seguros.</p>
+            <h3 className="text-white font-medium text-sm">Data Protection</h3>
+            <p className="text-gray-400 text-xs mt-1 w-48">Database with mitigated SQL injection and secure backups.</p>
           </div>
         </motion.div>
       </div>

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { slideInFromTop } from "@/lib/motion";
+import { ShieldCheckIcon, KeyIcon, CircleStackIcon } from "@heroicons/react/24/outline";
 
 export const Encryption = () => {
   return (
@@ -59,6 +60,53 @@ export const Encryption = () => {
           src="/videos/encryption-bg.webm"
         />
         <div className="absolute inset-0 bg-amber-600 mix-blend-color pointer-events-none" />
+      </div>
+
+      <div className="absolute w-full h-full inset-0 z-[20] flex items-center justify-center pointer-events-none max-w-[1200px] mx-auto">
+        {/* Left Card */}
+        <motion.div 
+          initial={{ x: -100, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          viewport={{ once: true }}
+          className="hidden md:flex absolute left-[15%] top-[35%] flex-col items-center gap-3 p-4 rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-md shadow-[0_0_15px_rgba(245,158,11,0.1)] pointer-events-auto hover:border-amber-500/50 transition-colors"
+        >
+          <ShieldCheckIcon className="w-8 h-8 text-amber-500" />
+          <div className="text-center">
+            <h3 className="text-white font-medium text-sm">SSL/TLS Security</h3>
+            <p className="text-gray-400 text-xs mt-1 w-40">Criptografia de ponta a ponta em todas as transações.</p>
+          </div>
+        </motion.div>
+
+        {/* Right Card */}
+        <motion.div 
+          initial={{ x: 100, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+          viewport={{ once: true }}
+          className="hidden md:flex absolute right-[15%] top-[35%] flex-col items-center gap-3 p-4 rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-md shadow-[0_0_15px_rgba(245,158,11,0.1)] pointer-events-auto hover:border-amber-500/50 transition-colors"
+        >
+          <KeyIcon className="w-8 h-8 text-amber-500" />
+          <div className="text-center">
+            <h3 className="text-white font-medium text-sm">Autenticação JWT</h3>
+            <p className="text-gray-400 text-xs mt-1 w-40">Arquitetura Zero-Trust e gestão robusta de sessões.</p>
+          </div>
+        </motion.div>
+
+        {/* Bottom Card */}
+        <motion.div 
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+          viewport={{ once: true }}
+          className="absolute bottom-[20%] flex flex-col items-center gap-3 p-4 rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-md shadow-[0_0_15px_rgba(245,158,11,0.1)] pointer-events-auto hover:border-amber-500/50 transition-colors"
+        >
+          <CircleStackIcon className="w-8 h-8 text-amber-500" />
+          <div className="text-center">
+            <h3 className="text-white font-medium text-sm">Proteção de Dados</h3>
+            <p className="text-gray-400 text-xs mt-1 w-48">Banco de dados com injeção SQL mitigada e backups seguros.</p>
+          </div>
+        </motion.div>
       </div>
     </div>
   );

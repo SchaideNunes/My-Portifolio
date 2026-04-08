@@ -9,7 +9,7 @@ export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="w-full h-[84px] fixed top-0 shadow-lg shadow-orange-900/40 bg-[#00000030] backdrop-blur-md z-50 px-10">
+    <div className="w-full h-[84px] fixed top-0 bg-transparent z-50 px-10 transition-all duration-300">
       {/* Navbar Container */}
       <div className="w-full h-full flex items-center justify-between m-auto px-[10px]">
         {/* Logo + Name */}
@@ -28,9 +28,9 @@ export const Navbar = () => {
           <div className="hidden md:flex font-bold ml-3 text-gray-300 tracking-tighter">Schaide Nunes</div>
         </Link>
 
-        {/* Web Navbar */}
+        {/* Web Navbar Pill */}
         <div className="hidden md:flex w-[400px] h-full flex-row items-center justify-between">
-          <div className="flex items-center justify-between w-full h-auto border border-[#f59e0b61] bg-[#0000005e] px-8 py-2 rounded-full text-gray-200 gap-10">
+          <div className="flex items-center justify-between w-full h-auto border border-white/10 bg-white/[0.03] backdrop-blur-xl shadow-[0_0_20px_rgba(0,0,0,0.5)] px-8 py-2 rounded-full text-gray-200 gap-10">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.title}

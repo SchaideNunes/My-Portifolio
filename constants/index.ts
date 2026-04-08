@@ -192,6 +192,12 @@ export const CLOUD_SKILL = [
     height: 80,
   },
   {
+    skill_name: "GCP",
+    image: "gcp.svg",
+    width: 70,
+    height: 70,
+  },
+  {
     skill_name: "Docker",
     image: "docker.png",
     width: 70,

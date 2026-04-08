@@ -22,9 +22,9 @@ export const HeroContent = () => {
       <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start">
         <motion.div
           variants={slideInFromTop}
-          className="Welcome-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9]"
+          className="Welcome-box py-[8px] px-[7px] border border-[#f59e0b8b] opacity-[0.9]"
         >
-          <SparklesIcon className="text-[#b49bff] mr-[10px] h-5 w-5" />
+          <SparklesIcon className="text-[#fbbf24] mr-[10px] h-5 w-5" />
           <h1 className="Welcome-text text-[13px]">
             Schaide Nunes | Web Developer & Software Engineer
           </h1>
@@ -36,7 +36,7 @@ export const HeroContent = () => {
         >
           <span>
             Providing{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f59e0b] to-[#fbbf24]">
               creative, hand-coded
             </span>{" "}
             digital solutions.
@@ -54,7 +54,7 @@ export const HeroContent = () => {
 
         <motion.a
           variants={slideInFromLeft(1)}
-          className="py-2 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
+          className="py-2 px-4 bg-gradient-to-r from-orange-500 to-yellow-500 text-center text-white font-bold cursor-pointer rounded-lg max-w-[200px] hover:scale-105 transition-transform"
         >
           Learn more
         </motion.a>

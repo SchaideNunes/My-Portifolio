@@ -62,12 +62,12 @@ const OrbitingIcon = ({ tech, index }: any) => {
           alt={tech.name}
           width={tech.orbit === 1 ? 55 : tech.orbit === 2 ? 45 : 35}
           height={tech.orbit === 1 ? 55 : tech.orbit === 2 ? 45 : 35}
-          className="drop-shadow-[0_0_10px_rgba(112,66,248,0.5)] transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(34,211,238,0.8)]"
+          className="drop-shadow-[0_0_10px_rgba(245,158,11,0.5)] transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(251,191,36,0.8)]"
         />
-        <div className="absolute inset-0 bg-purple-500/5 blur-xl rounded-full -z-10 group-hover:bg-cyan-500/20" />
+        <div className="absolute inset-0 bg-orange-500/5 blur-xl rounded-full -z-10 group-hover:bg-yellow-500/20" />
       </div>
       
-      <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-cyan-400 text-[10px] font-bold tracking-tighter uppercase opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]">
+      <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-yellow-400 text-[10px] font-bold tracking-tighter uppercase opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap drop-shadow-[0_0_5px_rgba(251,191,36,0.5)]">
         {tech.name}
       </span>
     </motion.div>
@@ -95,21 +95,22 @@ export const InteractiveCloud = () => {
             style={{ 
               width: i * 190, 
               height: i * 190,
-              border: "1px solid rgba(112, 66, 248, 0.15)"
+              border: "1px solid rgba(245, 158, 11, 0.15)"
             }}
             className="absolute rounded-full pointer-events-none"
           >
+            {/* Spinning ring highlight */}
             <motion.div 
               animate={{ rotate: 360 }}
               transition={{ duration: 10 + i * 5, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-0 border-t border-cyan-500/20 rounded-full" 
+              className="absolute inset-0 border-t border-yellow-500/20 rounded-full" 
             />
           </div>
         ))}
 
         {/* Core Sun */}
         <div className="relative w-28 h-28 flex items-center justify-center z-10">
-          <div className="absolute inset-0 bg-purple-600/30 blur-[40px] animate-pulse rounded-full" />
+          <div className="absolute inset-0 bg-orange-600/30 blur-[40px] animate-pulse rounded-full" />
           <motion.div 
             animate={{ 
               scale: [1, 1.05, 1],
@@ -120,12 +121,11 @@ export const InteractiveCloud = () => {
               repeat: Infinity, 
               ease: "easeInOut" 
             }}
-            className="relative w-20 h-20 flex items-center justify-center rounded-full backdrop-blur-sm bg-white/5 border border-white/10 shadow-[0_0_50px_rgba(112,66,248,0.4)]"
+            className="relative w-20 h-20 flex items-center justify-center rounded-full backdrop-blur-sm bg-white/5 border border-white/10 shadow-[0_0_50px_rgba(245,158,11,0.4)]"
           >
-            <CodeBracketIcon className="w-10 h-10 text-cyan-400 drop-shadow-[0_0_15px_rgba(34,211,238,0.8)]" />
+            <CodeBracketIcon className="w-10 h-10 text-yellow-400 drop-shadow-[0_0_15px_rgba(251,191,36,0.8)]" />
           </motion.div>
         </div>
-
         {/* Orbiting Technologies */}
         {technologies.map((tech, index) => (
           <OrbitingIcon 
@@ -136,11 +136,11 @@ export const InteractiveCloud = () => {
         ))}
 
         {/* Decorative Star Dust */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(112,66,248,0.03)_1.5px,transparent_1.5px)] bg-[size:50px_50px] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.03)_1.5px,transparent_1.5px)] bg-[size:50px_50px] pointer-events-none" />
       </div>
 
       {/* Extreme background glow */}
-      <div className="absolute w-[600px] h-[600px] bg-purple-900/10 blur-[150px] rounded-full -z-30" />
+      <div className="absolute w-[600px] h-[600px] bg-orange-900/10 blur-[150px] rounded-full -z-30" />
     </div>
   );
 };

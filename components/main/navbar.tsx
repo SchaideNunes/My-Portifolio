@@ -9,7 +9,7 @@ export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="w-full h-[84px] fixed top-0 shadow-lg shadow-[#2A0E61]/50 bg-[#03001427] backdrop-blur-md z-50 px-10">
+    <div className="w-full h-[84px] fixed top-0 shadow-lg shadow-orange-900/40 bg-[#00000030] backdrop-blur-md z-50 px-10">
       {/* Navbar Container */}
       <div className="w-full h-full flex items-center justify-between m-auto px-[10px]">
         {/* Logo + Name */}
@@ -30,12 +30,12 @@ export const Navbar = () => {
 
         {/* Web Navbar */}
         <div className="hidden md:flex w-[400px] h-full flex-row items-center justify-between">
-          <div className="flex items-center justify-between w-full h-auto border border-[#7042f861] bg-[#0300145e] px-8 py-2 rounded-full text-gray-200 gap-10">
+          <div className="flex items-center justify-between w-full h-auto border border-[#f59e0b61] bg-[#0000005e] px-8 py-2 rounded-full text-gray-200 gap-10">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.title}
                 href={link.link}
-                className="cursor-pointer hover:text-[#7042f8] transition whitespace-nowrap"
+                className="cursor-pointer hover:text-[#f59e0b] transition whitespace-nowrap"
               >
                 {link.title}
               </Link>
@@ -68,14 +68,14 @@ export const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="absolute top-[84px] left-0 w-full bg-[#030014] p-5 flex flex-col items-center text-gray-300 md:hidden">
+        <div className="absolute top-[84px] left-0 w-full bg-[#000000] p-5 flex flex-col items-center text-gray-300 md:hidden">
           {/* Links */}
           <div className="flex flex-col items-center gap-4">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.title}
                 href={link.link}
-                className="cursor-pointer hover:text-[rgb(112,66,248)] transition text-center"
+                className="cursor-pointer hover:text-[#f59e0b] transition text-center"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.title}

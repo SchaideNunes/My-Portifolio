@@ -1,0 +1,338 @@
+﻿diff --git a/app/globals.css b/app/globals.css
+index aed963b..2a3a357 100644
+--- a/app/globals.css
++++ b/app/globals.css
+@@ -13,7 +13,7 @@
+       rgba(255, 255, 255, 0.4),
+       rgba(255, 255, 255, 0.4)
+     ),
+-    linear-gradient(90.01deg, #e59cff 0.01%, #ba9cff 50.01%, #9cb2ff 100%);
++    linear-gradient(90.01deg, #f59e0b 0.01%, #fbbf24 50.01%, #d97706 100%);
+   background-blend-mode: normal, screen;
+   -webkit-background-clip: text;
+   background-clip: text;
+@@ -26,7 +26,7 @@
+   -webkit-backdrop-filter: blur(6px);
+   backdrop-filter: blur(6px);
+   border-radius: 32px;
+-  box-shadow: inset 0 -7px 11px #a48fff1f;
++  box-shadow: inset 0 -7px 11px rgba(245, 158, 11, 0.12);
+   display: flex;
+ 
+   position: relative;
+@@ -38,20 +38,20 @@
+ .button-primary {
+   background: linear-gradient(
+       180deg,
+-      rgba(60, 8, 126, 0) 0%,
+-      rgba(60, 8, 126, 0.32) 100%
++      rgba(245, 158, 11, 0) 0%,
++      rgba(245, 158, 11, 0.32) 100%
+     ),
+-    rgba(113, 47, 255, 0.12);
+-  box-shadow: inset 0 0 12px #bf97ff3d;
++    rgba(217, 119, 6, 0.12);
++  box-shadow: inset 0 0 12px rgba(251, 191, 36, 0.2);
+ }
+ .button-primary:hover {
+   background: linear-gradient(
+       180deg,
+-      rgba(60, 8, 126, 0) 0%,
+-      rgba(60, 8, 126, 0.42) 100%
++      rgba(245, 158, 11, 0) 0%,
++      rgba(245, 158, 11, 0.42) 100%
+     ),
+-    rgba(113, 47, 255, 0.24);
+-  box-shadow: inset 0 0 12px #bf97ff70;
++    rgba(217, 119, 6, 0.24);
++  box-shadow: inset 0 0 12px rgba(251, 191, 36, 0.4);
+ }
+ 
+ /* Hide scrollbar for IE, Edge and Firefox */
+diff --git a/components/main/encryption.tsx b/components/main/encryption.tsx
+index 9ea26e0..f7f32c0 100644
+--- a/components/main/encryption.tsx
++++ b/components/main/encryption.tsx
+@@ -2,19 +2,18 @@
+ 
+ import { motion } from "framer-motion";
+ import Image from "next/image";
+-
+ import { slideInFromTop } from "@/lib/motion";
+ 
+ export const Encryption = () => {
+   return (
+-    <div className="flex flex-row relative items-center justify-center min-h-screen w-full h-full -z-20">
++    <div className="flex flex-row relative items-center justify-center min-h-screen w-full h-full">
+       <div className="absolute w-auto h-auto top-0 z-[5]">
+         <motion.div
+           variants={slideInFromTop}
+-          className="text-[40px] font-medium text-center text-gray-200"
++          className="text-[40px] font-bold text-center text-gray-200 tracking-[-2%]"
+         >
+           Performance{" "}
+-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
++          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f59e0b] to-[#fbbf24]">
+             &
+           </span>{" "}
+           security.
+@@ -28,7 +27,7 @@ export const Encryption = () => {
+             alt="Lock top"
+             width={50}
+             height={50}
+-            className="translate-y-5 transition-all duration-200 group-hover:translate-y-11"
++            className="w-[50px] translate-y-5 transition-all duration-200 group-hover:translate-y-11"
+           />
+           <Image
+             src="/lock-main.png"
+@@ -39,14 +38,13 @@ export const Encryption = () => {
+           />
+         </div>
+ 
+-        <div className="Welcome-box px-[15px] py-[4px] z-[20] border my-[20px] border-[#7042F88B] opacity-[0.9]">
++        <div className="Welcome-box px-[15px] py-[4px] z-[20] border my-[20px] border-[#f59e0b8b] opacity-[0.9]">
+           <h1 className="Welcome-text text-[12px]">Encryption</h1>
+         </div>
+       </div>
+-
+       <div className="absolute z-[20] bottom-[10px] px-[5px]">
+-        <div className="cursive text-[20px] font-medium text-center text-gray-300">
+-          Secure your data with end-to-end encryption.
++        <div className="text-[20px] font-medium text-center text-gray-400 tracking-[-2%]">
++          Secure your data with end-to-end encryption
+         </div>
+       </div>
+ 
+@@ -57,10 +55,9 @@ export const Encryption = () => {
+           autoPlay
+           playsInline
+           preload="false"
+-          className="w-full h-auto"
+-        >
+-          <source src="/videos/encryption-bg.webm" type="video/webm" />
+-        </video>
++          className="w-full h-auto opacity-10 grayscale sepia brightness-50"
++          src="/videos/encryption-bg.webm"
++        />
+       </div>
+     </div>
+   );
+diff --git a/components/main/hero.tsx b/components/main/hero.tsx
+index 7531b5c..527ea12 100644
+--- a/components/main/hero.tsx
++++ b/components/main/hero.tsx
+@@ -7,9 +7,10 @@ export const Hero = () => {
+         autoPlay
+         muted
+         loop
+-        className="rotate-180 absolute top-[-340px] left-0 w-full h-full object-cover -z-20"
++        playsInline
++        className="rotate-180 absolute top-[-340px] left-0 w-full h-full object-cover -z-20 opacity-70"
+       >
+-        <source src="/videos/blackhole.webm" type="video/webm" />
++        <source src="/videos/hero_new.mp4" type="video/mp4" />
+       </video>
+ 
+       <HeroContent />
+diff --git a/components/main/navbar.tsx b/components/main/navbar.tsx
+index 5fa1b1d..b590e3a 100644
+--- a/components/main/navbar.tsx
++++ b/components/main/navbar.tsx
+@@ -30,12 +30,12 @@ export const Navbar = () => {
+ 
+         {/* Web Navbar */}
+         <div className="hidden md:flex w-[400px] h-full flex-row items-center justify-between">
+-          <div className="flex items-center justify-between w-full h-auto border border-[#7042f861] bg-[#0300145e] px-8 py-2 rounded-full text-gray-200 gap-10">
++          <div className="flex items-center justify-between w-full h-auto border border-[#f59e0b61] bg-[#0300145e] px-8 py-2 rounded-full text-gray-200 gap-10">
+             {NAV_LINKS.map((link) => (
+               <Link
+                 key={link.title}
+                 href={link.link}
+-                className="cursor-pointer hover:text-[#7042f8] transition whitespace-nowrap"
++                className="cursor-pointer hover:text-[#f59e0b] transition whitespace-nowrap"
+               >
+                 {link.title}
+               </Link>
+diff --git a/components/main/projects.tsx b/components/main/projects.tsx
+index b2e391e..4514e75 100644
+--- a/components/main/projects.tsx
++++ b/components/main/projects.tsx
+@@ -7,8 +7,8 @@ export const Projects = () => {
+       id="projects"
+       className="flex flex-col items-center justify-center py-20"
+     >
+-      <h1 className="text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 py-20">
+-        My Projects
++      <h1 className="text-[40px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] py-20 tracking-[-2%] uppercase">
++        My Freelance Projects
+       </h1>
+       <div className="h-full w-full flex flex-col md:flex-row gap-10 px-10">
+         {PROJECTS.map((project) => (
+diff --git a/components/main/skills.tsx b/components/main/skills.tsx
+index 443d7b7..1038dfc 100644
+--- a/components/main/skills.tsx
++++ b/components/main/skills.tsx
+@@ -29,8 +29,8 @@ export const Skills = () => {
+ 
+       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 w-full max-w-[1200px] z-[20]">
+         {/* Frontend */}
+-        <div className="flex flex-col items-center gap-6 p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm hover:border-cyan-500/30 transition-colors duration-500">
+-          <h3 className="text-xl font-bold text-cyan-400 tracking-[-2%] uppercase">Frontend</h3>
++        <div className="flex flex-col items-center gap-6 p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm hover:border-yellow-500/30 transition-colors duration-500">
++          <h3 className="text-xl font-bold text-yellow-500 tracking-[-2%] uppercase">Frontend</h3>
+           <div className="flex flex-row flex-wrap justify-center gap-4">
+             {FRONTEND_SKILL.map((skill, i) => (
+               <SkillDataProvider
+@@ -46,8 +46,8 @@ export const Skills = () => {
+         </div>
+ 
+         {/* Backend */}
+-        <div className="flex flex-col items-center gap-6 p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm hover:border-purple-500/30 transition-colors duration-500">
+-          <h3 className="text-xl font-bold text-purple-400 tracking-[-2%] uppercase">Backend</h3>
++        <div className="flex flex-col items-center gap-6 p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm hover:border-orange-500/30 transition-colors duration-500">
++          <h3 className="text-xl font-bold text-orange-400 tracking-[-2%] uppercase">Backend</h3>
+           <div className="flex flex-row flex-wrap justify-center gap-4">
+             {BACKEND_SKILL.map((skill, i) => (
+               <SkillDataProvider
+@@ -63,13 +63,13 @@ export const Skills = () => {
+         </div>
+ 
+         {/* Cloud */}
+-        <div className="flex flex-col items-center gap-6 p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm hover:border-orange-500/30 transition-colors duration-500">
+-          <h3 className="text-xl font-bold text-orange-400 tracking-[-2%] uppercase">Cloud</h3>
++        <div className="flex flex-col items-center gap-6 p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm hover:border-amber-600/30 transition-colors duration-500">
++          <h3 className="text-xl font-bold text-amber-600 tracking-[-2%] uppercase">Cloud</h3>
+           <div className="flex flex-row flex-wrap justify-center gap-4">
+             {/* AWS Placeholder as the image is missing */}
+             <div className="relative group flex items-center justify-center cursor-pointer hover:scale-125 transition-all duration-300">
+-               <CloudIcon className="w-12 h-12 text-orange-400 drop-shadow-[0_0_8px_rgba(251,146,60,0.8)]" />
+-               <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#030014] border border-[#7042f88b] text-white text-[10px] px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50 pointer-events-none shadow-xl">
++               <CloudIcon className="w-12 h-12 text-amber-600 drop-shadow-[0_0_8px_rgba(217,119,6,0.8)]" />
++               <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#030014] border border-[#f59e0b8b] text-white text-[10px] px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50 pointer-events-none shadow-xl">
+                  AWS
+                </span>
+             </div>
+@@ -87,8 +87,8 @@ export const Skills = () => {
+         </div>
+ 
+         {/* UI/UX */}
+-        <div className="flex flex-col items-center gap-6 p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm hover:border-pink-500/30 transition-colors duration-500">
+-          <h3 className="text-xl font-bold text-pink-400 tracking-[-2%] uppercase">UI/UX</h3>
++        <div className="flex flex-col items-center gap-6 p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm hover:border-yellow-600/30 transition-colors duration-500">
++          <h3 className="text-xl font-bold text-yellow-600 tracking-[-2%] uppercase">UI/UX</h3>
+           <div className="flex flex-row flex-wrap justify-center gap-4">
+             {UI_UX_SKILL.map((skill, i) => (
+               <SkillDataProvider
+@@ -105,7 +105,7 @@ export const Skills = () => {
+       </div>
+ 
+       <div className="w-full h-full absolute">
+-        <div className="w-full h-full z-[-10] opacity-20 absolute flex items-center justify-center bg-cover">
++        <div className="w-full h-full z-[-10] opacity-10 absolute flex items-center justify-center bg-cover grayscale sepia brightness-50">
+           <video
+             className="w-full h-auto"
+             preload="false"
+diff --git a/components/sub/hero-content.tsx b/components/sub/hero-content.tsx
+index 2414902..d4f99b9 100644
+--- a/components/sub/hero-content.tsx
++++ b/components/sub/hero-content.tsx
+@@ -22,9 +22,9 @@ export const HeroContent = () => {
+       <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start">
+         <motion.div
+           variants={slideInFromTop}
+-          className="Welcome-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9]"
++          className="Welcome-box py-[8px] px-[7px] border border-[#f59e0b8b] opacity-[0.9]"
+         >
+-          <SparklesIcon className="text-[#b49bff] mr-[10px] h-5 w-5" />
++          <SparklesIcon className="text-[#fbbf24] mr-[10px] h-5 w-5" />
+           <h1 className="Welcome-text text-[13px]">
+             Schaide Nunes | Web Developer & Software Engineer
+           </h1>
+@@ -36,7 +36,7 @@ export const HeroContent = () => {
+         >
+           <span>
+             Providing{" "}
+-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
++            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f59e0b] to-[#fbbf24]">
+               creative, hand-coded
+             </span>{" "}
+             digital solutions.
+@@ -54,7 +54,7 @@ export const HeroContent = () => {
+ 
+         <motion.a
+           variants={slideInFromLeft(1)}
+-          className="py-2 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
++          className="py-2 px-4 bg-gradient-to-r from-orange-500 to-yellow-500 text-center text-white font-bold cursor-pointer rounded-lg max-w-[200px] hover:scale-105 transition-transform"
+         >
+           Learn more
+         </motion.a>
+diff --git a/components/sub/interactive-cloud.tsx b/components/sub/interactive-cloud.tsx
+index feb9932..4f0dc7f 100644
+--- a/components/sub/interactive-cloud.tsx
++++ b/components/sub/interactive-cloud.tsx
+@@ -95,21 +95,22 @@ export const InteractiveCloud = () => {
+             style={{ 
+               width: i * 190, 
+               height: i * 190,
+-              border: "1px solid rgba(112, 66, 248, 0.15)"
++              border: "1px solid rgba(245, 158, 11, 0.15)"
+             }}
+             className="absolute rounded-full pointer-events-none"
+           >
++            {/* Spinning ring highlight */}
+             <motion.div 
+               animate={{ rotate: 360 }}
+               transition={{ duration: 10 + i * 5, repeat: Infinity, ease: "linear" }}
+-              className="absolute inset-0 border-t border-cyan-500/20 rounded-full" 
++              className="absolute inset-0 border-t border-yellow-500/20 rounded-full" 
+             />
+           </div>
+         ))}
+ 
+         {/* Core Sun */}
+         <div className="relative w-28 h-28 flex items-center justify-center z-10">
+-          <div className="absolute inset-0 bg-purple-600/30 blur-[40px] animate-pulse rounded-full" />
++          <div className="absolute inset-0 bg-orange-600/30 blur-[40px] animate-pulse rounded-full" />
+           <motion.div 
+             animate={{ 
+               scale: [1, 1.05, 1],
+@@ -120,12 +121,11 @@ export const InteractiveCloud = () => {
+               repeat: Infinity, 
+               ease: "easeInOut" 
+             }}
+-            className="relative w-20 h-20 flex items-center justify-center rounded-full backdrop-blur-sm bg-white/5 border border-white/10 shadow-[0_0_50px_rgba(112,66,248,0.4)]"
++            className="relative w-20 h-20 flex items-center justify-center rounded-full backdrop-blur-sm bg-white/5 border border-white/10 shadow-[0_0_50px_rgba(245,158,11,0.4)]"
+           >
+-            <CodeBracketIcon className="w-10 h-10 text-cyan-400 drop-shadow-[0_0_15px_rgba(34,211,238,0.8)]" />
++            <CodeBracketIcon className="w-10 h-10 text-yellow-400 drop-shadow-[0_0_15px_rgba(251,191,36,0.8)]" />
+           </motion.div>
+         </div>
+-
+         {/* Orbiting Technologies */}
+         {technologies.map((tech, index) => (
+           <OrbitingIcon 
+diff --git a/tailwind.config.ts b/tailwind.config.ts
+index c7ead80..466c1e7 100644
+--- a/tailwind.config.ts
++++ b/tailwind.config.ts
+@@ -8,10 +8,17 @@ const config: Config = {
+   ],
+   theme: {
+     extend: {
++      colors: {
++        brand: {
++          gold: "#f59e0b",
++          amber: "#fbbf24",
++          glow: "rgba(245, 158, 11, 0.4)",
++        },
++      },
+       backgroundImage: {
+-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+-        'gradient-conic':
+-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
++        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
++        "gradient-conic":
++          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+       },
+     },
+   },

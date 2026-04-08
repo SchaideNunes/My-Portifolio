@@ -207,18 +207,18 @@ export const CLOUD_SKILL = [
 
 export const PROJECTS = [
   {
-    title: "Freelance Project - Specialized Solution",
+    title: "Barbearia Atual Estilo",
     description:
-      "A custom-coded web application focusing on high performance and unique UI/UX, built with modern stacks to solve specific client needs.",
-    image: "/projects/project-1.png",
-    link: "https://github.com/SchaideNunes",
+      "Uma plataforma web completa de agendamentos para barbearia, focada em performance, interface moderna e UX fluida para clientes e administradores.",
+    image: "/projects/atualestilo.png",
+    link: "https://atualestilo.com/",
   },
   {
-    title: "Advanced Web Application",
+    title: "Milena Reis Arquitetura",
     description:
-      "A full-stack platform emphasizing clean architecture and professional system design principles, showcasing creative problem-solving.",
-    image: "/projects/project-2.png",
-    link: "https://github.com/SchaideNunes",
+      "Portfólio de arquitetura elegante e interativo, construído focado em impacto visual e exposição refinada de design de interiores.",
+    image: "/projects/milenareis.png",
+    link: "https://milenareis-fbff1.web.app/",
   },
 ] as const;
 

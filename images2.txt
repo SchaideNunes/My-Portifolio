@@ -1,0 +1,20 @@
+﻿C:\Users\schai\Documents\Trabalho\Atual-Stylus\atualestilo-react\public\assets\barba-pezinho.jpg
+C:\Users\schai\Documents\Trabalho\Atual-Stylus\atualestilo-react\public\assets\corte-barba.jpg
+C:\Users\schai\Documents\Trabalho\Atual-Stylus\atualestilo-react\public\assets\corte-raspado.jpg
+C:\Users\schai\Documents\Trabalho\Atual-Stylus\atualestilo-react\public\assets\corte-social.jpg
+C:\Users\schai\Documents\Trabalho\Atual-Stylus\atualestilo-react\public\assets\degrade.jpg
+C:\Users\schai\Documents\Trabalho\Atual-Stylus\atualestilo-react\public\assets\Denilson.jpg
+C:\Users\schai\Documents\Trabalho\Atual-Stylus\atualestilo-react\public\assets\Geilson.jpg
+C:\Users\schai\Documents\Trabalho\Atual-Stylus\atualestilo-react\public\assets\logo sem fundo.png
+C:\Users\schai\Documents\Trabalho\Atual-Stylus\atualestilo-react\public\assets\Logo.jpg
+C:\Users\schai\Documents\Trabalho\Atual-Stylus\atualestilo-react\public\assets\navalhado.jpg
+C:\Users\schai\Documents\Trabalho\Atual-Stylus\barbearia-atualstylus\assets\barba-pezinho.jpg
+C:\Users\schai\Documents\Trabalho\Atual-Stylus\barbearia-atualstylus\assets\corte-barba.jpg
+C:\Users\schai\Documents\Trabalho\Atual-Stylus\barbearia-atualstylus\assets\corte-raspado.jpg
+C:\Users\schai\Documents\Trabalho\Atual-Stylus\barbearia-atualstylus\assets\corte-social.jpg
+C:\Users\schai\Documents\Trabalho\Atual-Stylus\barbearia-atualstylus\assets\degrade.jpg
+C:\Users\schai\Documents\Trabalho\Atual-Stylus\barbearia-atualstylus\assets\Denilson.jpg
+C:\Users\schai\Documents\Trabalho\Atual-Stylus\barbearia-atualstylus\assets\Geilson.jpg
+C:\Users\schai\Documents\Trabalho\Atual-Stylus\barbearia-atualstylus\assets\logo sem fundo.png
+C:\Users\schai\Documents\Trabalho\Atual-Stylus\barbearia-atualstylus\assets\Logo.jpg
+C:\Users\schai\Documents\Trabalho\Atual-Stylus\barbearia-atualstylus\assets\navalhado.jpg

@@ -7,24 +7,9 @@ import { slideInFromTop } from "@/lib/motion";
 import { ShieldCheckIcon, KeyIcon, CircleStackIcon } from "@heroicons/react/24/outline";
 
 export const Encryption = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = 0.5;
-    }
-  }, []);
-
   return (
     <div className="relative w-full overflow-hidden">
 
-      {/* Background Video */}
-      <video
-        ref={videoRef}
-        loop muted autoPlay playsInline preload="false"
-        className="absolute inset-0 w-full h-full object-cover opacity-10 brightness-25 -z-10"
-        src="/videos/encryption-bg.webm"
-      />
       <div className="absolute inset-0 bg-black/60 pointer-events-none -z-10" />
 
       {/* ====== MOBILE LAYOUT (< md) ====== */}

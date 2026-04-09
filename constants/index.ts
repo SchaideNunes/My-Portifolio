@@ -214,11 +214,17 @@ export const CLOUD_SKILL = [
 export const PROJECTS = [
   {
     title: "Barbearia Atual Estilo",
+    timeframe: "2023-24",
+    discipline: "Full Stack Development",
+    tools: "Next.js, PostgreSQL",
+    industry: "Service / Grooming",
+    tags: ["AGENDAMENTO", "DASHBOARD", "SaaS"],
     description:
       "Uma plataforma web completa de agendamentos para barbearia, focada em performance, interface moderna e UX fluida para clientes e administradores.",
     technologies: ["HTML", "CSS", "JavaScript", "PostgreSQL"],
     image: "/projects/atualestilo.png",
     link: "https://atualestilo.com/",
+    color: "#e5e7eb", // Light gray like Screenshot 2
     testimonial: {
       text: "O Schaide entendeu perfeitamente a visão do nosso negócio. O sistema de agendamento não só ficou com um design premium como facilitou a vida de todos os nossos clientes!",
       author: "Geilson, Atual Estilo"
@@ -226,11 +232,17 @@ export const PROJECTS = [
   },
   {
     title: "Milena Reis Arquitetura",
+    timeframe: "2022-23",
+    discipline: "Web Design & Development",
+    tools: "React, Firebase",
+    industry: "Architecture / Design",
+    tags: ["PORTFOLIO", "ARCHVIZ", "INTERIORS"],
     description:
       "Portfólio de arquitetura elegante e interativo, construído focado em impacto visual e exposição refinada de design de interiores.",
     technologies: ["React", "JavaScript", "Firebase", "TailwindCSS"],
     image: "/projects/milenareis.png",
     link: "https://milenareis-fbff1.web.app/",
+    color: "#065f46", // Dark green like Screenshot 3
     testimonial: {
       text: "O portfólio superou minhas expectativas. A forma como as imagens são apresentadas consegue transmitir exatamente a essência e elegância dos meus projetos de arquitetura.",
       author: "Milena Reis"

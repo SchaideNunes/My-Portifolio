@@ -106,16 +106,6 @@ export const Skills = () => {
 
       <div className="w-full h-full absolute">
         <div className="w-full h-full z-[-10] opacity-15 absolute flex items-center justify-center bg-cover">
-          <video
-            className="w-full h-auto brightness-50"
-            preload="false"
-            playsInline
-            loop
-            muted
-            autoPlay
-          >
-            <source src="/videos/skills-bg.webm" type="video/webm" />
-          </video>
           <div className="absolute inset-0 bg-amber-900/10 pointer-events-none" />
         </div>
       </div>

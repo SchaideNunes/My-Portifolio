@@ -11,7 +11,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <div className="w-full h-[65px] fixed top-0 shadow shadow-[#f59e0b]/5 bg-[#03001417] backdrop-blur-xl z-50 px-10 transition-all duration-300">
+      <div className="w-full h-[65px] fixed top-0 shadow shadow-[#f59e0b]/5 bg-[#03001417] backdrop-blur-xl z-50 pl-4 pr-3 md:px-10 transition-all duration-300">
         {/* Navbar Container */}
         <div className="w-full h-full flex items-center justify-between m-auto px-[10px]">
           {/* Logo + Name */}
@@ -58,27 +58,48 @@ export const Navbar = () => {
             ))}
           </div>
 
-          {/* Hamburger — animated lines morphing to X */}
+          {/* 2x2 grid dots → X menu button */}
           <button
-            className="md:hidden text-white focus:outline-none p-2 z-[60] relative"
+            className="md:hidden focus:outline-none z-[60] relative flex items-center justify-center w-9 h-9 transition-all duration-300"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            <div className="w-6 flex flex-col gap-[5px]">
+            <div className="grid grid-cols-2 gap-[5px]">
+              {/* Top-left */}
               <motion.span
-                animate={isMobileMenuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+                animate={isMobileMenuOpen
+                  ? { rotate: 45, x: 4.5, y: 4.5, backgroundColor: "#f59e0b" }
+                  : { rotate: 0, x: 0, y: 0, backgroundColor: "#ffffff" }
+                }
                 transition={{ duration: 0.25 }}
-                className="block h-[2px] w-full bg-white rounded-full origin-center"
+                className="block w-[6px] h-[6px] rounded-sm"
               />
+              {/* Top-right */}
               <motion.span
-                animate={isMobileMenuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
-                transition={{ duration: 0.2 }}
-                className="block h-[2px] w-full bg-white rounded-full"
-              />
-              <motion.span
-                animate={isMobileMenuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+                animate={isMobileMenuOpen
+                  ? { rotate: -45, x: -4.5, y: 4.5, backgroundColor: "#f59e0b" }
+                  : { rotate: 0, x: 0, y: 0, backgroundColor: "#ffffff" }
+                }
                 transition={{ duration: 0.25 }}
-                className="block h-[2px] w-full bg-white rounded-full origin-center"
+                className="block w-[6px] h-[6px] rounded-sm"
+              />
+              {/* Bottom-left */}
+              <motion.span
+                animate={isMobileMenuOpen
+                  ? { rotate: -45, x: 4.5, y: -4.5, backgroundColor: "#f59e0b" }
+                  : { rotate: 0, x: 0, y: 0, backgroundColor: "#ffffff" }
+                }
+                transition={{ duration: 0.25 }}
+                className="block w-[6px] h-[6px] rounded-sm"
+              />
+              {/* Bottom-right */}
+              <motion.span
+                animate={isMobileMenuOpen
+                  ? { rotate: 45, x: -4.5, y: -4.5, backgroundColor: "#f59e0b" }
+                  : { rotate: 0, x: 0, y: 0, backgroundColor: "#ffffff" }
+                }
+                transition={{ duration: 0.25 }}
+                className="block w-[6px] h-[6px] rounded-sm"
               />
             </div>
           </button>

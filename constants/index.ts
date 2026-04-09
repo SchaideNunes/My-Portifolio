@@ -224,7 +224,7 @@ export const PROJECTS = [
     technologies: ["HTML", "CSS", "JavaScript", "PostgreSQL"],
     image: "/projects/atualestilo.png",
     link: "https://atualestilo.com/",
-    color: "#e5e7eb", // Light gray like Screenshot 2
+    color: "#0a0a0a", // Dark space theme
     testimonial: {
       text: "O Schaide entendeu perfeitamente a visão do nosso negócio. O sistema de agendamento não só ficou com um design premium como facilitou a vida de todos os nossos clientes!",
       author: "Geilson, Atual Estilo"
@@ -242,7 +242,7 @@ export const PROJECTS = [
     technologies: ["React", "JavaScript", "Firebase", "TailwindCSS"],
     image: "/projects/milenareis.png",
     link: "https://milenareis-fbff1.web.app/",
-    color: "#065f46", // Dark green like Screenshot 3
+    color: "#111111", // Slightly lighter dark theme
     testimonial: {
       text: "O portfólio superou minhas expectativas. A forma como as imagens são apresentadas consegue transmitir exatamente a essência e elegância dos meus projetos de arquitetura.",
       author: "Milena Reis"

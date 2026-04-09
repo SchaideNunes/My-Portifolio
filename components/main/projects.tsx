@@ -122,7 +122,7 @@ export const Projects = () => {
 
         {/* Floating Container (Popup) */}
         <div className="absolute inset-0 z-[40] pointer-events-none">
-          <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
+          <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-end pr-[22vw]">
             <AnimatePresence mode="wait">
               {activeProject !== null && (
                 <motion.div
@@ -131,21 +131,21 @@ export const Projects = () => {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -40, scale: 0.95 }}
                   transition={{ duration: 0.3, ease: "circOut" }}
-                  className="w-[450px] overflow-hidden rounded-2xl shadow-2xl flex flex-col pointer-events-auto"
-                  style={{ backgroundColor: PROJECTS[activeProject].color || "#ffffff" }}
+                  className="w-[450px] overflow-hidden rounded-[2rem] shadow-[0_0_50px_rgba(245,158,11,0.05)] border border-white/5 flex flex-col pointer-events-auto"
+                  style={{ backgroundColor: PROJECTS[activeProject].color || "#0a0a0a" }}
                 >
                   {/* Image Area */}
-                  <div className="w-full aspect-[4/5] relative bg-black/10">
+                  <div className="w-full aspect-[4/5] relative bg-white/5">
                     <Image
                       src={PROJECTS[activeProject].image}
                       alt={PROJECTS[activeProject].title}
                       fill
-                      className="object-cover p-6 rounded-[2.5rem]"
+                      className="object-cover p-6 rounded-[3rem]"
                     />
                   </div>
                   
                   {/* Content Area */}
-                  <div className="p-8 flex flex-col gap-4 text-black">
+                  <div className="p-8 flex flex-col gap-4 text-white">
                     <h2 className="text-3xl font-bold tracking-tight">
                       {PROJECTS[activeProject].title}
                     </h2>
@@ -153,7 +153,7 @@ export const Projects = () => {
                       {PROJECTS[activeProject].tags.map((tag, idx) => (
                         <span 
                           key={idx} 
-                          className="px-3 py-1 rounded-full border border-black/20 text-[10px] font-bold uppercase tracking-widest"
+                          className="px-3 py-1 rounded-full border border-amber-500/30 text-amber-500 text-[10px] font-bold uppercase tracking-widest bg-amber-500/5"
                         >
                           {tag}
                         </span>

@@ -216,7 +216,7 @@ export const PROJECTS = [
     title: "Barbearia Atual Estilo",
     description:
       "Uma plataforma web completa de agendamentos para barbearia, focada em performance, interface moderna e UX fluida para clientes e administradores.",
-    technologies: ["Next.js", "TailwindCSS", "PostgreSQL", "Prisma"],
+    technologies: ["HTML", "CSS", "JavaScript", "PostgreSQL"],
     image: "/projects/atualestilo.png",
     link: "https://atualestilo.com/",
     testimonial: {
@@ -228,7 +228,7 @@ export const PROJECTS = [
     title: "Milena Reis Arquitetura",
     description:
       "Portfólio de arquitetura elegante e interativo, construído focado em impacto visual e exposição refinada de design de interiores.",
-    technologies: ["React", "Vite", "Framer Motion", "Firebase"],
+    technologies: ["React", "JavaScript", "Firebase", "TailwindCSS"],
     image: "/projects/milenareis.png",
     link: "https://milenareis-fbff1.web.app/",
     testimonial: {

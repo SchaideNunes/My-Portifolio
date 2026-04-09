@@ -18,7 +18,9 @@ const matchTechIcon = (tech: string) => {
   if (t.includes("framer")) return "/skills/framer.png";
   if (t.includes("mongo")) return "/skills/mongodb.png";
   if (t.includes("firebase")) return "/skills/firebase.png";
-  if (t.includes("vite")) return "/skills/js.png"; 
+  if (t.includes("html")) return "/skills/html.png";
+  if (t.includes("css")) return "/skills/css.png";
+  if (t.includes("javascript") || t.includes("js") || t.includes("vite")) return "/skills/js.png"; 
   return null;
 };
 
@@ -90,35 +92,7 @@ export const Projects = () => {
   return (
     <section id="projects" className="relative w-full min-h-screen z-[30] pb-20">
       
-      {/* --------- DEBUG GRID VISUAL --------- */}
-      {/* --- EIXO Y (HORIZONTAL) --- */}
-      <div className="fixed top-[25vh] left-0 w-full border-t border-dashed border-blue-500/50 z-[100] pointer-events-none opacity-80 flex items-center">
-         <span className="text-blue-400 bg-black px-2 py-0.5 font-mono text-[10px] font-bold shadow-md transform -translate-y-1/2">Y = 25% (25vh)</span>
-      </div>
-      <div className="fixed top-[50vh] left-0 w-full border-t-2 border-dashed border-blue-500 z-[100] pointer-events-none opacity-80 flex items-center">
-         <span className="text-blue-400 bg-black px-2 py-0.5 font-mono text-[10px] font-bold shadow-md transform -translate-y-1/2">TRIGGER START / Y = 50% (MEIO DA TELA)</span>
-      </div>
-      <div className="fixed top-[75vh] left-0 w-full border-t border-dashed border-blue-500/50 z-[100] pointer-events-none opacity-80 flex items-center">
-         <span className="text-blue-400 bg-black px-2 py-0.5 font-mono text-[10px] font-bold shadow-md transform -translate-y-1/2">Y = 75% (75vh)</span>
-      </div>
 
-      {/* --- EIXO X (VERTICAL) --- */}
-      <div className="fixed top-0 left-[25vw] h-full border-l border-dashed border-green-500/50 z-[100] pointer-events-none opacity-80 flex items-start pt-[15vh] overflow-visible">
-         <span className="text-green-400 bg-black px-2 py-0.5 font-mono text-[10px] font-bold shadow-md transform -translate-x-1/2 whitespace-nowrap">X = 25%</span>
-      </div>
-      <div className="fixed top-0 left-[50vw] h-full border-l-2 border-dashed border-green-500 z-[100] pointer-events-none opacity-80 flex items-start pt-[15vh]">
-         <span className="text-green-400 bg-black px-2 py-0.5 font-mono text-[10px] font-bold shadow-md transform -translate-x-1/2 whitespace-nowrap">X = 50% (MEIO)</span>
-      </div>
-      <div className="fixed top-0 left-[75vw] h-full border-l border-dashed border-green-500/50 z-[100] pointer-events-none opacity-80 flex items-start pt-[15vh]">
-         <span className="text-green-400 bg-black px-2 py-0.5 font-mono text-[10px] font-bold shadow-md transform -translate-x-1/2 whitespace-nowrap">X = 75%</span>
-      </div>
-
-      {/* --- POSIÇÃO ATUAL DO CONTAINER (Vermelho) --- */}
-      {/* O container está sendo empurrado pra esquerda com margin right. Em Telas grandes (lg), é lg:pr-[25vw]. */}
-      <div className="fixed top-0 right-[25vw] h-full border-r-2 border-solid border-red-500 z-[100] pointer-events-none opacity-100 flex items-start pt-[20vh]">
-         <span className="text-red-500 bg-black border border-red-500 px-2 py-1 font-mono text-[10px] font-bold shadow-md transform translate-x-1/2 whitespace-nowrap">LIMITE DIREITO ATUAL DO CARTÃO</span>
-      </div>
-      {/* ------------------------------- */}
 
       {/* Container Flutuante */}
       <div className="absolute inset-0 z-[40] pointer-events-none">

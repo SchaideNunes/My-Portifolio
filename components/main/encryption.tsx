@@ -70,7 +70,7 @@ export const Encryption = () => {
 
       <div className="absolute w-full h-full inset-0 z-[20] flex items-center justify-center pointer-events-none max-w-[1200px] mx-auto">
         {/* Left Card */}
-        <motion.div 
+        <motion.div
           initial={{ x: -100, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.8 }}
@@ -85,7 +85,7 @@ export const Encryption = () => {
         </motion.div>
 
         {/* Right Card */}
-        <motion.div 
+        <motion.div
           initial={{ x: 100, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.8 }}
@@ -100,7 +100,7 @@ export const Encryption = () => {
         </motion.div>
 
         {/* Bottom Card */}
-        <motion.div 
+        <motion.div
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.8 }}

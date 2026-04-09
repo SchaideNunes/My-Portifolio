@@ -67,8 +67,8 @@ export const Skills = () => {
           <h3 className="text-xl font-bold text-amber-600 tracking-[-2%] uppercase">Cloud</h3>
           <div className="flex flex-row flex-wrap justify-center gap-4">
             {/* AWS Placeholder as the image is missing */}
-            <div className="relative group flex items-center justify-center cursor-pointer hover:scale-125 transition-all duration-300">
-              <CloudIcon className="w-12 h-12 text-amber-600 drop-shadow-[0_0_8px_rgba(217,119,6,0.8)]" />
+            <div className="relative group flex items-center justify-center cursor-pointer hover:scale-110 transition-all duration-300">
+              <CloudIcon className="w-12 h-12 text-amber-600 drop-shadow-[0_0_2px_rgba(217,119,6,0.3)] group-hover:drop-shadow-[0_0_5px_rgba(251,191,36,0.5)] transition-all duration-300" />
               <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#000000] border border-[#f59e0b8b] text-white text-[10px] px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50 pointer-events-none shadow-xl">
                 AWS
               </span>

@@ -39,8 +39,9 @@ export const SkillDataProvider = ({
       custom={index}
       transition={{ delay: index * animationDelay }}
       whileHover={{ 
-        scale: 1.25,
-        filter: "drop-shadow(0px 0px 8px rgba(245, 158, 11, 0.8))"
+        scale: 1.1,
+        transition: { duration: 0.2 },
+        filter: "drop-shadow(0px 0px 5px rgba(251, 191, 36, 0.4))"
       }}
       className="cursor-pointer relative group flex items-center justify-center"
     >

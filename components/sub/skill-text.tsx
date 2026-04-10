@@ -33,7 +33,7 @@ export const SkillText = () => {
         variants={slideInFromRight(0.5)}
         className="text-[20px] text-gray-400 font-medium mb-10 mt-[10px] text-center tracking-[-2%]"
       >
-        Exclusive design, extreme performance, and cutting-edge tech for your business.
+        Exclusive design and cutting-edge tech for your business.
       </motion.div>
     </div>
   );

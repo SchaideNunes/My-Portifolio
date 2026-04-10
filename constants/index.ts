@@ -138,14 +138,20 @@ export const FRONTEND_SKILL = [
     height: 80,
   },
   {
+    skill_name: "Next.js 14",
+    image: "next.png",
+    width: 80,
+    height: 80,
+  },
+  {
     skill_name: "TypeScript",
     image: "ts.png",
     width: 80,
     height: 80,
   },
   {
-    skill_name: "Next.js 14",
-    image: "next.png",
+    skill_name: "GSAP",
+    image: "gsap.svg",
     width: 80,
     height: 80,
   },
@@ -157,6 +163,12 @@ export const BACKEND_SKILL = [
     image: "node.png",
     width: 80,
     height: 80,
+  },
+  {
+    skill_name: "Python",
+    image: "python.svg",
+    width: 70,
+    height: 70,
   },
   {
     skill_name: "PostgreSQL",
@@ -216,12 +228,12 @@ export const PROJECTS = [
     title: "Barbearia Atual Estilo",
     timeframe: "2023-24",
     discipline: "Full Stack Development",
-    tools: "Next.js, PostgreSQL",
+    tools: "HTML, CSS, JS, DB",
     industry: "Service / Grooming",
-    tags: ["AGENDAMENTO", "DASHBOARD", "SaaS"],
+    tags: ["HTML", "CSS", "JavaScript", "Banco de Dados"],
     description:
       "Uma plataforma web completa de agendamentos para barbearia, focada em performance, interface moderna e UX fluida para clientes e administradores.",
-    technologies: ["HTML", "CSS", "JavaScript", "PostgreSQL"],
+    technologies: ["HTML", "CSS", "JavaScript", "Banco de Dados"],
     image: "/projects/atualestilo.png",
     link: "https://atualestilo.com/",
     color: "#0a0a0a", // Dark space theme
@@ -234,12 +246,12 @@ export const PROJECTS = [
     title: "Milena Reis Arquitetura",
     timeframe: "2022-23",
     discipline: "Web Design & Development",
-    tools: "React, Firebase",
+    tools: "HTML, CSS, JS, Tailwind, GSAP",
     industry: "Architecture / Design",
-    tags: ["PORTFOLIO", "ARCHVIZ", "INTERIORS"],
+    tags: ["HTML", "CSS", "JavaScript", "Tailwind", "GSAP"],
     description:
       "Portfólio de arquitetura elegante e interativo, construído focado em impacto visual e exposição refinada de design de interiores.",
-    technologies: ["React", "JavaScript", "Firebase", "TailwindCSS"],
+    technologies: ["HTML", "CSS", "JavaScript", "Tailwind", "GSAP"],
     image: "/projects/milenareis.png",
     link: "https://milenareis-fbff1.web.app/",
     color: "#111111", // Slightly lighter dark theme

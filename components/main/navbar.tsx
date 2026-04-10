@@ -11,9 +11,9 @@ export const Navbar = () => {
 
   return (
     <>
-      <div className="w-full h-[65px] fixed top-0 shadow shadow-[#f59e0b]/5 bg-[#03001417] backdrop-blur-xl z-50 pl-4 pr-3 md:px-10 transition-all duration-300">
+      <div className="w-full h-[65px] fixed top-0 shadow shadow-[#f59e0b]/5 bg-[#03001417] backdrop-blur-xl z-50 px-[10%] md:px-10 transition-all duration-300">
         {/* Navbar Container */}
-        <div className="w-full h-full flex items-center justify-between m-auto px-[10px]">
+        <div className="w-full h-full flex items-center justify-between m-auto">
           {/* Logo + Name */}
           <Link href="#about-me" className="flex items-center">
             <Image

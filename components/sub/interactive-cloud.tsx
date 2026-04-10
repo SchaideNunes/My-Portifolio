@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import Image from "next/image";
 import { CodeBracketIcon } from "@heroicons/react/24/outline";
 
@@ -30,14 +30,20 @@ const OrbitingIcon = ({ tech, index }: any) => {
   const angle = useMotionValue(initialAngle);
   
   useEffect(() => {
-    let frame: number;
-    const animate = () => {
-      angle.set(angle.get() + (tech.speed * 0.01));
-      frame = requestAnimationFrame(animate);
-    };
-    animate();
-    return () => cancelAnimationFrame(frame);
-  }, [angle, tech.speed]);
+    // Calcula a duração correta para manter a velocidade original, mas fluida.
+    // 0.01 por frame original a 60fps = 0.6 radianos por segundo.
+    const radiansPerSecond = 0.6 * Math.abs(tech.speed);
+    const duration = (2 * Math.PI) / radiansPerSecond;
+    const targetAngle = initialAngle + (2 * Math.PI * Math.sign(tech.speed));
+
+    const controls = animate(angle, targetAngle, {
+      ease: "linear",
+      duration: duration,
+      repeat: Infinity,
+    });
+
+    return () => controls.stop();
+  }, [angle, initialAngle, tech.speed]);
 
   const x = useTransform(angle, (a) => Math.cos(a) * radius);
   const y = useTransform(angle, (a) => Math.sin(a) * radius);
@@ -51,7 +57,8 @@ const OrbitingIcon = ({ tech, index }: any) => {
         x,
         y,
         translateX: "-50%",
-        translateY: "-50%"
+        translateY: "-50%",
+        willChange: "transform"
       }}
       className="group cursor-pointer z-20"
       whileHover={{ scale: 1.5 }}

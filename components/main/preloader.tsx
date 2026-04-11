@@ -2,15 +2,23 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 export const Preloader = () => {
   const [progress, setProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading progress
-    const duration = 2000; // total duration 2 seconds
-    const intervalTime = 20;
+    // Tenta forçar o pre-load do vídeo em memória
+    if (typeof window !== "undefined") {
+      const video = document.createElement("video");
+      video.src = "/videos/hero_new.webm";
+      video.preload = "auto";
+    }
+
+    // Simula a barra de progresso carregando os assets (ex: vídeo do fundo)
+    const duration = 2500; 
+    const intervalTime = 25;
     const increment = 100 / (duration / intervalTime);
 
     const interval = setInterval(() => {
@@ -20,16 +28,14 @@ export const Preloader = () => {
           clearInterval(interval);
           setTimeout(() => {
             setIsLoading(false);
-          }, 300); // small delay at 100% before fading out
+          }, 400); // 400ms paradinho no 100%
           return 100;
         }
         return next;
       });
     }, intervalTime);
 
-    return () => {
-      clearInterval(interval);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -37,6 +43,11 @@ export const Preloader = () => {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
+      
+      // Dispara o evento "preloaderComplete" após o delay da animação de saída, para as animações de entrada começarem perfeitamente no timing
+      setTimeout(() => {
+        window.dispatchEvent(new Event("preloaderComplete"));
+      }, 800); 
     }
   }, [isLoading]);
 
@@ -46,115 +57,53 @@ export const Preloader = () => {
         <motion.div
           key="preloader"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 1.1 }}
+          exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-[#000000] overflow-hidden"
+          className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-[#050505] overflow-hidden"
         >
-          {/* Subtle star-like flickering background elements right inside preloader */}
-          <div className="absolute inset-0 z-0">
-            {/* Generate deterministic stars to avoid hydration mismatch */}
-            {[...Array(40)].map((_, i) => {
-              const size = (i % 3) + 1;
-              const top = (i * 17) % 100;
-              const left = (i * 31) % 100;
-              const isAmber = i % 4 === 0;
-              const duration = (i % 3) + 2;
-              const delay = (i % 5) * 0.5;
+          {/* Planetas ao fundo */}
+          <motion.div 
+            initial={{ scale: 1, opacity: 0.2 }}
+            animate={{ scale: 1.05, opacity: 0.4 }}
+            transition={{ duration: 3, ease: "linear", repeat: Infinity, repeatType: "mirror" }}
+            className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center"
+          >
+            <div className="relative w-full h-full max-w-[1200px] max-h-[1200px]">
+               <Image 
+                 src="/Planetas_new.png" 
+                 alt="Planets" 
+                 fill
+                 className="object-cover md:object-contain opacity-50"
+                 priority
+               />
+            </div>
+          </motion.div>
 
-              return (
-                <motion.div
-                  key={i}
-                  className="absolute bg-white rounded-full bg-opacity-80"
-                  style={{
-                    width: size,
-                    height: size,
-                    top: `${top}%`,
-                    left: `${left}%`,
-                    backgroundColor: isAmber ? '#fcd34d' : '#ffffff'
-                  }}
-                  animate={{
-                    opacity: [0.1, 1, 0.1],
-                    scale: [1, 1.5, 1],
-                  }}
-                  transition={{
-                    duration: duration,
-                    repeat: Infinity,
-                    delay: delay,
-                    ease: "easeInOut"
-                  }}
-                />
-              );
-            })}
-
-            {/* Shooting Star */}
-            <motion.div
-              className="absolute w-[200px] h-[1px] bg-gradient-to-r from-transparent via-amber-300 to-white"
-              style={{
-                top: "10%",
-                left: "-10%",
-                rotate: "30deg"
-              }}
-              animate={{
-                x: ["0vw", "110vw"],
-                y: ["0vh", "60vh"],
-                opacity: [0, 1, 0],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatDelay: 4,
-                ease: "linear",
-              }}
-            />
-          </div>
-          
-          {/* Deep Space Background Glow behind the loader */}
+          {/* Subtle Glow */}
           <div className="absolute inset-0 z-0 flex justify-center items-center pointer-events-none">
-             <div className="w-[500px] h-[500px] bg-amber-600/10 blur-[100px] rounded-full" />
+            <div className="w-[400px] h-[400px] bg-amber-600/10 blur-[120px] rounded-full" />
           </div>
 
-          <div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
-            <div className="relative flex items-center justify-center w-64 h-64">
-              {/* Pulsing outer ring */}
-              <motion.div
-                className="absolute w-48 h-48 rounded-full border border-amber-600/20"
-                animate={{
-                  scale: [1, 1.3, 1],
-                  opacity: [0.2, 0.6, 0.2],
-                }}
-                transition={{
-                  duration: 2.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-              
-              {/* Inner orbital ring */}
-              <motion.div
-                className="absolute w-36 h-36 rounded-full border-t border-b border-amber-500/80 shadow-[0_0_15px_rgba(245,158,11,0.3)]"
-                animate={{ rotate: 360 }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              />
+          <div className="relative z-10 flex flex-col items-center gap-6 w-full max-w-[280px] sm:max-w-[350px]">
+            <div className="w-full flex justify-between items-end text-amber-500 font-mono text-xs sm:text-sm font-medium tracking-[0.2em] uppercase">
+              <span>System</span>
+              <span>{Math.round(progress)}%</span>
+            </div>
 
-              {/* Counter Text */}
-              <h1 className="absolute text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-amber-500 drop-shadow-[0_0_10px_rgba(245,158,11,0.5)] tracking-widest font-mono">
-                {Math.round(progress)}<span className="text-3xl text-amber-500/50 absolute top-0 -right-8">%</span>
-              </h1>
+            {/* Barra de Loading minimalista */}
+            <div className="w-full h-[2px] bg-white/10 relative overflow-hidden rounded-full">
+              <motion.div 
+                className="absolute top-0 left-0 h-full bg-gradient-to-r from-amber-600 to-amber-400"
+                style={{ width: `${progress}%` }}
+              />
             </div>
             
-            {/* Subtext */}
             <motion.div 
-              className="mt-8"
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              animate={{ opacity: [0.3, 1, 0.3] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+              className="text-gray-500 text-[10px] tracking-[0.3em] uppercase"
             >
-              <span className="text-amber-500/80 tracking-[0.4em] uppercase text-xs font-light">
-                System Online
-              </span>
+              Loading experience...
             </motion.div>
           </div>
         </motion.div>

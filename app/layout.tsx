@@ -34,7 +34,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         )}
       >
         <SmoothScroll>
-          {/* <Preloader /> // Componente desabilitado temporariamente. Arquivo em: components/main/preloader.tsx */}
+          <Preloader />
           <StarsCanvas />
           <Navbar />
           {children}

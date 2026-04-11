@@ -73,7 +73,7 @@ export const Preloader = () => {
                  src="/Planetas_new.png" 
                  alt="Planets" 
                  fill
-                 className="object-cover md:object-contain opacity-50"
+                 className="object-cover md:object-contain opacity-50 mix-blend-lighten"
                  priority
                />
             </div>

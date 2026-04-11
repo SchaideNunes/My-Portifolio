@@ -306,12 +306,12 @@ export const NAV_LINKS = [
     link: "#about-me",
   },
   {
-    title: "Skills",
-    link: "#skills",
-  },
-  {
     title: "Projects",
     link: "#projects",
+  },
+  {
+    title: "Skills",
+    link: "#skills",
   },
 ] as const;
 

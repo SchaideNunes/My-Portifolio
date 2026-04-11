@@ -7,8 +7,8 @@ export default function Home() {
     <main className="h-full w-full overflow-x-hidden">
       <div className="flex flex-col gap-20">
         <Hero />
-        <Skills />
         <Projects />
+        <Skills />
       </div>
     </main>
   );

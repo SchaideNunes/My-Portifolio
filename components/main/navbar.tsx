@@ -15,9 +15,9 @@ export const Navbar = () => {
         {/* Navbar Container */}
         <div className="w-full h-full flex items-center justify-between m-auto">
           {/* Logo + Name */}
-          <Link href="#about-me" className="flex items-center">
+          <Link href="/" className="flex items-center">
             <Image
-              src="/logo.png"
+              src="/Logo.png"
               alt="Logo"
               width={50}
               height={50}

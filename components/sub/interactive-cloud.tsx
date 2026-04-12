@@ -22,11 +22,12 @@ const technologies = [
   { name: "MongoDB", icon: "/skills/mongodb.png", orbit: 3, speed: -0.12 },
   { name: "HTML", icon: "/skills/html.png", orbit: 3, speed: 0.15 },
   { name: "CSS", icon: "/skills/css.png", orbit: 3, speed: -0.14 },
+  { name: "Python", icon: "/skills/python.svg", orbit: 3, speed: 0.18 },
 ];
 
-const OrbitingIcon = ({ tech, index }: any) => {
+const OrbitingIcon = ({ tech, index, totalInOrbit, orbitIndex }: any) => {
   const radius = tech.orbit * 95; 
-  const initialAngle = (index * (360 / technologies.length)) * (Math.PI / 180);
+  const initialAngle = (orbitIndex * (360 / totalInOrbit)) * (Math.PI / 180);
   const angle = useMotionValue(initialAngle);
   
   useEffect(() => {
@@ -102,7 +103,10 @@ export const InteractiveCloud = () => {
             style={{ 
               width: i * 190, 
               height: i * 190,
-              border: "1px solid rgba(245, 158, 11, 0.15)"
+              border: "1px solid rgba(245, 158, 11, 0.08)",
+              left: "50%",
+              top: "50%",
+              transform: "translate(-50%, -50%)"
             }}
             className="absolute rounded-full pointer-events-none"
           >
@@ -110,7 +114,7 @@ export const InteractiveCloud = () => {
             <motion.div 
               animate={{ rotate: 360 }}
               transition={{ duration: 10 + i * 5, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-0 border-t border-yellow-500/20 rounded-full" 
+              className="absolute inset-0 border-t border-yellow-500/10 rounded-full" 
             />
           </div>
         ))}
@@ -134,13 +138,20 @@ export const InteractiveCloud = () => {
           </motion.div>
         </div>
         {/* Orbiting Technologies */}
-        {technologies.map((tech, index) => (
-          <OrbitingIcon 
-            key={tech.name} 
-            tech={tech} 
-            index={index} 
-          />
-        ))}
+        {technologies.map((tech, index) => {
+          const inSameOrbit = technologies.filter(t => t.orbit === tech.orbit);
+          const orbitIndex = inSameOrbit.findIndex(t => t.name === tech.name);
+          
+          return (
+            <OrbitingIcon 
+              key={tech.name} 
+              tech={tech} 
+              index={index} 
+              totalInOrbit={inSameOrbit.length}
+              orbitIndex={orbitIndex}
+            />
+          );
+        })}
 
         {/* Decorative Star Dust */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.03)_1.5px,transparent_1.5px)] bg-[size:50px_50px] pointer-events-none" />

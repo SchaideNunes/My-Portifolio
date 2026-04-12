@@ -24,6 +24,11 @@ export const HeroContent = () => {
   const cursorRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
+    if (typeof window !== "undefined" && (window as any).__preloaderCompleted) {
+      setIsReady(true);
+      return;
+    }
+
     // Timeout de fallback: se por algum motivo o preloader bugar ou for removido no futuro, a página carrega em 4.5s no máximo
     const fallbackTimer = setTimeout(() => setIsReady(true), 4500);
 

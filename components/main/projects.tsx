@@ -146,20 +146,48 @@ export const Projects = () => {
 
       {/* Header Section */}
       <div className="w-full px-[10%] md:px-10 pt-10">
-        {/* Title with Curved Arrow */}
-        <div className="flex items-start gap-4 mb-16">
-          <div className="pt-4">
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="text-white">
-              <path d="M35 10C35 10 30 10 25 15C20 20 20 35 20 35" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-              <path d="M15 30L20 35L25 30" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+        {/* Title with Curved Arrow & Scroll Indicator */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-10 mb-16">
+          <div className="flex items-start gap-4">
+            <div className="pt-4">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="text-white">
+                <path d="M35 10C35 10 30 10 25 15C20 20 20 35 20 35" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                <path d="M15 30L20 35L25 30" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+            <h1 className="text-[60px] md:text-[120px] font-medium text-white leading-none tracking-tight">
+              Projects
+            </h1>
           </div>
-          <h1 className="text-[60px] md:text-[120px] font-medium text-white leading-none tracking-tight">
-            Projects
-          </h1>
+
+          {/* Scroll Indicator Animation - Mini Planet */}
+          <div className="hidden lg:flex relative items-center justify-center w-28 h-28 mt-4">
+            <motion.div 
+              animate={{ rotate: 360 }}
+              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-0 flex items-center justify-center text-amber-500 opacity-70"
+            >
+              <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible">
+                <path
+                  id="scrollCirclePath"
+                  d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0"
+                  fill="transparent"
+                />
+                <text className="text-[10px] font-bold tracking-[0.2em] uppercase" fill="currentColor">
+                  <textPath href="#scrollCirclePath" startOffset="0%">
+                    SCROLL DOWN • SCROLL DOWN •
+                  </textPath>
+                </text>
+              </svg>
+            </motion.div>
+            
+            {/* Core planet */}
+            <div className="relative w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-700 rounded-full shadow-[0_0_20px_rgba(245,158,11,0.5)] overflow-hidden">
+               {/* Pequena textura pro planeta */}
+               <div className="absolute inset-0 bg-black/20 rounded-full blur-[2px] translate-x-2 translate-y-2"></div>
+            </div>
+          </div>
         </div>
-
-
       </div>
 
       {/* DESKTOP VIEW: Project List with attached cards */}

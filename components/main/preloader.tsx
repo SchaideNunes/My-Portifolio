@@ -6,9 +6,17 @@ import Image from "next/image";
 
 export const Preloader = () => {
   const [progress, setProgress] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(() => {
+    // Se o preloader já rodou nessa sessão, não precisa mostrar de novo (ex: ao voltar pra Home)
+    if (typeof window !== "undefined" && (window as any).__preloaderCompleted) {
+      return false;
+    }
+    return true;
+  });
 
   useEffect(() => {
+    if (!isLoading) return;
+
     // Tenta forçar o pre-load do vídeo em memória
     if (typeof window !== "undefined") {
       const video = document.createElement("video");
@@ -46,7 +54,10 @@ export const Preloader = () => {
       
       // Dispara o evento "preloaderComplete" após o delay da animação de saída, para as animações de entrada começarem perfeitamente no timing
       setTimeout(() => {
-        window.dispatchEvent(new Event("preloaderComplete"));
+        if (typeof window !== "undefined") {
+          (window as any).__preloaderCompleted = true;
+          window.dispatchEvent(new Event("preloaderComplete"));
+        }
       }, 800); 
     }
   }, [isLoading]);
@@ -59,7 +70,7 @@ export const Preloader = () => {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-[#050505] overflow-hidden"
+          className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-[#000000] overflow-hidden"
         >
           {/* Planetas ao fundo */}
           <motion.div 
@@ -73,7 +84,7 @@ export const Preloader = () => {
                  src="/Planetas_new.png" 
                  alt="Planets" 
                  fill
-                 className="object-cover md:object-contain opacity-50 mix-blend-lighten"
+                 className="object-cover md:object-contain opacity-50 mix-blend-lighten max-md:rotate-90 max-md:scale-[2]"
                  priority
                />
             </div>

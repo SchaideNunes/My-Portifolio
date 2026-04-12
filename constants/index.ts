@@ -303,16 +303,37 @@ export const FOOTER_DATA = [
 export const NAV_LINKS = [
   {
     title: "About me",
-    link: "#about-me",
+    link: "/about",
   },
   {
-    title: "Projects",
-    link: "#projects",
+    title: "Work",
+    link: "/work",
   },
   {
     title: "Skills",
-    link: "#skills",
+    link: "/#skills",
   },
+] as const;
+
+export const TESTIMONIALS = [
+  {
+    text: "Schaide perfectly understood our business vision. The booking system not only turned out with a premium design but also made life easier for all our customers!",
+    author: "Geilson",
+    role: "CEO - Barbearia Atual Estilo",
+    image: "/logo.png",
+  },
+  {
+    text: "The portfolio exceeded my expectations. The way the images are presented manages to convey exactly the essence and elegance of my architectural projects.",
+    author: "Milena Reis",
+    role: "Architect",
+    image: "/logo.png",
+  },
+  {
+    text: "Working with Schaide was an incredible experience. He has an immense ability to transform complex ideas into simple and intuitive interfaces. A top-tier developer.",
+    author: "Mateus Silva",
+    role: "Senior Full Stack Developer",
+    image: "/logo.png",
+  }
 ] as const;
 
 export const LINKS = {

@@ -14,10 +14,13 @@ import {
 } from "@/lib/motion";
 
 import { InteractiveCloud } from "./interactive-cloud";
+import { useLang } from "@/lib/lang-context";
+import { TRANSLATIONS } from "@/constants/translations";
 
 gsap.registerPlugin(TextPlugin);
 
 export const HeroContent = () => {
+  const { lang } = useLang();
   const [copied, setCopied] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const textRef = useRef<HTMLSpanElement>(null);
@@ -104,7 +107,7 @@ export const HeroContent = () => {
         >
           <SparklesIcon className="text-[#fbbf24] mr-[10px] h-5 w-5" />
           <h1 className="Welcome-text text-[13px]">
-            Schaide Nunes | Web Developer &amp; Software Engineer
+            {TRANSLATIONS[lang].hero.badge}
           </h1>
         </motion.div>
 
@@ -114,7 +117,7 @@ export const HeroContent = () => {
           className="flex flex-col gap-2 mt-2 lg:mt-6 text-4xl sm:text-5xl lg:text-[50px] font-bold text-white max-w-[600px] tracking-[-2%] leading-[1.1] min-h-[90px] sm:min-h-[110px] lg:min-h-[130px]"
         >
           <span>
-            Hi, I&apos;m
+            {TRANSLATIONS[lang].hero.greeting}
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] inline-block whitespace-nowrap">
               <span ref={textRef}></span><span ref={cursorRef} className="text-[#f59e0b] -ml-1">|</span>
@@ -127,9 +130,7 @@ export const HeroContent = () => {
           variants={slideInFromLeft(0.8)}
           className="text-base sm:text-lg text-gray-400 my-2 max-w-[600px] leading-relaxed"
         >
-          Software Engineering student from Bahia, Brazil. Specialized in crafting 
-          high-performance web experiences with React, Node.js, and AWS. 
-          Bilingual (EN/PT) and focused on professional UI/UX systems.
+          {TRANSLATIONS[lang].hero.description}
         </motion.p>
 
         {/* E-mail copiável */}
@@ -144,7 +145,7 @@ export const HeroContent = () => {
               <DocumentDuplicateIcon className="w-5 h-5 text-amber-500 group-hover:scale-110 transition-transform" />
             )}
             <span className="font-mono text-sm sm:text-base tracking-wide">
-              {copied ? "Email copied!" : "schaidenunes.dev@gmail.com"}
+              {copied ? TRANSLATIONS[lang].hero.copied : TRANSLATIONS[lang].hero.copyEmail}
             </span>
           </button>
         </motion.div>

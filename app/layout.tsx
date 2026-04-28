@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 
 import { Preloader } from "@/components/main/preloader";
 import { SmoothScroll } from "@/components/main/smooth-scroll";
+import { LangProvider } from "@/lib/lang-context";
 
 import "./globals.css";
 
@@ -33,13 +34,15 @@ export default function RootLayout({ children }: PropsWithChildren) {
           inter.className
         )}
       >
-        <SmoothScroll>
-          <Preloader />
-          <StarsCanvas />
-          <Navbar />
-          {children}
-          <Footer />
-        </SmoothScroll>
+        <LangProvider>
+          <SmoothScroll>
+            <Preloader />
+            <StarsCanvas />
+            <Navbar />
+            {children}
+            <Footer />
+          </SmoothScroll>
+        </LangProvider>
       </body>
     </html>
   );

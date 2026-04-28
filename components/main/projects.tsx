@@ -6,6 +6,9 @@ import Image from "next/image";
 import { PROJECTS } from "@/constants";
 import { LockClosedIcon } from "@heroicons/react/24/outline";
 
+import { useLang } from "@/lib/lang-context";
+import { TRANSLATIONS } from "@/constants/translations";
+
 // Componente individual para a linha de projeto
 const ProjectRow = ({ project, index, activeProject, setActiveProject }: any) => {
   const rowRef = useRef<HTMLDivElement>(null);
@@ -140,6 +143,7 @@ const ProjectRow = ({ project, index, activeProject, setActiveProject }: any) =>
 
 export const Projects = () => {
   const [activeProject, setActiveProject] = useState<number | null>(null);
+  const { lang } = useLang();
 
   return (
     <section id="projects" className="relative w-full z-[30] pb-10">
@@ -156,7 +160,7 @@ export const Projects = () => {
               </svg>
             </div>
             <h1 className="text-[60px] md:text-[120px] font-medium text-white leading-none tracking-tight">
-              Projects
+              {TRANSLATIONS[lang].projects.title}
             </h1>
           </div>
 
@@ -199,13 +203,14 @@ export const Projects = () => {
         {/* Project List */}
         <div className="w-full flex flex-col">
           <div className="pt-[10vh] pb-[20vh]">
-            {PROJECTS.map((project, index) => (
+            {PROJECTS[lang].map((project, index) => (
               <ProjectRow
                 key={project.title}
                 project={project}
                 index={index}
                 activeProject={activeProject}
                 setActiveProject={setActiveProject}
+                lang={lang}
               />
             ))}
           </div>
@@ -214,7 +219,7 @@ export const Projects = () => {
 
       {/* MOBILE VIEW */}
       <div className="flex lg:hidden w-full px-[10%] flex-col gap-10 mt-10">
-        {PROJECTS.map((project, index) => (
+        {PROJECTS[lang].map((project, index) => (
           <div key={index} className="flex flex-col gap-4 bg-white/[0.03] border border-white/10 rounded-2xl p-4">
             <div className="w-full aspect-[4/3] relative rounded-xl overflow-hidden bg-black">
               <Image src={project.image} alt={project.title} fill className="object-cover" />
@@ -234,3 +239,4 @@ export const Projects = () => {
     </section>
   );
 };
+

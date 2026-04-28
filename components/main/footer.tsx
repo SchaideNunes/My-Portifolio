@@ -1,8 +1,13 @@
-import Link from "next/link";
+"use client";
 
+import Link from "next/link";
 import { FOOTER_DATA } from "@/constants";
+import { useLang } from "@/lib/lang-context";
+import { TRANSLATIONS } from "@/constants/translations";
 
 export const Footer = () => {
+  const { lang } = useLang();
+
   return (
     <div className="w-full h-full bg-transparent text-gray-200 shadow-lg px-[10%] md:px-10 py-[15px]">
       <div className="w-full flex flex-col items-center justify-center m-auto">
@@ -12,7 +17,9 @@ export const Footer = () => {
               key={column.title}
               className="min-w-[200px] h-auto flex flex-col items-center justify-start"
             >
-              <h3 className="font-bold text-[16px]">{column.title}</h3>
+              <h3 className="font-bold text-[16px]">
+                {column.title === "Connect" ? (lang === "PT" ? "Conectar" : "Connect") : column.title === "Social" ? "Social" : (lang === "PT" ? "Contato" : "Contact")}
+              </h3>
               {column.data.map(({ icon: Icon, name, link }) => (
                 <Link
                   key={`${column.title}-${name}`}
@@ -30,7 +37,7 @@ export const Footer = () => {
         </div>
 
         <div className="mb-[20px] text-[15px] text-center">
-          &copy; Schaide Nunes {new Date().getFullYear()} Inc. All rights reserved.
+          {TRANSLATIONS[lang].footer.rights}
         </div>
       </div>
     </div>

@@ -9,7 +9,12 @@ import {
   slideInFromTop,
 } from "@/lib/motion";
 
+import { useLang } from "@/lib/lang-context";
+import { TRANSLATIONS } from "@/constants/translations";
+
 export const SkillText = () => {
+  const { lang } = useLang();
+
   return (
     <div className="w-full h-auto flex flex-col items-center justify-center">
       <motion.div
@@ -18,7 +23,7 @@ export const SkillText = () => {
       >
         <SparklesIcon className="text-[#fbbf24] mr-[10px] h-5 w-5" />
         <h1 className="Welcome-text text-[13px]">
-          High-end Website Architecture
+          {TRANSLATIONS[lang].skills.badge}
         </h1>
       </motion.div>
 
@@ -26,14 +31,14 @@ export const SkillText = () => {
         variants={slideInFromLeft(0.5)}
         className="text-[30px] text-white font-bold mt-[10px] text-center mb-[15px] tracking-[-2%]"
       >
-        Transforming Brands into Digital Assets.
+        {TRANSLATIONS[lang].skills.title}
       </motion.div>
 
       <motion.div
         variants={slideInFromRight(0.5)}
         className="text-[20px] text-gray-400 font-medium mb-10 mt-[10px] text-center tracking-[-2%]"
       >
-        Exclusive design and cutting-edge tech for your business.
+        {TRANSLATIONS[lang].skills.subtitle}
       </motion.div>
     </div>
   );

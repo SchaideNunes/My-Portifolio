@@ -4,10 +4,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
-import { NAV_LINKS, SOCIALS } from "@/constants";
+import { SOCIALS } from "@/constants";
+import { TRANSLATIONS } from "@/constants/translations";
+import { useLang } from "@/lib/lang-context";
 
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { lang, setLang } = useLang();
+
+  const navLinks = [
+    { title: TRANSLATIONS[lang].nav.about, link: "/about" },
+    { title: TRANSLATIONS[lang].nav.work, link: "/work" },
+    { title: TRANSLATIONS[lang].nav.skills, link: "/#skills" },
+  ];
 
   return (
     <>
@@ -32,7 +41,7 @@ export const Navbar = () => {
           {/* Web Navbar Pill */}
           <div className="hidden md:flex w-[500px] h-full flex-row items-center justify-between">
             <div className="flex items-center justify-between w-full h-auto border border-[#f59e0b]/20 bg-[#0300145e] backdrop-blur-md mr-[15px] px-[20px] py-[10px] rounded-full text-gray-200">
-              {NAV_LINKS.map((link) => (
+              {navLinks.map((link) => (
                 <Link
                   key={link.title}
                   href={link.link}
@@ -44,8 +53,8 @@ export const Navbar = () => {
             </div>
           </div>
 
-          {/* Social Icons (Web) */}
-          <div className="hidden md:flex flex-row gap-5">
+          {/* Right Section: Social Icons + Language Toggle (Web) */}
+          <div className="hidden md:flex flex-row items-center gap-5">
             {SOCIALS.map(({ link, name, icon: Icon }) => (
               <Link
                 href={link}
@@ -53,9 +62,25 @@ export const Navbar = () => {
                 rel="noreferrer noopener"
                 key={name}
               >
-                <Icon className="h-6 w-6 text-white" />
+                <Icon className="h-6 w-6 text-white hover:text-[#f59e0b] transition-colors" />
               </Link>
             ))}
+            <div className="w-[1px] h-6 bg-white/20 ml-2 mr-1" />
+            <div className="flex items-center gap-2 text-sm font-medium">
+              <button 
+                onClick={() => setLang('PT')} 
+                className={`transition-colors ${lang === 'PT' ? 'text-[#f59e0b]' : 'text-gray-400 hover:text-white'}`}
+              >
+                PT
+              </button>
+              <span className="text-gray-600">/</span>
+              <button 
+                onClick={() => setLang('EN')} 
+                className={`transition-colors ${lang === 'EN' ? 'text-[#f59e0b]' : 'text-gray-400 hover:text-white'}`}
+              >
+                EN
+              </button>
+            </div>
           </div>
 
           {/* 2x2 grid dots → X menu button */}
@@ -148,7 +173,7 @@ export const Navbar = () => {
 
             {/* Nav Links */}
             <nav className="flex flex-col items-center gap-7">
-              {NAV_LINKS.map((link, i) => (
+              {navLinks.map((link, i) => (
                 <motion.div
                   key={link.title}
                   initial={{ opacity: 0, x: 30 }}
@@ -184,6 +209,28 @@ export const Navbar = () => {
                 </motion.div>
               ))}
             </div>
+
+            {/* Language Toggle Mobile */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.7 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5 }}
+              className="flex items-center gap-3 text-lg font-medium mt-2"
+            >
+              <button 
+                onClick={() => { setLang('PT'); setIsMobileMenuOpen(false); }} 
+                className={`transition-colors ${lang === 'PT' ? 'text-[#f59e0b]' : 'text-gray-400 hover:text-white'}`}
+              >
+                PT
+              </button>
+              <span className="text-gray-600">/</span>
+              <button 
+                onClick={() => { setLang('EN'); setIsMobileMenuOpen(false); }} 
+                className={`transition-colors ${lang === 'EN' ? 'text-[#f59e0b]' : 'text-gray-400 hover:text-white'}`}
+              >
+                EN
+              </button>
+            </motion.div>
 
             {/* Bottom amber glow accent */}
             <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#f59e0b]/5 to-transparent pointer-events-none" />

@@ -10,13 +10,11 @@ const technologies = [
   { name: "JavaScript", icon: "/skills/js.png", orbit: 1, speed: 0.25 },
   { name: "TypeScript", icon: "/skills/ts.png", orbit: 1, speed: -0.2 },
   { name: "React", icon: "/skills/react.png", orbit: 1, speed: 0.3 },
-  
+
   // Frameworks (Middle Circle)
-  { name: "Next.js", icon: "/skills/next.png", orbit: 2, speed: -0.15 },
   { name: "Node.js", icon: "/skills/node.png", orbit: 2, speed: 0.18 },
   { name: "Tailwind", icon: "/skills/tailwind.png", orbit: 2, speed: -0.22 },
-  { name: "Figma", icon: "/skills/figma.png", orbit: 2, speed: 0.2 },
-  
+
   // Tools & DB (Outer Circle)
   { name: "PostgreSQL", icon: "/skills/postgresql.png", orbit: 3, speed: 0.1 },
   { name: "MongoDB", icon: "/skills/mongodb.png", orbit: 3, speed: -0.12 },
@@ -26,10 +24,10 @@ const technologies = [
 ];
 
 const OrbitingIcon = ({ tech, index, totalInOrbit, orbitIndex }: any) => {
-  const radius = tech.orbit * 95; 
+  const radius = tech.orbit * 95;
   const initialAngle = (orbitIndex * (360 / totalInOrbit)) * (Math.PI / 180);
   const angle = useMotionValue(initialAngle);
-  
+
   useEffect(() => {
     // Calcula a duração correta para manter a velocidade original, mas fluida.
     // 0.01 por frame original a 60fps = 0.6 radianos por segundo.
@@ -51,7 +49,7 @@ const OrbitingIcon = ({ tech, index, totalInOrbit, orbitIndex }: any) => {
 
   return (
     <motion.div
-      style={{ 
+      style={{
         position: "absolute",
         left: "50%",
         top: "50%",
@@ -74,7 +72,7 @@ const OrbitingIcon = ({ tech, index, totalInOrbit, orbitIndex }: any) => {
         />
         <div className="absolute inset-0 bg-orange-500/5 blur-xl rounded-full -z-10 group-hover:bg-yellow-500/20" />
       </div>
-      
+
       <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-yellow-400 text-[10px] font-bold tracking-tighter uppercase opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap drop-shadow-[0_0_5px_rgba(251,191,36,0.5)]">
         {tech.name}
       </span>
@@ -100,8 +98,8 @@ export const InteractiveCloud = () => {
         {[1, 2, 3].map((i) => (
           <div
             key={i}
-            style={{ 
-              width: i * 190, 
+            style={{
+              width: i * 190,
               height: i * 190,
               border: "1px solid rgba(245, 158, 11, 0.08)",
               left: "50%",
@@ -111,10 +109,10 @@ export const InteractiveCloud = () => {
             className="absolute rounded-full pointer-events-none"
           >
             {/* Spinning ring highlight */}
-            <motion.div 
+            <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 10 + i * 5, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-0 border-t border-yellow-500/10 rounded-full" 
+              className="absolute inset-0 border-t border-yellow-500/10 rounded-full"
             />
           </div>
         ))}
@@ -122,15 +120,15 @@ export const InteractiveCloud = () => {
         {/* Core Sun */}
         <div className="relative w-28 h-28 flex items-center justify-center z-10">
           <div className="absolute inset-0 bg-orange-600/30 blur-[40px] animate-pulse rounded-full" />
-          <motion.div 
-            animate={{ 
+          <motion.div
+            animate={{
               scale: [1, 1.05, 1],
               rotate: [0, 5, -5, 0]
             }}
-            transition={{ 
-              duration: 6, 
-              repeat: Infinity, 
-              ease: "easeInOut" 
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut"
             }}
             className="relative w-20 h-20 flex items-center justify-center rounded-full backdrop-blur-sm bg-white/5 border border-white/10 shadow-[0_0_50px_rgba(245,158,11,0.4)]"
           >
@@ -141,12 +139,12 @@ export const InteractiveCloud = () => {
         {technologies.map((tech, index) => {
           const inSameOrbit = technologies.filter(t => t.orbit === tech.orbit);
           const orbitIndex = inSameOrbit.findIndex(t => t.name === tech.name);
-          
+
           return (
-            <OrbitingIcon 
-              key={tech.name} 
-              tech={tech} 
-              index={index} 
+            <OrbitingIcon
+              key={tech.name}
+              tech={tech}
+              index={index}
               totalInOrbit={inSameOrbit.length}
               orbitIndex={orbitIndex}
             />

@@ -1,4 +1,4 @@
-import { FaYoutube, FaFacebook } from "react-icons/fa";
+import { FaYoutube, FaFacebook, FaWhatsapp } from "react-icons/fa";
 import {
   RxDiscordLogo,
   RxGithubLogo,
@@ -103,6 +103,11 @@ export const SOCIALS = [
     name: "Instagram",
     icon: RxInstagramLogo,
     link: "https://www.instagram.com/schaide_nunes/",
+  },
+  {
+    name: "WhatsApp",
+    icon: FaWhatsapp,
+    link: "https://wa.me/5575991503949",
   },
 ] as const;
 
@@ -332,9 +337,14 @@ export const FOOTER_DATA = [
     title: "Contact",
     data: [
       {
-        name: "schaide.nunes@gmail.com",
+        name: "schaidenunes@gmail.com",
         icon: null,
-        link: "mailto:schaide.nunes@gmail.com",
+        link: "mailto:schaidenunes@gmail.com",
+      },
+      {
+        name: "+55 (75) 99150-3949",
+        icon: FaWhatsapp,
+        link: "https://wa.me/5575991503949",
       },
     ],
   },

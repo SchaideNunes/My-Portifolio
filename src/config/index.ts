@@ -1,9 +1,9 @@
 export const siteConfig = {
   title: "Schaide Nunes | Space Portfolio",
-  description: "Welcome to my full stack Next.js 14 space portfolio.",
+  description: "Welcome to my full stack Vite + React space portfolio.",
   keywords: [
     "reactjs",
-    "nextjs",
+    "vite",
     "vercel",
     "react",
     "space-portfolio",
@@ -18,7 +18,6 @@ export const siteConfig = {
     "motion",
     "animation",
     "heroicons",
-    "next-themes",
     "postcss",
     "prettier",
     "react-dom",

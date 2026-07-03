@@ -12,7 +12,7 @@ const technologies = [
   { name: "React", icon: "/skills/react.png", orbit: 1, speed: 0.3 },
 
   // Frameworks (Middle Circle)
-  { name: "Node.js", icon: "/skills/node.png", orbit: 2, speed: 0.18 },
+  { name: "MySQL", icon: "/skills/mysql.png", orbit: 2, speed: 0.18 },
   { name: "Tailwind", icon: "/skills/tailwind.png", orbit: 2, speed: -0.22 },
 
   // Tools & DB (Outer Circle)

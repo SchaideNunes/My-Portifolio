@@ -1,7 +1,7 @@
 "use client";
 
 import { SparklesIcon } from "@heroicons/react/24/solid";
-import { DocumentDuplicateIcon, CheckIcon } from "@heroicons/react/24/outline";
+import { DocumentDuplicateIcon, CheckIcon, ArrowDownTrayIcon } from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
@@ -88,7 +88,7 @@ export const HeroContent = () => {
   }, [isReady]);
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText("schaidenunes.dev@gmail.com");
+    navigator.clipboard.writeText("schaidenunes@gmail.com");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -133,11 +133,11 @@ export const HeroContent = () => {
           {TRANSLATIONS[lang].hero.description}
         </motion.p>
 
-        {/* E-mail copiável */}
-        <motion.div variants={slideInFromLeft(1)}>
+        {/* Ações: E-mail copiável + Baixar Currículo */}
+        <motion.div variants={slideInFromLeft(1)} className="flex flex-wrap items-center gap-4 mt-2">
           <button 
             onClick={handleCopyEmail}
-            className="flex items-center gap-3 px-4 py-3 mt-2 rounded-xl bg-[#0300145e] hover:bg-[#f59e0b]/10 backdrop-blur-md transition-all text-gray-300 hover:text-white group"
+            className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#0300145e] hover:bg-[#f59e0b]/10 backdrop-blur-md transition-all text-gray-300 hover:text-white group border border-white/5 hover:border-[#f59e0b]/30"
           >
             {copied ? (
               <CheckIcon className="w-5 h-5 text-green-500" />
@@ -148,6 +148,17 @@ export const HeroContent = () => {
               {copied ? TRANSLATIONS[lang].hero.copied : TRANSLATIONS[lang].hero.copyEmail}
             </span>
           </button>
+
+          <a 
+            href="/Curriculo_Schaide_Nunes_2026.pdf" 
+            download="Curriculo_Schaide_Nunes_2026.pdf"
+            className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#0300145e] hover:bg-[#f59e0b]/10 backdrop-blur-md transition-all text-gray-300 hover:text-white group border border-white/5 hover:border-[#f59e0b]/30"
+          >
+            <ArrowDownTrayIcon className="w-5 h-5 text-amber-500 group-hover:scale-110 transition-transform" />
+            <span className="font-mono text-sm sm:text-base tracking-wide">
+              {TRANSLATIONS[lang].hero.downloadCV}
+            </span>
+          </a>
         </motion.div>
       </div>
 

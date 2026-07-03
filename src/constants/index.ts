@@ -45,20 +45,8 @@ export const SKILL_DATA = [
     height: 80,
   },
   {
-    skill_name: "Next.js 14",
-    image: "next.png",
-    width: 80,
-    height: 80,
-  },
-  {
     skill_name: "Framer Motion",
     image: "framer.png",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "Node.js",
-    image: "node.png",
     width: 80,
     height: 80,
   },
@@ -143,12 +131,6 @@ export const FRONTEND_SKILL = [
     height: 80,
   },
   {
-    skill_name: "Next.js 14",
-    image: "next.png",
-    width: 80,
-    height: 80,
-  },
-  {
     skill_name: "TypeScript",
     image: "ts.png",
     width: 80,
@@ -163,12 +145,6 @@ export const FRONTEND_SKILL = [
 ] as const;
 
 export const BACKEND_SKILL = [
-  {
-    skill_name: "Node.js",
-    image: "node.png",
-    width: 80,
-    height: 80,
-  },
   {
     skill_name: "Python",
     image: "python.svg",
@@ -186,12 +162,6 @@ export const BACKEND_SKILL = [
     image: "mongodb.png",
     width: 40,
     height: 40,
-  },
-  {
-    skill_name: "Prisma",
-    image: "prisma.png",
-    width: 70,
-    height: 70,
   },
   {
     skill_name: "MySQL",

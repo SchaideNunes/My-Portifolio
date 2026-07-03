@@ -1,7 +1,7 @@
 'use client';
 import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import { Image } from "@/components/ui/image";
+import { Link } from "@/components/ui/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { SOCIALS } from "@/constants";

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
+import { Image } from "@/components/ui/image";
 import { useRef } from "react";
 import { TESTIMONIALS } from "@/constants";
 import { TRANSLATIONS } from "@/constants/translations";

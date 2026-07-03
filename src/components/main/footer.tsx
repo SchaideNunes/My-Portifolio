@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/components/ui/link";
 import { FOOTER_DATA } from "@/constants";
 import { useLang } from "@/lib/lang-context";
 import { TRANSLATIONS } from "@/constants/translations";

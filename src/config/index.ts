@@ -1,6 +1,4 @@
-import type { Metadata } from "next";
-
-export const siteConfig: Metadata = {
+export const siteConfig = {
   title: "Schaide Nunes | Space Portfolio",
   description: "Welcome to my full stack Next.js 14 space portfolio.",
   keywords: [

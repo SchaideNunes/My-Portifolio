@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
-import Image from "next/image";
+import { Image } from "@/components/ui/image";
 import { CodeBracketIcon } from "@heroicons/react/24/outline";
 
 const technologies = [

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { Image } from "@/components/ui/image";
 import { PROJECTS } from "@/constants";
 import { TRANSLATIONS } from "@/constants/translations";
 import { useLang } from "@/lib/lang-context";

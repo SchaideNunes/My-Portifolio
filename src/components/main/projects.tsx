@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
+import { Image } from "@/components/ui/image";
 import { PROJECTS } from "@/constants";
 import { LockClosedIcon } from "@heroicons/react/24/outline";
 

@@ -2,10 +2,11 @@
   "name": "space-portfolio",
   "version": "1.0.1",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
     "lint": "eslint ."
   },
   "author": {
@@ -13,10 +14,10 @@
     "email": "",
     "url": "https://github.com/SchaideNunes"
   },
-  "description": "Welcome to my full stack Next.js 14 space portfolio.",
+  "description": "Welcome to my full stack space portfolio.",
   "keywords": [
     "reactjs",
-    "nextjs",
+    "vite",
     "vercel",
     "react",
     "space-portfolio",
@@ -31,7 +32,6 @@
     "motion",
     "animation",
     "heroicons",
-    "next-themes",
     "postcss",
     "prettier",
     "react-dom",
@@ -62,11 +62,11 @@
     "framer-motion": "^12.38.0",
     "gsap": "^3.14.2",
     "lenis": "^1.3.21",
-    "next": "16.2.2",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-icons": "^5.6.0",
     "react-intersection-observer": "^10.0.3",
+    "react-router-dom": "^7.1.3",
     "tailwind-merge": "^3.5.0",
     "three": "^0.183.2"
   },
@@ -74,12 +74,15 @@
     "@types/node": "^25",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
+    "@types/react-router-dom": "^5.3.3",
+    "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.27",
     "eslint": "^10.1.0",
-    "eslint-config-next": "16.2.2",
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
-    "typescript": "^6"
+    "typescript": "^6",
+    "vite": "^6.2.0",
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "overrides": {
     "@types/react": "19.2.14",

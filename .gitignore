@@ -34,3 +34,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# curriculo editables
+Curriculo Schaide 2026.html
+Curriculo Schaide 2026.md

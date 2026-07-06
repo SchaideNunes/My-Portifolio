@@ -195,7 +195,7 @@ export const Navbar = () => {
             <div className="w-16 h-px bg-[#f59e0b]/20" />
 
             {/* Social Icons */}
-            <div className="flex justify-center gap-6">
+            <div className="flex flex-col items-center gap-5">
               {SOCIALS.map(({ link, name, icon: Icon }, i) => (
                 <motion.div
                   key={name}

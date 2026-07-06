@@ -335,26 +335,48 @@ export const NAV_LINKS = [
   },
 ] as const;
 
-export const TESTIMONIALS = [
-  {
-    text: "Schaide perfectly understood our business vision. The booking system not only turned out with a premium design but also made life easier for all our customers!",
-    author: "Geilson",
-    role: "CEO - Barbearia Atual Estilo",
-    image: "/logo.png",
-  },
-  {
-    text: "The portfolio exceeded my expectations. The way the images are presented manages to convey exactly the essence and elegance of my architectural projects.",
-    author: "Milena Reis",
-    role: "Architect",
-    image: "/logo.png",
-  },
-  {
-    text: "Working with Schaide was an incredible experience. He has an immense ability to transform complex ideas into simple and intuitive interfaces. A top-tier developer.",
-    author: "Mateus Silva",
-    role: "Senior Full Stack Developer",
-    image: "/logo.png",
-  }
-] as const;
+export const TESTIMONIALS = {
+  PT: [
+    {
+      text: "O Schaide entendeu perfeitamente a visão do nosso negócio. O sistema de agendamento não só ficou com um design premium como facilitou a vida de todos os nossos clientes!",
+      author: "Geilson",
+      role: "CEO - Barbearia Atual Estilo",
+      image: "/logo.png",
+    },
+    {
+      text: "O portfólio superou minhas expectativas. A forma como as imagens são apresentadas consegue transmitir exatamente a essência e elegância dos meus projetos de arquitetura.",
+      author: "Milena Reis",
+      role: "Arquiteta",
+      image: "/logo.png",
+    },
+    {
+      text: "Trabalhar com o Schaide foi uma experiência incrível. Ele tem uma facilidade imensa para transformar ideias complexas em interfaces simples e intuitivas. Um desenvolvedor de alto nível.",
+      author: "Mateus Silva",
+      role: "Desenvolvedor Full Stack Sênior",
+      image: "/logo.png",
+    }
+  ],
+  EN: [
+    {
+      text: "Schaide perfectly understood our business vision. The booking system not only turned out with a premium design but also made life easier for all our customers!",
+      author: "Geilson",
+      role: "CEO - Barbearia Atual Estilo",
+      image: "/logo.png",
+    },
+    {
+      text: "The portfolio exceeded my expectations. The way the images are presented manages to convey exactly the essence and elegance of my architectural projects.",
+      author: "Milena Reis",
+      role: "Architect",
+      image: "/logo.png",
+    },
+    {
+      text: "Working with Schaide was an incredible experience. He has an immense ability to transform complex ideas into simple and intuitive interfaces. A top-tier developer.",
+      author: "Mateus Silva",
+      role: "Senior Full Stack Developer",
+      image: "/logo.png",
+    }
+  ]
+} as const;
 
 export const LINKS = {
   sourceCode: "https://github.com/SchaideNunes/My-Portifolio",

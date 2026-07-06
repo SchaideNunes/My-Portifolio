@@ -76,16 +76,16 @@ export default function AboutPage() {
       </section>
 
       {/* Interests Carousel */}
-      <section ref={carouselRef} className="flex flex-col gap-10 overflow-hidden">
+      <section ref={carouselRef} className="flex flex-col gap-6 md:gap-10 overflow-hidden">
         <h3 className="text-3xl md:text-5xl font-bold text-white">{TRANSLATIONS[lang].about.whatILove}</h3>
         <motion.div
           style={{ x: xTranslate }}
-          className="flex gap-10 whitespace-nowrap"
+          className="flex gap-4 sm:gap-6 md:gap-10 whitespace-nowrap w-max"
         >
           {[...ROW_1, ...ROW_1, ...ROW_1].map((interest, index) => (
             <div
               key={`row1-${index}`}
-              className="min-w-[300px] h-[400px] relative rounded-3xl overflow-hidden border border-white/10 group"
+              className="w-[180px] sm:w-[220px] md:w-[300px] h-[220px] sm:h-[280px] md:h-[400px] relative rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 group shrink-0"
             >
               <Image
                 src={interest.image}
@@ -99,12 +99,12 @@ export default function AboutPage() {
         
         <motion.div
           style={{ x: xTranslateReverse }}
-          className="flex gap-10 whitespace-nowrap"
+          className="flex gap-4 sm:gap-6 md:gap-10 whitespace-nowrap w-max"
         >
           {[...ROW_2, ...ROW_2, ...ROW_2, ...ROW_2].map((interest, index) => (
             <div
               key={`row2-${index}`}
-              className="min-w-[300px] h-[400px] relative rounded-3xl overflow-hidden border border-white/10 group"
+              className="w-[180px] sm:w-[220px] md:w-[300px] h-[220px] sm:h-[280px] md:h-[400px] relative rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 group shrink-0"
             >
               <Image
                 src={interest.image}
@@ -132,35 +132,35 @@ export default function AboutPage() {
         <div className="lg:w-2/3 overflow-hidden relative">
           {/* Infinite Auto-sliding Carousel */}
           <motion.div
-            className="flex gap-8"
+            className="flex gap-6 md:gap-8 w-max"
             animate={{
-              x: [0, -1500],
+              x: ["0%", "-50%"],
             }}
             transition={{
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 30,
+                duration: 35,
                 ease: "linear",
               },
             }}
           >
-            {[...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS].map((testimonial, index) => (
+            {[...TESTIMONIALS[lang], ...TESTIMONIALS[lang], ...TESTIMONIALS[lang], ...TESTIMONIALS[lang]].map((testimonial, index) => (
               <div
                 key={index}
-                className="min-w-[350px] md:min-w-[450px] bg-white/[0.03] border border-white/10 p-10 rounded-[2rem] flex flex-col gap-8"
+                className="w-[280px] sm:w-[340px] md:w-[450px] bg-white/[0.03] border border-white/10 p-6 md:p-10 rounded-2xl md:rounded-[2rem] flex flex-col gap-4 md:gap-8 shrink-0"
               >
-                <div className="text-[#f59e0b] text-5xl font-serif">&quot;</div>
-                <p className="text-gray-300 text-lg leading-relaxed italic">
+                <div className="text-[#f59e0b] text-3xl md:text-5xl font-serif leading-none">&quot;</div>
+                <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed italic">
                   {testimonial.text}
                 </p>
-                <div className="flex items-center gap-4 mt-auto">
-                  <div className="w-12 h-12 rounded-full overflow-hidden border border-white/10">
-                    <Image src={testimonial.image} alt={testimonial.author} width={48} height={48} />
+                <div className="flex items-center gap-3 md:gap-4 mt-auto pt-2">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border border-white/10 shrink-0">
+                    <Image src={testimonial.image} alt={testimonial.author} width={48} height={48} className="w-full h-full object-cover" />
                   </div>
                   <div className="flex flex-col">
-                    <p className="text-white font-bold">{testimonial.author}</p>
-                    <p className="text-gray-500 text-sm">{testimonial.role}</p>
+                    <p className="text-white font-bold text-sm md:text-base">{testimonial.author}</p>
+                    <p className="text-gray-500 text-xs md:text-sm">{testimonial.role}</p>
                   </div>
                 </div>
               </div>

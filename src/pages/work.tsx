@@ -57,6 +57,7 @@ export default function WorkPage() {
                     src={project.image}
                     alt={project.title}
                     fill
+                    style={{ objectFit: "contain" }}
                     className="object-contain opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
                   />
                 </div>

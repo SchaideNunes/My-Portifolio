@@ -47,7 +47,7 @@ export const TRANSLATIONS = {
       subtitle: "Exclusive design and cutting-edge tech for your business.",
     },
     footer: {
-      rights: "© Schaide Nunes 2024 Inc. All rights reserved",
+      rights: "© Schaide Nunes 2026 Inc. All rights reserved",
     }
   },
   PT: {
@@ -98,7 +98,7 @@ export const TRANSLATIONS = {
       subtitle: "Design exclusivo e tecnologia de ponta para o seu negócio.",
     },
     footer: {
-      rights: "© Schaide Nunes 2024 Inc. Todos os direitos reservados",
+      rights: "© Schaide Nunes 2026 Inc. Todos os direitos reservados",
     }
   }
 };

@@ -7,19 +7,10 @@ import {
   BACKEND_SKILL,
   FRONTEND_SKILL,
   CLOUD_SKILL,
+  DATABASE_SKILL,
 } from "@/constants";
 
 export const Skills = () => {
-  // Figma data for UI/UX slot
-  const UI_UX_SKILL = [
-    {
-      skill_name: "Figma",
-      image: "figma.png",
-      width: 50,
-      height: 50,
-    },
-  ];
-
   return (
     <section
       id="skills"
@@ -86,11 +77,11 @@ export const Skills = () => {
           </div>
         </div>
 
-        {/* UI/UX */}
+        {/* Database */}
         <div className="flex flex-col items-center justify-between gap-3 md:gap-6 p-4 md:p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm hover:border-yellow-600/30 transition-colors duration-500">
-          <h3 className="text-sm md:text-xl font-bold text-yellow-600 tracking-[-2%] uppercase">UI/UX</h3>
+          <h3 className="text-sm md:text-xl font-bold text-yellow-600 tracking-[-2%] uppercase">Database</h3>
           <div className="flex flex-row flex-wrap justify-center items-center gap-2 md:gap-4 flex-1">
-            {UI_UX_SKILL.map((skill, i) => (
+            {DATABASE_SKILL.map((skill, i) => (
               <SkillDataProvider
                 key={skill.skill_name}
                 src={skill.image}

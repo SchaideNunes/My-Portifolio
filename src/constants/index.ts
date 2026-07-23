@@ -151,6 +151,9 @@ export const BACKEND_SKILL = [
     width: 70,
     height: 70,
   },
+] as const;
+
+export const DATABASE_SKILL = [
   {
     skill_name: "PostgreSQL",
     image: "postgresql.png",

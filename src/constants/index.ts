@@ -232,7 +232,7 @@ export const PROJECTS = {
         "Portfólio de arquitetura elegante e interativo, construído focado em impacto visual e exposição refinada de design de interiores.",
       technologies: ["HTML", "CSS", "JavaScript", "Tailwind", "GSAP"],
       image: "/PortifolioMilenaReis.png",
-      link: "https://milenareis-fbff1.web.app/",
+      link: "https://portifolio-milena.vercel.app/",
       color: "#111111", // Slightly lighter dark theme
       testimonial: {
         text: "O portfólio superou minhas expectativas. A forma como as imagens são apresentadas consegue transmitir exatamente a essência e elegância dos meus projetos de arquitetura.",
@@ -270,7 +270,7 @@ export const PROJECTS = {
         "Elegant and interactive architecture portfolio, built with a focus on visual impact and refined exposure of interior design.",
       technologies: ["HTML", "CSS", "JavaScript", "Tailwind", "GSAP"],
       image: "/PortifolioMilenaReis.png",
-      link: "https://milenareis-fbff1.web.app/",
+      link: "https://portifolio-milena.vercel.app/",
       color: "#111111", // Slightly lighter dark theme
       testimonial: {
         text: "The portfolio exceeded my expectations. The way the images are presented manages to convey exactly the essence and elegance of my architectural projects.",

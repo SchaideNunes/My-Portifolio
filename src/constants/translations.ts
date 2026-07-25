@@ -6,9 +6,9 @@ export const TRANSLATIONS = {
       skills: "Skills",
     },
     hero: {
-      badge: "Schaide Nunes | Web Developer & Software Engineer",
+      badge: "INTERNSHIP | JUNIOR",
       greeting: "Hi, I am",
-      description: "Software Engineering student from Bahia, Brazil. Specialized in creating high-performance web experiences with React, TypeScript, and AWS. Bilingual (EN/PT) and focused on professional UI/UX systems.",
+      description: "Software Engineering student and Full-Stack freelance developer. I transform ideas into complete and scalable digital solutions, leveraging modern technologies like Python, React, JavaScript, and Databases to craft robust and high-impact experiences.",
       copyEmail: "schaidenunes@gmail.com",
       copied: "Email copied!",
       downloadCV: "Download Resume (PDF)",
@@ -57,9 +57,9 @@ export const TRANSLATIONS = {
       skills: "Habilidades",
     },
     hero: {
-      badge: "Schaide Nunes | Desenvolvedor Web e Engenheiro de Software",
+      badge: "ESTÁGIO | JÚNIOR",
       greeting: "Olá, eu sou",
-      description: "Estudante de Engenharia de Software da Bahia, Brasil. Especializado em criar experiências web de alta performance com React, TypeScript e AWS. Bilíngue (EN/PT) e focado em sistemas profissionais de UI/UX.",
+      description: "Estudante de Engenharia de Software e desenvolvedor freelancer Full-Stack. Transformo ideias em soluções digitais completas e escaláveis, utilizando tecnologias como Python, React, JavaScript e Bancos de Dados para criar experiências web robustas e de alto impacto.",
       copyEmail: "schaidenunes@gmail.com",
       copied: "Email copiado!",
       downloadCV: "Baixar Currículo (PDF)",

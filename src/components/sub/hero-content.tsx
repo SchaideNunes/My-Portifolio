@@ -100,17 +100,6 @@ export const HeroContent = () => {
       className="flex flex-col lg:flex-row items-center justify-center px-[10%] md:px-10 lg:px-20 mt-32 md:mt-40 w-full z-[20] gap-10 lg:gap-0"
     >
       <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start">
-        {/* Badge - Boas-vindas */}
-        <motion.div
-          variants={slideInFromTop}
-          className="Welcome-box py-[8px] px-[7px] border border-[#f59e0b8b] w-fit hidden sm:flex"
-        >
-          <SparklesIcon className="text-[#fbbf24] mr-[10px] h-5 w-5" />
-          <h1 className="Welcome-text text-[13px]">
-            {TRANSLATIONS[lang].hero.badge}
-          </h1>
-        </motion.div>
-
         {/* Headline com animação GSAP */}
         <motion.div
           variants={slideInFromLeft(0.5)}

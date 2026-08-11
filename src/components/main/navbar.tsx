@@ -26,16 +26,13 @@ export const Navbar = () => {
           {/* Logo + Name */}
           <Link href="/" className="flex items-center">
             <Image
-              src="/Logo.png"
+              src="/images/brand/logo.webp"
               alt="Logo"
               width={50}
               height={50}
               draggable={false}
               className="cursor-pointer hover:animate-slowspin mix-blend-lighten"
             />
-            <span className="font-bold ml-[10px] hidden md:block text-gray-300">
-              Schaide Nunes
-            </span>
           </Link>
 
           {/* Web Navbar Pill */}

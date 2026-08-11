@@ -213,7 +213,7 @@ export const PROJECTS = {
       description:
         "Uma plataforma web completa de agendamentos para barbearia, focada em performance, interface moderna e UX fluida para clientes e administradores.",
       technologies: ["HTML", "CSS", "JavaScript", "Banco de Dados"],
-      image: "/AtualEstilo.png",
+      image: "/images/projects/AtualEstilo.png",
       link: "https://atualestilo.com/",
       color: "#0a0a0a", // Dark space theme
       testimonial: {
@@ -231,7 +231,7 @@ export const PROJECTS = {
       description:
         "Portfólio de arquitetura elegante e interativo, construído focado em impacto visual e exposição refinada de design de interiores.",
       technologies: ["HTML", "CSS", "JavaScript", "Tailwind", "GSAP"],
-      image: "/PortifolioMilenaReis.png",
+      image: "/images/projects/PortifolioMilenaReis.png",
       link: "https://portifolio-milena.vercel.app/",
       color: "#111111", // Slightly lighter dark theme
       testimonial: {
@@ -251,7 +251,7 @@ export const PROJECTS = {
       description:
         "A complete web platform for barbershop appointments, focused on performance, modern interface, and smooth UX for clients and administrators.",
       technologies: ["HTML", "CSS", "JavaScript", "Database"],
-      image: "/AtualEstilo.png",
+      image: "/images/projects/AtualEstilo.png",
       link: "https://atualestilo.com/",
       color: "#0a0a0a", // Dark space theme
       testimonial: {
@@ -269,7 +269,7 @@ export const PROJECTS = {
       description:
         "Elegant and interactive architecture portfolio, built with a focus on visual impact and refined exposure of interior design.",
       technologies: ["HTML", "CSS", "JavaScript", "Tailwind", "GSAP"],
-      image: "/PortifolioMilenaReis.png",
+      image: "/images/projects/PortifolioMilenaReis.png",
       link: "https://portifolio-milena.vercel.app/",
       color: "#111111", // Slightly lighter dark theme
       testimonial: {
@@ -344,19 +344,19 @@ export const TESTIMONIALS = {
       text: "O Schaide entendeu perfeitamente a visão do nosso negócio. O sistema de agendamento não só ficou com um design premium como facilitou a vida de todos os nossos clientes!",
       author: "Geilson",
       role: "CEO - Barbearia Atual Estilo",
-      image: "/logo.png",
+      image: "/images/brand/logo.webp",
     },
     {
       text: "O portfólio superou minhas expectativas. A forma como as imagens são apresentadas consegue transmitir exatamente a essência e elegância dos meus projetos de arquitetura.",
       author: "Milena Reis",
       role: "Arquiteta",
-      image: "/logo.png",
+      image: "/images/brand/logo.webp",
     },
     {
       text: "Trabalhar com o Schaide foi uma experiência incrível. Ele tem uma facilidade imensa para transformar ideias complexas em interfaces simples e intuitivas. Um desenvolvedor de alto nível.",
       author: "Mateus Silva",
       role: "Desenvolvedor Full Stack Sênior",
-      image: "/logo.png",
+      image: "/images/brand/logo.webp",
     }
   ],
   EN: [
@@ -364,19 +364,19 @@ export const TESTIMONIALS = {
       text: "Schaide perfectly understood our business vision. The booking system not only turned out with a premium design but also made life easier for all our customers!",
       author: "Geilson",
       role: "CEO - Barbearia Atual Estilo",
-      image: "/logo.png",
+      image: "/images/brand/logo.webp",
     },
     {
       text: "The portfolio exceeded my expectations. The way the images are presented manages to convey exactly the essence and elegance of my architectural projects.",
       author: "Milena Reis",
       role: "Architect",
-      image: "/logo.png",
+      image: "/images/brand/logo.webp",
     },
     {
       text: "Working with Schaide was an incredible experience. He has an immense ability to transform complex ideas into simple and intuitive interfaces. A top-tier developer.",
       author: "Mateus Silva",
       role: "Senior Full Stack Developer",
-      image: "/logo.png",
+      image: "/images/brand/logo.webp",
     }
   ]
 } as const;

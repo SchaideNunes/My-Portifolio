@@ -9,15 +9,15 @@ import { useLang } from "@/lib/lang-context";
 import { SparklesIcon } from "@heroicons/react/24/solid";
 
 const INTERESTS = [
-  { title: "Games", image: "/SetupEldenring.jpeg", color: "#f59e0b" },
-  { title: "Música", image: "/ShowGuns.jpeg", color: "#61dafb" },
-  { title: "Comida", image: "/Carbonara.jpeg", color: "#3178c6" },
-  { title: "Academia", image: "/EspelhoGuns.jpeg", color: "#38b2ac" },
-  { title: "Gatos", image: "/Gatos.jpeg", color: "#f24e1e" },
-  { title: "Thor", image: "/GatoThor.jpeg", color: "#f59e0b" },
-  { title: "Fogueira", image: "/Fogueira.jpeg", color: "#f59e0b" },
-  { title: "Selfie", image: "/SelfieCarro.jpeg", color: "#f59e0b" },
-  { title: "Volley", image: "/Volley.jpeg", color: "#f59e0b" }
+  { title: "Games", image: "/images/about/SetupEldenring.jpeg", color: "#f59e0b" },
+  { title: "Música", image: "/images/about/ShowGuns.jpeg", color: "#61dafb" },
+  { title: "Comida", image: "/images/about/Carbonara.jpeg", color: "#3178c6" },
+  { title: "Academia", image: "/images/about/EspelhoGuns.jpeg", color: "#38b2ac" },
+  { title: "Gatos", image: "/images/about/Gatos.jpeg", color: "#f24e1e" },
+  { title: "Thor", image: "/images/about/GatoThor.jpeg", color: "#f59e0b" },
+  { title: "Fogueira", image: "/images/about/Fogueira.jpeg", color: "#f59e0b" },
+  { title: "Selfie", image: "/images/about/SelfieCarro.jpeg", color: "#f59e0b" },
+  { title: "Volley", image: "/images/about/Volley.jpeg", color: "#f59e0b" }
 ];
 
 export default function AboutPage() {
@@ -66,7 +66,7 @@ export default function AboutPage() {
         >
           <div className="w-full h-full rounded-full overflow-hidden relative">
             <Image
-              src="/FotoAcademia.jpeg"
+              src="/images/about/FotoAcademia.jpeg"
               alt="Schaide Nunes"
               fill
               className="object-cover transition-all duration-500"

@@ -1,5 +1,5 @@
 export const siteConfig = {
-  title: "Schaide Nunes | Space Portfolio",
+  title: "Schaide Nunes",
   description: "Welcome to my full stack Vite + React space portfolio.",
   keywords: [
     "reactjs",

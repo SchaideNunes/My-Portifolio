@@ -1,8 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Image } from "@/components/ui/image";
+import { FaRocket } from "react-icons/fa";
+import { Canvas } from "@react-three/fiber";
+import { StarBackground } from "@/components/main/star-background";
 
 export const Preloader = () => {
   const [progress, setProgress] = useState(0);
@@ -67,55 +70,90 @@ export const Preloader = () => {
       {isLoading && (
         <motion.div
           key="preloader"
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          initial={{ y: 0 }}
+          exit={{ y: "-100%" }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
           className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-[#000000] overflow-hidden"
         >
-          {/* Planetas ao fundo */}
-          <motion.div 
-            initial={{ scale: 1, opacity: 0.2 }}
-            animate={{ scale: 1.05, opacity: 0.4 }}
-            transition={{ duration: 3, ease: "linear", repeat: Infinity, repeatType: "mirror" }}
-            className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center"
-          >
-            <div className="relative w-full h-full max-w-[1200px] max-h-[1200px]">
-               <Image 
-                 src="/Planetas_new.png" 
-                 alt="Planets" 
-                 fill
-                 className="object-cover md:object-contain opacity-50 mix-blend-lighten max-md:rotate-90 max-md:scale-[2]"
-                 priority
-               />
-            </div>
-          </motion.div>
+          {/* Fundo de estrelas animadas */}
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <Canvas camera={{ position: [0, 0, 1] }}>
+              <Suspense fallback={null}>
+                <StarBackground />
+              </Suspense>
+            </Canvas>
+          </div>
 
-          {/* Subtle Glow */}
+          {/* Subtle Glow da Terra */}
           <div className="absolute inset-0 z-0 flex justify-center items-center pointer-events-none">
-            <div className="w-[400px] h-[400px] bg-amber-600/10 blur-[120px] rounded-full" />
+            <div className="w-[400px] h-[400px] bg-blue-600/10 blur-[120px] rounded-full" />
+          </div>
+
+          {/* Porcentagem de Carregamento (Canto direito) */}
+          <div className="absolute bottom-8 right-8 sm:bottom-12 sm:right-12 z-20 text-amber-400 drop-shadow-[0_0_12px_rgba(251,191,36,0.6)] font-sans text-5xl sm:text-7xl font-bold tracking-tighter">
+            {Math.round(progress)}%
           </div>
 
           <div className="relative z-10 flex flex-col items-center gap-6 w-full max-w-[280px] sm:max-w-[350px]">
-            <div className="w-full flex justify-between items-end text-amber-500 font-mono text-xs sm:text-sm font-medium tracking-[0.2em] uppercase">
-              <span>System</span>
-              <span>{Math.round(progress)}%</span>
+            
+            {/* Foguete decolando */}
+            <div className="relative w-16 h-48 sm:h-64 flex justify-center items-end mt-12 mb-4">
+              {/* A Terra detalhada e a Lua */}
+              <div className="absolute -bottom-4 flex items-center justify-center w-32 h-32">
+                {/* Glow externo */}
+                <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-xl" />
+                
+                {/* Globo terrestre */}
+                <div className="relative w-24 h-24 bg-gradient-to-tr from-blue-900 via-blue-600 to-blue-400 rounded-full shadow-[inset_-10px_-10px_20px_rgba(0,0,0,0.5),0_0_20px_rgba(59,130,246,0.5)] overflow-hidden">
+                  {/* Continentes */}
+                  <div className="absolute top-2 left-4 w-12 h-8 bg-green-500/80 rounded-[40%] rotate-12 blur-[1px]" />
+                  <div className="absolute bottom-4 right-2 w-10 h-6 bg-green-600/80 rounded-[50%] -rotate-12 blur-[1px]" />
+                  <div className="absolute top-10 -left-2 w-8 h-10 bg-green-500/70 rounded-full blur-[1px]" />
+                  
+                  {/* Nuvens */}
+                  <div className="absolute top-4 right-4 w-10 h-3 bg-white/40 rounded-full blur-[2px] rotate-45" />
+                  <div className="absolute bottom-6 left-6 w-8 h-2 bg-white/30 rounded-full blur-[1px] -rotate-12" />
+                  
+                  {/* Atmosfera */}
+                  <div className="absolute inset-0 rounded-full shadow-[inset_3px_3px_10px_rgba(255,255,255,0.4)] pointer-events-none" />
+                </div>
+
+                {/* A Lua em órbita */}
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                  className="absolute w-36 h-36 flex items-start justify-end"
+                >
+                  <div className="w-5 h-5 bg-gradient-to-tr from-gray-500 to-gray-200 rounded-full shadow-[inset_-2px_-2px_4px_rgba(0,0,0,0.4),0_0_5px_rgba(255,255,255,0.3)] flex items-center justify-center overflow-hidden">
+                    {/* Crateras da lua */}
+                    <div className="absolute top-1 left-1 w-1 h-1 bg-gray-400/80 rounded-full" />
+                    <div className="absolute bottom-1 right-1.5 w-1.5 h-1.5 bg-gray-400/70 rounded-full" />
+                    <div className="absolute top-2.5 right-1 w-0.5 h-0.5 bg-gray-500/80 rounded-full" />
+                  </div>
+                </motion.div>
+              </div>
+              
+              {/* O Foguete */}
+              <div 
+                className="absolute flex flex-col items-center transition-all duration-300 ease-out"
+                style={{ bottom: `${5 + progress * 0.8}%` }}
+              >
+                <motion.div
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{ duration: 0.5, repeat: Infinity, ease: "easeInOut" }}
+                  className="text-white text-3xl sm:text-4xl drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]"
+                >
+                  <FaRocket className="-rotate-45" />
+                </motion.div>
+                {/* Rastro de fogo */}
+                <motion.div
+                  animate={{ height: ["15px", "30px", "15px"], opacity: [0.6, 1, 0.6] }}
+                  transition={{ duration: 0.2, repeat: Infinity }}
+                  className="w-1.5 bg-gradient-to-b from-orange-500 via-amber-400 to-transparent mt-1 rounded-full blur-[1px]"
+                />
+              </div>
             </div>
 
-            {/* Barra de Loading minimalista */}
-            <div className="w-full h-[2px] bg-white/10 relative overflow-hidden rounded-full">
-              <motion.div 
-                className="absolute top-0 left-0 h-full bg-gradient-to-r from-amber-600 to-amber-400"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
-            
-            <motion.div 
-              animate={{ opacity: [0.3, 1, 0.3] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-              className="text-gray-500 text-[10px] tracking-[0.3em] uppercase"
-            >
-              Loading experience...
-            </motion.div>
           </div>
         </motion.div>
       )}

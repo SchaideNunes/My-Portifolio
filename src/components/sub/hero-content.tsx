@@ -114,7 +114,7 @@ export const HeroContent = () => {
           variants={slideInFromLeft(0.7)}
           className="text-xl md:text-2xl font-medium text-gray-300 min-h-[32px] md:min-h-[40px] flex items-center"
         >
-          <span className="text-[#f59e0b] mr-2">I am a</span> <span ref={textRef} className="font-semibold text-white"></span><span ref={cursorRef} className="text-[#f59e0b] ml-[2px]">|</span>
+          <span className="text-white mr-2">I am a</span> <span ref={textRef} className="font-semibold text-[#f59e0b]"></span><span ref={cursorRef} className="text-[#f59e0b] ml-[2px]">|</span>
         </motion.div>
 
         {/* Description */}

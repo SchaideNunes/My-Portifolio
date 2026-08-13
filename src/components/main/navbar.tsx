@@ -42,7 +42,7 @@ export const Navbar = () => {
               <div className="absolute inset-[-100%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_60%,#f59e0b_100%)] opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
               
               {/* Inner content */}
-              <div className="relative flex items-center justify-between w-full h-auto bg-[#0300145e] backdrop-blur-md px-[20px] py-[10px] rounded-full text-gray-200 z-10 border border-[#f59e0b]/10">
+              <div className="relative flex items-center justify-between w-full h-auto bg-[#030014] px-[20px] py-[10px] rounded-full text-gray-200 z-10 border border-[#f59e0b]/10">
                 {navLinks.map((link) => (
                   <Link
                     key={link.title}

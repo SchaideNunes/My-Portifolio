@@ -90,7 +90,7 @@ export const HeroContent = () => {
     <motion.div
       initial="hidden"
       animate={isReady ? "visible" : "hidden"}
-      className="flex flex-col items-center justify-center text-center px-[5%] md:px-10 lg:px-20 pt-28 sm:pt-36 md:pt-44 pb-20 w-full z-[20] min-h-[85vh] max-w-5xl mx-auto"
+      className="flex flex-col items-center justify-center text-center px-[5%] md:px-10 lg:px-20 pt-40 sm:pt-48 md:pt-56 pb-24 w-full z-[20] min-h-[90vh] max-w-5xl mx-auto"
     >
       <div className="w-full flex flex-col gap-6 sm:gap-7 items-center justify-center my-auto">
         {/* HUGE Name Perfeitamente Centralizado */}

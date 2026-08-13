@@ -7,7 +7,7 @@ import { TESTIMONIALS } from "@/constants";
 import { TRANSLATIONS } from "@/constants/translations";
 import { useLang } from "@/lib/lang-context";
 import { SparklesIcon } from "@heroicons/react/24/solid";
-
+import { DocumentDuplicateIcon } from "@heroicons/react/24/outline";
 const INTERESTS = [
   { title: "Games", image: "/images/about/SetupEldenring.jpeg", color: "#f59e0b" },
   { title: "Música", image: "/images/about/ShowGuns.jpeg", color: "#61dafb" },
@@ -37,44 +37,73 @@ export default function AboutPage() {
   return (
     <main className="h-full w-full pt-20 px-[10%] md:px-20 flex flex-col gap-32 mb-20">
       {/* About Me Hero Section */}
-      <section className="flex flex-col lg:flex-row items-center justify-between gap-10">
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="flex flex-col gap-6 max-w-2xl"
-        >
-          <div className="Welcome-box py-[8px] px-[7px] border border-[#f59e0b8b] w-fit">
-            <SparklesIcon className="text-[#fbbf24] mr-[10px] h-5 w-5" />
-            <h1 className="Welcome-text text-[13px]">{TRANSLATIONS[lang].about.tag}</h1>
-          </div>
-          <h2 className="text-5xl md:text-7xl font-bold text-white leading-tight">
-            {TRANSLATIONS[lang].about.title1} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f59e0b] to-[#fbbf24]">{TRANSLATIONS[lang].about.title2}</span>
-          </h2>
-          <p className="text-gray-400 text-lg leading-normal">
-            {TRANSLATIONS[lang].about.description1}
-            <br /><br />
-            {TRANSLATIONS[lang].about.description2}
-            <br /><br />
-            {TRANSLATIONS[lang].about.description3}
-          </p>
-        </motion.div>
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 min-h-[60vh] w-full relative">
+        {/* Left Column */}
+        <div className="flex flex-col justify-between h-full gap-20">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col leading-none"
+          >
+            <h1 className="text-[70px] md:text-[110px] lg:text-[130px] font-black text-white tracking-tighter uppercase leading-[0.9]">SCHAIDE</h1>
+            <h1 className="text-[70px] md:text-[110px] lg:text-[130px] font-black text-[#0ea5e9] tracking-tighter uppercase leading-[0.9]">NUNES</h1>
+          </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative w-80 h-80 md:w-[500px] md:h-[500px] lg:w-[550px] lg:h-[550px] rounded-full overflow-hidden shrink-0"
-        >
-          <div className="w-full h-full rounded-full overflow-hidden relative">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="flex flex-col gap-3"
+          >
+            <div 
+              className="flex items-center gap-2 group cursor-pointer w-fit" 
+              onClick={() => navigator.clipboard.writeText("schaidenunes@gmail.com")}
+            >
+              <span className="text-lg md:text-xl font-medium text-white group-hover:text-[#0ea5e9] transition-colors">schaidenunes@gmail.com</span>
+              <DocumentDuplicateIcon className="w-5 h-5 text-gray-400 group-hover:text-[#0ea5e9] transition-colors" />
+            </div>
+            <div className="flex items-center gap-2 text-sm md:text-base text-gray-400 font-medium">
+              <span>Software Engineer at CMOC</span>
+              <div className="w-4 h-4 bg-[#0ea5e9] rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(14,165,233,0.5)]">
+                <span className="text-[8px] text-white">★</span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Right Column */}
+        <div className="flex flex-col justify-between items-start lg:items-end h-full gap-16 lg:gap-20 mt-10 lg:mt-0">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden relative shadow-2xl shrink-0"
+          >
             <Image
               src="/images/about/FotoAcademia.jpeg"
               alt="Schaide Nunes"
               fill
-              className="object-cover transition-all duration-500"
+              className="object-cover"
             />
-          </div>
-        </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4 }}
+            className="flex flex-col max-w-[450px] relative w-full"
+          >
+            <div className="w-3 h-3 bg-white rounded-full mb-6" />
+            <p className="text-gray-300 text-sm md:text-base leading-relaxed text-left font-medium">
+              {TRANSLATIONS[lang].about.description1}
+              <br /><br />
+              {TRANSLATIONS[lang].about.description2}
+              <br /><br />
+              {TRANSLATIONS[lang].about.description3}
+            </p>
+          </motion.div>
+        </div>
       </section>
 
       {/* Interests Carousel */}

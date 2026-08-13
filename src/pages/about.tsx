@@ -37,44 +37,57 @@ export default function AboutPage() {
   return (
     <main className="h-full w-full pt-20 px-[10%] md:px-20 flex flex-col gap-32 mb-20">
       {/* About Me Hero Section */}
-      <section className="flex flex-col lg:flex-row items-center justify-between gap-10">
+      <section className="flex flex-col gap-12 md:gap-16 lg:gap-24 w-full">
+        {/* Intro text row */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex flex-col gap-6 max-w-2xl"
+          className="w-full max-w-4xl"
         >
-          <div className="Welcome-box py-[8px] px-[7px] border border-[#f59e0b8b] w-fit">
-            <SparklesIcon className="text-[#fbbf24] mr-[10px] h-5 w-5" />
-            <h1 className="Welcome-text text-[13px]">{TRANSLATIONS[lang].about.tag}</h1>
-          </div>
-          <h2 className="text-5xl md:text-7xl font-bold text-white leading-tight">
-            {TRANSLATIONS[lang].about.title1} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f59e0b] to-[#fbbf24]">{TRANSLATIONS[lang].about.title2}</span>
+          <h2 className="text-2xl md:text-4xl lg:text-[40px] text-gray-300 font-medium leading-snug md:leading-snug lg:leading-[1.2] tracking-tight">
+            {TRANSLATIONS[lang].about.introText.replace(TRANSLATIONS[lang].about.introTextHighlight, "")}
+            <span className="text-[#f59e0b]">
+              {TRANSLATIONS[lang].about.introTextHighlight}
+            </span>
           </h2>
-          <p className="text-gray-400 text-lg leading-normal">
-            {TRANSLATIONS[lang].about.description1}
-            <br /><br />
-            {TRANSLATIONS[lang].about.description2}
-            <br /><br />
-            {TRANSLATIONS[lang].about.description3}
-          </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative w-80 h-80 md:w-[500px] md:h-[500px] lg:w-[550px] lg:h-[550px] rounded-full overflow-hidden shrink-0"
-        >
-          <div className="w-full h-full rounded-full overflow-hidden relative">
+        {/* 2 Column layout: Photo Left, Text Right */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
+          {/* Photo */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="w-full max-w-md mx-auto lg:max-w-none aspect-square relative rounded-xl overflow-hidden shadow-2xl border border-white/5"
+          >
             <Image
               src="/images/about/FotoAcademia.jpeg"
               alt="Schaide Nunes"
               fill
-              className="object-cover transition-all duration-500"
+              className="object-cover object-top"
             />
-          </div>
-        </motion.div>
+          </motion.div>
+
+          {/* Journey Text */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex flex-col gap-6 lg:mt-4"
+          >
+            <h3 className="text-2xl md:text-3xl font-bold text-white lowercase tracking-tight">
+              {TRANSLATIONS[lang].about.heading}
+            </h3>
+            
+            <div className="flex flex-col gap-5 text-gray-400 text-[15px] md:text-base leading-relaxed text-justify md:text-left">
+              <p>{TRANSLATIONS[lang].about.description1}</p>
+              <p>{TRANSLATIONS[lang].about.description2}</p>
+              <p>{TRANSLATIONS[lang].about.description3}</p>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Interests Carousel */}

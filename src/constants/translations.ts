@@ -15,8 +15,8 @@ export const TRANSLATIONS = {
     },
     about: {
       tag: "About me",
-      introText: "Born and raised in Bahia, passionate about technology, games, music, working out, and good food.",
-      introTextHighlight: "good food.",
+      introText: "Born and raised in Bahia, passionate about technology, games, music, working out, and cooking.",
+      introTextHighlight: "technology",
       heading: "my story.",
       title1: "I build digital experiences with",
       title2: "passion.",
@@ -70,8 +70,8 @@ export const TRANSLATIONS = {
     },
     about: {
       tag: "Sobre mim",
-      introText: "Nascido e criado na Bahia, apaixonado por tecnologia, games, música, academia e boa comida.",
-      introTextHighlight: "boa comida.",
+      introText: "Nascido e criado na Bahia, apaixonado por tecnologia, games, música, academia e cozinhar.",
+      introTextHighlight: "tecnologia",
       heading: "minha história.",
       title1: "Eu construo experiências digitais com",
       title2: "paixão.",

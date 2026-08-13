@@ -46,10 +46,16 @@ export default function AboutPage() {
           className="w-full max-w-4xl"
         >
           <h2 className="text-2xl md:text-4xl lg:text-[40px] text-gray-300 font-medium leading-snug md:leading-snug lg:leading-[1.2] tracking-tight">
-            {TRANSLATIONS[lang].about.introText.replace(TRANSLATIONS[lang].about.introTextHighlight, "")}
-            <span className="text-[#f59e0b]">
-              {TRANSLATIONS[lang].about.introTextHighlight}
-            </span>
+            {TRANSLATIONS[lang].about.introText.split(TRANSLATIONS[lang].about.introTextHighlight).map((part, i, arr) => (
+              <span key={i}>
+                {part}
+                {i < arr.length - 1 && (
+                  <span className="text-[#f59e0b]">
+                    {TRANSLATIONS[lang].about.introTextHighlight}
+                  </span>
+                )}
+              </span>
+            ))}
           </h2>
         </motion.div>
 

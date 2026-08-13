@@ -16,17 +16,17 @@ interface ConstellationNode {
   glowColor: string;
 }
 
-// 8 Stacks organizadas em 3 camadas arquiteturais
+// 8 Stacks com espaçamento ampliado e respiração arquitetural
 const CONSTELLATION_NODES: ConstellationNode[] = [
-  // Camada 1: Frontend & UI (Topo)
+  // Camada 1: Frontend & UI (Topo - Mais expandida)
   {
     id: 0,
     name: "React",
     category: "frontend",
     icon: "/skills/react.png",
-    x: 300,
-    y: 95,
-    size: 52,
+    x: 310,
+    y: 70,
+    size: 50,
     color: "#38bdf8",
     glowColor: "rgba(56, 189, 248, 0.7)"
   },
@@ -35,9 +35,9 @@ const CONSTELLATION_NODES: ConstellationNode[] = [
     name: "TypeScript",
     category: "frontend",
     icon: "/skills/ts.png",
-    x: 160,
-    y: 150,
-    size: 46,
+    x: 135,
+    y: 135,
+    size: 44,
     color: "#38bdf8",
     glowColor: "rgba(56, 189, 248, 0.6)"
   },
@@ -46,9 +46,9 @@ const CONSTELLATION_NODES: ConstellationNode[] = [
     name: "Tailwind",
     category: "frontend",
     icon: "/skills/tailwind.png",
-    x: 440,
-    y: 150,
-    size: 46,
+    x: 485,
+    y: 135,
+    size: 44,
     color: "#38bdf8",
     glowColor: "rgba(56, 189, 248, 0.6)"
   },
@@ -57,22 +57,22 @@ const CONSTELLATION_NODES: ConstellationNode[] = [
     name: "GSAP",
     category: "frontend",
     icon: "/skills/gsap.svg",
-    x: 300,
-    y: 220,
-    size: 44,
+    x: 310,
+    y: 205,
+    size: 42,
     color: "#38bdf8",
     glowColor: "rgba(56, 189, 248, 0.6)"
   },
 
-  // Camada 2: Backend & Data (Centro)
+  // Camada 2: Backend & Data (Centro - Separada com espaçamento nítido)
   {
     id: 4,
     name: "Python",
     category: "backend",
     icon: "/skills/python.svg",
-    x: 195,
-    y: 345,
-    size: 48,
+    x: 175,
+    y: 355,
+    size: 46,
     color: "#f59e0b",
     glowColor: "rgba(245, 158, 11, 0.7)"
   },
@@ -81,22 +81,22 @@ const CONSTELLATION_NODES: ConstellationNode[] = [
     name: "SQL",
     category: "backend",
     icon: "/skills/sql.svg",
-    x: 405,
-    y: 345,
-    size: 46,
+    x: 445,
+    y: 355,
+    size: 44,
     color: "#f59e0b",
     glowColor: "rgba(245, 158, 11, 0.7)"
   },
 
-  // Camada 3: DevOps & Cloud (Base)
+  // Camada 3: DevOps & Cloud (Base - Bem demarcada)
   {
     id: 6,
     name: "Docker",
     category: "cloud",
     icon: "/skills/docker.png",
-    x: 195,
-    y: 485,
-    size: 48,
+    x: 175,
+    y: 505,
+    size: 46,
     color: "#818cf8",
     glowColor: "rgba(129, 140, 248, 0.7)"
   },
@@ -105,9 +105,9 @@ const CONSTELLATION_NODES: ConstellationNode[] = [
     name: "AWS",
     category: "cloud",
     icon: "/skills/aws.svg",
-    x: 405,
-    y: 485,
-    size: 52,
+    x: 445,
+    y: 505,
+    size: 50,
     color: "#fb923c",
     glowColor: "rgba(251, 146, 60, 0.7)"
   },
@@ -129,24 +129,24 @@ const CONSTELLATION_EDGES = [
   { start: 6, end: 7, type: "intra", dur: 2.2 },
 
   // Pontes Inter-camadas (Frontend -> Backend)
-  { start: 3, end: 4, type: "bridge", dur: 3.0 },
-  { start: 3, end: 5, type: "bridge", dur: 2.8 },
-  { start: 1, end: 4, type: "bridge", dur: 3.2 },
+  { start: 3, end: 4, type: "bridge", dur: 3.2 },
+  { start: 3, end: 5, type: "bridge", dur: 3.0 },
+  { start: 1, end: 4, type: "bridge", dur: 3.4 },
 
   // Pontes Inter-camadas (Backend -> Cloud)
-  { start: 4, end: 6, type: "bridge", dur: 2.6 },
-  { start: 5, end: 7, type: "bridge", dur: 2.7 },
-  { start: 4, end: 7, type: "bridge", dur: 3.4 },
-  { start: 6, end: 5, type: "bridge", dur: 3.1 },
+  { start: 4, end: 6, type: "bridge", dur: 2.8 },
+  { start: 5, end: 7, type: "bridge", dur: 2.9 },
+  { start: 4, end: 7, type: "bridge", dur: 3.5 },
+  { start: 6, end: 5, type: "bridge", dur: 3.3 },
 ];
 
 const LAYERS_INFO = [
-  { label: "FRONTEND & UI", y: 40, color: "text-sky-400", dot: "bg-sky-400 shadow-[0_0_8px_#38bdf8]" },
+  { label: "FRONTEND & UI", y: 15, color: "text-sky-400", dot: "bg-sky-400 shadow-[0_0_8px_#38bdf8]" },
   { label: "BACKEND & DATA", y: 285, color: "text-amber-400", dot: "bg-amber-400 shadow-[0_0_8px_#fbbf24]" },
-  { label: "DEVOPS & CLOUD", y: 425, color: "text-indigo-400", dot: "bg-indigo-400 shadow-[0_0_8px_#818cf8]" },
+  { label: "DEVOPS & CLOUD", y: 435, color: "text-indigo-400", dot: "bg-indigo-400 shadow-[0_0_8px_#818cf8]" },
 ];
 
-// Distância de um ponto a um segmento de reta (para proximidade com o mouse)
+// Distância de um ponto a um segmento de reta
 function distToSegment(px: number, py: number, x1: number, y1: number, x2: number, y2: number) {
   const l2 = (x2 - x1) ** 2 + (y2 - y1) ** 2;
   if (l2 === 0) return Math.hypot(px - x1, py - y1);
@@ -179,8 +179,8 @@ export const InteractiveCloud = () => {
     // Leve inclinação 3D cósmica ao mover o mouse
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    springX.set((x - centerX) * 0.04);
-    springY.set((y - centerY) * 0.04);
+    springX.set((x - centerX) * 0.035);
+    springY.set((y - centerY) * 0.035);
   };
 
   const handleMouseLeave = () => {
@@ -201,7 +201,7 @@ export const InteractiveCloud = () => {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full h-[700px] flex items-center justify-center select-none overflow-visible group"
+      className="relative w-full h-[720px] flex items-center justify-center select-none overflow-visible group"
     >
       {/* Luz cósmica dinâmica seguindo o cursor do mouse */}
       {mousePos && (
@@ -211,24 +211,24 @@ export const InteractiveCloud = () => {
             top: mousePos.y,
             transform: "translate(-50%, -50%)",
           }}
-          className="absolute w-64 h-64 bg-radial from-amber-500/15 via-sky-500/10 to-transparent blur-3xl pointer-events-none rounded-full transition-opacity duration-300 z-0"
+          className="absolute w-72 h-72 bg-radial from-amber-500/15 via-sky-500/10 to-transparent blur-3xl pointer-events-none rounded-full transition-opacity duration-300 z-0"
         />
       )}
 
       {/* Glow de Fundo Constante */}
-      <div className="absolute w-[520px] h-[580px] bg-gradient-to-b from-sky-950/20 via-amber-950/20 to-indigo-950/20 blur-[130px] rounded-full pointer-events-none -z-30" />
+      <div className="absolute w-[560px] h-[620px] bg-gradient-to-b from-sky-950/20 via-amber-950/20 to-indigo-950/20 blur-[140px] rounded-full pointer-events-none -z-30" />
 
       {/* Container principal com leve parallax magnético */}
       <motion.div
         style={{ x: springX, y: springY }}
-        className="relative w-[600px] h-[600px]"
+        className="relative w-[620px] h-[620px]"
       >
-        {/* Rótulos das 3 Camadas Cósmicas */}
+        {/* Rótulos das 3 Camadas Cósmicas com bom espaçamento */}
         {LAYERS_INFO.map((layer, idx) => (
           <div
             key={`layer-label-${idx}`}
             style={{ top: layer.y }}
-            className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 px-3 py-1 rounded-full bg-[#030014]/60 border border-white/[0.06] backdrop-blur-md pointer-events-none z-0 shadow-[0_0_15px_rgba(0,0,0,0.5)]"
+            className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#030014]/60 border border-white/[0.06] backdrop-blur-md pointer-events-none z-0 shadow-[0_0_15px_rgba(0,0,0,0.5)]"
           >
             <span className={`w-1.5 h-1.5 rounded-full ${layer.dot}`} />
             <span className={`font-mono text-[10px] font-bold tracking-[0.25em] ${layer.color} opacity-90 uppercase`}>
@@ -291,7 +291,7 @@ export const InteractiveCloud = () => {
             let mouseNearLine = false;
             if (mousePos) {
               const d = distToSegment(mousePos.x, mousePos.y, startNode.x, startNode.y, endNode.x, endNode.y);
-              if (d < 65) mouseNearLine = true;
+              if (d < 70) mouseNearLine = true;
             }
 
             const isDirectConnected = hoveredNode === edge.start || hoveredNode === edge.end;
@@ -327,7 +327,7 @@ export const InteractiveCloud = () => {
                   className="transition-colors duration-300"
                 />
 
-                {/* 2. Feixe de Luz Circulando / Correndo Contínuo (Efeito Estilo Header) */}
+                {/* 2. Feixe de Luz Circulando / Correndo Contínuo */}
                 <line
                   x1={startNode.x}
                   y1={startNode.y}
@@ -367,7 +367,7 @@ export const InteractiveCloud = () => {
           })}
         </svg>
 
-        {/* Nós das Tecnologias (com borda de luz giratória e atração magnética) */}
+        {/* Nós das Tecnologias com espaçamento amplo */}
         {CONSTELLATION_NODES.map((node) => {
           const isHovered = hoveredNode === node.id;
           const isCategoryHovered = activeCategory !== null && node.category === activeCategory;
@@ -383,10 +383,9 @@ export const InteractiveCloud = () => {
           let pullY = 0;
           if (mousePos) {
             const dist = Math.hypot(mousePos.x - node.x, mousePos.y - node.y);
-            if (dist < 120) {
+            if (dist < 130) {
               isMouseNear = true;
-              // Efeito de atração magnética cósmica suave em direção ao cursor
-              const pullStrength = (120 - dist) * 0.08;
+              const pullStrength = (130 - dist) * 0.08;
               pullX = ((mousePos.x - node.x) / dist) * pullStrength;
               pullY = ((mousePos.y - node.y) / dist) * pullStrength;
             }
@@ -433,7 +432,7 @@ export const InteractiveCloud = () => {
                   }`}
                 />
 
-                {/* Card Translúcido com Feixe de Borda Giratório (Estilo Header) */}
+                {/* Card Translúcido com Feixe de Borda Giratório */}
                 <div className="relative flex items-center justify-center rounded-2xl p-[1px] overflow-hidden group/card shadow-[0_0_20px_rgba(0,0,0,0.8)]">
                   {/* Borda de Luz Laser Giratória com Conic Gradient */}
                   <div
@@ -461,7 +460,7 @@ export const InteractiveCloud = () => {
                   </div>
                 </div>
 
-                {/* Etiqueta de Nome da Stack com Brilho Cósmico */}
+                {/* Etiqueta de Nome da Stack */}
                 <div
                   className={`absolute -bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-1.5 transition-all duration-300 pointer-events-none whitespace-nowrap z-30 ${
                     isHovered ? "opacity-100 translate-y-0" : isCategoryHovered ? "opacity-90 translate-y-0" : isMouseNear ? "opacity-80 translate-y-0" : "opacity-0 -translate-y-1"
@@ -485,13 +484,13 @@ export const InteractiveCloud = () => {
 
         {/* Micro-estrelas / Poeira Estelar Cintilante */}
         {[
-          { top: "10%", left: "10%", size: 3, delay: 0 },
-          { top: "18%", left: "88%", size: 2.5, delay: 1 },
-          { top: "32%", left: "6%", size: 2, delay: 2 },
-          { top: "52%", left: "94%", size: 3, delay: 0.5 },
-          { top: "72%", left: "10%", size: 2.5, delay: 1.5 },
-          { top: "86%", left: "88%", size: 3.5, delay: 2.5 },
-          { top: "62%", left: "50%", size: 2, delay: 1.8 },
+          { top: "8%", left: "8%", size: 3, delay: 0 },
+          { top: "15%", left: "92%", size: 2.5, delay: 1 },
+          { top: "35%", left: "5%", size: 2, delay: 2 },
+          { top: "50%", left: "95%", size: 3, delay: 0.5 },
+          { top: "72%", left: "8%", size: 2.5, delay: 1.5 },
+          { top: "88%", left: "90%", size: 3.5, delay: 2.5 },
+          { top: "60%", left: "50%", size: 2, delay: 1.8 },
         ].map((star, i) => (
           <motion.div
             key={`stardust-${i}`}

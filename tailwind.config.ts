@@ -10,6 +10,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        outfit: ['Outfit', 'sans-serif'],
+      },
       colors: {
         brand: {
           gold: "#f59e0b",

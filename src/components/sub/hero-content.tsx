@@ -1,30 +1,22 @@
 "use client";
 
-import { SparklesIcon } from "@heroicons/react/24/solid";
 import { DocumentDuplicateIcon, CheckIcon, ArrowDownTrayIcon } from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
-import { useState, useRef, useEffect } from "react";
-import gsap from "gsap";
-import { TextPlugin } from "gsap/TextPlugin";
+import { useState, useEffect } from "react";
+import { Image } from "@/components/ui/image";
 
 import {
   slideInFromLeft,
   slideInFromRight,
-  slideInFromTop,
 } from "@/lib/motion";
 
-import { InteractiveCloud } from "./interactive-cloud";
 import { useLang } from "@/lib/lang-context";
 import { TRANSLATIONS } from "@/constants/translations";
-
-gsap.registerPlugin(TextPlugin);
 
 export const HeroContent = () => {
   const { lang } = useLang();
   const [copied, setCopied] = useState(false);
   const [isReady, setIsReady] = useState(false);
-  const textRef = useRef<HTMLSpanElement>(null);
-  const cursorRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     if (typeof window !== "undefined" && (window as any).__preloaderCompleted) {
@@ -32,7 +24,6 @@ export const HeroContent = () => {
       return;
     }
 
-    // Timeout de fallback: se por algum motivo o preloader bugar ou for removido no futuro, a página carrega em 4.5s no máximo
     const fallbackTimer = setTimeout(() => setIsReady(true), 4500);
 
     const handlePreloaderComplete = () => {
@@ -47,46 +38,6 @@ export const HeroContent = () => {
     };
   }, []);
 
-  useEffect(() => {
-    if (!isReady) return; // Inicia o GSAP APENAS DEPOIS que o preloader sumir e a animação de entrada acabar
-
-    // Pequeno atraso para não escrever enquanto o texto ainda está deslizando pela tela
-    const delayGsap = setTimeout(() => {
-      // Animação de "piscar" o cursor
-      gsap.to(cursorRef.current, {
-        opacity: 0,
-        ease: "power2.inOut",
-        repeat: -1,
-        yoyo: true,
-        duration: 0.5
-      });
-
-      // Palavras que serão escritas e apagadas
-      const words = ["Schaide Nunes", "Web Developer", "Software Engineer"];
-      let tl = gsap.timeline({ repeat: -1 });
-
-      words.forEach((word) => {
-        tl.to(textRef.current, {
-          duration: Math.max(1, word.length * 0.08),
-          text: word,
-          ease: "none",
-        })
-        .to({}, { duration: 1.5 }) // Espera
-        .to(textRef.current, {
-          duration: Math.max(0.5, word.length * 0.04),
-          text: "",
-          ease: "none",
-        });
-      });
-
-      return () => {
-        tl.kill();
-      };
-    }, 1000); // 1 segundo depois de começar a aparecer na tela
-
-    return () => clearTimeout(delayGsap);
-  }, [isReady]);
-
   const handleCopyEmail = () => {
     navigator.clipboard.writeText("schaidenunes@gmail.com");
     setCopied(true);
@@ -97,33 +48,23 @@ export const HeroContent = () => {
     <motion.div
       initial="hidden"
       animate={isReady ? "visible" : "hidden"}
-      className="flex flex-col lg:flex-row items-center justify-center px-[10%] md:px-10 lg:px-20 mt-32 md:mt-40 w-full z-[20] gap-10 lg:gap-0"
+      className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-10 px-[10%] md:px-10 lg:px-20 mt-32 md:mt-40 w-full z-[20] min-h-[60vh]"
     >
-      <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start">
-        {/* Headline com animação GSAP */}
+      {/* Left Column */}
+      <div className="flex flex-col justify-between h-full gap-16 lg:gap-20">
         <motion.div
           variants={slideInFromLeft(0.5)}
-          className="flex flex-col gap-2 mt-2 lg:mt-6 text-4xl sm:text-5xl lg:text-[50px] font-bold text-white max-w-[600px] tracking-[-2%] leading-[1.1] min-h-[90px] sm:min-h-[110px] lg:min-h-[130px]"
+          className="flex flex-col leading-none"
         >
-          <span>
-            {TRANSLATIONS[lang].hero.greeting}
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] inline-block whitespace-nowrap">
-              <span ref={textRef}></span><span ref={cursorRef} className="text-[#f59e0b] -ml-1">|</span>
-            </span>
-          </span>
+          <h1 className="text-[70px] md:text-[110px] lg:text-[130px] font-black text-white tracking-tighter uppercase leading-[0.9]">SCHAIDE</h1>
+          <h1 className="text-[70px] md:text-[110px] lg:text-[130px] font-black text-[#f59e0b] tracking-tighter uppercase leading-[0.9]">NUNES</h1>
         </motion.div>
 
-        {/* Description - Agora visível em todas as telas */}
-        <motion.p
+        {/* Email and CV Buttons */}
+        <motion.div
           variants={slideInFromLeft(0.8)}
-          className="text-base sm:text-lg text-gray-400 my-2 max-w-[600px] leading-relaxed"
+          className="flex flex-wrap items-center gap-4 mt-auto"
         >
-          {TRANSLATIONS[lang].hero.description}
-        </motion.p>
-
-        {/* Ações: E-mail copiável + Baixar Currículo */}
-        <motion.div variants={slideInFromLeft(1)} className="flex flex-wrap items-center gap-4 mt-2">
           <button 
             onClick={handleCopyEmail}
             className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#0300145e] hover:bg-[#f59e0b]/10 backdrop-blur-md transition-all text-gray-300 hover:text-white group border border-white/5 hover:border-[#f59e0b]/30"
@@ -151,13 +92,30 @@ export const HeroContent = () => {
         </motion.div>
       </div>
 
-      {/* Interactive Cloud — desktop only */}
-      <motion.div
-        variants={slideInFromRight(0.8)}
-        className="w-full h-full hidden lg:flex justify-center items-center"
-      >
-        <InteractiveCloud />
-      </motion.div>
+      {/* Right Column */}
+      <div className="flex flex-col justify-between items-start lg:items-end h-full gap-16 lg:gap-20 mt-4 lg:mt-0">
+        <motion.div
+          variants={slideInFromRight(0.5)}
+          className="w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden relative shadow-[0_0_30px_rgba(245,158,11,0.15)] shrink-0 border border-[#f59e0b]/20"
+        >
+          <Image
+            src="/images/about/FotoAcademia.jpeg"
+            alt="Schaide Nunes"
+            fill
+            className="object-cover"
+          />
+        </motion.div>
+
+        <motion.div
+          variants={slideInFromRight(0.8)}
+          className="flex flex-col max-w-[450px] relative w-full"
+        >
+          <div className="w-3 h-3 bg-white rounded-full mb-6" />
+          <p className="text-gray-300 text-sm md:text-base leading-relaxed text-left font-medium">
+            {TRANSLATIONS[lang].hero.description}
+          </p>
+        </motion.div>
+      </div>
     </motion.div>
   );
 };

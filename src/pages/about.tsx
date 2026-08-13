@@ -54,13 +54,13 @@ export default function AboutPage() {
         </motion.div>
 
         {/* 2 Column layout: Photo Left, Text Right */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-start">
           {/* Photo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full max-w-md mx-auto lg:max-w-none aspect-square relative rounded-xl overflow-hidden shadow-2xl border border-white/5"
+            className="col-span-1 lg:col-span-2 w-full max-w-sm mx-auto lg:max-w-none aspect-square relative rounded-xl overflow-hidden shadow-2xl border border-white/5"
           >
             <Image
               src="/images/about/Selfie.jpeg"
@@ -75,13 +75,13 @@ export default function AboutPage() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col gap-6 lg:mt-4"
+            className="col-span-1 lg:col-span-3 flex flex-col gap-6 lg:mt-2"
           >
-            <h3 className="text-2xl md:text-3xl font-bold text-white lowercase tracking-tight">
+            <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white lowercase tracking-tight">
               {TRANSLATIONS[lang].about.heading}
             </h3>
             
-            <div className="flex flex-col gap-5 text-gray-400 text-[15px] md:text-base leading-relaxed text-justify md:text-left">
+            <div className="flex flex-col gap-5 text-gray-400 text-base md:text-lg leading-relaxed text-justify md:text-left">
               <p>{TRANSLATIONS[lang].about.description1}</p>
               <p>{TRANSLATIONS[lang].about.description2}</p>
               <p>{TRANSLATIONS[lang].about.description3}</p>

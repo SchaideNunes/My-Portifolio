@@ -14,6 +14,7 @@ const technologies = [
   // Frameworks (Middle Circle)
   { name: "MySQL", icon: "/skills/mysql.png", orbit: 2, speed: 0.18 },
   { name: "Tailwind", icon: "/skills/tailwind.png", orbit: 2, speed: -0.22 },
+  { name: "Docker", icon: "/skills/docker.png", orbit: 2, speed: 0.15 },
 
   // Tools & DB (Outer Circle)
   { name: "PostgreSQL", icon: "/skills/postgresql.png", orbit: 3, speed: 0.1 },

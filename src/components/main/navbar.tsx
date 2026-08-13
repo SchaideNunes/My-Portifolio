@@ -36,18 +36,29 @@ export const Navbar = () => {
           </Link>
 
           {/* Web Navbar Pill */}
-          <div className="hidden md:flex w-[500px] h-full flex-row items-center justify-between">
-            <div className="relative overflow-hidden rounded-full p-[1px] w-full flex items-center justify-center mr-[15px] group">
-              {/* Spinning gradient for the border light beam effect */}
-              <div className="absolute inset-[-100%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_60%,#f59e0b_100%)] opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-full flex-row items-center justify-center">
+            <div className="relative flex items-center justify-center group bg-[#0300145e] backdrop-blur-md rounded-full shadow-[0_0_15px_rgba(245,158,11,0.05)]">
+              
+              {/* Masked Spinning Border */}
+              <div 
+                className="absolute inset-0 rounded-full overflow-hidden pointer-events-none"
+                style={{
+                  WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                  WebkitMaskComposite: "xor",
+                  maskComposite: "exclude",
+                  padding: "1px"
+                }}
+              >
+                <div className="absolute inset-[-100%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_60%,#f59e0b_100%)] opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
               
               {/* Inner content */}
-              <div className="relative flex items-center justify-between w-full h-auto bg-[#030014] px-[20px] py-[10px] rounded-full text-gray-200 z-10 border border-[#f59e0b]/10">
+              <div className="relative flex items-center gap-14 h-auto px-[40px] py-[12px] rounded-full text-gray-200 z-10">
                 {navLinks.map((link) => (
                   <Link
                     key={link.title}
                     href={link.link}
-                    className="cursor-pointer hover:text-[#f59e0b] transition whitespace-nowrap"
+                    className="cursor-pointer hover:text-[#f59e0b] transition whitespace-nowrap font-outfit text-[17px] font-medium tracking-wide"
                   >
                     {link.title}
                   </Link>

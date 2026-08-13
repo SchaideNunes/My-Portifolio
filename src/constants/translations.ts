@@ -8,7 +8,7 @@ export const TRANSLATIONS = {
     hero: {
       badge: "INTERNSHIP | JUNIOR",
       greeting: "Hi, I am",
-      description: "Software Engineering student and Full-Stack freelance developer. I transform ideas into complete and scalable digital solutions, leveraging modern technologies like Python, React, JavaScript, and Databases to craft robust and high-impact experiences.",
+      description: "Software Engineering student and Full-Stack developer. I transform ideas into complete and scalable digital solutions, leveraging modern technologies like Python, React, AWS, Docker, and SQL to craft robust and high-impact experiences.",
       copyEmail: "schaidenunes@gmail.com",
       copied: "Email copied!",
       downloadCV: "Download Resume (PDF)",
@@ -60,7 +60,7 @@ export const TRANSLATIONS = {
     hero: {
       badge: "ESTÁGIO | JÚNIOR",
       greeting: "Olá, eu sou",
-      description: "Estudante de Engenharia de Software e desenvolvedor freelancer Full-Stack. Transformo ideias em soluções digitais completas e escaláveis, utilizando tecnologias como Python, React, JavaScript e Bancos de Dados para criar experiências web robustas e de alto impacto.",
+      description: "Estudante de Engenharia de Software e desenvolvedor Full-Stack. Transformo ideias em soluções digitais completas e escaláveis, utilizando tecnologias como Python, React, AWS, Docker e SQL para criar experiências web robustas e de alto impacto.",
       copyEmail: "schaidenunes@gmail.com",
       copied: "Email copiado!",
       downloadCV: "Baixar Currículo (PDF)",

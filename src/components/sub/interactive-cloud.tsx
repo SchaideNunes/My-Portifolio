@@ -1,13 +1,14 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import { motion, useSpring } from "framer-motion";
+import React, { useState, useEffect, useRef, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Image } from "@/components/ui/image";
 
 interface ConstellationNode {
   id: number;
   name: string;
-  category: "frontend" | "backend" | "cloud";
+  role: string;
+  category: "Frontend" | "Backend" | "Cloud" | "Core";
   icon: string;
   x: number;
   y: number;
@@ -16,158 +17,181 @@ interface ConstellationNode {
   glowColor: string;
 }
 
-// 8 Stacks com espaçamento ampliado e respiração arquitetural
+// 8 Stacks dispostas em um Nexus Cósmico Geométrico (Estrela Central + Coroa Estelar)
 const CONSTELLATION_NODES: ConstellationNode[] = [
-  // Camada 1: Frontend & UI (Topo - Mais expandida)
+  // 1. Núcleo Cósmico Central (The Nexus)
   {
     id: 0,
     name: "React",
-    category: "frontend",
+    role: "Core UI Architecture",
+    category: "Core",
     icon: "/skills/react.png",
-    x: 310,
-    y: 70,
-    size: 50,
+    x: 300,
+    y: 280,
+    size: 58,
     color: "#38bdf8",
-    glowColor: "rgba(56, 189, 248, 0.7)"
+    glowColor: "rgba(56, 189, 248, 0.85)"
   },
+  // 2. Estrela do Norte (Apex Superior)
   {
     id: 1,
     name: "TypeScript",
-    category: "frontend",
+    role: "Type-Safe Development",
+    category: "Frontend",
     icon: "/skills/ts.png",
-    x: 135,
-    y: 135,
-    size: 44,
+    x: 300,
+    y: 90,
+    size: 48,
     color: "#38bdf8",
-    glowColor: "rgba(56, 189, 248, 0.6)"
+    glowColor: "rgba(56, 189, 248, 0.75)"
   },
+  // 3. Estrela Noroeste (Motion & FX)
   {
     id: 2,
-    name: "Tailwind",
-    category: "frontend",
-    icon: "/skills/tailwind.png",
-    x: 485,
-    y: 135,
-    size: 44,
+    name: "GSAP",
+    role: "Creative Animations",
+    category: "Frontend",
+    icon: "/skills/gsap.svg",
+    x: 135,
+    y: 165,
+    size: 46,
     color: "#38bdf8",
-    glowColor: "rgba(56, 189, 248, 0.6)"
+    glowColor: "rgba(56, 189, 248, 0.75)"
   },
+  // 4. Estrela Nordeste (Design System)
   {
     id: 3,
-    name: "GSAP",
-    category: "frontend",
-    icon: "/skills/gsap.svg",
-    x: 310,
-    y: 205,
-    size: 42,
+    name: "Tailwind",
+    role: "Modern UI Styling",
+    category: "Frontend",
+    icon: "/skills/tailwind.png",
+    x: 465,
+    y: 165,
+    size: 46,
     color: "#38bdf8",
-    glowColor: "rgba(56, 189, 248, 0.6)"
+    glowColor: "rgba(56, 189, 248, 0.75)"
   },
-
-  // Camada 2: Backend & Data (Centro - Separada com espaçamento nítido)
+  // 5. Estrela Sudoeste (Backend Logic)
   {
     id: 4,
     name: "Python",
-    category: "backend",
+    role: "Automation & Backend Logic",
+    category: "Backend",
     icon: "/skills/python.svg",
-    x: 175,
-    y: 355,
-    size: 46,
+    x: 125,
+    y: 395,
+    size: 50,
     color: "#f59e0b",
-    glowColor: "rgba(245, 158, 11, 0.7)"
+    glowColor: "rgba(245, 158, 11, 0.85)"
   },
+  // 6. Estrela Sudeste (Cloud Infrastructure)
   {
     id: 5,
-    name: "SQL",
-    category: "backend",
-    icon: "/skills/sql.svg",
-    x: 445,
-    y: 355,
-    size: 44,
-    color: "#f59e0b",
-    glowColor: "rgba(245, 158, 11, 0.7)"
+    name: "AWS",
+    role: "Cloud Services & Deploy",
+    category: "Cloud",
+    icon: "/skills/aws.svg",
+    x: 475,
+    y: 395,
+    size: 52,
+    color: "#fb923c",
+    glowColor: "rgba(251, 146, 60, 0.85)"
   },
-
-  // Camada 3: DevOps & Cloud (Base - Bem demarcada)
+  // 7. Base Sul-Esquerda (Data Storage)
   {
     id: 6,
-    name: "Docker",
-    category: "cloud",
-    icon: "/skills/docker.png",
-    x: 175,
+    name: "SQL",
+    role: "Relational Database & Queries",
+    category: "Backend",
+    icon: "/skills/sql.svg",
+    x: 215,
     y: 505,
-    size: 46,
-    color: "#818cf8",
-    glowColor: "rgba(129, 140, 248, 0.7)"
+    size: 48,
+    color: "#f59e0b",
+    glowColor: "rgba(245, 158, 11, 0.8)"
   },
+  // 8. Base Sul-Direita (Containers)
   {
     id: 7,
-    name: "AWS",
-    category: "cloud",
-    icon: "/skills/aws.svg",
-    x: 445,
+    name: "Docker",
+    role: "Containerization & DevOps",
+    category: "Cloud",
+    icon: "/skills/docker.png",
+    x: 385,
     y: 505,
-    size: 50,
-    color: "#fb923c",
-    glowColor: "rgba(251, 146, 60, 0.7)"
+    size: 48,
+    color: "#818cf8",
+    glowColor: "rgba(129, 140, 248, 0.8)"
   },
 ];
 
-// Conexões da constelação
+// Conexões Estelares formando um Octógono / Nexus Sagrado
 const CONSTELLATION_EDGES = [
-  // Camada 1: Frontend Ecosystem
-  { start: 0, end: 1, type: "intra", dur: 2.2 },
-  { start: 0, end: 2, type: "intra", dur: 2.4 },
-  { start: 0, end: 3, type: "intra", dur: 2.0 },
-  { start: 1, end: 3, type: "intra", dur: 2.5 },
-  { start: 2, end: 3, type: "intra", dur: 2.3 },
+  // 1. Anel Externo da Constelação (Crown)
+  { start: 1, end: 3, type: "perimeter", dur: 2.4 }, // TS -> Tailwind
+  { start: 3, end: 5, type: "perimeter", dur: 2.6 }, // Tailwind -> AWS
+  { start: 5, end: 7, type: "perimeter", dur: 2.2 }, // AWS -> Docker
+  { start: 7, end: 6, type: "perimeter", dur: 2.0 }, // Docker -> SQL
+  { start: 6, end: 4, type: "perimeter", dur: 2.2 }, // SQL -> Python
+  { start: 4, end: 2, type: "perimeter", dur: 2.6 }, // Python -> GSAP
+  { start: 2, end: 1, type: "perimeter", dur: 2.4 }, // GSAP -> TS
 
-  // Camada 2: Backend Ecosystem
-  { start: 4, end: 5, type: "intra", dur: 2.1 },
+  // 2. Raios Centrais (Nexus Radiance do React para todas as stacks)
+  { start: 0, end: 1, type: "radial", dur: 2.0 }, // React <-> TS
+  { start: 0, end: 2, type: "radial", dur: 2.2 }, // React <-> GSAP
+  { start: 0, end: 3, type: "radial", dur: 2.2 }, // React <-> Tailwind
+  { start: 0, end: 4, type: "radial", dur: 2.5 }, // React <-> Python
+  { start: 0, end: 5, type: "radial", dur: 2.5 }, // React <-> AWS
+  { start: 0, end: 6, type: "radial", dur: 2.3 }, // React <-> SQL
+  { start: 0, end: 7, type: "radial", dur: 2.3 }, // React <-> Docker
 
-  // Camada 3: Cloud Ecosystem
-  { start: 6, end: 7, type: "intra", dur: 2.2 },
-
-  // Pontes Inter-camadas (Frontend -> Backend)
-  { start: 3, end: 4, type: "bridge", dur: 3.2 },
-  { start: 3, end: 5, type: "bridge", dur: 3.0 },
-  { start: 1, end: 4, type: "bridge", dur: 3.4 },
-
-  // Pontes Inter-camadas (Backend -> Cloud)
-  { start: 4, end: 6, type: "bridge", dur: 2.8 },
-  { start: 5, end: 7, type: "bridge", dur: 2.9 },
-  { start: 4, end: 7, type: "bridge", dur: 3.5 },
-  { start: 6, end: 5, type: "bridge", dur: 3.3 },
+  // 3. Pontes Estruturais Internas
+  { start: 2, end: 3, type: "cross", dur: 3.0 }, // GSAP <-> Tailwind
+  { start: 4, end: 6, type: "cross", dur: 2.2 }, // Python <-> SQL
+  { start: 7, end: 5, type: "cross", dur: 2.2 }, // Docker <-> AWS
 ];
 
-const LAYERS_INFO = [
-  { label: "FRONTEND & UI", y: 15, color: "text-sky-400", dot: "bg-sky-400 shadow-[0_0_8px_#38bdf8]" },
-  { label: "BACKEND & DATA", y: 285, color: "text-amber-400", dot: "bg-amber-400 shadow-[0_0_8px_#fbbf24]" },
-  { label: "DEVOPS & CLOUD", y: 435, color: "text-indigo-400", dot: "bg-indigo-400 shadow-[0_0_8px_#818cf8]" },
-];
-
-// Distância de um ponto a um segmento de reta
-function distToSegment(px: number, py: number, x1: number, y1: number, x2: number, y2: number) {
-  const l2 = (x2 - x1) ** 2 + (y2 - y1) ** 2;
-  if (l2 === 0) return Math.hypot(px - x1, py - y1);
-  let t = ((px - x1) * (x2 - x1) + (py - y1) * (y2 - y1)) / l2;
-  t = Math.max(0, Math.min(1, t));
-  return Math.hypot(px - (x1 + t * (x2 - x1)), py - (y1 + t * (y2 - y1)));
+interface Particle {
+  id: number;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  color: string;
+  size: number;
 }
 
 export const InteractiveCloud = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [hoveredNode, setHoveredNode] = useState<number | null>(null);
+  const [selectedNode, setSelectedNode] = useState<number | null>(null);
   const [mousePos, setMousePos] = useState<{ x: number; y: number } | null>(null);
+  const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
+  const [particles, setParticles] = useState<Particle[]>([]);
+  const [shockwaves, setShockwaves] = useState<{ id: number; x: number; y: number; color: string }[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
-
-  // Efeito magnético suave
-  const springX = useSpring(0, { stiffness: 120, damping: 15 });
-  const springY = useSpring(0, { stiffness: 120, damping: 15 });
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  // Animação de partículas de poeira estelar ao clicar/interagir
+  useEffect(() => {
+    if (particles.length === 0) return;
+    const interval = setInterval(() => {
+      setParticles((prev) =>
+        prev
+          .map((p) => ({
+            ...p,
+            x: p.x + p.vx,
+            y: p.y + p.vy,
+            size: p.size * 0.94,
+          }))
+          .filter((p) => p.size > 0.4)
+      );
+    }, 24);
+    return () => clearInterval(interval);
+  }, [particles]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
@@ -176,34 +200,80 @@ export const InteractiveCloud = () => {
     const y = e.clientY - rect.top;
     setMousePos({ x, y });
 
-    // Leve inclinação 3D cósmica ao mover o mouse
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    springX.set((x - centerX) * 0.035);
-    springY.set((y - centerY) * 0.035);
+    // Inclinação 3D Parallax Suave
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+    const rotX = -((y - cy) / cy) * 12;
+    const rotY = ((x - cx) / cx) * 12;
+    setTilt({ rotateX: rotX, rotateY: rotY });
   };
 
   const handleMouseLeave = () => {
     setMousePos(null);
     setHoveredNode(null);
-    springX.set(0);
-    springY.set(0);
+    setTilt({ rotateX: 0, rotateY: 0 });
   };
 
+  // Clique em uma estrela: Dispara onda de choque supernova + partículas estelares
+  const handleNodeClick = (node: ConstellationNode) => {
+    setSelectedNode((prev) => (prev === node.id ? null : node.id));
+
+    // Adiciona onda de choque
+    const waveId = Date.now();
+    setShockwaves((prev) => [...prev, { id: waveId, x: node.x, y: node.y, color: node.color }]);
+    setTimeout(() => {
+      setShockwaves((prev) => prev.filter((w) => w.id !== waveId));
+    }, 1200);
+
+    // Gera 12 partículas estelares explosivas
+    const newParticles: Particle[] = Array.from({ length: 14 }).map((_, i) => {
+      const angle = (i / 14) * Math.PI * 2;
+      const speed = 2 + Math.random() * 4;
+      return {
+        id: Math.random(),
+        x: node.x,
+        y: node.y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        color: node.color,
+        size: 3.5 + Math.random() * 3,
+      };
+    });
+    setParticles((prev) => [...prev, ...newParticles]);
+  };
+
+  // Encontra os 2 nós mais próximos do cursor do mouse para a corda cósmica (interactive tether)
+  const closestNodesToMouse = useMemo(() => {
+    if (!mousePos) return [];
+    return CONSTELLATION_NODES.map((node) => ({
+      node,
+      dist: Math.hypot(mousePos.x - node.x, mousePos.y - node.y),
+    }))
+      .filter((item) => item.dist < 160)
+      .sort((a, b) => a.dist - b.dist)
+      .slice(0, 2)
+      .map((item) => item.node);
+  }, [mousePos]);
+
   if (!isMounted) {
-    return <div className="relative w-full h-[700px]" />;
+    return <div className="relative w-full h-[720px]" />;
   }
 
-  const activeCategory = hoveredNode !== null ? CONSTELLATION_NODES.find(n => n.id === hoveredNode)?.category : null;
+  const activeNodeId = hoveredNode !== null ? hoveredNode : selectedNode;
+  const activeNode = activeNodeId !== null ? CONSTELLATION_NODES.find((n) => n.id === activeNodeId) : null;
 
   return (
     <div
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full h-[720px] flex items-center justify-center select-none overflow-visible group"
+      className="relative w-full h-[720px] flex items-center justify-center select-none overflow-visible group cursor-crosshair"
+      style={{ perspective: "1000px" }}
     >
-      {/* Luz cósmica dinâmica seguindo o cursor do mouse */}
+      {/* 1. Halo Cósmico de Fundo */}
+      <div className="absolute w-[600px] h-[600px] bg-gradient-to-tr from-sky-950/25 via-amber-950/20 to-indigo-950/30 blur-[140px] rounded-full pointer-events-none -z-30" />
+
+      {/* 2. Spotlight Cósmico Dinâmico do Cursor */}
       {mousePos && (
         <div
           style={{
@@ -211,154 +281,149 @@ export const InteractiveCloud = () => {
             top: mousePos.y,
             transform: "translate(-50%, -50%)",
           }}
-          className="absolute w-72 h-72 bg-radial from-amber-500/15 via-sky-500/10 to-transparent blur-3xl pointer-events-none rounded-full transition-opacity duration-300 z-0"
+          className="absolute w-80 h-80 bg-radial from-amber-500/15 via-sky-500/10 to-transparent blur-3xl pointer-events-none rounded-full z-0"
         />
       )}
 
-      {/* Glow de Fundo Constante */}
-      <div className="absolute w-[560px] h-[620px] bg-gradient-to-b from-sky-950/20 via-amber-950/20 to-indigo-950/20 blur-[140px] rounded-full pointer-events-none -z-30" />
-
-      {/* Container principal com leve parallax magnético */}
+      {/* 3. Container da Constelação com Parallax 3D */}
       <motion.div
-        style={{ x: springX, y: springY }}
-        className="relative w-[620px] h-[620px]"
+        animate={{
+          rotateX: tilt.rotateX,
+          rotateY: tilt.rotateY,
+        }}
+        transition={{ type: "spring", stiffness: 150, damping: 20 }}
+        className="relative w-[600px] h-[600px] transform-style-3d"
       >
-        {/* Rótulos das 3 Camadas Cósmicas com bom espaçamento */}
-        {LAYERS_INFO.map((layer, idx) => (
-          <div
-            key={`layer-label-${idx}`}
-            style={{ top: layer.y }}
-            className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#030014]/60 border border-white/[0.06] backdrop-blur-md pointer-events-none z-0 shadow-[0_0_15px_rgba(0,0,0,0.5)]"
-          >
-            <span className={`w-1.5 h-1.5 rounded-full ${layer.dot}`} />
-            <span className={`font-mono text-[10px] font-bold tracking-[0.25em] ${layer.color} opacity-90 uppercase`}>
-              {layer.label}
-            </span>
-          </div>
-        ))}
+        {/* Gráfico Celestial / Astrolábio Cósmico Giratório */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          {/* Anéis orbitais concêntricos */}
+          <div className="w-[540px] h-[540px] rounded-full border border-white/[0.04] animate-[spin_180s_linear_infinite]" />
+          <div className="absolute w-[440px] h-[440px] rounded-full border border-dashed border-sky-500/[0.08] animate-[spin_100s_linear_infinite_reverse]" />
+          <div className="absolute w-[320px] h-[320px] rounded-full border border-amber-500/[0.08] animate-[spin_70s_linear_infinite]" />
+          <div className="absolute w-[180px] h-[180px] rounded-full border border-white/[0.06]" />
 
-        {/* Camada SVG: Linhas animadas com feixe de luz em movimento contínuo */}
+          {/* Mira Estelar / Eixos */}
+          <div className="absolute w-[560px] h-[1px] bg-gradient-to-r from-transparent via-sky-500/[0.1] to-transparent" />
+          <div className="absolute h-[560px] w-[1px] bg-gradient-to-b from-transparent via-amber-500/[0.1] to-transparent" />
+        </div>
+
+        {/* Camada SVG: Conexões Estelares + Feixes de Luz */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-visible">
           <defs>
-            {/* Filtros de Brilho Cósmico Laser */}
-            <filter id="beamGlow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="3.5" result="coloredBlur" />
+            {/* Filtro de Glow Neon */}
+            <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="4" result="blur1" />
+              <feGaussianBlur stdDeviation="8" result="blur2" />
               <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="coloredBlur" />
+                <feMergeNode in="blur2" />
+                <feMergeNode in="blur1" />
                 <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
 
-            {/* Gradientes dos Feixes Laser */}
-            <linearGradient id="beamFrontend" x1="0%" y1="0%" x2="100%" y2="100%">
+            {/* Gradientes Estelares */}
+            <linearGradient id="coreBeam" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#38bdf8" />
               <stop offset="50%" stopColor="#ffffff" />
-              <stop offset="100%" stopColor="#0ea5e9" />
+              <stop offset="100%" stopColor="#f59e0b" />
             </linearGradient>
 
-            <linearGradient id="beamBackend" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#f59e0b" />
-              <stop offset="50%" stopColor="#ffffff" />
-              <stop offset="100%" stopColor="#fbbf24" />
-            </linearGradient>
-
-            <linearGradient id="beamCloud" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#818cf8" />
-              <stop offset="50%" stopColor="#ffffff" />
-              <stop offset="100%" stopColor="#fb923c" />
-            </linearGradient>
-
-            <linearGradient id="beamBridge" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="perimeterBeam" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#38bdf8" />
-              <stop offset="50%" stopColor="#f59e0b" />
-              <stop offset="100%" stopColor="#818cf8" />
+              <stop offset="50%" stopColor="#818cf8" />
+              <stop offset="100%" stopColor="#f59e0b" />
             </linearGradient>
 
-            <linearGradient id="activeShockwave" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="hyperBeam" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#fbbf24" />
               <stop offset="50%" stopColor="#ffffff" />
               <stop offset="100%" stopColor="#38bdf8" />
             </linearGradient>
+
+            <linearGradient id="cursorTether" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#fbbf24" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.2" />
+            </linearGradient>
           </defs>
 
-          {/* Renderização das Linhas com Feixes Laser em Movimento */}
+          {/* 1. Conexões Interativas com o Mouse (Cursor Lightning Tether) */}
+          {mousePos &&
+            closestNodesToMouse.map((node) => (
+              <g key={`tether-${node.id}`}>
+                <line
+                  x1={mousePos.x}
+                  y1={mousePos.y}
+                  x2={node.x}
+                  y2={node.y}
+                  stroke="url(#cursorTether)"
+                  strokeWidth={2}
+                  strokeDasharray="4 4"
+                  filter="url(#neonGlow)"
+                  className="animate-pulse"
+                />
+                <circle cx={mousePos.x} cy={mousePos.y} r={3} fill="#fbbf24" filter="url(#neonGlow)" />
+              </g>
+            ))}
+
+          {/* 2. Conexões da Constelação com Feixes de Luz Correndo */}
           {CONSTELLATION_EDGES.map((edge, idx) => {
             const startNode = CONSTELLATION_NODES.find((n) => n.id === edge.start)!;
             const endNode = CONSTELLATION_NODES.find((n) => n.id === edge.end)!;
 
-            // Proximidade com o cursor do mouse
-            let mouseNearLine = false;
-            if (mousePos) {
-              const d = distToSegment(mousePos.x, mousePos.y, startNode.x, startNode.y, endNode.x, endNode.y);
-              if (d < 70) mouseNearLine = true;
-            }
+            const isDirectConnected =
+              activeNodeId !== null && (edge.start === activeNodeId || edge.end === activeNodeId);
 
-            const isDirectConnected = hoveredNode === edge.start || hoveredNode === edge.end;
-            const isSameCategory =
-              activeCategory !== null &&
-              startNode.category === activeCategory &&
-              endNode.category === activeCategory;
-
-            const isHighEnergy = isDirectConnected || isSameCategory || mouseNearLine;
-
-            // Determina gradiente do feixe
-            let beamGradient = "url(#beamBridge)";
-            if (edge.type === "intra") {
-              if (startNode.category === "frontend") beamGradient = "url(#beamFrontend)";
-              else if (startNode.category === "backend") beamGradient = "url(#beamBackend)";
-              else beamGradient = "url(#beamCloud)";
-            }
-            if (isHighEnergy) beamGradient = "url(#activeShockwave)";
-
-            // Comprimento da linha
+            const isHighEnergy = isDirectConnected;
             const lineLen = Math.hypot(endNode.x - startNode.x, endNode.y - startNode.y);
 
+            let strokeColor = edge.type === "radial" ? "url(#coreBeam)" : "url(#perimeterBeam)";
+            if (isHighEnergy) strokeColor = "url(#hyperBeam)";
+
             return (
-              <g key={`beam-edge-${idx}`}>
-                {/* 1. Linha Base Sutil de Conexão */}
+              <g key={`constellation-edge-${idx}`}>
+                {/* Linha Base Estelar */}
                 <line
                   x1={startNode.x}
                   y1={startNode.y}
                   x2={endNode.x}
                   y2={endNode.y}
-                  stroke={isHighEnergy ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.07)"}
-                  strokeWidth={isHighEnergy ? 2 : 1}
-                  className="transition-colors duration-300"
+                  stroke={isHighEnergy ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.08)"}
+                  strokeWidth={isHighEnergy ? 2.5 : edge.type === "radial" ? 1.4 : 1}
+                  className="transition-all duration-300"
                 />
 
-                {/* 2. Feixe de Luz Circulando / Correndo Contínuo */}
+                {/* Feixe de Luz Laser Contínuo */}
                 <line
                   x1={startNode.x}
                   y1={startNode.y}
                   x2={endNode.x}
                   y2={endNode.y}
-                  stroke={beamGradient}
-                  strokeWidth={isHighEnergy ? 3.5 : 2}
-                  strokeDasharray={`${Math.max(25, lineLen * 0.35)} ${lineLen * 1.5}`}
+                  stroke={strokeColor}
+                  strokeWidth={isHighEnergy ? 4 : 2}
+                  strokeDasharray={`${Math.max(30, lineLen * 0.4)} ${lineLen * 1.6}`}
                   strokeLinecap="round"
-                  filter="url(#beamGlow)"
+                  filter="url(#neonGlow)"
                   className="transition-all duration-300"
                 >
                   <animate
                     attributeName="stroke-dashoffset"
                     from={lineLen * 2}
                     to={0}
-                    dur={isHighEnergy ? `${Math.max(1, edge.dur * 0.55)}s` : `${edge.dur}s`}
+                    dur={isHighEnergy ? `${Math.max(0.8, edge.dur * 0.45)}s` : `${edge.dur}s`}
                     repeatCount="indefinite"
                   />
                 </line>
 
-                {/* 3. Fóton de Luz Brilhante na ponta do feixe */}
+                {/* Fóton de Luz Estelar viajando */}
                 <circle
-                  r={isHighEnergy ? 3.5 : 2}
+                  r={isHighEnergy ? 4 : 2.2}
                   fill="#ffffff"
-                  filter="url(#beamGlow)"
-                  opacity={isHighEnergy ? 1 : 0.75}
+                  filter="url(#neonGlow)"
+                  opacity={isHighEnergy ? 1 : 0.8}
                 >
                   <animateMotion
                     path={`M ${startNode.x} ${startNode.y} L ${endNode.x} ${endNode.y}`}
-                    dur={isHighEnergy ? `${Math.max(1, edge.dur * 0.55)}s` : `${edge.dur}s`}
+                    dur={isHighEnergy ? `${Math.max(0.8, edge.dur * 0.45)}s` : `${edge.dur}s`}
                     repeatCount="indefinite"
                   />
                 </circle>
@@ -367,31 +432,65 @@ export const InteractiveCloud = () => {
           })}
         </svg>
 
-        {/* Nós das Tecnologias com espaçamento amplo */}
+        {/* 3. Ondas de Choque Supernova disparadas ao clicar */}
+        {shockwaves.map((wave) => (
+          <motion.div
+            key={`wave-${wave.id}`}
+            initial={{ scale: 0.1, opacity: 1 }}
+            animate={{ scale: 4, opacity: 0 }}
+            transition={{ duration: 1.1, ease: "easeOut" }}
+            style={{
+              position: "absolute",
+              left: wave.x,
+              top: wave.y,
+              borderColor: wave.color,
+              boxShadow: `0 0 30px ${wave.color}`,
+            }}
+            className="w-16 h-16 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 pointer-events-none z-30"
+          />
+        ))}
+
+        {/* 4. Partículas Estelares Explosivas */}
+        {particles.map((p) => (
+          <div
+            key={p.id}
+            style={{
+              position: "absolute",
+              left: p.x,
+              top: p.y,
+              width: p.size,
+              height: p.size,
+              backgroundColor: p.color,
+              boxShadow: `0 0 10px ${p.color}`,
+            }}
+            className="rounded-full pointer-events-none z-30"
+          />
+        ))}
+
+        {/* 5. Estrelas / Nós da Constelação */}
         {CONSTELLATION_NODES.map((node) => {
           const isHovered = hoveredNode === node.id;
-          const isCategoryHovered = activeCategory !== null && node.category === activeCategory;
+          const isSelected = selectedNode === node.id;
           const isDirectConnected =
-            hoveredNode !== null &&
+            activeNodeId !== null &&
             CONSTELLATION_EDGES.some(
-              (e) => (e.start === hoveredNode && e.end === node.id) || (e.end === hoveredNode && e.start === node.id)
+              (e) => (e.start === activeNodeId && e.end === node.id) || (e.end === activeNodeId && e.start === node.id)
             );
 
-          // Proximidade com o cursor
-          let isMouseNear = false;
+          // Proximidade magnética com o mouse
           let pullX = 0;
           let pullY = 0;
           if (mousePos) {
             const dist = Math.hypot(mousePos.x - node.x, mousePos.y - node.y);
-            if (dist < 130) {
-              isMouseNear = true;
-              const pullStrength = (130 - dist) * 0.08;
-              pullX = ((mousePos.x - node.x) / dist) * pullStrength;
-              pullY = ((mousePos.y - node.y) / dist) * pullStrength;
+            if (dist < 140) {
+              const pull = (140 - dist) * 0.12;
+              pullX = ((mousePos.x - node.x) / dist) * pull;
+              pullY = ((mousePos.y - node.y) / dist) * pull;
             }
           }
 
-          const isNodeActive = isHovered || isDirectConnected || isCategoryHovered || isMouseNear;
+          const isNodeActive = isHovered || isSelected || isDirectConnected;
+          const isCore = node.id === 0;
 
           return (
             <motion.div
@@ -406,73 +505,75 @@ export const InteractiveCloud = () => {
               animate={{
                 x: pullX,
                 y: pullY,
-                scale: isHovered ? 1.3 : isMouseNear ? 1.15 : isNodeActive ? 1.08 : 1,
+                scale: isHovered || isSelected ? 1.35 : isNodeActive ? 1.15 : 1,
               }}
-              transition={{
-                type: "spring",
-                stiffness: 250,
-                damping: 18,
-              }}
+              transition={{ type: "spring", stiffness: 280, damping: 18 }}
               className="z-20 cursor-pointer"
               onMouseEnter={() => setHoveredNode(node.id)}
               onMouseLeave={() => setHoveredNode(null)}
+              onClick={() => handleNodeClick(node)}
             >
-              <div className="relative flex items-center justify-center p-3">
-                {/* Aura Cósmica Pulsante ao Redor do Card */}
+              <div className="relative flex items-center justify-center p-3.5">
+                {/* Aura Cósmica de Alta Energia */}
                 <div
                   style={{
-                    backgroundColor: isNodeActive ? node.color : "rgba(255,255,255,0.05)",
+                    backgroundColor: isNodeActive ? node.color : "rgba(255,255,255,0.06)",
                   }}
-                  className={`absolute inset-0 rounded-3xl transition-all duration-500 ${
-                    isHovered
-                      ? "blur-2xl opacity-75 scale-160"
+                  className={`absolute inset-0 rounded-full transition-all duration-500 ${
+                    isHovered || isSelected
+                      ? "blur-2xl opacity-90 scale-170"
                       : isNodeActive
-                      ? "blur-xl opacity-45 scale-130"
+                      ? "blur-xl opacity-50 scale-135"
+                      : isCore
+                      ? "blur-lg opacity-30 scale-110"
                       : "blur-md opacity-10"
                   }`}
                 />
 
-                {/* Card Translúcido com Feixe de Borda Giratório */}
-                <div className="relative flex items-center justify-center rounded-2xl p-[1px] overflow-hidden group/card shadow-[0_0_20px_rgba(0,0,0,0.8)]">
-                  {/* Borda de Luz Laser Giratória com Conic Gradient */}
+                {/* Card Estelar com Feixe Laser Giratório */}
+                <div className="relative flex items-center justify-center rounded-2xl p-[1.5px] overflow-hidden group/card shadow-[0_0_25px_rgba(0,0,0,0.9)]">
+                  {/* Borda de Luz Laser Giratória */}
                   <div
-                    className={`absolute inset-[-150%] animate-[spin_3s_linear_infinite] transition-opacity duration-500 pointer-events-none ${
-                      isHovered
-                        ? "opacity-100"
-                        : isNodeActive
-                        ? "opacity-60"
-                        : "opacity-0 group-hover/card:opacity-100"
+                    className={`absolute inset-[-150%] animate-[spin_2.8s_linear_infinite] transition-opacity duration-500 pointer-events-none ${
+                      isNodeActive ? "opacity-100" : isCore ? "opacity-60" : "opacity-0 group-hover/card:opacity-100"
                     }`}
                     style={{
-                      background: `conic-gradient(from 0deg at 50% 50%, transparent 60%, ${node.color} 100%)`,
+                      background: `conic-gradient(from 0deg at 50% 50%, transparent 50%, ${node.color} 100%)`,
                     }}
                   />
 
-                  {/* Conteúdo Interno do Card */}
-                  <div className="relative flex items-center justify-center rounded-[15px] p-2.5 bg-[#030014]/90 backdrop-blur-xl border border-white/10 z-10">
+                  {/* Conteúdo Translúcido do Card */}
+                  <div
+                    style={{
+                      boxShadow: isNodeActive ? `0 0 20px ${node.glowColor}` : undefined,
+                    }}
+                    className={`relative flex items-center justify-center rounded-[14.5px] p-2.5 backdrop-blur-xl border border-white/15 z-10 transition-all duration-300 ${
+                      isNodeActive ? "bg-[#030014]/95" : "bg-[#030014]/80 hover:bg-[#030014]/95"
+                    }`}
+                  >
                     <Image
                       src={node.icon}
                       alt={node.name}
                       width={node.size}
                       height={node.size}
-                      className="object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] transition-transform duration-300 group-hover/card:scale-110"
+                      className="object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.4)] transition-transform duration-300 group-hover/card:scale-110"
                     />
                   </div>
                 </div>
 
-                {/* Etiqueta de Nome da Stack */}
+                {/* Tag de Nome da Stack */}
                 <div
                   className={`absolute -bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-1.5 transition-all duration-300 pointer-events-none whitespace-nowrap z-30 ${
-                    isHovered ? "opacity-100 translate-y-0" : isCategoryHovered ? "opacity-90 translate-y-0" : isMouseNear ? "opacity-80 translate-y-0" : "opacity-0 -translate-y-1"
+                    isNodeActive ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"
                   }`}
                 >
                   <span
                     style={{ backgroundColor: node.color }}
-                    className="w-1.5 h-1.5 rounded-full shadow-[0_0_6px_currentColor]"
+                    className="w-1.5 h-1.5 rounded-full shadow-[0_0_8px_currentColor]"
                   />
                   <span
-                    style={{ color: isHovered ? "#ffffff" : node.color }}
-                    className="font-mono text-[11px] font-bold uppercase tracking-wider drop-shadow-[0_0_8px_rgba(0,0,0,0.9)]"
+                    style={{ color: isHovered || isSelected ? "#ffffff" : node.color }}
+                    className="font-mono text-[11px] font-bold uppercase tracking-wider drop-shadow-[0_0_8px_rgba(0,0,0,1)]"
                   >
                     {node.name}
                   </span>
@@ -482,15 +583,49 @@ export const InteractiveCloud = () => {
           );
         })}
 
-        {/* Micro-estrelas / Poeira Estelar Cintilante */}
+        {/* 6. Painel de Informação Flutuante do Nó Ativo / Clicado */}
+        <AnimatePresence>
+          {activeNode && (
+            <motion.div
+              initial={{ opacity: 0, y: 10, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 10, scale: 0.9 }}
+              transition={{ duration: 0.25 }}
+              style={{
+                left: "50%",
+                bottom: "-25px",
+                transform: "translateX(-50%)",
+              }}
+              className="absolute z-40 flex items-center gap-3 px-4 py-2 rounded-2xl bg-[#030014]/90 border border-white/15 backdrop-blur-xl shadow-[0_0_30px_rgba(0,0,0,0.8)] pointer-events-none"
+            >
+              <div
+                style={{ backgroundColor: activeNode.color }}
+                className="w-2.5 h-2.5 rounded-full shadow-[0_0_10px_currentColor] animate-pulse"
+              />
+              <div className="flex flex-col">
+                <span className="font-mono text-xs font-bold text-white tracking-wide">
+                  {activeNode.name}
+                </span>
+                <span className="text-[10px] text-gray-400 font-medium">
+                  {activeNode.role}
+                </span>
+              </div>
+              <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[9px] font-mono uppercase text-gray-300 tracking-wider ml-1">
+                {activeNode.category}
+              </span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* 7. Poeira Estelar Cintilante */}
         {[
-          { top: "8%", left: "8%", size: 3, delay: 0 },
-          { top: "15%", left: "92%", size: 2.5, delay: 1 },
-          { top: "35%", left: "5%", size: 2, delay: 2 },
-          { top: "50%", left: "95%", size: 3, delay: 0.5 },
-          { top: "72%", left: "8%", size: 2.5, delay: 1.5 },
-          { top: "88%", left: "90%", size: 3.5, delay: 2.5 },
-          { top: "60%", left: "50%", size: 2, delay: 1.8 },
+          { top: "6%", left: "6%", size: 3, delay: 0 },
+          { top: "14%", left: "92%", size: 2.5, delay: 1 },
+          { top: "34%", left: "4%", size: 2, delay: 2 },
+          { top: "48%", left: "96%", size: 3, delay: 0.5 },
+          { top: "72%", left: "6%", size: 2.5, delay: 1.5 },
+          { top: "90%", left: "92%", size: 3.5, delay: 2.5 },
+          { top: "58%", left: "50%", size: 2, delay: 1.8 },
         ].map((star, i) => (
           <motion.div
             key={`stardust-${i}`}
@@ -502,7 +637,7 @@ export const InteractiveCloud = () => {
               height: star.size,
             }}
             animate={{
-              opacity: [0.15, 0.8, 0.15],
+              opacity: [0.2, 0.9, 0.2],
               scale: [0.8, 1.4, 0.8],
             }}
             transition={{

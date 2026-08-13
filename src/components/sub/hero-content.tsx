@@ -1,22 +1,30 @@
 "use client";
 
+import { SparklesIcon } from "@heroicons/react/24/solid";
 import { DocumentDuplicateIcon, CheckIcon, ArrowDownTrayIcon } from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
-import { Image } from "@/components/ui/image";
+import { useState, useRef, useEffect } from "react";
+import gsap from "gsap";
+import { TextPlugin } from "gsap/TextPlugin";
 
 import {
   slideInFromLeft,
   slideInFromRight,
+  slideInFromTop,
 } from "@/lib/motion";
 
+import { InteractiveCloud } from "./interactive-cloud";
 import { useLang } from "@/lib/lang-context";
 import { TRANSLATIONS } from "@/constants/translations";
+
+gsap.registerPlugin(TextPlugin);
 
 export const HeroContent = () => {
   const { lang } = useLang();
   const [copied, setCopied] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  const textRef = useRef<HTMLSpanElement>(null);
+  const cursorRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     if (typeof window !== "undefined" && (window as any).__preloaderCompleted) {
@@ -24,6 +32,7 @@ export const HeroContent = () => {
       return;
     }
 
+    // Timeout de fallback: se por algum motivo o preloader bugar ou for removido no futuro, a página carrega em 4.5s no máximo
     const fallbackTimer = setTimeout(() => setIsReady(true), 4500);
 
     const handlePreloaderComplete = () => {
@@ -38,6 +47,46 @@ export const HeroContent = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (!isReady) return; // Inicia o GSAP APENAS DEPOIS que o preloader sumir e a animação de entrada acabar
+
+    // Pequeno atraso para não escrever enquanto o texto ainda está deslizando pela tela
+    const delayGsap = setTimeout(() => {
+      // Animação de "piscar" o cursor
+      gsap.to(cursorRef.current, {
+        opacity: 0,
+        ease: "power2.inOut",
+        repeat: -1,
+        yoyo: true,
+        duration: 0.5
+      });
+
+      // Palavras que serão escritas e apagadas
+      const words = ["Software Engineer", "Web Designer", "Full-Stack Developer"];
+      let tl = gsap.timeline({ repeat: -1 });
+
+      words.forEach((word) => {
+        tl.to(textRef.current, {
+          duration: Math.max(1, word.length * 0.08),
+          text: word,
+          ease: "none",
+        })
+        .to({}, { duration: 1.5 }) // Espera
+        .to(textRef.current, {
+          duration: Math.max(0.5, word.length * 0.04),
+          text: "",
+          ease: "none",
+        });
+      });
+
+      return () => {
+        tl.kill();
+      };
+    }, 1000); // 1 segundo depois de começar a aparecer na tela
+
+    return () => clearTimeout(delayGsap);
+  }, [isReady]);
+
   const handleCopyEmail = () => {
     navigator.clipboard.writeText("schaidenunes@gmail.com");
     setCopied(true);
@@ -48,23 +97,36 @@ export const HeroContent = () => {
     <motion.div
       initial="hidden"
       animate={isReady ? "visible" : "hidden"}
-      className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-10 px-[10%] md:px-10 lg:px-20 mt-32 md:mt-40 w-full z-[20] min-h-[60vh]"
+      className="flex flex-col lg:flex-row items-center justify-between px-[10%] md:px-10 lg:px-20 mt-32 md:mt-40 w-full z-[20] gap-10 lg:gap-0"
     >
-      {/* Left Column */}
-      <div className="flex flex-col justify-between h-full gap-16 lg:gap-20">
+      <div className="h-full w-full flex flex-col gap-6 justify-center m-auto text-start lg:w-1/2">
+        {/* HUGE Name */}
         <motion.div
           variants={slideInFromLeft(0.5)}
           className="flex flex-col leading-none"
         >
-          <h1 className="text-[70px] md:text-[110px] lg:text-[130px] font-black text-white tracking-tighter uppercase leading-[0.9]">SCHAIDE</h1>
-          <h1 className="text-[70px] md:text-[110px] lg:text-[130px] font-black text-[#f59e0b] tracking-tighter uppercase leading-[0.9]">NUNES</h1>
+          <h1 className="text-[70px] md:text-[90px] lg:text-[110px] xl:text-[130px] font-black text-white tracking-tighter uppercase leading-[0.9]">SCHAIDE</h1>
+          <h1 className="text-[70px] md:text-[90px] lg:text-[110px] xl:text-[130px] font-black text-[#f59e0b] tracking-tighter uppercase leading-[0.9]">NUNES</h1>
         </motion.div>
 
-        {/* Email and CV Buttons */}
+        {/* GSAP Typing Animation */}
         <motion.div
-          variants={slideInFromLeft(0.8)}
-          className="flex flex-wrap items-center gap-4 mt-auto"
+          variants={slideInFromLeft(0.7)}
+          className="text-xl md:text-2xl font-medium text-gray-300 min-h-[32px] md:min-h-[40px] flex items-center"
         >
+          <span className="text-[#f59e0b] mr-2">I am a</span> <span ref={textRef} className="font-semibold text-white"></span><span ref={cursorRef} className="text-[#f59e0b] ml-[2px]">|</span>
+        </motion.div>
+
+        {/* Description */}
+        <motion.p
+          variants={slideInFromLeft(0.8)}
+          className="text-base sm:text-lg text-gray-400 max-w-[600px] leading-relaxed"
+        >
+          {TRANSLATIONS[lang].hero.description}
+        </motion.p>
+
+        {/* Buttons */}
+        <motion.div variants={slideInFromLeft(1)} className="flex flex-wrap items-center gap-4 mt-2">
           <button 
             onClick={handleCopyEmail}
             className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#0300145e] hover:bg-[#f59e0b]/10 backdrop-blur-md transition-all text-gray-300 hover:text-white group border border-white/5 hover:border-[#f59e0b]/30"
@@ -92,30 +154,13 @@ export const HeroContent = () => {
         </motion.div>
       </div>
 
-      {/* Right Column */}
-      <div className="flex flex-col justify-between items-start lg:items-end h-full gap-16 lg:gap-20 mt-4 lg:mt-0">
-        <motion.div
-          variants={slideInFromRight(0.5)}
-          className="w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden relative shadow-[0_0_30px_rgba(245,158,11,0.15)] shrink-0 border border-[#f59e0b]/20"
-        >
-          <Image
-            src="/images/about/FotoAcademia.jpeg"
-            alt="Schaide Nunes"
-            fill
-            className="object-cover"
-          />
-        </motion.div>
-
-        <motion.div
-          variants={slideInFromRight(0.8)}
-          className="flex flex-col max-w-[450px] relative w-full"
-        >
-          <div className="w-3 h-3 bg-white rounded-full mb-6" />
-          <p className="text-gray-300 text-sm md:text-base leading-relaxed text-left font-medium">
-            {TRANSLATIONS[lang].hero.description}
-          </p>
-        </motion.div>
-      </div>
+      {/* Interactive Cloud — desktop only */}
+      <motion.div
+        variants={slideInFromRight(0.8)}
+        className="w-full h-full hidden lg:flex justify-end items-center lg:w-1/2"
+      >
+        <InteractiveCloud />
+      </motion.div>
     </motion.div>
   );
 };

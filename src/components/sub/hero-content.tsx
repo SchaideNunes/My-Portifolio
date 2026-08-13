@@ -90,26 +90,26 @@ export const HeroContent = () => {
     <motion.div
       initial="hidden"
       animate={isReady ? "visible" : "hidden"}
-      className="flex flex-col items-center justify-center text-center px-[10%] md:px-10 lg:px-20 mt-32 md:mt-44 w-full z-[20] min-h-[60vh] max-w-5xl mx-auto"
+      className="flex flex-col items-center justify-center text-center px-[5%] md:px-10 lg:px-20 pt-28 sm:pt-36 md:pt-44 pb-20 w-full z-[20] min-h-[85vh] max-w-5xl mx-auto"
     >
-      <div className="w-full flex flex-col gap-6 items-center justify-center">
-        {/* HUGE Name Centralizado */}
+      <div className="w-full flex flex-col gap-6 sm:gap-7 items-center justify-center my-auto">
+        {/* HUGE Name Perfeitamente Centralizado */}
         <motion.div
           variants={slideInFromTop}
-          className="flex flex-col items-center leading-none"
+          className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-1 sm:gap-y-2 leading-none text-center"
         >
-          <h1 className="text-[65px] sm:text-[90px] md:text-[120px] lg:text-[140px] font-black text-white tracking-tighter uppercase leading-[0.9]">
+          <h1 className="text-[52px] sm:text-[75px] md:text-[95px] lg:text-[115px] font-black text-white tracking-tighter uppercase leading-[0.9]">
             SCHAIDE
           </h1>
-          <h1 className="text-[65px] sm:text-[90px] md:text-[120px] lg:text-[140px] font-black text-[#f59e0b] tracking-tighter uppercase leading-[0.9]">
+          <h1 className="text-[52px] sm:text-[75px] md:text-[95px] lg:text-[115px] font-black text-[#f59e0b] tracking-tighter uppercase leading-[0.9]">
             NUNES
           </h1>
         </motion.div>
 
-        {/* GSAP Typing Animation */}
+        {/* GSAP Typing Animation Centralizada */}
         <motion.div
           variants={slideInFromLeft(0.5)}
-          className="text-xl md:text-2xl lg:text-3xl font-medium text-gray-300 min-h-[36px] md:min-h-[44px] flex items-center justify-center"
+          className="text-xl sm:text-2xl md:text-3xl font-medium text-gray-300 min-h-[36px] md:min-h-[44px] flex items-center justify-center text-center"
         >
           <span className="text-white mr-2.5">I am a</span>{" "}
           <span ref={textRef} className="font-semibold text-[#f59e0b]"></span>
@@ -118,18 +118,18 @@ export const HeroContent = () => {
           </span>
         </motion.div>
 
-        {/* Description Summary */}
+        {/* Description Summary Centralizado */}
         <motion.p
           variants={slideInFromLeft(0.7)}
-          className="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl leading-relaxed text-center"
+          className="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl leading-relaxed text-center mx-auto px-4"
         >
           {TRANSLATIONS[lang].hero.description}
         </motion.p>
 
-        {/* Action Buttons */}
+        {/* Action Buttons Centralizados */}
         <motion.div
           variants={slideInFromLeft(0.9)}
-          className="flex flex-wrap items-center justify-center gap-4 mt-4"
+          className="flex flex-wrap items-center justify-center gap-4 mt-3"
         >
           <button
             onClick={handleCopyEmail}

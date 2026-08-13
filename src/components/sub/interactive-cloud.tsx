@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Image } from "@/components/ui/image";
 
@@ -15,371 +15,238 @@ interface ConstellationNode {
   y: number;
   size: number;
   color: string;
-  glowColor: string;
 }
 
-// 8 Stacks desenhadas com a anatomia exata da Constelação de ORION (O Caçador Cósmico)
-const ORION_NODES: ConstellationNode[] = [
-  // 1. Cabeça de Órion (Meissa / Apex)
+// 8 Stacks desenhadas na anatomia clássica da URSA MAJOR (A Grande Ursa / Big Dipper)
+// Espaçamento amplo e distribuição harmoniosa no espaço
+const URSA_MAJOR_NODES: ConstellationNode[] = [
+  // 1. Ponta da Cauda do Carro (Alkaid)
   {
     id: 0,
-    name: "TypeScript",
-    astronomyName: "Meissa (Apex)",
-    role: "Type-Safe Architecture",
+    name: "GSAP",
+    astronomyName: "Alkaid (Eta Ursae Majoris)",
+    role: "Creative Motion & FX",
     category: "Frontend",
-    icon: "/skills/ts.png",
-    x: 300,
-    y: 75,
-    size: 46,
+    icon: "/skills/gsap.svg",
+    x: 95,
+    y: 110,
+    size: 42,
     color: "#38bdf8",
-    glowColor: "rgba(56, 189, 248, 0.8)"
   },
-  // 2. Ombro Esquerdo de Órion (Betelgeuse - Supergigante Vermelha/Âmbar)
+  // 2. Curva da Cauda (Mizar)
   {
     id: 1,
+    name: "Tailwind",
+    astronomyName: "Mizar (Zeta Ursae Majoris)",
+    role: "Modern UI Styling",
+    category: "Frontend",
+    icon: "/skills/tailwind.png",
+    x: 195,
+    y: 155,
+    size: 44,
+    color: "#38bdf8",
+  },
+  // 3. Junção da Cauda com o Corpo (Alioth - Estrela Mais Brilhante da Ursa)
+  {
+    id: 2,
+    name: "TypeScript",
+    astronomyName: "Alioth (Epsilon Ursae Majoris)",
+    role: "Type-Safe Engineering",
+    category: "Frontend",
+    icon: "/skills/ts.png",
+    x: 305,
+    y: 205,
+    size: 48,
+    color: "#38bdf8",
+  },
+  // 4. Canto Superior Esquerdo da Panela (Megrez)
+  {
+    id: 3,
+    name: "React",
+    astronomyName: "Megrez (Delta Ursae Majoris)",
+    role: "Core UI Architecture",
+    category: "Core",
+    icon: "/skills/react.png",
+    x: 410,
+    y: 265,
+    size: 52,
+    color: "#38bdf8",
+  },
+  // 5. Canto Superior Direito da Panela (Dubhe - Estrela Guia Alfa)
+  {
+    id: 4,
     name: "Python",
-    astronomyName: "Betelgeuse (Alpha Orionis)",
+    astronomyName: "Dubhe (Alpha Ursae Majoris)",
     role: "Backend & Systems Logic",
     category: "Backend",
     icon: "/skills/python.svg",
-    x: 145,
-    y: 175,
-    size: 52,
+    x: 535,
+    y: 235,
+    size: 48,
     color: "#f59e0b",
-    glowColor: "rgba(245, 158, 11, 0.9)"
   },
-  // 3. Ombro Direito de Órion (Bellatrix - Estrela Azulada)
-  {
-    id: 2,
-    name: "React",
-    astronomyName: "Bellatrix (Gamma Orionis)",
-    role: "UI & Component Architecture",
-    category: "Core",
-    icon: "/skills/react.png",
-    x: 455,
-    y: 175,
-    size: 54,
-    color: "#38bdf8",
-    glowColor: "rgba(56, 189, 248, 0.9)"
-  },
-  // 4. Cinturão de Órion - Estrela 1 (Alnitak)
-  {
-    id: 3,
-    name: "Tailwind",
-    astronomyName: "Alnitak (Zeta Orionis)",
-    role: "Modern Responsive Styling",
-    category: "Frontend",
-    icon: "/skills/tailwind.png",
-    x: 215,
-    y: 315,
-    size: 44,
-    color: "#38bdf8",
-    glowColor: "rgba(56, 189, 248, 0.75)"
-  },
-  // 5. Cinturão de Órion - Estrela 2 (Alnilam - Centro do Cinturão)
-  {
-    id: 4,
-    name: "GSAP",
-    astronomyName: "Alnilam (Epsilon Orionis)",
-    role: "High-Performance Motion",
-    category: "Frontend",
-    icon: "/skills/gsap.svg",
-    x: 300,
-    y: 330,
-    size: 44,
-    color: "#38bdf8",
-    glowColor: "rgba(56, 189, 248, 0.75)"
-  },
-  // 6. Cinturão de Órion - Estrela 3 (Mintaka)
+  // 6. Canto Inferior Direito da Panela (Merak - Estrela Guia Beta)
   {
     id: 5,
-    name: "SQL",
-    astronomyName: "Mintaka (Delta Orionis)",
-    role: "Relational Data Storage",
-    category: "Backend",
-    icon: "/skills/sql.svg",
-    x: 385,
-    y: 345,
-    size: 46,
-    color: "#f59e0b",
-    glowColor: "rgba(245, 158, 11, 0.85)"
-  },
-  // 7. Pé Esquerdo de Órion (Saiph)
-  {
-    id: 6,
-    name: "Docker",
-    astronomyName: "Saiph (Kappa Orionis)",
-    role: "DevOps & Containerization",
-    category: "Cloud",
-    icon: "/skills/docker.png",
-    x: 180,
-    y: 505,
-    size: 48,
-    color: "#818cf8",
-    glowColor: "rgba(129, 140, 248, 0.8)"
-  },
-  // 8. Pé Direito de Órion (Rigel - Supergigante Azul/Dourada)
-  {
-    id: 7,
     name: "AWS",
-    astronomyName: "Rigel (Beta Orionis)",
+    astronomyName: "Merak (Beta Ursae Majoris)",
     role: "Cloud Infrastructure & Scale",
     category: "Cloud",
     icon: "/skills/aws.svg",
-    x: 430,
-    y: 505,
-    size: 52,
+    x: 505,
+    y: 435,
+    size: 50,
     color: "#fb923c",
-    glowColor: "rgba(251, 146, 60, 0.85)"
+  },
+  // 7. Canto Inferior Esquerdo da Panela (Phecda)
+  {
+    id: 6,
+    name: "SQL",
+    astronomyName: "Phecda (Gamma Ursae Majoris)",
+    role: "Relational Data Storage",
+    category: "Backend",
+    icon: "/skills/sql.svg",
+    x: 375,
+    y: 460,
+    size: 46,
+    color: "#f59e0b",
+  },
+  // 8. Estrela de Apoio / Pata Cósmica (Alula Australis)
+  {
+    id: 7,
+    name: "Docker",
+    astronomyName: "Alula (Xi Ursae Majoris)",
+    role: "Containers & DevOps",
+    category: "Cloud",
+    icon: "/skills/docker.png",
+    x: 235,
+    y: 530,
+    size: 46,
+    color: "#818cf8",
   },
 ];
 
-// Linhas astronômicas reais da Constelação de ÓRION
-const ORION_EDGES = [
-  // 1. Cabeça conectando aos dois Ombros (Triângulo Superior)
-  { start: 0, end: 1, type: "primary", dur: 2.2 }, // TypeScript (Meissa) -> Python (Betelgeuse)
-  { start: 0, end: 2, type: "primary", dur: 2.2 }, // TypeScript (Meissa) -> React (Bellatrix)
-  { start: 1, end: 2, type: "chest", dur: 2.6 },   // Python (Betelgeuse) <-> React (Bellatrix)
+// Linhas astronômicas exatas da URSA MAJOR
+const URSA_MAJOR_EDGES = [
+  // 1. O Cabo / Cauda da Grande Ursa
+  { start: 0, end: 1, type: "handle", dur: 2.2 }, // GSAP -> Tailwind
+  { start: 1, end: 2, type: "handle", dur: 2.3 }, // Tailwind -> TypeScript
+  { start: 2, end: 3, type: "handle", dur: 2.4 }, // TypeScript -> React
 
-  // 2. Ombros descendo para o Cinturão (Três Marias)
-  { start: 1, end: 3, type: "primary", dur: 2.3 }, // Python (Betelgeuse) -> Tailwind (Alnitak)
-  { start: 2, end: 5, type: "primary", dur: 2.3 }, // React (Bellatrix) -> SQL (Mintaka)
+  // 2. O Corpo / Panela Quadrilátera (The Bowl)
+  { start: 3, end: 4, type: "bowl", dur: 2.5 },   // React (Megrez) -> Python (Dubhe) [Borda Superior]
+  { start: 4, end: 5, type: "bowl", dur: 2.4 },   // Python (Dubhe) -> AWS (Merak) [Ponteiras para o Norte]
+  { start: 5, end: 6, type: "bowl", dur: 2.2 },   // AWS (Merak) -> SQL (Phecda) [Borda Inferior]
+  { start: 6, end: 3, type: "bowl", dur: 2.4 },   // SQL (Phecda) -> React (Megrez) [Fechamento do Corpo]
 
-  // 3. O Cinturão de Órion (Alnitak -> Alnilam -> Mintaka)
-  { start: 3, end: 4, type: "belt", dur: 1.8 },    // Tailwind (Alnitak) -> GSAP (Alnilam)
-  { start: 4, end: 5, type: "belt", dur: 1.8 },    // GSAP (Alnilam) -> SQL (Mintaka)
-
-  // 4. Cinturão descendo para os Pés (Saiph e Rigel)
-  { start: 3, end: 6, type: "primary", dur: 2.4 }, // Tailwind (Alnitak) -> Docker (Saiph)
-  { start: 5, end: 7, type: "primary", dur: 2.4 }, // SQL (Mintaka) -> AWS (Rigel)
-  { start: 4, end: 6, type: "bridge", dur: 2.8 },  // GSAP (Alnilam) -> Docker (Saiph)
-  { start: 4, end: 7, type: "bridge", dur: 2.8 },  // GSAP (Alnilam) -> AWS (Rigel)
-
-  // 5. Linha de Base dos Pés
-  { start: 6, end: 7, type: "base", dur: 2.5 },    // Docker (Saiph) <-> AWS (Rigel)
+  // 3. Extensão / Estrela de Apoio
+  { start: 6, end: 7, type: "support", dur: 2.6 }, // SQL (Phecda) -> Docker (Alula)
+  { start: 2, end: 7, type: "bridge", dur: 3.2 },  // TypeScript (Alioth) -> Docker (Alula)
 ];
-
-interface Particle {
-  id: number;
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  color: string;
-  size: number;
-}
 
 export const InteractiveCloud = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [hoveredNode, setHoveredNode] = useState<number | null>(null);
   const [selectedNode, setSelectedNode] = useState<number | null>(null);
-  const [mousePos, setMousePos] = useState<{ x: number; y: number } | null>(null);
   const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
-  const [particles, setParticles] = useState<Particle[]>([]);
-  const [shockwaves, setShockwaves] = useState<{ id: number; x: number; y: number; color: string }[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  // Animação das partículas estelares
-  useEffect(() => {
-    if (particles.length === 0) return;
-    const interval = setInterval(() => {
-      setParticles((prev) =>
-        prev
-          .map((p) => ({
-            ...p,
-            x: p.x + p.vx,
-            y: p.y + p.vy,
-            size: p.size * 0.93,
-          }))
-          .filter((p) => p.size > 0.4)
-      );
-    }, 24);
-    return () => clearInterval(interval);
-  }, [particles]);
-
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    setMousePos({ x, y });
 
-    // Parallax angular sutil
+    // Parallax muito suave e elegante
     const cx = rect.width / 2;
     const cy = rect.height / 2;
-    const rotX = -((y - cy) / cy) * 10;
-    const rotY = ((x - cx) / cx) * 10;
+    const rotX = -((y - cy) / cy) * 6;
+    const rotY = ((x - cx) / cx) * 6;
     setTilt({ rotateX: rotX, rotateY: rotY });
   };
 
   const handleMouseLeave = () => {
-    setMousePos(null);
     setHoveredNode(null);
     setTilt({ rotateX: 0, rotateY: 0 });
   };
-
-  // Clique em uma estrela: Supernova shockwave + partículas
-  const handleNodeClick = (node: ConstellationNode) => {
-    setSelectedNode((prev) => (prev === node.id ? null : node.id));
-
-    const waveId = Date.now();
-    setShockwaves((prev) => [...prev, { id: waveId, x: node.x, y: node.y, color: node.color }]);
-    setTimeout(() => {
-      setShockwaves((prev) => prev.filter((w) => w.id !== waveId));
-    }, 1200);
-
-    const newParticles: Particle[] = Array.from({ length: 14 }).map((_, i) => {
-      const angle = (i / 14) * Math.PI * 2;
-      const speed = 2 + Math.random() * 4;
-      return {
-        id: Math.random(),
-        x: node.x,
-        y: node.y,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed,
-        color: node.color,
-        size: 3.5 + Math.random() * 3,
-      };
-    });
-    setParticles((prev) => [...prev, ...newParticles]);
-  };
-
-  // Encontra os nós mais próximos do cursor para o raio laser cósmico
-  const closestNodesToMouse = useMemo(() => {
-    if (!mousePos) return [];
-    return ORION_NODES.map((node) => ({
-      node,
-      dist: Math.hypot(mousePos.x - node.x, mousePos.y - node.y),
-    }))
-      .filter((item) => item.dist < 150)
-      .sort((a, b) => a.dist - b.dist)
-      .slice(0, 2)
-      .map((item) => item.node);
-  }, [mousePos]);
 
   if (!isMounted) {
     return <div className="relative w-full h-[720px]" />;
   }
 
   const activeNodeId = hoveredNode !== null ? hoveredNode : selectedNode;
-  const activeNode = activeNodeId !== null ? ORION_NODES.find((n) => n.id === activeNodeId) : null;
+  const activeNode = activeNodeId !== null ? URSA_MAJOR_NODES.find((n) => n.id === activeNodeId) : null;
 
   return (
     <div
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full h-[720px] flex items-center justify-center select-none overflow-visible group cursor-crosshair"
+      className="relative w-full h-[720px] flex items-center justify-center select-none overflow-visible group"
       style={{ perspective: "1000px" }}
     >
-      {/* 1. Nebulosa Cósmica de Órion (Nuvem de Fundo Orgânica M42) */}
-      <div className="absolute w-[560px] h-[640px] bg-gradient-to-b from-indigo-950/20 via-sky-950/20 to-amber-950/25 blur-[140px] rounded-full pointer-events-none -z-30" />
-      <div className="absolute top-[280px] left-[260px] w-48 h-48 bg-amber-500/10 blur-[80px] rounded-full pointer-events-none -z-20 animate-pulse" />
+      {/* 1. Glow de Fundo Sutil e Refinado */}
+      <div className="absolute w-[540px] h-[580px] bg-gradient-to-tr from-sky-950/15 via-amber-950/15 to-indigo-950/20 blur-[130px] rounded-full pointer-events-none -z-30" />
 
-      {/* 2. Lanterna Cósmica do Mouse */}
-      {mousePos && (
-        <div
-          style={{
-            left: mousePos.x,
-            top: mousePos.y,
-            transform: "translate(-50%, -50%)",
-          }}
-          className="absolute w-80 h-80 bg-radial from-amber-500/15 via-sky-500/10 to-transparent blur-3xl pointer-events-none rounded-full z-0"
-        />
-      )}
-
-      {/* 3. Constelação com Parallax 3D */}
+      {/* 2. Container da Constelação */}
       <motion.div
         animate={{
           rotateX: tilt.rotateX,
           rotateY: tilt.rotateY,
         }}
-        transition={{ type: "spring", stiffness: 150, damping: 20 }}
-        className="relative w-[600px] h-[600px] transform-style-3d"
+        transition={{ type: "spring", stiffness: 120, damping: 25 }}
+        className="relative w-[620px] h-[620px] transform-style-3d"
       >
-        {/* Marca d'água astronômica sutil */}
+        {/* Marca d'água astronômica sutil e elegante */}
         <div className="absolute top-2 right-4 pointer-events-none z-0">
           <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/20 font-bold">
-            CONSTELLATION // ORION
+            CONSTELLATION // URSA MAJOR
           </span>
         </div>
 
-        {/* Grade Celestial Linear Angular (Sem círculos redondos) */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {/* Linhas de ascensão reta e declinação cósmica */}
-          <div className="absolute top-1/4 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.04] to-transparent" />
-          <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-sky-500/[0.06] to-transparent" />
-          <div className="absolute top-3/4 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.04] to-transparent" />
-          <div className="absolute left-1/4 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-white/[0.04] to-transparent" />
-          <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-amber-500/[0.06] to-transparent" />
-          <div className="absolute left-3/4 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-white/[0.04] to-transparent" />
+        {/* Grade Celestial Linear Angular */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60">
+          <div className="absolute top-1/4 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.03] to-transparent" />
+          <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-sky-500/[0.05] to-transparent" />
+          <div className="absolute top-3/4 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.03] to-transparent" />
+          <div className="absolute left-1/3 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-white/[0.03] to-transparent" />
+          <div className="absolute left-2/3 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-amber-500/[0.05] to-transparent" />
         </div>
 
-        {/* Camada SVG: Linhas de Órion + Feixes de Laser */}
+        {/* Camada SVG: Linhas da Grande Ursa com Feixes de Luz Sutis */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-visible">
           <defs>
-            <filter id="orionGlow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="4" result="blur1" />
-              <feGaussianBlur stdDeviation="7" result="blur2" />
+            {/* Glow Suave e Refinado (Não ofuscante) */}
+            <filter id="subtleGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="3" result="blur" />
               <feMerge>
-                <feMergeNode in="blur2" />
-                <feMergeNode in="blur1" />
+                <feMergeNode in="blur" />
                 <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
 
-            {/* Gradientes dos Feixes de Órion */}
-            <linearGradient id="orionBeam" x1="0%" y1="0%" x2="100%" y2="100%">
+            {/* Gradientes dos Feixes da Ursa Maior */}
+            <linearGradient id="ursaBeam" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#38bdf8" />
               <stop offset="50%" stopColor="#ffffff" />
               <stop offset="100%" stopColor="#f59e0b" />
             </linearGradient>
 
-            <linearGradient id="beltBeam" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#38bdf8" />
-              <stop offset="50%" stopColor="#fbbf24" />
-              <stop offset="100%" stopColor="#38bdf8" />
-            </linearGradient>
-
-            <linearGradient id="hyperBeamOrion" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="ursaActiveBeam" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#fbbf24" />
               <stop offset="50%" stopColor="#ffffff" />
               <stop offset="100%" stopColor="#38bdf8" />
             </linearGradient>
-
-            <linearGradient id="tetherBeam" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#fbbf24" stopOpacity="0.85" />
-              <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.25" />
-            </linearGradient>
           </defs>
 
-          {/* 1. Raio Laser Interativo com o Cursor */}
-          {mousePos &&
-            closestNodesToMouse.map((node) => (
-              <g key={`orion-tether-${node.id}`}>
-                <line
-                  x1={mousePos.x}
-                  y1={mousePos.y}
-                  x2={node.x}
-                  y2={node.y}
-                  stroke="url(#tetherBeam)"
-                  strokeWidth={2}
-                  strokeDasharray="4 4"
-                  filter="url(#orionGlow)"
-                  className="animate-pulse"
-                />
-                <circle cx={mousePos.x} cy={mousePos.y} r={3} fill="#fbbf24" filter="url(#orionGlow)" />
-              </g>
-            ))}
-
-          {/* 2. Linhas Reais de Órion com Feixes de Luz */}
-          {ORION_EDGES.map((edge, idx) => {
-            const startNode = ORION_NODES.find((n) => n.id === edge.start)!;
-            const endNode = ORION_NODES.find((n) => n.id === edge.end)!;
+          {/* Linhas da Ursa Maior */}
+          {URSA_MAJOR_EDGES.map((edge, idx) => {
+            const startNode = URSA_MAJOR_NODES.find((n) => n.id === edge.start)!;
+            const endNode = URSA_MAJOR_NODES.find((n) => n.id === edge.end)!;
 
             const isDirectConnected =
               activeNodeId !== null && (edge.start === activeNodeId || edge.end === activeNodeId);
@@ -387,55 +254,52 @@ export const InteractiveCloud = () => {
             const isHighEnergy = isDirectConnected;
             const lineLen = Math.hypot(endNode.x - startNode.x, endNode.y - startNode.y);
 
-            let strokeGradient = edge.type === "belt" ? "url(#beltBeam)" : "url(#orionBeam)";
-            if (isHighEnergy) strokeGradient = "url(#hyperBeamOrion)";
-
             return (
-              <g key={`orion-edge-${idx}`}>
-                {/* Linha Base Estelar */}
+              <g key={`ursa-edge-${idx}`}>
+                {/* 1. Linha Base Estelar Suave */}
                 <line
                   x1={startNode.x}
                   y1={startNode.y}
                   x2={endNode.x}
                   y2={endNode.y}
-                  stroke={isHighEnergy ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.12)"}
-                  strokeWidth={isHighEnergy ? 2.5 : edge.type === "belt" ? 1.8 : 1.2}
+                  stroke={isHighEnergy ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.08)"}
+                  strokeWidth={isHighEnergy ? 1.8 : 1}
                   strokeDasharray={edge.type === "bridge" ? "4 4" : "none"}
-                  className="transition-all duration-300"
+                  className="transition-colors duration-300"
                 />
 
-                {/* Feixe Laser em Movimento Contínuo */}
+                {/* 2. Feixe de Luz Laser Contínuo Suave */}
                 <line
                   x1={startNode.x}
                   y1={startNode.y}
                   x2={endNode.x}
                   y2={endNode.y}
-                  stroke={strokeGradient}
-                  strokeWidth={isHighEnergy ? 4 : edge.type === "belt" ? 3 : 2.2}
-                  strokeDasharray={`${Math.max(25, lineLen * 0.35)} ${lineLen * 1.5}`}
+                  stroke={isHighEnergy ? "url(#ursaActiveBeam)" : "url(#ursaBeam)"}
+                  strokeWidth={isHighEnergy ? 2.6 : 1.6}
+                  strokeDasharray={`${Math.max(20, lineLen * 0.3)} ${lineLen * 1.5}`}
                   strokeLinecap="round"
-                  filter="url(#orionGlow)"
+                  filter="url(#subtleGlow)"
                   className="transition-all duration-300"
                 >
                   <animate
                     attributeName="stroke-dashoffset"
                     from={lineLen * 2}
                     to={0}
-                    dur={isHighEnergy ? `${Math.max(0.8, edge.dur * 0.5)}s` : `${edge.dur}s`}
+                    dur={isHighEnergy ? `${Math.max(1, edge.dur * 0.6)}s` : `${edge.dur}s`}
                     repeatCount="indefinite"
                   />
                 </line>
 
-                {/* Fóton de Luz Estelar */}
+                {/* 3. Fóton de Luz Estelar */}
                 <circle
-                  r={isHighEnergy ? 3.8 : 2.2}
+                  r={isHighEnergy ? 2.8 : 1.8}
                   fill="#ffffff"
-                  filter="url(#orionGlow)"
-                  opacity={isHighEnergy ? 1 : 0.8}
+                  filter="url(#subtleGlow)"
+                  opacity={isHighEnergy ? 0.95 : 0.7}
                 >
                   <animateMotion
                     path={`M ${startNode.x} ${startNode.y} L ${endNode.x} ${endNode.y}`}
-                    dur={isHighEnergy ? `${Math.max(0.8, edge.dur * 0.5)}s` : `${edge.dur}s`}
+                    dur={isHighEnergy ? `${Math.max(1, edge.dur * 0.6)}s` : `${edge.dur}s`}
                     repeatCount="indefinite"
                   />
                 </circle>
@@ -444,65 +308,17 @@ export const InteractiveCloud = () => {
           })}
         </svg>
 
-        {/* 3. Ondas de Choque Supernova ao Clicar */}
-        {shockwaves.map((wave) => (
-          <motion.div
-            key={`shockwave-${wave.id}`}
-            initial={{ scale: 0.1, opacity: 1 }}
-            animate={{ scale: 4.5, opacity: 0 }}
-            transition={{ duration: 1.1, ease: "easeOut" }}
-            style={{
-              position: "absolute",
-              left: wave.x,
-              top: wave.y,
-              borderColor: wave.color,
-              boxShadow: `0 0 35px ${wave.color}`,
-            }}
-            className="w-16 h-16 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 pointer-events-none z-30"
-          />
-        ))}
-
-        {/* 4. Partículas Estelares */}
-        {particles.map((p) => (
-          <div
-            key={p.id}
-            style={{
-              position: "absolute",
-              left: p.x,
-              top: p.y,
-              width: p.size,
-              height: p.size,
-              backgroundColor: p.color,
-              boxShadow: `0 0 10px ${p.color}`,
-            }}
-            className="rounded-full pointer-events-none z-30"
-          />
-        ))}
-
-        {/* 5. As 8 Estrelas de Órion (Tecnologias) */}
-        {ORION_NODES.map((node) => {
+        {/* As 8 Estrelas da Ursa Maior (Tecnologias com Hover Refinado) */}
+        {URSA_MAJOR_NODES.map((node) => {
           const isHovered = hoveredNode === node.id;
           const isSelected = selectedNode === node.id;
           const isDirectConnected =
             activeNodeId !== null &&
-            ORION_EDGES.some(
+            URSA_MAJOR_EDGES.some(
               (e) => (e.start === activeNodeId && e.end === node.id) || (e.end === activeNodeId && e.start === node.id)
             );
 
-          // Proximidade magnética com o cursor
-          let pullX = 0;
-          let pullY = 0;
-          if (mousePos) {
-            const dist = Math.hypot(mousePos.x - node.x, mousePos.y - node.y);
-            if (dist < 140) {
-              const pull = (140 - dist) * 0.12;
-              pullX = ((mousePos.x - node.x) / dist) * pull;
-              pullY = ((mousePos.y - node.y) / dist) * pull;
-            }
-          }
-
-          const isNodeActive = isHovered || isSelected || isDirectConnected;
-          const isSuperStar = node.id === 1 || node.id === 2 || node.id === 7; // Betelgeuse, Bellatrix, Rigel
+          const isNodeActive = isHovered || isSelected;
 
           return (
             <motion.div
@@ -515,51 +331,46 @@ export const InteractiveCloud = () => {
                 translateY: "-50%",
               }}
               animate={{
-                x: pullX,
-                y: pullY,
-                scale: isHovered || isSelected ? 1.35 : isNodeActive ? 1.15 : 1,
+                scale: isHovered || isSelected ? 1.12 : isDirectConnected ? 1.05 : 1,
               }}
-              transition={{ type: "spring", stiffness: 280, damping: 18 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className="z-20 cursor-pointer"
               onMouseEnter={() => setHoveredNode(node.id)}
               onMouseLeave={() => setHoveredNode(null)}
-              onClick={() => handleNodeClick(node)}
+              onClick={() => setSelectedNode((prev) => (prev === node.id ? null : node.id))}
             >
-              <div className="relative flex items-center justify-center p-3.5">
-                {/* Aura Estelar Pulsante */}
+              <div className="relative flex items-center justify-center p-2.5">
+                {/* Aura Estelar Discreta */}
                 <div
                   style={{
-                    backgroundColor: isNodeActive ? node.color : "rgba(255,255,255,0.06)",
+                    backgroundColor: isNodeActive ? node.color : "rgba(255,255,255,0.05)",
                   }}
-                  className={`absolute inset-0 rounded-full transition-all duration-500 ${
+                  className={`absolute inset-0 rounded-full transition-all duration-300 ${
                     isHovered || isSelected
-                      ? "blur-2xl opacity-90 scale-170"
-                      : isNodeActive
-                      ? "blur-xl opacity-55 scale-135"
-                      : isSuperStar
-                      ? "blur-lg opacity-25 scale-115"
-                      : "blur-md opacity-10"
+                      ? "blur-xl opacity-50 scale-130"
+                      : isDirectConnected
+                      ? "blur-md opacity-25 scale-115"
+                      : "opacity-0"
                   }`}
                 />
 
-                {/* Card com Feixe de Borda Laser Giratório (Estilo Header) */}
-                <div className="relative flex items-center justify-center rounded-2xl p-[1.5px] overflow-hidden group/card shadow-[0_0_25px_rgba(0,0,0,0.9)]">
+                {/* Card Translúcido com Feixe de Borda Giratório */}
+                <div className="relative flex items-center justify-center rounded-2xl p-[1px] overflow-hidden group/card shadow-[0_0_20px_rgba(0,0,0,0.6)]">
                   <div
-                    className={`absolute inset-[-150%] animate-[spin_2.8s_linear_infinite] transition-opacity duration-500 pointer-events-none ${
-                      isNodeActive ? "opacity-100" : isSuperStar ? "opacity-60" : "opacity-0 group-hover/card:opacity-100"
+                    className={`absolute inset-[-150%] animate-[spin_3s_linear_infinite] transition-opacity duration-300 pointer-events-none ${
+                      isNodeActive ? "opacity-100" : "opacity-0 group-hover/card:opacity-100"
                     }`}
                     style={{
-                      background: `conic-gradient(from 0deg at 50% 50%, transparent 50%, ${node.color} 100%)`,
+                      background: `conic-gradient(from 0deg at 50% 50%, transparent 60%, ${node.color} 100%)`,
                     }}
                   />
 
-                  {/* Conteúdo Translúcido */}
+                  {/* Conteúdo do Card */}
                   <div
-                    style={{
-                      boxShadow: isNodeActive ? `0 0 20px ${node.glowColor}` : undefined,
-                    }}
-                    className={`relative flex items-center justify-center rounded-[14.5px] p-2.5 backdrop-blur-xl border border-white/15 z-10 transition-all duration-300 ${
-                      isNodeActive ? "bg-[#030014]/95" : "bg-[#030014]/80 hover:bg-[#030014]/95"
+                    className={`relative flex items-center justify-center rounded-[15px] p-2.5 backdrop-blur-xl border transition-all duration-300 ${
+                      isNodeActive
+                        ? "bg-[#030014]/90 border-white/20 shadow-[0_0_15px_rgba(0,0,0,0.8)]"
+                        : "bg-[#030014]/75 border-white/10 hover:border-white/20"
                     }`}
                   >
                     <Image
@@ -567,7 +378,7 @@ export const InteractiveCloud = () => {
                       alt={node.name}
                       width={node.size}
                       height={node.size}
-                      className="object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.4)] transition-transform duration-300 group-hover/card:scale-110"
+                      className="object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] transition-transform duration-300 group-hover/card:scale-105"
                     />
                   </div>
                 </div>
@@ -580,11 +391,11 @@ export const InteractiveCloud = () => {
                 >
                   <span
                     style={{ backgroundColor: node.color }}
-                    className="w-1.5 h-1.5 rounded-full shadow-[0_0_8px_currentColor]"
+                    className="w-1.5 h-1.5 rounded-full shadow-[0_0_6px_currentColor]"
                   />
                   <span
                     style={{ color: isHovered || isSelected ? "#ffffff" : node.color }}
-                    className="font-mono text-[11px] font-bold uppercase tracking-wider drop-shadow-[0_0_8px_rgba(0,0,0,1)]"
+                    className="font-mono text-[11px] font-bold uppercase tracking-wider drop-shadow-[0_0_6px_rgba(0,0,0,0.9)]"
                   >
                     {node.name}
                   </span>
@@ -594,31 +405,31 @@ export const InteractiveCloud = () => {
           );
         })}
 
-        {/* 6. Painel de Informação Astronômica da Estrela Ativa */}
+        {/* Painel de Informação Astronômica Discreto */}
         <AnimatePresence>
           {activeNode && (
             <motion.div
-              initial={{ opacity: 0, y: 10, scale: 0.9 }}
+              initial={{ opacity: 0, y: 8, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 10, scale: 0.9 }}
-              transition={{ duration: 0.25 }}
+              exit={{ opacity: 0, y: 8, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
               style={{
                 left: "50%",
                 bottom: "-25px",
                 transform: "translateX(-50%)",
               }}
-              className="absolute z-40 flex items-center gap-3 px-4 py-2 rounded-2xl bg-[#030014]/90 border border-white/15 backdrop-blur-xl shadow-[0_0_30px_rgba(0,0,0,0.8)] pointer-events-none whitespace-nowrap"
+              className="absolute z-40 flex items-center gap-3 px-4 py-2 rounded-2xl bg-[#030014]/90 border border-white/10 backdrop-blur-xl shadow-[0_0_25px_rgba(0,0,0,0.8)] pointer-events-none whitespace-nowrap"
             >
               <div
                 style={{ backgroundColor: activeNode.color }}
-                className="w-2.5 h-2.5 rounded-full shadow-[0_0_10px_currentColor] animate-pulse"
+                className="w-2 h-2 rounded-full shadow-[0_0_8px_currentColor]"
               />
               <div className="flex flex-col">
                 <div className="flex items-center gap-2">
                   <span className="font-mono text-xs font-bold text-white tracking-wide">
                     {activeNode.name}
                   </span>
-                  <span className="text-[10px] text-amber-400/90 font-mono">
+                  <span className="text-[10px] text-amber-400/80 font-mono">
                     ★ {activeNode.astronomyName}
                   </span>
                 </div>
@@ -633,19 +444,18 @@ export const InteractiveCloud = () => {
           )}
         </AnimatePresence>
 
-        {/* 7. Estrelas de Fundo Cintilantes */}
+        {/* Estrelas de Fundo Sutis */}
         {[
-          { top: "6%", left: "12%", size: 3, delay: 0 },
-          { top: "12%", left: "85%", size: 2.5, delay: 1 },
-          { top: "28%", left: "8%", size: 2, delay: 2 },
-          { top: "45%", left: "94%", size: 3, delay: 0.5 },
-          { top: "68%", left: "10%", size: 2.5, delay: 1.5 },
-          { top: "86%", left: "86%", size: 3.5, delay: 2.5 },
-          { top: "54%", left: "50%", size: 2, delay: 1.8 },
-          { top: "78%", left: "30%", size: 2.5, delay: 0.8 },
+          { top: "8%", left: "10%", size: 2.5, delay: 0 },
+          { top: "15%", left: "88%", size: 2, delay: 1 },
+          { top: "32%", left: "6%", size: 2, delay: 2 },
+          { top: "48%", left: "95%", size: 2.5, delay: 0.5 },
+          { top: "70%", left: "10%", size: 2, delay: 1.5 },
+          { top: "88%", left: "88%", size: 3, delay: 2.5 },
+          { top: "55%", left: "48%", size: 2, delay: 1.8 },
         ].map((star, i) => (
           <motion.div
-            key={`orion-stardust-${i}`}
+            key={`ursa-star-${i}`}
             style={{
               position: "absolute",
               top: star.top,
@@ -654,8 +464,8 @@ export const InteractiveCloud = () => {
               height: star.size,
             }}
             animate={{
-              opacity: [0.2, 0.9, 0.2],
-              scale: [0.8, 1.4, 0.8],
+              opacity: [0.15, 0.7, 0.15],
+              scale: [0.9, 1.2, 0.9],
             }}
             transition={{
               duration: 3 + (i % 2),
@@ -663,7 +473,7 @@ export const InteractiveCloud = () => {
               delay: star.delay,
               ease: "easeInOut",
             }}
-            className="rounded-full bg-white shadow-[0_0_8px_#ffffff] pointer-events-none"
+            className="rounded-full bg-white shadow-[0_0_6px_#ffffff] pointer-events-none"
           />
         ))}
       </motion.div>

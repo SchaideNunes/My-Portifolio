@@ -20,7 +20,7 @@ export const Hero = () => {
         loop
         playsInline
         preload="auto"
-        className="rotate-180 absolute top-[-150px] sm:top-[-200px] md:top-[-240px] md:-translate-y-[5%] left-0 w-full h-full object-cover -z-20 opacity-70"
+        className="rotate-180 absolute top-[-185px] sm:top-[-240px] md:top-[-290px] md:-translate-y-[8%] left-0 w-full h-full object-cover -z-20 opacity-70"
       >
         <source src="/videos/hero_new.webm" type="video/webm" />
       </video>

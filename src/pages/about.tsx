@@ -63,7 +63,7 @@ export default function AboutPage() {
             className="w-full max-w-md mx-auto lg:max-w-none aspect-square relative rounded-xl overflow-hidden shadow-2xl border border-white/5"
           >
             <Image
-              src="/images/about/FotoAcademia.jpeg"
+              src="/images/about/Selfie.jpeg"
               alt="Schaide Nunes"
               fill
               className="object-cover object-top"

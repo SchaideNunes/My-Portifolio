@@ -1,15 +1,12 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Image } from "@/components/ui/image";
 
 interface ConstellationNode {
   id: number;
   name: string;
-  astronomyName: string;
-  role: string;
-  category: "Frontend" | "Backend" | "Cloud" | "Core";
   icon: string;
   x: number;
   y: number;
@@ -17,137 +14,111 @@ interface ConstellationNode {
   color: string;
 }
 
-// 8 Stacks desenhadas na anatomia clássica da URSA MAJOR (A Grande Ursa / Big Dipper)
-// Espaçamento amplo e distribuição harmoniosa no espaço
+// 8 Stacks em tons de Roxo, Índigo e Violeta com brilho moderado e elegante
 const URSA_MAJOR_NODES: ConstellationNode[] = [
-  // 1. Ponta da Cauda do Carro (Alkaid)
+  // 1. Ponta da Cauda (Alkaid)
   {
     id: 0,
     name: "GSAP",
-    astronomyName: "Alkaid (Eta Ursae Majoris)",
-    role: "Creative Motion & FX",
-    category: "Frontend",
     icon: "/skills/gsap.svg",
     x: 95,
     y: 110,
     size: 42,
-    color: "#38bdf8",
+    color: "#c084fc", // Lavanda / Roxo claro
   },
   // 2. Curva da Cauda (Mizar)
   {
     id: 1,
     name: "Tailwind",
-    astronomyName: "Mizar (Zeta Ursae Majoris)",
-    role: "Modern UI Styling",
-    category: "Frontend",
     icon: "/skills/tailwind.png",
     x: 195,
     y: 155,
     size: 44,
-    color: "#38bdf8",
+    color: "#a855f7", // Roxo púrpura
   },
-  // 3. Junção da Cauda com o Corpo (Alioth - Estrela Mais Brilhante da Ursa)
+  // 3. Junção da Cauda com o Corpo (Alioth)
   {
     id: 2,
     name: "TypeScript",
-    astronomyName: "Alioth (Epsilon Ursae Majoris)",
-    role: "Type-Safe Engineering",
-    category: "Frontend",
     icon: "/skills/ts.png",
     x: 305,
     y: 205,
     size: 48,
-    color: "#38bdf8",
+    color: "#818cf8", // Índigo / Roxo azulado
   },
   // 4. Canto Superior Esquerdo da Panela (Megrez)
   {
     id: 3,
     name: "React",
-    astronomyName: "Megrez (Delta Ursae Majoris)",
-    role: "Core UI Architecture",
-    category: "Core",
     icon: "/skills/react.png",
     x: 410,
     y: 265,
     size: 52,
-    color: "#38bdf8",
+    color: "#a855f7", // Roxo vibrante
   },
-  // 5. Canto Superior Direito da Panela (Dubhe - Estrela Guia Alfa)
+  // 5. Canto Superior Direito da Panela (Dubhe)
   {
     id: 4,
     name: "Python",
-    astronomyName: "Dubhe (Alpha Ursae Majoris)",
-    role: "Backend & Systems Logic",
-    category: "Backend",
     icon: "/skills/python.svg",
     x: 535,
     y: 235,
     size: 48,
-    color: "#f59e0b",
+    color: "#e879f9", // Fuchsia / Magenta
   },
-  // 6. Canto Inferior Direito da Panela (Merak - Estrela Guia Beta)
+  // 6. Canto Inferior Direito da Panela (Merak)
   {
     id: 5,
     name: "AWS",
-    astronomyName: "Merak (Beta Ursae Majoris)",
-    role: "Cloud Infrastructure & Scale",
-    category: "Cloud",
     icon: "/skills/aws.svg",
     x: 505,
     y: 435,
     size: 50,
-    color: "#fb923c",
+    color: "#fb923c", // Âmbar quente
   },
   // 7. Canto Inferior Esquerdo da Panela (Phecda)
   {
     id: 6,
     name: "SQL",
-    astronomyName: "Phecda (Gamma Ursae Majoris)",
-    role: "Relational Data Storage",
-    category: "Backend",
     icon: "/skills/sql.svg",
     x: 375,
     y: 460,
     size: 46,
-    color: "#f59e0b",
+    color: "#818cf8", // Índigo
   },
-  // 8. Estrela de Apoio / Pata Cósmica (Alula Australis)
+  // 8. Estrela de Apoio / Pata Cósmica (Alula)
   {
     id: 7,
     name: "Docker",
-    astronomyName: "Alula (Xi Ursae Majoris)",
-    role: "Containers & DevOps",
-    category: "Cloud",
     icon: "/skills/docker.png",
     x: 235,
     y: 530,
     size: 46,
-    color: "#818cf8",
+    color: "#9333ea", // Roxo profundo
   },
 ];
 
-// Linhas astronômicas exatas da URSA MAJOR
+// Linhas astronômicas da URSA MAJOR
 const URSA_MAJOR_EDGES = [
-  // 1. O Cabo / Cauda da Grande Ursa
-  { start: 0, end: 1, type: "handle", dur: 2.2 }, // GSAP -> Tailwind
-  { start: 1, end: 2, type: "handle", dur: 2.3 }, // Tailwind -> TypeScript
-  { start: 2, end: 3, type: "handle", dur: 2.4 }, // TypeScript -> React
+  // O Cabo / Cauda
+  { start: 0, end: 1, dur: 2.2 }, // GSAP -> Tailwind
+  { start: 1, end: 2, dur: 2.3 }, // Tailwind -> TypeScript
+  { start: 2, end: 3, dur: 2.4 }, // TypeScript -> React
 
-  // 2. O Corpo / Panela Quadrilátera (The Bowl)
-  { start: 3, end: 4, type: "bowl", dur: 2.5 },   // React (Megrez) -> Python (Dubhe) [Borda Superior]
-  { start: 4, end: 5, type: "bowl", dur: 2.4 },   // Python (Dubhe) -> AWS (Merak) [Ponteiras para o Norte]
-  { start: 5, end: 6, type: "bowl", dur: 2.2 },   // AWS (Merak) -> SQL (Phecda) [Borda Inferior]
-  { start: 6, end: 3, type: "bowl", dur: 2.4 },   // SQL (Phecda) -> React (Megrez) [Fechamento do Corpo]
+  // O Corpo / Panela
+  { start: 3, end: 4, dur: 2.5 }, // React -> Python
+  { start: 4, end: 5, dur: 2.4 }, // Python -> AWS
+  { start: 5, end: 6, dur: 2.2 }, // AWS -> SQL
+  { start: 6, end: 3, dur: 2.4 }, // SQL -> React
 
-  // 3. Extensão / Estrela de Apoio
-  { start: 6, end: 7, type: "support", dur: 2.6 }, // SQL (Phecda) -> Docker (Alula)
-  { start: 2, end: 7, type: "bridge", dur: 3.2 },  // TypeScript (Alioth) -> Docker (Alula)
+  // Extensão / Apoio
+  { start: 6, end: 7, dur: 2.6 }, // SQL -> Docker
+  { start: 2, end: 7, dur: 3.2 }, // TypeScript -> Docker
 ];
 
 export const InteractiveCloud = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [hoveredNode, setHoveredNode] = useState<number | null>(null);
-  const [selectedNode, setSelectedNode] = useState<number | null>(null);
   const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -161,11 +132,10 @@ export const InteractiveCloud = () => {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    // Parallax muito suave e elegante
     const cx = rect.width / 2;
     const cy = rect.height / 2;
-    const rotX = -((y - cy) / cy) * 6;
-    const rotY = ((x - cx) / cx) * 6;
+    const rotX = -((y - cy) / cy) * 5;
+    const rotY = ((x - cx) / cx) * 5;
     setTilt({ rotateX: rotX, rotateY: rotY });
   };
 
@@ -178,9 +148,6 @@ export const InteractiveCloud = () => {
     return <div className="relative w-full h-[720px]" />;
   }
 
-  const activeNodeId = hoveredNode !== null ? hoveredNode : selectedNode;
-  const activeNode = activeNodeId !== null ? URSA_MAJOR_NODES.find((n) => n.id === activeNodeId) : null;
-
   return (
     <div
       ref={containerRef}
@@ -189,8 +156,8 @@ export const InteractiveCloud = () => {
       className="relative w-full h-[720px] flex items-center justify-center select-none overflow-visible group"
       style={{ perspective: "1000px" }}
     >
-      {/* 1. Glow de Fundo Sutil e Refinado */}
-      <div className="absolute w-[540px] h-[580px] bg-gradient-to-tr from-sky-950/15 via-amber-950/15 to-indigo-950/20 blur-[130px] rounded-full pointer-events-none -z-30" />
+      {/* 1. Glow Roxo Cósmico de Fundo Discreto */}
+      <div className="absolute w-[520px] h-[560px] bg-gradient-to-tr from-purple-950/20 via-indigo-950/15 to-transparent blur-[120px] rounded-full pointer-events-none -z-30" />
 
       {/* 2. Container da Constelação */}
       <motion.div
@@ -201,45 +168,38 @@ export const InteractiveCloud = () => {
         transition={{ type: "spring", stiffness: 120, damping: 25 }}
         className="relative w-[620px] h-[620px] transform-style-3d"
       >
-        {/* Marca d'água astronômica sutil e elegante */}
-        <div className="absolute top-2 right-4 pointer-events-none z-0">
-          <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/20 font-bold">
-            CONSTELLATION // URSA MAJOR
-          </span>
+        {/* Grade Celestial Linear Discreta */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-40">
+          <div className="absolute top-1/4 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.02] to-transparent" />
+          <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-purple-500/[0.04] to-transparent" />
+          <div className="absolute top-3/4 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.02] to-transparent" />
+          <div className="absolute left-1/3 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-white/[0.02] to-transparent" />
+          <div className="absolute left-2/3 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-indigo-500/[0.04] to-transparent" />
         </div>
 
-        {/* Grade Celestial Linear Angular */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60">
-          <div className="absolute top-1/4 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.03] to-transparent" />
-          <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-sky-500/[0.05] to-transparent" />
-          <div className="absolute top-3/4 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.03] to-transparent" />
-          <div className="absolute left-1/3 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-white/[0.03] to-transparent" />
-          <div className="absolute left-2/3 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-amber-500/[0.05] to-transparent" />
-        </div>
-
-        {/* Camada SVG: Linhas da Grande Ursa com Feixes de Luz Sutis */}
+        {/* Camada SVG: Linhas da Grande Ursa com Feixes Laser Roxos Suaves */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-visible">
           <defs>
-            {/* Glow Suave e Refinado (Não ofuscante) */}
-            <filter id="subtleGlow" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur stdDeviation="3" result="blur" />
+            {/* Glow Roxo Refinado e Suave */}
+            <filter id="purpleGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="1.8" result="blur" />
               <feMerge>
                 <feMergeNode in="blur" />
                 <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
 
-            {/* Gradientes dos Feixes da Ursa Maior */}
-            <linearGradient id="ursaBeam" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#38bdf8" />
-              <stop offset="50%" stopColor="#ffffff" />
-              <stop offset="100%" stopColor="#f59e0b" />
+            {/* Gradientes Roxos para os Feixes */}
+            <linearGradient id="purpleBeam" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#818cf8" stopOpacity="0.8" />
+              <stop offset="50%" stopColor="#c084fc" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="#a855f7" stopOpacity="0.8" />
             </linearGradient>
 
-            <linearGradient id="ursaActiveBeam" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#fbbf24" />
+            <linearGradient id="purpleActiveBeam" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#e879f9" />
               <stop offset="50%" stopColor="#ffffff" />
-              <stop offset="100%" stopColor="#38bdf8" />
+              <stop offset="100%" stopColor="#a855f7" />
             </linearGradient>
           </defs>
 
@@ -249,22 +209,21 @@ export const InteractiveCloud = () => {
             const endNode = URSA_MAJOR_NODES.find((n) => n.id === edge.end)!;
 
             const isDirectConnected =
-              activeNodeId !== null && (edge.start === activeNodeId || edge.end === activeNodeId);
+              hoveredNode !== null && (edge.start === hoveredNode || edge.end === hoveredNode);
 
             const isHighEnergy = isDirectConnected;
             const lineLen = Math.hypot(endNode.x - startNode.x, endNode.y - startNode.y);
 
             return (
-              <g key={`ursa-edge-${idx}`}>
-                {/* 1. Linha Base Estelar Suave */}
+              <g key={`ursa-purple-edge-${idx}`}>
+                {/* 1. Linha Base Sutil */}
                 <line
                   x1={startNode.x}
                   y1={startNode.y}
                   x2={endNode.x}
                   y2={endNode.y}
-                  stroke={isHighEnergy ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.08)"}
-                  strokeWidth={isHighEnergy ? 1.8 : 1}
-                  strokeDasharray={edge.type === "bridge" ? "4 4" : "none"}
+                  stroke={isHighEnergy ? "rgba(192, 132, 252, 0.35)" : "rgba(255, 255, 255, 0.06)"}
+                  strokeWidth={isHighEnergy ? 1.4 : 0.8}
                   className="transition-colors duration-300"
                 />
 
@@ -274,32 +233,32 @@ export const InteractiveCloud = () => {
                   y1={startNode.y}
                   x2={endNode.x}
                   y2={endNode.y}
-                  stroke={isHighEnergy ? "url(#ursaActiveBeam)" : "url(#ursaBeam)"}
-                  strokeWidth={isHighEnergy ? 2.6 : 1.6}
-                  strokeDasharray={`${Math.max(20, lineLen * 0.3)} ${lineLen * 1.5}`}
+                  stroke={isHighEnergy ? "url(#purpleActiveBeam)" : "url(#purpleBeam)"}
+                  strokeWidth={isHighEnergy ? 2 : 1.2}
+                  strokeDasharray={`${Math.max(18, lineLen * 0.28)} ${lineLen * 1.5}`}
                   strokeLinecap="round"
-                  filter="url(#subtleGlow)"
+                  filter="url(#purpleGlow)"
                   className="transition-all duration-300"
                 >
                   <animate
                     attributeName="stroke-dashoffset"
                     from={lineLen * 2}
                     to={0}
-                    dur={isHighEnergy ? `${Math.max(1, edge.dur * 0.6)}s` : `${edge.dur}s`}
+                    dur={isHighEnergy ? `${Math.max(1, edge.dur * 0.65)}s` : `${edge.dur}s`}
                     repeatCount="indefinite"
                   />
                 </line>
 
-                {/* 3. Fóton de Luz Estelar */}
+                {/* 3. Fóton de Luz Estelar Suave */}
                 <circle
-                  r={isHighEnergy ? 2.8 : 1.8}
+                  r={isHighEnergy ? 2.2 : 1.4}
                   fill="#ffffff"
-                  filter="url(#subtleGlow)"
-                  opacity={isHighEnergy ? 0.95 : 0.7}
+                  filter="url(#purpleGlow)"
+                  opacity={isHighEnergy ? 0.9 : 0.6}
                 >
                   <animateMotion
                     path={`M ${startNode.x} ${startNode.y} L ${endNode.x} ${endNode.y}`}
-                    dur={isHighEnergy ? `${Math.max(1, edge.dur * 0.6)}s` : `${edge.dur}s`}
+                    dur={isHighEnergy ? `${Math.max(1, edge.dur * 0.65)}s` : `${edge.dur}s`}
                     repeatCount="indefinite"
                   />
                 </circle>
@@ -308,17 +267,16 @@ export const InteractiveCloud = () => {
           })}
         </svg>
 
-        {/* As 8 Estrelas da Ursa Maior (Tecnologias com Hover Refinado) */}
+        {/* As 8 Estrelas da Ursa Maior */}
         {URSA_MAJOR_NODES.map((node) => {
           const isHovered = hoveredNode === node.id;
-          const isSelected = selectedNode === node.id;
           const isDirectConnected =
-            activeNodeId !== null &&
+            hoveredNode !== null &&
             URSA_MAJOR_EDGES.some(
-              (e) => (e.start === activeNodeId && e.end === node.id) || (e.end === activeNodeId && e.start === node.id)
+              (e) => (e.start === hoveredNode && e.end === node.id) || (e.end === hoveredNode && e.start === node.id)
             );
 
-          const isNodeActive = isHovered || isSelected;
+          const isNodeActive = isHovered;
 
           return (
             <motion.div
@@ -331,37 +289,32 @@ export const InteractiveCloud = () => {
                 translateY: "-50%",
               }}
               animate={{
-                scale: isHovered || isSelected ? 1.12 : isDirectConnected ? 1.05 : 1,
+                scale: isHovered ? 1.08 : isDirectConnected ? 1.03 : 1,
               }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              transition={{ type: "spring", stiffness: 320, damping: 22 }}
               className="z-20 cursor-pointer"
               onMouseEnter={() => setHoveredNode(node.id)}
               onMouseLeave={() => setHoveredNode(null)}
-              onClick={() => setSelectedNode((prev) => (prev === node.id ? null : node.id))}
             >
-              <div className="relative flex items-center justify-center p-2.5">
-                {/* Aura Estelar Discreta */}
+              <div className="relative flex items-center justify-center p-2">
+                {/* Aura Suave (Menos brilho / Mais clean) */}
                 <div
                   style={{
-                    backgroundColor: isNodeActive ? node.color : "rgba(255,255,255,0.05)",
+                    backgroundColor: isNodeActive ? node.color : "transparent",
                   }}
                   className={`absolute inset-0 rounded-full transition-all duration-300 ${
-                    isHovered || isSelected
-                      ? "blur-xl opacity-50 scale-130"
-                      : isDirectConnected
-                      ? "blur-md opacity-25 scale-115"
-                      : "opacity-0"
+                    isHovered ? "blur-md opacity-35 scale-120" : "opacity-0"
                   }`}
                 />
 
-                {/* Card Translúcido com Feixe de Borda Giratório */}
-                <div className="relative flex items-center justify-center rounded-2xl p-[1px] overflow-hidden group/card shadow-[0_0_20px_rgba(0,0,0,0.6)]">
+                {/* Card Translúcido Minimalista com Borda Giratória Sutil */}
+                <div className="relative flex items-center justify-center rounded-2xl p-[1px] overflow-hidden group/card shadow-[0_0_15px_rgba(0,0,0,0.5)]">
                   <div
-                    className={`absolute inset-[-150%] animate-[spin_3s_linear_infinite] transition-opacity duration-300 pointer-events-none ${
-                      isNodeActive ? "opacity-100" : "opacity-0 group-hover/card:opacity-100"
+                    className={`absolute inset-[-150%] animate-[spin_3.5s_linear_infinite] transition-opacity duration-300 pointer-events-none ${
+                      isNodeActive ? "opacity-90" : "opacity-0 group-hover/card:opacity-60"
                     }`}
                     style={{
-                      background: `conic-gradient(from 0deg at 50% 50%, transparent 60%, ${node.color} 100%)`,
+                      background: `conic-gradient(from 0deg at 50% 50%, transparent 65%, ${node.color} 100%)`,
                     }}
                   />
 
@@ -369,7 +322,7 @@ export const InteractiveCloud = () => {
                   <div
                     className={`relative flex items-center justify-center rounded-[15px] p-2.5 backdrop-blur-xl border transition-all duration-300 ${
                       isNodeActive
-                        ? "bg-[#030014]/90 border-white/20 shadow-[0_0_15px_rgba(0,0,0,0.8)]"
+                        ? "bg-[#030014]/90 border-purple-400/30"
                         : "bg-[#030014]/75 border-white/10 hover:border-white/20"
                     }`}
                   >
@@ -378,24 +331,24 @@ export const InteractiveCloud = () => {
                       alt={node.name}
                       width={node.size}
                       height={node.size}
-                      className="object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] transition-transform duration-300 group-hover/card:scale-105"
+                      className="object-contain drop-shadow-[0_0_6px_rgba(255,255,255,0.2)] transition-transform duration-300 group-hover/card:scale-105"
                     />
                   </div>
                 </div>
 
-                {/* Etiqueta de Nome da Stack */}
+                {/* Etiqueta Discreta de Nome da Stack */}
                 <div
-                  className={`absolute -bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-1.5 transition-all duration-300 pointer-events-none whitespace-nowrap z-30 ${
+                  className={`absolute -bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 transition-all duration-300 pointer-events-none whitespace-nowrap z-30 ${
                     isNodeActive ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"
                   }`}
                 >
                   <span
                     style={{ backgroundColor: node.color }}
-                    className="w-1.5 h-1.5 rounded-full shadow-[0_0_6px_currentColor]"
+                    className="w-1 h-1 rounded-full"
                   />
                   <span
-                    style={{ color: isHovered || isSelected ? "#ffffff" : node.color }}
-                    className="font-mono text-[11px] font-bold uppercase tracking-wider drop-shadow-[0_0_6px_rgba(0,0,0,0.9)]"
+                    style={{ color: isHovered ? "#ffffff" : node.color }}
+                    className="font-mono text-[10px] font-bold uppercase tracking-wider drop-shadow-[0_0_4px_rgba(0,0,0,0.9)]"
                   >
                     {node.name}
                   </span>
@@ -405,57 +358,18 @@ export const InteractiveCloud = () => {
           );
         })}
 
-        {/* Painel de Informação Astronômica Discreto */}
-        <AnimatePresence>
-          {activeNode && (
-            <motion.div
-              initial={{ opacity: 0, y: 8, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 8, scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-              style={{
-                left: "50%",
-                bottom: "-25px",
-                transform: "translateX(-50%)",
-              }}
-              className="absolute z-40 flex items-center gap-3 px-4 py-2 rounded-2xl bg-[#030014]/90 border border-white/10 backdrop-blur-xl shadow-[0_0_25px_rgba(0,0,0,0.8)] pointer-events-none whitespace-nowrap"
-            >
-              <div
-                style={{ backgroundColor: activeNode.color }}
-                className="w-2 h-2 rounded-full shadow-[0_0_8px_currentColor]"
-              />
-              <div className="flex flex-col">
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-xs font-bold text-white tracking-wide">
-                    {activeNode.name}
-                  </span>
-                  <span className="text-[10px] text-amber-400/80 font-mono">
-                    ★ {activeNode.astronomyName}
-                  </span>
-                </div>
-                <span className="text-[10px] text-gray-400 font-medium">
-                  {activeNode.role}
-                </span>
-              </div>
-              <span className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[9px] font-mono uppercase text-gray-300 tracking-wider ml-1">
-                {activeNode.category}
-              </span>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
         {/* Estrelas de Fundo Sutis */}
         {[
-          { top: "8%", left: "10%", size: 2.5, delay: 0 },
-          { top: "15%", left: "88%", size: 2, delay: 1 },
-          { top: "32%", left: "6%", size: 2, delay: 2 },
-          { top: "48%", left: "95%", size: 2.5, delay: 0.5 },
-          { top: "70%", left: "10%", size: 2, delay: 1.5 },
-          { top: "88%", left: "88%", size: 3, delay: 2.5 },
-          { top: "55%", left: "48%", size: 2, delay: 1.8 },
+          { top: "8%", left: "10%", size: 2, delay: 0 },
+          { top: "15%", left: "88%", size: 1.5, delay: 1 },
+          { top: "32%", left: "6%", size: 1.5, delay: 2 },
+          { top: "48%", left: "95%", size: 2, delay: 0.5 },
+          { top: "70%", left: "10%", size: 1.5, delay: 1.5 },
+          { top: "88%", left: "88%", size: 2.5, delay: 2.5 },
+          { top: "55%", left: "48%", size: 1.5, delay: 1.8 },
         ].map((star, i) => (
           <motion.div
-            key={`ursa-star-${i}`}
+            key={`ursa-subtle-star-${i}`}
             style={{
               position: "absolute",
               top: star.top,
@@ -464,8 +378,8 @@ export const InteractiveCloud = () => {
               height: star.size,
             }}
             animate={{
-              opacity: [0.15, 0.7, 0.15],
-              scale: [0.9, 1.2, 0.9],
+              opacity: [0.1, 0.5, 0.1],
+              scale: [0.9, 1.1, 0.9],
             }}
             transition={{
               duration: 3 + (i % 2),
@@ -473,7 +387,7 @@ export const InteractiveCloud = () => {
               delay: star.delay,
               ease: "easeInOut",
             }}
-            className="rounded-full bg-white shadow-[0_0_6px_#ffffff] pointer-events-none"
+            className="rounded-full bg-white shadow-[0_0_4px_#ffffff] pointer-events-none"
           />
         ))}
       </motion.div>

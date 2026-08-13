@@ -35,7 +35,7 @@ export default function AboutPage() {
   const ROW_2 = INTERESTS.slice(5);
 
   return (
-    <main className="h-full w-full pt-32 px-[10%] md:px-20 flex flex-col gap-32 mb-20">
+    <main className="h-full w-full pt-20 px-[10%] md:px-20 flex flex-col gap-32 mb-20">
       {/* About Me Hero Section */}
       <section className="flex flex-col lg:flex-row items-center justify-between gap-10">
         <motion.div

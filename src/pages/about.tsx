@@ -55,6 +55,8 @@ export default function AboutPage() {
             {TRANSLATIONS[lang].about.description1}
             <br /><br />
             {TRANSLATIONS[lang].about.description2}
+            <br /><br />
+            {TRANSLATIONS[lang].about.description3}
           </p>
         </motion.div>
 

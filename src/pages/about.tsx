@@ -9,15 +9,15 @@ import { useLang } from "@/lib/lang-context";
 import { SparklesIcon } from "@heroicons/react/24/solid";
 
 const INTERESTS = [
-  { title: "Games", image: "/images/about/SetupEldenring.jpeg", color: "#f59e0b" },
-  { title: "Música", image: "/images/about/ShowGuns.jpeg", color: "#61dafb" },
-  { title: "Comida", image: "/images/about/Carbonara.jpeg", color: "#3178c6" },
-  { title: "Academia", image: "/images/about/EspelhoGuns.jpeg", color: "#38b2ac" },
-  { title: "Gatos", image: "/images/about/Gatos.jpeg", color: "#f24e1e" },
-  { title: "Thor", image: "/images/about/GatoThor.jpeg", color: "#f59e0b" },
-  { title: "Fogueira", image: "/images/about/Fogueira.jpeg", color: "#f59e0b" },
-  { title: "Selfie", image: "/images/about/SelfieCarro.jpeg", color: "#f59e0b" },
-  { title: "Volley", image: "/images/about/Volley.jpeg", color: "#f59e0b" }
+  { title: "Games", image: "/images/about/SetupEldenring.webp", color: "#f59e0b" },
+  { title: "Música", image: "/images/about/ShowGuns.webp", color: "#61dafb" },
+  { title: "Comida", image: "/images/about/Carbonara.webp", color: "#3178c6" },
+  { title: "Academia", image: "/images/about/EspelhoGuns.webp", color: "#38b2ac" },
+  { title: "Gatos", image: "/images/about/Gatos.webp", color: "#f24e1e" },
+  { title: "Thor", image: "/images/about/GatoThor.webp", color: "#f59e0b" },
+  { title: "Fogueira", image: "/images/about/Fogueira.webp", color: "#f59e0b" },
+  { title: "Selfie", image: "/images/about/SelfieCarro.webp", color: "#f59e0b" },
+  { title: "Volley", image: "/images/about/Volley.webp", color: "#f59e0b" }
 ];
 
 export default function AboutPage() {
@@ -69,7 +69,7 @@ export default function AboutPage() {
             className="col-span-1 lg:col-span-2 w-full max-w-sm mx-auto lg:max-w-none aspect-square relative rounded-xl overflow-hidden shadow-2xl border border-white/5"
           >
             <Image
-              src="/images/about/Selfie.jpeg"
+              src="/images/about/Selfie.webp"
               alt="Schaide Nunes"
               fill
               className="object-cover object-top"

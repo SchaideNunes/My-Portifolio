@@ -10,67 +10,67 @@ import {
 export const SKILL_DATA = [
   {
     skill_name: "HTML",
-    image: "html.png",
+    image: "html.webp",
     width: 80,
     height: 80,
   },
   {
     skill_name: "CSS",
-    image: "css.png",
+    image: "css.webp",
     width: 80,
     height: 80,
   },
   {
     skill_name: "JavaScript",
-    image: "js.png",
+    image: "js.webp",
     width: 65,
     height: 65,
   },
   {
     skill_name: "Tailwind CSS",
-    image: "tailwind.png",
+    image: "tailwind.webp",
     width: 80,
     height: 80,
   },
   {
     skill_name: "React",
-    image: "react.png",
+    image: "react.webp",
     width: 80,
     height: 80,
   },
   {
     skill_name: "TypeScript",
-    image: "ts.png",
+    image: "ts.webp",
     width: 80,
     height: 80,
   },
   {
     skill_name: "Framer Motion",
-    image: "framer.png",
+    image: "framer.webp",
     width: 80,
     height: 80,
   },
   {
     skill_name: "AWS",
-    image: "aws.png", // Ensure this exists in public/
+    image: "aws.svg",
     width: 80,
     height: 80,
   },
   {
     skill_name: "PostgreSQL",
-    image: "postgresql.png",
+    image: "postgresql.webp",
     width: 70,
     height: 70,
   },
   {
     skill_name: "MongoDB",
-    image: "mongodb.png",
+    image: "mongodb.webp",
     width: 40,
     height: 40,
   },
   {
     skill_name: "Figma",
-    image: "figma.png",
+    image: "figma.webp",
     width: 50,
     height: 50,
   },
@@ -102,37 +102,37 @@ export const SOCIALS = [
 export const FRONTEND_SKILL = [
   {
     skill_name: "HTML",
-    image: "html.png",
+    image: "html.webp",
     width: 80,
     height: 80,
   },
   {
     skill_name: "CSS",
-    image: "css.png",
+    image: "css.webp",
     width: 80,
     height: 80,
   },
   {
     skill_name: "JavaScript",
-    image: "js.png",
+    image: "js.webp",
     width: 65,
     height: 65,
   },
   {
     skill_name: "Tailwind CSS",
-    image: "tailwind.png",
+    image: "tailwind.webp",
     width: 80,
     height: 80,
   },
   {
     skill_name: "React",
-    image: "react.png",
+    image: "react.webp",
     width: 80,
     height: 80,
   },
   {
     skill_name: "TypeScript",
-    image: "ts.png",
+    image: "ts.webp",
     width: 80,
     height: 80,
   },
@@ -156,19 +156,19 @@ export const BACKEND_SKILL = [
 export const DATABASE_SKILL = [
   {
     skill_name: "PostgreSQL",
-    image: "postgresql.png",
+    image: "postgresql.webp",
     width: 70,
     height: 70,
   },
   {
     skill_name: "MongoDB",
-    image: "mongodb.png",
+    image: "mongodb.webp",
     width: 40,
     height: 40,
   },
   {
     skill_name: "MySQL",
-    image: "mysql.png",
+    image: "mysql.webp",
     width: 70,
     height: 70,
   },
@@ -177,7 +177,7 @@ export const DATABASE_SKILL = [
 export const CLOUD_SKILL = [
   {
     skill_name: "AWS",
-    image: "aws.png",
+    image: "aws.svg",
     width: 80,
     height: 80,
   },
@@ -189,13 +189,13 @@ export const CLOUD_SKILL = [
   },
   {
     skill_name: "Docker",
-    image: "docker.png",
+    image: "docker.webp",
     width: 70,
     height: 70,
   },
   {
     skill_name: "Figma",
-    image: "figma.png",
+    image: "figma.webp",
     width: 50,
     height: 50,
   },
@@ -213,7 +213,7 @@ export const PROJECTS = {
       description:
         "Uma plataforma web completa de agendamentos para barbearia, focada em performance, interface moderna e UX fluida para clientes e administradores.",
       technologies: ["HTML", "CSS", "JavaScript", "Banco de Dados"],
-      image: "/images/projects/AtualEstilo.png",
+      image: "/images/projects/AtualEstilo.webp",
       link: "https://atualestilo.com/",
       color: "#0a0a0a", // Dark space theme
       testimonial: {
@@ -231,7 +231,7 @@ export const PROJECTS = {
       description:
         "Portfólio de arquitetura elegante e interativo, construído focado em impacto visual e exposição refinada de design de interiores.",
       technologies: ["HTML", "CSS", "JavaScript", "Tailwind", "GSAP"],
-      image: "/images/projects/PortifolioMilenaReis.png",
+      image: "/images/projects/PortifolioMilenaReis.webp",
       link: "https://portifolio-milena.vercel.app/",
       color: "#111111", // Slightly lighter dark theme
       testimonial: {
@@ -251,7 +251,7 @@ export const PROJECTS = {
       description:
         "A complete web platform for barbershop appointments, focused on performance, modern interface, and smooth UX for clients and administrators.",
       technologies: ["HTML", "CSS", "JavaScript", "Database"],
-      image: "/images/projects/AtualEstilo.png",
+      image: "/images/projects/AtualEstilo.webp",
       link: "https://atualestilo.com/",
       color: "#0a0a0a", // Dark space theme
       testimonial: {
@@ -269,7 +269,7 @@ export const PROJECTS = {
       description:
         "Elegant and interactive architecture portfolio, built with a focus on visual impact and refined exposure of interior design.",
       technologies: ["HTML", "CSS", "JavaScript", "Tailwind", "GSAP"],
-      image: "/images/projects/PortifolioMilenaReis.png",
+      image: "/images/projects/PortifolioMilenaReis.webp",
       link: "https://portifolio-milena.vercel.app/",
       color: "#111111", // Slightly lighter dark theme
       testimonial: {

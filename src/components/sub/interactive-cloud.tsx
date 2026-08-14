@@ -30,7 +30,7 @@ const URSA_MAJOR_NODES: ConstellationNode[] = [
   {
     id: 1,
     name: "Tailwind",
-    icon: "/skills/tailwind.png",
+    icon: "/skills/tailwind.webp",
     x: 195,
     y: 155,
     size: 44,
@@ -40,7 +40,7 @@ const URSA_MAJOR_NODES: ConstellationNode[] = [
   {
     id: 2,
     name: "TypeScript",
-    icon: "/skills/ts.png",
+    icon: "/skills/ts.webp",
     x: 305,
     y: 205,
     size: 48,
@@ -50,7 +50,7 @@ const URSA_MAJOR_NODES: ConstellationNode[] = [
   {
     id: 3,
     name: "React",
-    icon: "/skills/react.png",
+    icon: "/skills/react.webp",
     x: 410,
     y: 265,
     size: 52,
@@ -90,7 +90,7 @@ const URSA_MAJOR_NODES: ConstellationNode[] = [
   {
     id: 7,
     name: "Docker",
-    icon: "/skills/docker.png",
+    icon: "/skills/docker.webp",
     x: 235,
     y: 530,
     size: 46,

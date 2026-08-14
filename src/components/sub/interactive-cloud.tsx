@@ -20,7 +20,7 @@ const URSA_MAJOR_NODES: ConstellationNode[] = [
   {
     id: 0,
     name: "GSAP",
-    icon: "/skills/gsap.svg",
+    icon: "/images/skills/gsap.svg",
     x: 95,
     y: 110,
     size: 42,
@@ -30,7 +30,7 @@ const URSA_MAJOR_NODES: ConstellationNode[] = [
   {
     id: 1,
     name: "Tailwind",
-    icon: "/skills/tailwind.webp",
+    icon: "/images/skills/tailwind.webp",
     x: 195,
     y: 155,
     size: 44,
@@ -40,7 +40,7 @@ const URSA_MAJOR_NODES: ConstellationNode[] = [
   {
     id: 2,
     name: "TypeScript",
-    icon: "/skills/ts.webp",
+    icon: "/images/skills/ts.webp",
     x: 305,
     y: 205,
     size: 48,
@@ -50,7 +50,7 @@ const URSA_MAJOR_NODES: ConstellationNode[] = [
   {
     id: 3,
     name: "React",
-    icon: "/skills/react.webp",
+    icon: "/images/skills/react.webp",
     x: 410,
     y: 265,
     size: 52,
@@ -60,7 +60,7 @@ const URSA_MAJOR_NODES: ConstellationNode[] = [
   {
     id: 4,
     name: "Python",
-    icon: "/skills/python.svg",
+    icon: "/images/skills/python.svg",
     x: 535,
     y: 235,
     size: 48,
@@ -70,7 +70,7 @@ const URSA_MAJOR_NODES: ConstellationNode[] = [
   {
     id: 5,
     name: "AWS",
-    icon: "/skills/aws.svg",
+    icon: "/images/skills/aws.svg",
     x: 505,
     y: 435,
     size: 50,
@@ -80,7 +80,7 @@ const URSA_MAJOR_NODES: ConstellationNode[] = [
   {
     id: 6,
     name: "SQL",
-    icon: "/skills/sql.svg",
+    icon: "/images/skills/sql.svg",
     x: 375,
     y: 460,
     size: 46,
@@ -90,7 +90,7 @@ const URSA_MAJOR_NODES: ConstellationNode[] = [
   {
     id: 7,
     name: "Docker",
-    icon: "/skills/docker.webp",
+    icon: "/images/skills/docker.webp",
     x: 235,
     y: 530,
     size: 46,

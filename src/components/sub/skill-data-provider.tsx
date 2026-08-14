@@ -46,7 +46,7 @@ export const SkillDataProvider = ({
       className="cursor-pointer relative group flex items-center justify-center"
     >
       <Image 
-        src={`/skills/${src}`} 
+        src={`/images/skills/${src}`} 
         width={width} 
         height={height} 
         alt={name} 

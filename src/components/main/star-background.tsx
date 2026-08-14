@@ -22,7 +22,7 @@ export const StarBackground = (props: PointsInstancesProps) => {
   );
 
   useFrame((state, delta) => {
-    // Rotação orbital cósmica contínua
+    // Rotação orbital contínua
     if (pointsRef.current) {
       pointsRef.current.rotation.x -= delta / 25;
       pointsRef.current.rotation.y -= delta / 30;
@@ -33,7 +33,6 @@ export const StarBackground = (props: PointsInstancesProps) => {
       const targetRotY = state.pointer.x * 0.25;
       const targetRotX = -state.pointer.y * 0.25;
 
-      // Interpolação suave (lerp) para sensação de inércia cósmica
       groupRef.current.rotation.y += (targetRotY - groupRef.current.rotation.y) * 0.04;
       groupRef.current.rotation.x += (targetRotX - groupRef.current.rotation.x) * 0.04;
     }
@@ -61,7 +60,7 @@ export const StarBackground = (props: PointsInstancesProps) => {
   );
 };
 
-// 2. Estrelas Cadentes (Shooting Stars / Meteoros 3D)
+// 2. Estrelas Cadentes (Shooting Stars / Meteoros 3D 100% livres de artefatos)
 const ShootingStars = () => {
   const linesRef = useRef<LineSegments | null>(null);
   const maxMeteors = 3;
@@ -70,84 +69,101 @@ const ShootingStars = () => {
   const meteors = useMemo(() => {
     return Array.from({ length: maxMeteors }).map(() => ({
       active: false,
-      x: 0,
-      y: 0,
-      z: 0,
+      x: 9999,
+      y: 9999,
+      z: 9999,
       dx: 0,
       dy: 0,
       dz: 0,
-      length: 0.25,
+      length: 0.22,
       progress: 1,
-      speed: 0.02,
-      delay: Math.random() * 4,
+      delay: 1 + Math.random() * 3,
     }));
   }, []);
 
-  const [positions] = useState(() => new Float32Array(maxMeteors * 2 * 3));
+  // Inicializa fora do frustum para evitar listras pretas na origem (0,0,0)
+  const [positions] = useState(() => {
+    const arr = new Float32Array(maxMeteors * 2 * 3);
+    arr.fill(9999);
+    return arr;
+  });
+
   const [colors] = useState(() => new Float32Array(maxMeteors * 2 * 3));
 
   useFrame((_state, delta) => {
     let needsUpdate = false;
 
     meteors.forEach((meteor, i) => {
+      const idx = i * 6;
+
       if (!meteor.active) {
         meteor.delay -= delta;
         if (meteor.delay <= 0) {
-          // Spawn de meteoro em posição aleatória superior
+          // Spawn de meteoro
           meteor.active = true;
           meteor.x = (Math.random() - 0.3) * 2;
-          meteor.y = 0.8 + Math.random() * 0.5;
-          meteor.z = (Math.random() - 0.5) * 0.8;
-          // Trajetória diagonal rápida
+          meteor.y = 0.8 + Math.random() * 0.4;
+          meteor.z = (Math.random() - 0.5) * 0.6;
+
           const angle = Math.PI * (1.15 + Math.random() * 0.15); // ~210 graus
-          const speed = 1.4 + Math.random() * 1.0;
+          const speed = 1.3 + Math.random() * 0.8;
           meteor.dx = Math.cos(angle) * speed;
           meteor.dy = Math.sin(angle) * speed;
-          meteor.dz = (Math.random() - 0.5) * 0.2;
-          meteor.length = 0.18 + Math.random() * 0.15;
+          meteor.dz = (Math.random() - 0.5) * 0.15;
+          meteor.length = 0.16 + Math.random() * 0.12;
           meteor.progress = 0;
+        } else {
+          // Mantém fora da tela enquanto inativo
+          positions[idx] = 9999;
+          positions[idx + 1] = 9999;
+          positions[idx + 2] = 9999;
+          positions[idx + 3] = 9999;
+          positions[idx + 4] = 9999;
+          positions[idx + 5] = 9999;
         }
       } else {
         needsUpdate = true;
-        meteor.progress += delta * 1.8;
+        meteor.progress += delta * 1.6;
         meteor.x += meteor.dx * delta;
         meteor.y += meteor.dy * delta;
         meteor.z += meteor.dz * delta;
 
-        // Cabeça e cauda do meteoro
-        const idx = i * 6;
-        const headX = meteor.x;
-        const headY = meteor.y;
-        const headZ = meteor.z;
+        const speedMag = Math.hypot(meteor.dx, meteor.dy);
+        const tailX = meteor.x - (meteor.dx / speedMag) * meteor.length;
+        const tailY = meteor.y - (meteor.dy / speedMag) * meteor.length;
+        const tailZ = meteor.z - (meteor.dz / speedMag) * meteor.length;
 
-        const tailX = meteor.x - (meteor.dx / Math.hypot(meteor.dx, meteor.dy)) * meteor.length;
-        const tailY = meteor.y - (meteor.dy / Math.hypot(meteor.dx, meteor.dy)) * meteor.length;
-        const tailZ = meteor.z;
-
-        positions[idx] = headX;
-        positions[idx + 1] = headY;
-        positions[idx + 2] = headZ;
+        positions[idx] = meteor.x;
+        positions[idx + 1] = meteor.y;
+        positions[idx + 2] = meteor.z;
 
         positions[idx + 3] = tailX;
         positions[idx + 4] = tailY;
         positions[idx + 5] = tailZ;
 
-        // Fading do brilho
-        const alpha = Math.sin(Math.min(Math.PI, meteor.progress * Math.PI));
-        const colIdx = i * 6;
-        // Cabeça brilhante (ouro/branco)
-        colors[colIdx] = 1.0 * alpha;
-        colors[colIdx + 1] = 0.9 * alpha;
-        colors[colIdx + 2] = 0.6 * alpha;
+        // Fading suave de brilho (Curva Gaussiana para evitar cortes bruscos)
+        const alpha = Math.sin(Math.min(Math.PI, Math.max(0, meteor.progress * Math.PI)));
 
-        // Cauda transparente (azul/roxo suave)
-        colors[colIdx + 3] = 0.5 * alpha * 0.3;
-        colors[colIdx + 4] = 0.7 * alpha * 0.3;
-        colors[colIdx + 5] = 1.0 * alpha * 0.3;
+        // Cabeça brilhante (ouro quente/branco)
+        colors[idx] = 1.0 * alpha;
+        colors[idx + 1] = 0.9 * alpha;
+        colors[idx + 2] = 0.6 * alpha;
 
-        if (meteor.progress >= 1 || meteor.y < -1.2) {
+        // Cauda suave
+        colors[idx + 3] = 0.6 * alpha * 0.3;
+        colors[idx + 4] = 0.4 * alpha * 0.3;
+        colors[idx + 5] = 0.9 * alpha * 0.3;
+
+        if (meteor.progress >= 1 || meteor.y < -1.1) {
           meteor.active = false;
-          meteor.delay = 2.5 + Math.random() * 4.5; // Intervalo para o próximo
+          meteor.delay = 2.5 + Math.random() * 4;
+          // Reseta para fora da tela instantaneamente
+          positions[idx] = 9999;
+          positions[idx + 1] = 9999;
+          positions[idx + 2] = 9999;
+          positions[idx + 3] = 9999;
+          positions[idx + 4] = 9999;
+          positions[idx + 5] = 9999;
         }
       }
     });
@@ -171,8 +187,9 @@ const ShootingStars = () => {
         vertexColors
         transparent
         blending={THREE.AdditiveBlending}
-        linewidth={2}
+        depthTest={false}
         depthWrite={false}
+        toneMapped={false}
       />
     </lineSegments>
   );

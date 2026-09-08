@@ -41,7 +41,7 @@ export const SkillDataProvider = ({
       whileHover={{ 
         scale: 1.1,
         transition: { duration: 0.2 },
-        filter: "drop-shadow(0px 0px 5px rgba(251, 191, 36, 0.4))"
+        filter: "drop-shadow(0px 0px 8px rgba(168, 85, 247, 0.6))"
       }}
       className="cursor-pointer relative group flex items-center justify-center"
     >
@@ -54,7 +54,7 @@ export const SkillDataProvider = ({
       />
       
       {/* Tooltip on hover */}
-      <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#000000] border border-[#f59e0b8b] text-white text-[10px] px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50 pointer-events-none">
+      <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#000000] border border-purple-500/50 text-white text-[10px] px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50 pointer-events-none shadow-[0_0_10px_rgba(168,85,247,0.2)]">
         {name}
       </span>
     </motion.div>

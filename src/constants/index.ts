@@ -1,80 +1,9 @@
-import { FaYoutube, FaFacebook, FaWhatsapp } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
 import {
-  RxDiscordLogo,
   RxGithubLogo,
   RxInstagramLogo,
-  RxTwitterLogo,
   RxLinkedinLogo,
 } from "react-icons/rx";
-
-export const SKILL_DATA = [
-  {
-    skill_name: "HTML",
-    image: "html.webp",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "CSS",
-    image: "css.webp",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "JavaScript",
-    image: "js.webp",
-    width: 65,
-    height: 65,
-  },
-  {
-    skill_name: "Tailwind CSS",
-    image: "tailwind.webp",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "React",
-    image: "react.webp",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "TypeScript",
-    image: "ts.webp",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "Framer Motion",
-    image: "framer.webp",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "AWS",
-    image: "aws.svg",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "PostgreSQL",
-    image: "postgresql.webp",
-    width: 70,
-    height: 70,
-  },
-  {
-    skill_name: "MongoDB",
-    image: "mongodb.webp",
-    width: 40,
-    height: 40,
-  },
-  {
-    skill_name: "Figma",
-    image: "figma.webp",
-    width: 50,
-    height: 50,
-  },
-] as const;
 
 export const SOCIALS = [
   {
@@ -347,20 +276,6 @@ export const FOOTER_DATA = [
   },
 ] as const;
 
-export const NAV_LINKS = [
-  {
-    title: "About me",
-    link: "/about",
-  },
-  {
-    title: "Work",
-    link: "/work",
-  },
-  {
-    title: "Skills",
-    link: "/#skills",
-  },
-] as const;
 
 export const TESTIMONIALS = {
   PT: [
@@ -404,7 +319,3 @@ export const TESTIMONIALS = {
     }
   ]
 } as const;
-
-export const LINKS = {
-  sourceCode: "https://github.com/SchaideNunes/My-Portifolio",
-};

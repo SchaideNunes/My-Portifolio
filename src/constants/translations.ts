@@ -6,7 +6,6 @@ export const TRANSLATIONS = {
       skills: "Skills",
     },
     hero: {
-      badge: "INTERNSHIP | JUNIOR",
       greeting: "Hi, I am",
       description: "Software Engineering student and Full-Stack developer. I transform ideas into complete and scalable digital solutions, leveraging modern technologies like Python, React, AWS, Docker, and SQL to craft robust and high-impact experiences.",
       copyEmail: "schaidenunes@gmail.com",
@@ -61,7 +60,6 @@ export const TRANSLATIONS = {
       skills: "Habilidades",
     },
     hero: {
-      badge: "ESTÁGIO | JÚNIOR",
       greeting: "Olá, eu sou",
       description: "Estudante de Engenharia de Software e desenvolvedor Full-Stack. Transformo ideias em soluções digitais completas e escaláveis, utilizando tecnologias como Python, React, AWS, Docker e SQL para criar experiências web robustas e de alto impacto.",
       copyEmail: "schaidenunes@gmail.com",

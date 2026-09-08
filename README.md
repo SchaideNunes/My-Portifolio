@@ -1,6 +1,6 @@
 # 🚀 Schaide Nunes | Full Stack Web Developer
  
- Welcome to my personal portfolio! This repository contains the source code for my 3D interactive portfolio built with Next.js, Framer Motion, and GSAP. It's designed to showcase my projects, skills, and experience with a unique space-themed aesthetic.
+ Welcome to my personal portfolio! This repository contains the source code for my 3D interactive portfolio built with Vite, React, Framer Motion, and GSAP. It's designed to showcase my projects, skills, and experience with a unique space-themed aesthetic.
  
  ## 🌟 Live Demo
  
@@ -10,7 +10,7 @@
  
  This project was built using a modern web development stack:
  
- - **Framework:** [Next.js 14](https://nextjs.org/) (App Router)
+ - **Build Tool & Framework:** [Vite](https://vitejs.dev/) + [React 19](https://react.dev/)
  - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
  - **Animations:** [Framer Motion](https://www.framer.com/motion/) & [GSAP](https://gsap.com/)
  - **3D Graphics:** [Three.js](https://threejs.org/) & [React Three Fiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction)
@@ -21,7 +21,7 @@
  - **Immersive 3D Background:** Interactive space background with floating stars and planets.
  - **Smooth Scrolling:** Integrated Lenis for a fluid scrolling experience.
  - **Dynamic Project Showcase:** A custom scroll-triggered project section with sticky images and clean typography.
- - **Multi-language Support:** Easily toggle between English and Portuguese.
+ - **Multi-language Support:** Easily toggle between English and Portuguese with regional auto-detection and localized resume download.
  - **Fully Responsive:** Optimized for all devices, from mobile phones to large desktop screens.
  
  ## 📸 Screenshots
@@ -64,7 +64,7 @@
     pnpm dev
     ```
  
- 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ 4. Open [http://localhost:5173](http://localhost:5173) with your browser to see the result.
  
  ## 📬 Contact Me
  

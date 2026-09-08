@@ -169,13 +169,26 @@ export default function AboutPage() {
             {[...TESTIMONIALS[lang], ...TESTIMONIALS[lang], ...TESTIMONIALS[lang], ...TESTIMONIALS[lang]].map((testimonial, index) => (
               <div
                 key={index}
-                className="w-[280px] sm:w-[340px] md:w-[450px] bg-white/[0.03] border border-white/10 p-6 md:p-10 rounded-2xl md:rounded-[2rem] flex flex-col gap-4 md:gap-8 shrink-0"
+                className="relative w-[280px] sm:w-[340px] md:w-[450px] bg-white/[0.03] border border-white/10 p-6 md:p-10 rounded-2xl md:rounded-[2rem] flex flex-col gap-4 md:gap-8 shrink-0 group/card hover:border-[#f59e0b]/40 hover:shadow-[0_0_25px_rgba(245,158,11,0.2)] transition-all duration-300 overflow-hidden"
               >
-                <div className="text-[#f59e0b] text-3xl md:text-5xl font-serif leading-none">&quot;</div>
-                <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed italic">
+                {/* Masked Spinning Border */}
+                <div 
+                  className="absolute inset-0 rounded-2xl md:rounded-[2rem] overflow-hidden pointer-events-none"
+                  style={{
+                    WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                    WebkitMaskComposite: "xor",
+                    maskComposite: "exclude",
+                    padding: "1.5px"
+                  }}
+                >
+                  <div className="absolute inset-[-100%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_60%,#f59e0b_90%,#fbbf24_100%)] opacity-70 group-hover/card:opacity-100 transition-opacity duration-500" />
+                </div>
+
+                <div className="relative z-10 text-[#f59e0b] text-3xl md:text-5xl font-serif leading-none">&quot;</div>
+                <p className="relative z-10 text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed italic">
                   {testimonial.text}
                 </p>
-                <div className="flex items-center gap-3 md:gap-4 mt-auto pt-2">
+                <div className="relative z-10 flex items-center gap-3 md:gap-4 mt-auto pt-2">
                   <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border border-white/10 shrink-0">
                     <Image src={testimonial.image} alt={testimonial.author} width={48} height={48} className="w-full h-full object-cover" />
                   </div>

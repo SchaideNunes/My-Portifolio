@@ -106,7 +106,7 @@ export default function AboutPage() {
           {[...ROW_1, ...ROW_1, ...ROW_1].map((interest, index) => (
             <div
               key={`row1-${index}`}
-              className="w-[180px] sm:w-[220px] md:w-[300px] h-[220px] sm:h-[280px] md:h-[400px] relative rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 group shrink-0"
+              className="w-[200px] sm:w-[250px] md:w-[350px] h-[250px] sm:h-[320px] md:h-[450px] relative rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 group shrink-0"
             >
               <Image
                 src={interest.image}
@@ -125,7 +125,7 @@ export default function AboutPage() {
           {[...ROW_2, ...ROW_2, ...ROW_2, ...ROW_2].map((interest, index) => (
             <div
               key={`row2-${index}`}
-              className="w-[180px] sm:w-[220px] md:w-[300px] h-[220px] sm:h-[280px] md:h-[400px] relative rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 group shrink-0"
+              className="w-[200px] sm:w-[250px] md:w-[350px] h-[250px] sm:h-[320px] md:h-[450px] relative rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 group shrink-0"
             >
               <Image
                 src={interest.image}

@@ -152,6 +152,12 @@ export const FRONTEND_SKILL = [
 
 export const BACKEND_SKILL = [
   {
+    skill_name: "Node.js",
+    image: "nodejs.svg",
+    width: 70,
+    height: 70,
+  },
+  {
     skill_name: "Python",
     image: "python.svg",
     width: 70,

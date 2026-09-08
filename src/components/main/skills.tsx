@@ -34,7 +34,7 @@ export const Skills = () => {
             <div className="absolute inset-[-100%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_60%,#a855f7_90%,#c084fc_100%)] opacity-70 group-hover/card:opacity-100 transition-opacity duration-500" />
           </div>
 
-          <h3 className="relative z-10 text-sm md:text-xl font-bold text-yellow-500 tracking-[-2%] uppercase">Frontend</h3>
+          <h3 className="relative z-10 text-sm md:text-xl font-bold text-purple-400 group-hover/card:text-purple-300 tracking-[-2%] uppercase transition-colors duration-300">Frontend</h3>
           <div className="relative z-10 flex flex-row flex-wrap justify-center items-center gap-2 md:gap-4 flex-1">
             {FRONTEND_SKILL.map((skill, i) => (
               <SkillDataProvider
@@ -64,7 +64,7 @@ export const Skills = () => {
             <div className="absolute inset-[-100%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_60%,#a855f7_90%,#c084fc_100%)] opacity-70 group-hover/card:opacity-100 transition-opacity duration-500" />
           </div>
 
-          <h3 className="relative z-10 text-sm md:text-xl font-bold text-orange-400 tracking-[-2%] uppercase">Backend</h3>
+          <h3 className="relative z-10 text-sm md:text-xl font-bold text-purple-400 group-hover/card:text-purple-300 tracking-[-2%] uppercase transition-colors duration-300">Backend</h3>
           <div className="relative z-10 flex flex-row flex-wrap justify-center items-center gap-2 md:gap-4 flex-1">
             {BACKEND_SKILL.map((skill, i) => (
               <SkillDataProvider
@@ -94,11 +94,11 @@ export const Skills = () => {
             <div className="absolute inset-[-100%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_60%,#a855f7_90%,#c084fc_100%)] opacity-70 group-hover/card:opacity-100 transition-opacity duration-500" />
           </div>
 
-          <h3 className="relative z-10 text-sm md:text-xl font-bold text-amber-600 tracking-[-2%] uppercase">Cloud</h3>
+          <h3 className="relative z-10 text-sm md:text-xl font-bold text-purple-400 group-hover/card:text-purple-300 tracking-[-2%] uppercase transition-colors duration-300">Cloud</h3>
           <div className="relative z-10 flex flex-row flex-wrap justify-center items-center gap-2 md:gap-4 flex-1">
             {/* AWS Placeholder as the image is missing */}
             <div className="relative group/skill flex items-center justify-center cursor-pointer hover:scale-110 transition-all duration-300">
-              <CloudIcon className="w-8 h-8 md:w-12 md:h-12 text-amber-600 drop-shadow-[0_0_2px_rgba(217,119,6,0.3)] group-hover/skill:drop-shadow-[0_0_8px_rgba(168,85,247,0.6)] transition-all duration-300" />
+              <CloudIcon className="w-8 h-8 md:w-12 md:h-12 text-purple-400 drop-shadow-[0_0_2px_rgba(168,85,247,0.4)] group-hover/skill:drop-shadow-[0_0_8px_rgba(168,85,247,0.7)] transition-all duration-300" />
               <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#000000] border border-purple-500/50 text-white text-[10px] px-2 py-1 rounded-md opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap z-50 pointer-events-none shadow-[0_0_10px_rgba(168,85,247,0.2)]">
                 AWS
               </span>
@@ -131,7 +131,7 @@ export const Skills = () => {
             <div className="absolute inset-[-100%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_60%,#a855f7_90%,#c084fc_100%)] opacity-70 group-hover/card:opacity-100 transition-opacity duration-500" />
           </div>
 
-          <h3 className="relative z-10 text-sm md:text-xl font-bold text-yellow-600 tracking-[-2%] uppercase">Database</h3>
+          <h3 className="relative z-10 text-sm md:text-xl font-bold text-purple-400 group-hover/card:text-purple-300 tracking-[-2%] uppercase transition-colors duration-300">Database</h3>
           <div className="relative z-10 flex flex-row flex-wrap justify-center items-center gap-2 md:gap-4 flex-1">
             {DATABASE_SKILL.map((skill, i) => (
               <SkillDataProvider

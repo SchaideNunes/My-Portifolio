@@ -142,12 +142,30 @@ export const FRONTEND_SKILL = [
     width: 80,
     height: 80,
   },
+  {
+    skill_name: "Three.js",
+    image: "threejs.svg",
+    width: 80,
+    height: 80,
+  },
 ] as const;
 
 export const BACKEND_SKILL = [
   {
     skill_name: "Python",
     image: "python.svg",
+    width: 70,
+    height: 70,
+  },
+  {
+    skill_name: "FastAPI",
+    image: "fastapi.svg",
+    width: 70,
+    height: 70,
+  },
+  {
+    skill_name: "Django",
+    image: "django.svg",
     width: 70,
     height: 70,
   },

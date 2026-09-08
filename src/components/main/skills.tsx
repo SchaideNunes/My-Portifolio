@@ -20,7 +20,7 @@ export const Skills = () => {
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-10 w-full max-w-[1200px] z-[20]">
         {/* Frontend */}
-        <div className="relative flex flex-col items-center justify-between gap-3 md:gap-6 p-4 md:p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm group hover:border-purple-500/40 hover:shadow-[0_0_25px_rgba(168,85,247,0.15)] transition-all duration-300 overflow-hidden">
+        <div className="relative flex flex-col items-center justify-between gap-3 md:gap-6 p-4 md:p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm group/card hover:border-purple-500/40 hover:shadow-[0_0_25px_rgba(168,85,247,0.2)] transition-all duration-300 overflow-hidden">
           {/* Masked Spinning Border */}
           <div 
             className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none"
@@ -31,7 +31,7 @@ export const Skills = () => {
               padding: "1.5px"
             }}
           >
-            <div className="absolute inset-[-100%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_60%,#a855f7_90%,#c084fc_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-[-100%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_60%,#a855f7_90%,#c084fc_100%)] opacity-70 group-hover/card:opacity-100 transition-opacity duration-500" />
           </div>
 
           <h3 className="relative z-10 text-sm md:text-xl font-bold text-yellow-500 tracking-[-2%] uppercase">Frontend</h3>
@@ -50,7 +50,7 @@ export const Skills = () => {
         </div>
 
         {/* Backend */}
-        <div className="relative flex flex-col items-center justify-between gap-3 md:gap-6 p-4 md:p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm group hover:border-purple-500/40 hover:shadow-[0_0_25px_rgba(168,85,247,0.15)] transition-all duration-300 overflow-hidden">
+        <div className="relative flex flex-col items-center justify-between gap-3 md:gap-6 p-4 md:p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm group/card hover:border-purple-500/40 hover:shadow-[0_0_25px_rgba(168,85,247,0.2)] transition-all duration-300 overflow-hidden">
           {/* Masked Spinning Border */}
           <div 
             className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none"
@@ -61,7 +61,7 @@ export const Skills = () => {
               padding: "1.5px"
             }}
           >
-            <div className="absolute inset-[-100%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_60%,#a855f7_90%,#c084fc_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-[-100%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_60%,#a855f7_90%,#c084fc_100%)] opacity-70 group-hover/card:opacity-100 transition-opacity duration-500" />
           </div>
 
           <h3 className="relative z-10 text-sm md:text-xl font-bold text-orange-400 tracking-[-2%] uppercase">Backend</h3>
@@ -80,7 +80,7 @@ export const Skills = () => {
         </div>
 
         {/* Cloud */}
-        <div className="relative flex flex-col items-center justify-between gap-3 md:gap-6 p-4 md:p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm group hover:border-purple-500/40 hover:shadow-[0_0_25px_rgba(168,85,247,0.15)] transition-all duration-300 overflow-hidden">
+        <div className="relative flex flex-col items-center justify-between gap-3 md:gap-6 p-4 md:p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm group/card hover:border-purple-500/40 hover:shadow-[0_0_25px_rgba(168,85,247,0.2)] transition-all duration-300 overflow-hidden">
           {/* Masked Spinning Border */}
           <div 
             className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none"
@@ -91,15 +91,15 @@ export const Skills = () => {
               padding: "1.5px"
             }}
           >
-            <div className="absolute inset-[-100%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_60%,#a855f7_90%,#c084fc_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-[-100%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_60%,#a855f7_90%,#c084fc_100%)] opacity-70 group-hover/card:opacity-100 transition-opacity duration-500" />
           </div>
 
           <h3 className="relative z-10 text-sm md:text-xl font-bold text-amber-600 tracking-[-2%] uppercase">Cloud</h3>
           <div className="relative z-10 flex flex-row flex-wrap justify-center items-center gap-2 md:gap-4 flex-1">
             {/* AWS Placeholder as the image is missing */}
-            <div className="relative group flex items-center justify-center cursor-pointer hover:scale-110 transition-all duration-300">
-              <CloudIcon className="w-8 h-8 md:w-12 md:h-12 text-amber-600 drop-shadow-[0_0_2px_rgba(217,119,6,0.3)] group-hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.6)] transition-all duration-300" />
-              <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#000000] border border-purple-500/50 text-white text-[10px] px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50 pointer-events-none shadow-[0_0_10px_rgba(168,85,247,0.2)]">
+            <div className="relative group/skill flex items-center justify-center cursor-pointer hover:scale-110 transition-all duration-300">
+              <CloudIcon className="w-8 h-8 md:w-12 md:h-12 text-amber-600 drop-shadow-[0_0_2px_rgba(217,119,6,0.3)] group-hover/skill:drop-shadow-[0_0_8px_rgba(168,85,247,0.6)] transition-all duration-300" />
+              <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#000000] border border-purple-500/50 text-white text-[10px] px-2 py-1 rounded-md opacity-0 group-hover/skill:opacity-100 transition-opacity whitespace-nowrap z-50 pointer-events-none shadow-[0_0_10px_rgba(168,85,247,0.2)]">
                 AWS
               </span>
             </div>
@@ -117,7 +117,7 @@ export const Skills = () => {
         </div>
 
         {/* Database */}
-        <div className="relative flex flex-col items-center justify-between gap-3 md:gap-6 p-4 md:p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm group hover:border-purple-500/40 hover:shadow-[0_0_25px_rgba(168,85,247,0.15)] transition-all duration-300 overflow-hidden">
+        <div className="relative flex flex-col items-center justify-between gap-3 md:gap-6 p-4 md:p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm group/card hover:border-purple-500/40 hover:shadow-[0_0_25px_rgba(168,85,247,0.2)] transition-all duration-300 overflow-hidden">
           {/* Masked Spinning Border */}
           <div 
             className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none"
@@ -128,7 +128,7 @@ export const Skills = () => {
               padding: "1.5px"
             }}
           >
-            <div className="absolute inset-[-100%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_60%,#a855f7_90%,#c084fc_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-[-100%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_60%,#a855f7_90%,#c084fc_100%)] opacity-70 group-hover/card:opacity-100 transition-opacity duration-500" />
           </div>
 
           <h3 className="relative z-10 text-sm md:text-xl font-bold text-yellow-600 tracking-[-2%] uppercase">Database</h3>

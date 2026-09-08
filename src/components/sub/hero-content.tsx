@@ -17,7 +17,7 @@ import { TRANSLATIONS } from "@/constants/translations";
 gsap.registerPlugin(TextPlugin);
 
 export const HeroContent = () => {
-  const { lang } = useLang();
+  const { lang, setLang } = useLang();
   const [copied, setCopied] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const textRef = useRef<HTMLSpanElement>(null);
@@ -157,31 +157,47 @@ export const HeroContent = () => {
               </span>
             </a>
             <div className="w-[1px] bg-white/10 my-2" />
-            <div className="flex items-center px-2.5 gap-1 text-xs font-mono">
+            <div className="flex items-center px-2 gap-1 text-xs font-mono">
               <a
                 href="/Curriculo_Schaide_Nunes_2026.pdf"
                 download="Curriculo_Schaide_Nunes_2026.pdf"
                 title="Download em Português"
-                className={`px-1.5 py-1 rounded transition-colors ${
+                onClick={() => setLang("PT")}
+                className={`relative px-2 py-1 rounded-md transition-colors duration-200 z-10 ${
                   lang === "PT"
-                    ? "bg-[#f59e0b]/20 text-amber-400 font-bold"
+                    ? "text-amber-400 font-bold"
                     : "text-gray-400 hover:text-white"
                 }`}
               >
                 PT
+                {lang === "PT" && (
+                  <motion.div
+                    layoutId="activeResumeBadge"
+                    className="absolute inset-0 rounded-md bg-[#f59e0b]/20 border border-[#f59e0b]/40 shadow-[0_0_8px_rgba(245,158,11,0.25)] -z-10"
+                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                  />
+                )}
               </a>
               <span className="text-gray-600">/</span>
               <a
                 href="/Resume_Schaide_Nunes_2026.pdf"
                 download="Resume_Schaide_Nunes_2026.pdf"
                 title="Download in English"
-                className={`px-1.5 py-1 rounded transition-colors ${
+                onClick={() => setLang("EN")}
+                className={`relative px-2 py-1 rounded-md transition-colors duration-200 z-10 ${
                   lang === "EN"
-                    ? "bg-[#f59e0b]/20 text-amber-400 font-bold"
+                    ? "text-amber-400 font-bold"
                     : "text-gray-400 hover:text-white"
                 }`}
               >
                 EN
+                {lang === "EN" && (
+                  <motion.div
+                    layoutId="activeResumeBadge"
+                    className="absolute inset-0 rounded-md bg-[#f59e0b]/20 border border-[#f59e0b]/40 shadow-[0_0_8px_rgba(245,158,11,0.25)] -z-10"
+                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                  />
+                )}
               </a>
             </div>
           </div>

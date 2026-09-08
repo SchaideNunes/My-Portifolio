@@ -79,20 +79,39 @@ export const Navbar = () => {
                 <Icon className="h-6 w-6 text-white hover:text-[#f59e0b] transition-colors" />
               </Link>
             ))}
-            <div className="w-[1px] h-6 bg-white/20 ml-2 mr-1" />
-            <div className="flex items-center gap-2 text-sm font-medium">
-              <button 
-                onClick={() => setLang('PT')} 
-                className={`transition-colors ${lang === 'PT' ? 'text-[#f59e0b]' : 'text-gray-400 hover:text-white'}`}
+            <div className="w-[1px] h-5 bg-white/15 ml-1 mr-1" />
+            <div className="relative flex items-center p-0.5 rounded-full bg-[#030014]/60 border border-white/10 backdrop-blur-md shadow-inner">
+              <button
+                onClick={() => setLang("PT")}
+                className={`relative px-2.5 py-1 text-xs font-semibold tracking-wide transition-colors duration-200 z-10 ${
+                  lang === "PT" ? "text-amber-400" : "text-gray-400 hover:text-gray-200"
+                }`}
+                aria-label="Selecionar Português"
               >
                 PT
+                {lang === "PT" && (
+                  <motion.div
+                    layoutId="activeLangNav"
+                    className="absolute inset-0 rounded-full bg-[#f59e0b]/15 border border-[#f59e0b]/40 shadow-[0_0_10px_rgba(245,158,11,0.25)] -z-10"
+                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                  />
+                )}
               </button>
-              <span className="text-gray-600">/</span>
-              <button 
-                onClick={() => setLang('EN')} 
-                className={`transition-colors ${lang === 'EN' ? 'text-[#f59e0b]' : 'text-gray-400 hover:text-white'}`}
+              <button
+                onClick={() => setLang("EN")}
+                className={`relative px-2.5 py-1 text-xs font-semibold tracking-wide transition-colors duration-200 z-10 ${
+                  lang === "EN" ? "text-amber-400" : "text-gray-400 hover:text-gray-200"
+                }`}
+                aria-label="Select English"
               >
                 EN
+                {lang === "EN" && (
+                  <motion.div
+                    layoutId="activeLangNav"
+                    className="absolute inset-0 rounded-full bg-[#f59e0b]/15 border border-[#f59e0b]/40 shadow-[0_0_10px_rgba(245,158,11,0.25)] -z-10"
+                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                  />
+                )}
               </button>
             </div>
           </div>
@@ -226,23 +245,40 @@ export const Navbar = () => {
 
             {/* Language Toggle Mobile */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.7 }}
+              initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5 }}
-              className="flex items-center gap-3 text-lg font-medium mt-2"
+              className="relative flex items-center p-1 rounded-full bg-[#030014]/70 border border-white/10 backdrop-blur-md mt-2 shadow-lg shadow-[#030014]/60"
             >
               <button 
                 onClick={() => { setLang('PT'); setIsMobileMenuOpen(false); }} 
-                className={`transition-colors ${lang === 'PT' ? 'text-[#f59e0b]' : 'text-gray-400 hover:text-white'}`}
+                className={`relative px-4 py-1.5 text-sm font-semibold tracking-wide transition-colors duration-200 z-10 ${
+                  lang === 'PT' ? 'text-amber-400' : 'text-gray-400 hover:text-white'
+                }`}
               >
-                PT
+                Português (PT)
+                {lang === 'PT' && (
+                  <motion.div
+                    layoutId="activeLangMobile"
+                    className="absolute inset-0 rounded-full bg-[#f59e0b]/15 border border-[#f59e0b]/40 shadow-[0_0_12px_rgba(245,158,11,0.3)] -z-10"
+                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                  />
+                )}
               </button>
-              <span className="text-gray-600">/</span>
               <button 
                 onClick={() => { setLang('EN'); setIsMobileMenuOpen(false); }} 
-                className={`transition-colors ${lang === 'EN' ? 'text-[#f59e0b]' : 'text-gray-400 hover:text-white'}`}
+                className={`relative px-4 py-1.5 text-sm font-semibold tracking-wide transition-colors duration-200 z-10 ${
+                  lang === 'EN' ? 'text-amber-400' : 'text-gray-400 hover:text-white'
+                }`}
               >
-                EN
+                English (EN)
+                {lang === 'EN' && (
+                  <motion.div
+                    layoutId="activeLangMobile"
+                    className="absolute inset-0 rounded-full bg-[#f59e0b]/15 border border-[#f59e0b]/40 shadow-[0_0_12px_rgba(245,158,11,0.3)] -z-10"
+                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                  />
+                )}
               </button>
             </motion.div>
 

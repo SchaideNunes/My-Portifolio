@@ -18,8 +18,15 @@ export const LangProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     setMounted(true);
     const savedLang = localStorage.getItem("lang") as Language;
-    if (savedLang) {
+    if (savedLang && (savedLang === "EN" || savedLang === "PT")) {
       setLang(savedLang);
+    } else {
+      const browserLang = typeof navigator !== "undefined" ? (navigator.language || "").toLowerCase() : "";
+      if (browserLang.startsWith("pt")) {
+        setLang("PT");
+      } else {
+        setLang("EN");
+      }
     }
   }, []);
 

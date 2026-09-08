@@ -145,16 +145,46 @@ export const HeroContent = () => {
             </span>
           </button>
 
-          <a
-            href="/Curriculo_Schaide_Nunes_2026.pdf"
-            download="Curriculo_Schaide_Nunes_2026.pdf"
-            className="flex items-center gap-3 px-5 py-3.5 rounded-xl bg-[#0300145e] hover:bg-[#f59e0b]/10 backdrop-blur-md transition-all text-gray-300 hover:text-white group border border-white/10 hover:border-[#f59e0b]/40 shadow-lg shadow-[#030014]/50"
-          >
-            <ArrowDownTrayIcon className="w-5 h-5 text-amber-500 group-hover:scale-110 transition-transform" />
-            <span className="font-mono text-sm sm:text-base tracking-wide">
-              {TRANSLATIONS[lang].hero.downloadCV}
-            </span>
-          </a>
+          <div className="inline-flex items-stretch rounded-xl bg-[#0300145e] backdrop-blur-md border border-white/10 hover:border-[#f59e0b]/40 shadow-lg shadow-[#030014]/50 transition-all group overflow-hidden">
+            <a
+              href={lang === "PT" ? "/Curriculo_Schaide_Nunes_2026.pdf" : "/Resume_Schaide_Nunes_2026.pdf"}
+              download={lang === "PT" ? "Curriculo_Schaide_Nunes_2026.pdf" : "Resume_Schaide_Nunes_2026.pdf"}
+              className="flex items-center gap-3 px-5 py-3.5 hover:bg-[#f59e0b]/10 text-gray-300 hover:text-white transition-all"
+            >
+              <ArrowDownTrayIcon className="w-5 h-5 text-amber-500 group-hover:scale-110 transition-transform" />
+              <span className="font-mono text-sm sm:text-base tracking-wide">
+                {TRANSLATIONS[lang].hero.downloadCV}
+              </span>
+            </a>
+            <div className="w-[1px] bg-white/10 my-2" />
+            <div className="flex items-center px-2.5 gap-1 text-xs font-mono">
+              <a
+                href="/Curriculo_Schaide_Nunes_2026.pdf"
+                download="Curriculo_Schaide_Nunes_2026.pdf"
+                title="Download em Português"
+                className={`px-1.5 py-1 rounded transition-colors ${
+                  lang === "PT"
+                    ? "bg-[#f59e0b]/20 text-amber-400 font-bold"
+                    : "text-gray-400 hover:text-white"
+                }`}
+              >
+                PT
+              </a>
+              <span className="text-gray-600">/</span>
+              <a
+                href="/Resume_Schaide_Nunes_2026.pdf"
+                download="Resume_Schaide_Nunes_2026.pdf"
+                title="Download in English"
+                className={`px-1.5 py-1 rounded transition-colors ${
+                  lang === "EN"
+                    ? "bg-[#f59e0b]/20 text-amber-400 font-bold"
+                    : "text-gray-400 hover:text-white"
+                }`}
+              >
+                EN
+              </a>
+            </div>
+          </div>
         </motion.div>
       </div>
     </motion.div>

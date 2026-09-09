@@ -6,7 +6,6 @@ import { useRef } from "react";
 import { TESTIMONIALS } from "@/constants";
 import { TRANSLATIONS } from "@/constants/translations";
 import { useLang } from "@/lib/lang-context";
-import { SparklesIcon } from "@heroicons/react/24/solid";
 
 const INTERESTS = [
   { title: "Games", image: "/images/about/SetupEldenring.webp", color: "#f59e0b" },

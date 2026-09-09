@@ -5,7 +5,6 @@ import { Image } from "@/components/ui/image";
 import { PROJECTS } from "@/constants";
 import { TRANSLATIONS } from "@/constants/translations";
 import { useLang } from "@/lib/lang-context";
-import { SparklesIcon } from "@heroicons/react/24/solid";
 
 export default function WorkPage() {
   const { lang } = useLang();
@@ -13,14 +12,6 @@ export default function WorkPage() {
   return (
     <main className="h-full w-full pt-32 px-[10%] md:px-20 mb-20 flex flex-col gap-16">
       <section className="flex flex-col gap-6">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="Welcome-box py-[8px] px-[7px] border border-[#f59e0b8b] w-fit"
-        >
-          <SparklesIcon className="text-[#fbbf24] mr-[10px] h-5 w-5" />
-          <h1 className="Welcome-text text-[13px]">{TRANSLATIONS[lang].work.tag}</h1>
-        </motion.div>
 
         <motion.h2
           initial={{ opacity: 0, x: -50 }}

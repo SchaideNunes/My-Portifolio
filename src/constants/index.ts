@@ -87,6 +87,12 @@ export const BACKEND_SKILL = [
     height: 70,
   },
   {
+    skill_name: "Express",
+    image: "express.svg",
+    width: 70,
+    height: 70,
+  },
+  {
     skill_name: "Python",
     image: "python.svg",
     width: 70,

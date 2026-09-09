@@ -35,6 +35,21 @@ export const Link: React.FC<LinkProps> = ({
     );
   }
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    props.onClick?.(e);
+    if (!e.defaultPrevented && typeof window !== "undefined") {
+      const currentPath = window.location.pathname;
+      if (urlString === currentPath) {
+        const lenis = (window as any).__lenis;
+        if (lenis) {
+          lenis.scrollTo(0, { immediate: false });
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      }
+    }
+  };
+
   return (
     <RouterLink
       to={urlString}
@@ -43,6 +58,7 @@ export const Link: React.FC<LinkProps> = ({
       target={target}
       rel={rel}
       replace={replace}
+      onClick={handleClick}
       {...(props as Omit<RouterLinkProps, "to">)}
     >
       {children}

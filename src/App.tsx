@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Footer } from "@/components/main/footer";
 import { Navbar } from "@/components/main/navbar";
 import { Preloader } from "@/components/main/preloader";
+import { ScrollToTop } from "@/components/main/scroll-to-top";
 import { SmoothScroll } from "@/components/main/smooth-scroll";
 import { StarsCanvas } from "@/components/main/star-background";
 import { LangProvider } from "@/lib/lang-context";
@@ -17,6 +18,7 @@ export const App: React.FC = () => {
     <BrowserRouter>
       <LangProvider>
         <SmoothScroll>
+          <ScrollToTop />
           <Preloader />
           <StarsCanvas />
           <Navbar />

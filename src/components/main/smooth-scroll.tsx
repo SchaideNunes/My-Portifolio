@@ -13,6 +13,10 @@ export const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
       touchMultiplier: 2,
     });
 
+    if (typeof window !== "undefined") {
+      (window as any).__lenis = lenis;
+    }
+
     const handlePreloaderComplete = () => {
       lenis.start();
     };
@@ -34,6 +38,9 @@ export const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
       lenis.destroy();
       cancelAnimationFrame(rafId);
       window.removeEventListener("preloaderComplete", handlePreloaderComplete);
+      if (typeof window !== "undefined") {
+        delete (window as any).__lenis;
+      }
     };
   }, []);
 

@@ -243,39 +243,41 @@ export const Navbar = () => {
               ))}
             </div>
 
-            {/* Language Toggle Mobile */}
+            {/* Language Toggle Mobile - Compact & Proportionate */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.5 }}
-              className="relative flex items-center p-1 rounded-full bg-[#030014]/70 border border-white/10 backdrop-blur-md mt-2 shadow-lg shadow-[#030014]/60"
+              transition={{ delay: 0.4 }}
+              className="relative flex items-center p-0.5 rounded-full bg-[#030014]/80 border border-white/10 backdrop-blur-md shadow-md"
             >
               <button 
                 onClick={() => { setLang('PT'); setIsMobileMenuOpen(false); }} 
-                className={`relative px-4 py-1.5 text-sm font-semibold tracking-wide transition-colors duration-200 z-10 ${
-                  lang === 'PT' ? 'text-amber-400' : 'text-gray-400 hover:text-white'
+                className={`relative px-3 py-1 text-xs font-bold tracking-wider transition-colors duration-200 z-10 ${
+                  lang === 'PT' ? 'text-amber-400' : 'text-gray-400 hover:text-gray-200'
                 }`}
+                aria-label="Selecionar Português"
               >
-                Português (PT)
+                PT
                 {lang === 'PT' && (
                   <motion.div
                     layoutId="activeLangMobile"
-                    className="absolute inset-0 rounded-full bg-[#f59e0b]/15 border border-[#f59e0b]/40 shadow-[0_0_12px_rgba(245,158,11,0.3)] -z-10"
+                    className="absolute inset-0 rounded-full bg-[#f59e0b]/20 border border-[#f59e0b]/50 shadow-[0_0_10px_rgba(245,158,11,0.3)] -z-10"
                     transition={{ type: "spring", stiffness: 400, damping: 32 }}
                   />
                 )}
               </button>
               <button 
                 onClick={() => { setLang('EN'); setIsMobileMenuOpen(false); }} 
-                className={`relative px-4 py-1.5 text-sm font-semibold tracking-wide transition-colors duration-200 z-10 ${
-                  lang === 'EN' ? 'text-amber-400' : 'text-gray-400 hover:text-white'
+                className={`relative px-3 py-1 text-xs font-bold tracking-wider transition-colors duration-200 z-10 ${
+                  lang === 'EN' ? 'text-amber-400' : 'text-gray-400 hover:text-gray-200'
                 }`}
+                aria-label="Select English"
               >
-                English (EN)
+                EN
                 {lang === 'EN' && (
                   <motion.div
                     layoutId="activeLangMobile"
-                    className="absolute inset-0 rounded-full bg-[#f59e0b]/15 border border-[#f59e0b]/40 shadow-[0_0_12px_rgba(245,158,11,0.3)] -z-10"
+                    className="absolute inset-0 rounded-full bg-[#f59e0b]/20 border border-[#f59e0b]/50 shadow-[0_0_10px_rgba(245,158,11,0.3)] -z-10"
                     transition={{ type: "spring", stiffness: 400, damping: 32 }}
                   />
                 )}

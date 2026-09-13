@@ -166,12 +166,12 @@ export const PROJECTS = {
       title: "Barbearia Atual Estilo",
       timeframe: "2025",
       discipline: "Desenvolvimento Full Stack",
-      tools: "HTML, CSS, JS, DB",
+      tools: "React, PHP, SQL",
       industry: "Serviços / Beleza",
-      tags: ["HTML", "CSS", "JavaScript", "Banco de Dados"],
+      tags: ["React", "PHP", "SQL", "Full Stack"],
       description:
         "Uma plataforma web completa de agendamentos para barbearia, focada em performance, interface moderna e UX fluida para clientes e administradores.",
-      technologies: ["HTML", "CSS", "JavaScript", "Banco de Dados"],
+      technologies: ["React", "PHP", "SQL", "Full Stack"],
       image: "/images/projects/AtualEstilo.webp",
       link: "https://atualestilo.com/",
       color: "#0a0a0a", // Dark space theme
@@ -204,12 +204,12 @@ export const PROJECTS = {
       title: "Atual Estilo Barbershop",
       timeframe: "2025",
       discipline: "Full Stack Development",
-      tools: "HTML, CSS, JS, DB",
+      tools: "React, PHP, SQL",
       industry: "Service / Grooming",
-      tags: ["HTML", "CSS", "JavaScript", "Database"],
+      tags: ["React", "PHP", "SQL", "Full Stack"],
       description:
         "A complete web platform for barbershop appointments, focused on performance, modern interface, and smooth UX for clients and administrators.",
-      technologies: ["HTML", "CSS", "JavaScript", "Database"],
+      technologies: ["React", "PHP", "SQL", "Full Stack"],
       image: "/images/projects/AtualEstilo.webp",
       link: "https://atualestilo.com/",
       color: "#0a0a0a", // Dark space theme

@@ -166,12 +166,12 @@ export const PROJECTS = {
       title: "Barbearia Atual Estilo",
       timeframe: "2025",
       discipline: "Desenvolvimento Full Stack",
-      tools: "HTML, CSS, JS, DB",
+      tools: "React, PHP, SQL",
       industry: "Serviços / Beleza",
-      tags: ["HTML", "CSS", "JavaScript", "Banco de Dados"],
+      tags: ["React", "PHP", "SQL", "Full Stack"],
       description:
         "Uma plataforma web completa de agendamentos para barbearia, focada em performance, interface moderna e UX fluida para clientes e administradores.",
-      technologies: ["HTML", "CSS", "JavaScript", "Banco de Dados"],
+      technologies: ["React", "PHP", "SQL", "Full Stack"],
       image: "/images/projects/AtualEstilo.webp",
       link: "https://atualestilo.com/",
       color: "#0a0a0a", // Dark space theme
@@ -197,6 +197,20 @@ export const PROJECTS = {
         text: "O portfólio superou minhas expectativas. A forma como as imagens são apresentadas consegue transmitir exatamente a essência e elegância dos meus projetos de arquitetura.",
         author: "Milena Reis"
       }
+    },
+    {
+      title: "Gestão de Ações (CMOC)",
+      timeframe: "2026",
+      discipline: "Aplicativo Corporativo Low-Code",
+      tools: "Power Apps, Power Fx, SharePoint, Power Automate, Teams",
+      industry: "Mineração / Uso Interno",
+      tags: ["Power Apps", "Power Fx", "SharePoint", "Power Automate", "Teams"],
+      description:
+        "App interno que substituiu agendas pessoais e planilhas no controle das pendências da equipe: quadro Kanban, alertas de prazo, ações privadas, histórico de cada alteração e aprovação de mudanças críticas por cartões no Microsoft Teams.",
+      technologies: ["Power Apps", "SharePoint", "Power Automate", "Teams"],
+      image: "/images/projects/GestaoAcoes.svg",
+      link: "", // Ferramenta interna, sem link público
+      color: "#0f0f0f",
     }
   ],
   EN: [
@@ -204,12 +218,12 @@ export const PROJECTS = {
       title: "Atual Estilo Barbershop",
       timeframe: "2025",
       discipline: "Full Stack Development",
-      tools: "HTML, CSS, JS, DB",
+      tools: "React, PHP, SQL",
       industry: "Service / Grooming",
-      tags: ["HTML", "CSS", "JavaScript", "Database"],
+      tags: ["React", "PHP", "SQL", "Full Stack"],
       description:
         "A complete web platform for barbershop appointments, focused on performance, modern interface, and smooth UX for clients and administrators.",
-      technologies: ["HTML", "CSS", "JavaScript", "Database"],
+      technologies: ["React", "PHP", "SQL", "Full Stack"],
       image: "/images/projects/AtualEstilo.webp",
       link: "https://atualestilo.com/",
       color: "#0a0a0a", // Dark space theme
@@ -235,6 +249,20 @@ export const PROJECTS = {
         text: "The portfolio exceeded my expectations. The way the images are presented manages to convey exactly the essence and elegance of my architectural projects.",
         author: "Milena Reis"
       }
+    },
+    {
+      title: "Action Management (CMOC)",
+      timeframe: "2026",
+      discipline: "Low-Code Enterprise App",
+      tools: "Power Apps, Power Fx, SharePoint, Power Automate, Teams",
+      industry: "Mining / Internal Tool",
+      tags: ["Power Apps", "Power Fx", "SharePoint", "Power Automate", "Teams"],
+      description:
+        "Internal app that replaced personal calendars and spreadsheets for tracking team action items: Kanban board, deadline alerts, private actions, a full history of every change, and Microsoft Teams adaptive-card approvals for critical edits.",
+      technologies: ["Power Apps", "SharePoint", "Power Automate", "Teams"],
+      image: "/images/projects/GestaoAcoes.svg",
+      link: "", // Internal tool, no public link
+      color: "#0f0f0f",
     }
   ]
 } as const;

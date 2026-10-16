@@ -10,7 +10,7 @@ import { useLang } from "@/lib/lang-context";
 import { TRANSLATIONS } from "@/constants/translations";
 
 // Componente individual para a linha de projeto
-const ProjectRow = ({ project, index, activeProject, setActiveProject }: any) => {
+const ProjectRow = ({ project, index, activeProject, setActiveProject, lang }: any) => {
   const isActive = activeProject === index;
 
   const toggleProject = () => {
@@ -78,6 +78,11 @@ const ProjectRow = ({ project, index, activeProject, setActiveProject }: any) =>
 
         {/* Right side: Button */}
         <div className="shrink-0 z-10 relative ml-4">
+          {!project.link ? (
+            <span className="flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 text-gray-500 text-[10px] md:text-xs font-bold uppercase tracking-widest">
+              {lang === "PT" ? "Uso interno" : "Internal tool"}
+            </span>
+          ) : (
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -92,6 +97,7 @@ const ProjectRow = ({ project, index, activeProject, setActiveProject }: any) =>
             <ArrowTopRightOnSquareIcon className="w-3.5 h-3.5" />
             Visit website
           </button>
+          )}
         </div>
       </div>
 
@@ -115,8 +121,8 @@ const ProjectRow = ({ project, index, activeProject, setActiveProject }: any) =>
             >
               {/* Clean direct image decreased to 80% size */}
               <div
-                onClick={() => window.open(project.link, "_blank")}
-                className="w-full md:w-[80%] aspect-[16/10] sm:aspect-[16/8] md:aspect-[21/9] max-h-[70vh] relative shrink-0 cursor-pointer group/img overflow-hidden rounded-xl md:rounded-2xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+                onClick={() => project.link && window.open(project.link, "_blank")}
+                className={`w-full md:w-[80%] aspect-[16/10] sm:aspect-[16/8] md:aspect-[21/9] max-h-[70vh] relative shrink-0 ${project.link ? "cursor-pointer" : ""} group/img overflow-hidden rounded-xl md:rounded-2xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)]`}
               >
                 <Image
                   src={project.image}

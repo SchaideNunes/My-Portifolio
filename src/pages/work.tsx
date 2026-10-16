@@ -41,7 +41,7 @@ export default function WorkPage() {
             transition={{ delay: 0.1 * index }}
             className="group cursor-pointer flex flex-col"
           >
-            <a href={project.link} target="_blank" rel="noopener noreferrer" className="block w-full">
+            <a href={project.link || undefined} target={project.link ? "_blank" : undefined} rel="noopener noreferrer" className="block w-full">
               <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-white/[0.02] border border-white/5 mb-6 p-6">
                 <div className="relative w-full h-full">
                   <Image

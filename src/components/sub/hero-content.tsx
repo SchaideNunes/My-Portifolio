@@ -144,16 +144,16 @@ export const HeroContent = () => {
         <motion.div variants={slideInFromLeft(0.9)} className="flex flex-col items-center gap-5 mt-4">
           <div className="flex flex-wrap items-center justify-center gap-3">
             {/* Botão principal com a escolha do idioma do currículo acoplada */}
-            <div className="inline-flex items-stretch rounded-xl bg-amber-500 text-black shadow-[0_0_25px_rgba(245,158,11,0.25)] hover:shadow-[0_0_35px_rgba(245,158,11,0.5)] transition-shadow overflow-hidden">
+            <div className="inline-flex items-stretch rounded-xl border border-amber-500/35 bg-black/40 backdrop-blur-md text-amber-300 hover:border-amber-500/60 transition-colors overflow-hidden">
               <a
                 href={CV_FILES[cvLang]}
                 download={CV_FILES[cvLang].slice(1)}
-                className="group flex items-center gap-2.5 pl-5 pr-4 py-3.5 font-bold hover:bg-amber-400 transition-colors"
+                className="group flex items-center gap-2.5 pl-5 pr-4 py-3 font-semibold hover:bg-amber-500/10 hover:text-amber-200 transition-colors"
               >
                 <ArrowDownTrayIcon className="w-5 h-5 transition-transform group-hover:translate-y-0.5" />
                 {TRANSLATIONS[lang].hero.downloadCV}
               </a>
-              <div className="flex items-center gap-0.5 px-1.5 bg-black/15" role="group" aria-label="PT / EN">
+              <div className="flex items-center gap-0.5 px-1.5 border-l border-amber-500/20" role="group" aria-label="PT / EN">
                 {(["PT", "EN"] as const).map((l) => (
                   <button
                     key={l}
@@ -162,13 +162,13 @@ export const HeroContent = () => {
                     aria-pressed={cvLang === l}
                     title={l === "PT" ? "Currículo em português" : "Resume in English"}
                     className={`relative px-2 py-1 rounded-md text-xs font-bold transition-colors ${
-                      cvLang === l ? "text-amber-400" : "text-black/60 hover:text-black"
+                      cvLang === l ? "text-amber-300" : "text-gray-500 hover:text-gray-300"
                     }`}
                   >
                     {cvLang === l && (
                       <motion.span
                         layoutId="cvLangBadge"
-                        className="absolute inset-0 rounded-md bg-black"
+                        className="absolute inset-0 rounded-md bg-amber-500/15"
                         transition={{ type: "spring", stiffness: 400, damping: 32 }}
                       />
                     )}
@@ -180,7 +180,7 @@ export const HeroContent = () => {
 
             <Link
               to="/work"
-              className="group flex items-center gap-2 px-5 py-3.5 rounded-xl border border-white/15 bg-black/30 backdrop-blur-md text-white font-bold hover:bg-white hover:text-black transition-colors"
+              className="group flex items-center gap-2 px-5 py-3 rounded-xl border border-white/10 bg-black/30 backdrop-blur-md text-gray-300 font-semibold hover:text-white hover:border-white/25 transition-colors"
             >
               {TRANSLATIONS[lang].hero.seeProjects}
               <ArrowRightIcon className="w-4 h-4 transition-transform group-hover:translate-x-1" />

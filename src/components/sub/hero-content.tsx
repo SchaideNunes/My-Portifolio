@@ -23,10 +23,8 @@ const CV_FILES = {
 } as const;
 
 export const HeroContent = () => {
-  const { lang } = useLang();
-  // Idioma do currículo a baixar (começa no idioma do site, mas pode ser trocado só para o download)
-  const [cvLang, setCvLang] = useState<"PT" | "EN">(lang);
-  useEffect(() => setCvLang(lang), [lang]);
+  // O PT/EN do botão de currículo é o mesmo seletor de idioma do header: troca o site todo
+  const { lang, setLang } = useLang();
   const [copied, setCopied] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const textRef = useRef<HTMLSpanElement>(null);
@@ -146,8 +144,8 @@ export const HeroContent = () => {
             {/* Botão principal com a escolha do idioma do currículo acoplada */}
             <div className="inline-flex items-stretch rounded-xl border border-amber-500/35 bg-black/40 backdrop-blur-md text-amber-300 hover:border-amber-500/60 transition-colors overflow-hidden">
               <a
-                href={CV_FILES[cvLang]}
-                download={CV_FILES[cvLang].slice(1)}
+                href={CV_FILES[lang]}
+                download={CV_FILES[lang].slice(1)}
                 className="group flex items-center gap-2.5 pl-5 pr-4 py-3 font-semibold hover:bg-amber-500/10 hover:text-amber-200 transition-colors"
               >
                 <ArrowDownTrayIcon className="w-5 h-5 transition-transform group-hover:translate-y-0.5" />
@@ -158,16 +156,16 @@ export const HeroContent = () => {
                   <button
                     key={l}
                     type="button"
-                    onClick={() => setCvLang(l)}
-                    aria-pressed={cvLang === l}
-                    title={l === "PT" ? "Currículo em português" : "Resume in English"}
+                    onClick={() => setLang(l)}
+                    aria-pressed={lang === l}
+                    title={l === "PT" ? "Português" : "English"}
                     className={`relative px-2 py-1 rounded-md text-xs font-bold transition-colors ${
-                      cvLang === l ? "text-amber-300" : "text-gray-500 hover:text-gray-300"
+                      lang === l ? "text-amber-300" : "text-gray-500 hover:text-gray-300"
                     }`}
                   >
-                    {cvLang === l && (
+                    {lang === l && (
                       <motion.span
-                        layoutId="cvLangBadge"
+                        layoutId="langBadge"
                         className="absolute inset-0 rounded-md bg-amber-500/15"
                         transition={{ type: "spring", stiffness: 400, damping: 32 }}
                       />

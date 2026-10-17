@@ -46,8 +46,12 @@ export const HeroContent = () => {
   useEffect(() => {
     if (!isReady) return;
 
+    // Guarda as animações para limpar de verdade ao trocar de idioma ou sair da página
+    let tl: gsap.core.Timeline | undefined;
+    let cursorTween: gsap.core.Tween | undefined;
+
     const delayGsap = setTimeout(() => {
-      gsap.to(cursorRef.current, {
+      cursorTween = gsap.to(cursorRef.current, {
         opacity: 0,
         ease: "power2.inOut",
         repeat: -1,
@@ -55,11 +59,12 @@ export const HeroContent = () => {
         duration: 0.5,
       });
 
-      const words = ["Software Engineer", "Web Designer", "Full-Stack Developer"];
-      let tl = gsap.timeline({ repeat: -1 });
+      const words = TRANSLATIONS[lang].hero.roles;
+      if (textRef.current) textRef.current.textContent = "";
+      tl = gsap.timeline({ repeat: -1 });
 
       words.forEach((word) => {
-        tl.to(textRef.current, {
+        tl!.to(textRef.current, {
           duration: Math.max(1, word.length * 0.08),
           text: word,
           ease: "none",
@@ -71,14 +76,14 @@ export const HeroContent = () => {
             ease: "none",
           });
       });
-
-      return () => {
-        tl.kill();
-      };
     }, 1000);
 
-    return () => clearTimeout(delayGsap);
-  }, [isReady]);
+    return () => {
+      clearTimeout(delayGsap);
+      tl?.kill();
+      cursorTween?.kill();
+    };
+  }, [isReady, lang]);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText("schaidenunes@gmail.com");
@@ -90,7 +95,7 @@ export const HeroContent = () => {
     <motion.div
       initial="hidden"
       animate={isReady ? "visible" : "hidden"}
-      className="flex flex-col items-center justify-center text-center px-[5%] md:px-10 lg:px-20 pt-40 sm:pt-48 md:pt-56 pb-24 w-full z-[20] min-h-[90vh] max-w-5xl mx-auto"
+      className="flex flex-col items-center justify-center text-center px-[5%] md:px-10 lg:px-20 pt-40 sm:pt-48 md:pt-56 pb-32 w-full z-[20] min-h-[90vh] max-w-5xl mx-auto"
     >
       <div className="w-full flex flex-col gap-6 sm:gap-7 items-center justify-center my-auto">
         {/* HUGE Name Perfeitamente Centralizado */}
@@ -111,7 +116,7 @@ export const HeroContent = () => {
           variants={slideInFromLeft(0.5)}
           className="text-xl sm:text-2xl md:text-3xl font-medium text-gray-300 min-h-[36px] md:min-h-[44px] flex items-center justify-center text-center"
         >
-          <span className="text-white mr-2.5">I am a</span>{" "}
+          <span className="text-white mr-2.5">{TRANSLATIONS[lang].hero.iAm}</span>{" "}
           <span ref={textRef} className="font-semibold text-[#f59e0b]"></span>
           <span ref={cursorRef} className="text-[#f59e0b] ml-[2px]">
             |

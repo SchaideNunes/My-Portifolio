@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import { HeroContent } from "@/components/sub/hero-content";
+import { HeroCosmos, ScrollHint } from "@/components/sub/hero-cosmos";
 
 export const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -25,7 +26,11 @@ export const Hero = () => {
         <source src="/videos/hero_new.webm" type="video/webm" />
       </video>
 
+      {/* Órbitas, estrelas cadentes e chips ao redor do buraco negro */}
+      <HeroCosmos />
+
       <HeroContent />
+      <ScrollHint />
     </div>
   );
 };

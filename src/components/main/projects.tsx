@@ -4,10 +4,18 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Image } from "@/components/ui/image";
 import { PROJECTS } from "@/constants";
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+import { ArrowTopRightOnSquareIcon, CodeBracketIcon } from "@heroicons/react/24/outline";
+import { ProjectGallery } from "@/components/sub/project-gallery";
 
 import { useLang } from "@/lib/lang-context";
 import { TRANSLATIONS } from "@/constants/translations";
+
+// Texto do botão de link: site publicado ou repositório no GitHub
+const linkLabel = (link: string, lang: string) => {
+  const isRepo = link.includes("github.com");
+  if (lang === "PT") return isRepo ? "Ver código" : "Visitar site";
+  return isRepo ? "View code" : "Visit website";
+};
 
 // Componente individual para a linha de projeto
 const ProjectRow = ({ project, index, activeProject, setActiveProject, lang }: any) => {
@@ -94,8 +102,12 @@ const ProjectRow = ({ project, index, activeProject, setActiveProject, lang }: a
                 : "border-white/20 text-white hover:bg-white hover:text-black"
             }`}
           >
-            <ArrowTopRightOnSquareIcon className="w-3.5 h-3.5" />
-            Visit website
+            {project.link.includes("github.com") ? (
+              <CodeBracketIcon className="w-3.5 h-3.5" />
+            ) : (
+              <ArrowTopRightOnSquareIcon className="w-3.5 h-3.5" />
+            )}
+            {linkLabel(project.link, lang)}
           </button>
           )}
         </div>
@@ -117,30 +129,19 @@ const ProjectRow = ({ project, index, activeProject, setActiveProject, lang }: a
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -10, opacity: 0 }}
               transition={{ duration: 0.35, delay: 0.05, ease: "easeOut" }}
-              className="w-full py-8 md:py-10 px-[10%] md:px-10 flex flex-col items-center gap-6"
+              className="w-full py-8 md:py-10 px-[10%] md:px-10"
             >
-              {/* Clean direct image decreased to 80% size */}
-              <div
-                onClick={() => project.link && window.open(project.link, "_blank")}
-                className={`w-full md:w-[80%] aspect-[16/10] sm:aspect-[16/8] md:aspect-[21/9] max-h-[70vh] relative shrink-0 ${project.link ? "cursor-pointer" : ""} group/img overflow-hidden rounded-xl md:rounded-2xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)]`}
-              >
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover object-top transition-transform duration-700 group-hover/img:scale-103"
-                  priority
-                />
-              </div>
+              {/* Galeria à esquerda (tamanho contido) e descrição à direita */}
+              <div className="w-full max-w-6xl mx-auto grid grid-cols-[minmax(0,3fr)_minmax(0,2fr)] gap-10 items-start">
+                <ProjectGallery gallery={project.gallery} title={project.title} link={project.link} lang={lang} />
 
-              {/* Compact Info Bar below image aligned with 80% width */}
-              <div className="w-full md:w-[80%] flex flex-col md:flex-row md:items-center justify-between gap-4 text-white">
-                {project.description && (
-                  <p className="text-sm md:text-base text-gray-400 max-w-3xl leading-relaxed">
-                    {project.description}
-                  </p>
-                )}
-                <div className="flex flex-wrap gap-2 shrink-0">
+                <div className="flex flex-col gap-6 pt-12 text-white">
+                  {project.description && (
+                    <p className="text-base text-gray-400 leading-relaxed">
+                      {project.description}
+                    </p>
+                  )}
+                  <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag: string, idx: number) => (
                     <span
                       key={idx}
@@ -149,6 +150,7 @@ const ProjectRow = ({ project, index, activeProject, setActiveProject, lang }: a
                       {tag}
                     </span>
                   ))}
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -230,14 +232,15 @@ export const Projects = () => {
         </div>
       </div>
 
-      {/* MOBILE VIEW: Leave as before (only image and card without dropdown) */}
+      {/* MOBILE VIEW: cards com a mesma galeria (desktop/mobile + lightbox) */}
       <div className="flex lg:hidden w-full px-[10%] flex-col gap-10 mt-10">
         {PROJECTS[lang].map((project, index) => (
           <div key={index} className="flex flex-col gap-4 bg-white/[0.03] border border-white/10 rounded-2xl p-4">
-            <div className="w-full aspect-[4/3] relative rounded-xl overflow-hidden bg-black">
-              <Image src={project.image} alt={project.title} fill className="object-cover" />
+            <ProjectGallery gallery={project.gallery} title={project.title} link={project.link} lang={lang} />
+            <div className="flex items-baseline justify-between gap-3">
+              <h3 className="text-2xl font-bold text-white">{project.title}</h3>
+              <span className="text-xs font-mono text-amber-500 shrink-0">{project.timeframe}</span>
             </div>
-            <h3 className="text-2xl font-bold text-white">{project.title}</h3>
             <p className="text-gray-400 text-sm">{project.description}</p>
             <div className="flex flex-wrap gap-2">
               {project.tags.map((tag: string, idx: number) => (
@@ -246,6 +249,21 @@ export const Projects = () => {
                 </span>
               ))}
             </div>
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 mt-1 px-4 py-2.5 rounded-lg border border-amber-500/40 text-amber-400 text-xs font-bold uppercase tracking-widest hover:bg-amber-500 hover:text-black transition-colors"
+              >
+                {project.link.includes("github.com") ? (
+                  <CodeBracketIcon className="w-4 h-4" />
+                ) : (
+                  <ArrowTopRightOnSquareIcon className="w-4 h-4" />
+                )}
+                {linkLabel(project.link, lang)}
+              </a>
+            )}
           </div>
         ))}
       </div>

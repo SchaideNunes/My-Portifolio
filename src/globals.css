@@ -65,3 +65,10 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Brilho que percorre o título da página de projetos */
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}

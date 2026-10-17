@@ -31,6 +31,8 @@ export const SOCIALS = [
 export type ProjectGallery = {
   desktop: string[];
   mobile: string[];
+  // Caminho base sem extensão: o player usa <base>.webm, <base>.mp4 e <base>.webp (poster)
+  video?: { desktop: string; mobile?: string };
 };
 
 // Monta os caminhos das capturas em /public/images/projects/<slug>/
@@ -39,13 +41,19 @@ const gallery = (slug: string, desktop: number, mobile: number): ProjectGallery 
   mobile: Array.from({ length: mobile }, (_, i) => `/images/projects/${slug}/mobile-${i + 1}.webp`),
 });
 
+// Vídeos curtos (até 6s) em /public/videos/projects/<slug>/{desktop,mobile}.{webm,mp4,webp}
+const video = (slug: string) => ({
+  desktop: `/videos/projects/${slug}/desktop`,
+  mobile: `/videos/projects/${slug}/mobile`,
+});
+
 const GALLERIES = {
-  atualEstilo: gallery("atual-estilo", 4, 3),
-  milena: gallery("milena-reis", 6, 3),
-  flowZap: gallery("flow-zap", 6, 4),
-  clubMaravilha: gallery("club-maravilha", 5, 3),
-  acaiCardapio: gallery("acai-cardapio", 3, 3),
-  acaiLanding: gallery("acai-landing", 6, 3),
+  atualEstilo: { ...gallery("atual-estilo", 4, 3), video: video("atual-estilo") },
+  milena: { ...gallery("milena-reis", 6, 3), video: video("milena-reis") },
+  flowZap: { ...gallery("flow-zap", 6, 4), video: video("flow-zap") },
+  clubMaravilha: { ...gallery("club-maravilha", 5, 3), video: video("club-maravilha") },
+  acaiCardapio: { ...gallery("acai-cardapio", 3, 3), video: video("acai-cardapio") },
+  acaiLanding: { ...gallery("acai-landing", 6, 3), video: video("acai-landing") },
   gestaoAcoes: { desktop: ["/images/projects/GestaoAcoes.svg"], mobile: [] },
 };
 

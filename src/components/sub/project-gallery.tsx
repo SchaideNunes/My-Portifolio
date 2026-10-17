@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -31,6 +31,123 @@ const hostFrom = (link: string) => {
   } catch {
     return "";
   }
+};
+
+// Trava o scroll da página (inclusive o Lenis) e fecha com Esc enquanto um overlay está aberto
+const useOverlayLock = (onKey: (e: KeyboardEvent) => void) => {
+  useEffect(() => {
+    window.addEventListener("keydown", onKey);
+    const lenis = (window as any).__lenis;
+    lenis?.stop();
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      lenis?.start();
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [onKey]);
+};
+
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ------------------------------------------------------------------ */
+/* Vídeo do projeto: toca em loop só enquanto está visível na tela      */
+/* ------------------------------------------------------------------ */
+const ProjectVideo = ({ src, title, className = "" }: { src: string; title: string; className?: string }) => {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [reduced] = useState(prefersReducedMotion);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || reduced) return;
+    el.muted = true;
+    const observer = new IntersectionObserver(
+      ([entry]) => (entry.isIntersecting ? el.play().catch(() => {}) : el.pause()),
+      { threshold: 0.25 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [reduced]);
+
+  return (
+    <video
+      ref={ref}
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      poster={`${src}.webp`}
+      controls={reduced}
+      aria-label={title}
+      className={className}
+    >
+      <source src={`${src}.webm`} type="video/webm" />
+      <source src={`${src}.mp4`} type="video/mp4" />
+    </video>
+  );
+};
+
+const VideoLightbox = ({ src, mode, title, lang, onClose }: { src: string; mode: Mode; title: string; lang: Lang; onClose: () => void }) => {
+  const t = LABELS[lang];
+  const onKey = useCallback((e: KeyboardEvent) => e.key === "Escape" && onClose(), [onClose]);
+  useOverlayLock(onKey);
+
+  return createPortal(
+    <motion.div
+      role="dialog"
+      aria-modal="true"
+      aria-label={title}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      className="fixed inset-0 z-[1000] flex flex-col bg-black/90 backdrop-blur-md"
+      onClick={onClose}
+    >
+      <div className="flex items-center justify-between px-4 sm:px-8 py-4 text-white" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center gap-3 min-w-0">
+          {mode === "desktop" ? (
+            <ComputerDesktopIcon className="w-5 h-5 text-amber-400 shrink-0" />
+          ) : (
+            <DevicePhoneMobileIcon className="w-5 h-5 text-amber-400 shrink-0" />
+          )}
+          <span className="font-medium truncate">{title}</span>
+        </div>
+        <button
+          onClick={onClose}
+          aria-label={t.close}
+          className="p-2 rounded-full border border-white/15 hover:bg-white hover:text-black transition-colors"
+        >
+          <XMarkIcon className="w-5 h-5" />
+        </button>
+      </div>
+
+      <div className="flex-1 min-h-0 flex items-center justify-center px-4 sm:px-20 pb-8">
+        <motion.video
+          initial={{ scale: 0.96, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          autoPlay
+          muted
+          loop
+          playsInline
+          controls
+          poster={`${src}.webp`}
+          onClick={(e) => e.stopPropagation()}
+          className={`max-w-full max-h-full object-contain shadow-[0_20px_60px_rgba(0,0,0,0.6)] ${
+            mode === "mobile" ? "rounded-[28px] border-4 border-neutral-800" : "rounded-lg"
+          }`}
+        >
+          <source src={`${src}.webm`} type="video/webm" />
+          <source src={`${src}.mp4`} type="video/mp4" />
+        </motion.video>
+      </div>
+    </motion.div>,
+    document.body,
+  );
 };
 
 /* ------------------------------------------------------------------ */
@@ -64,26 +181,15 @@ export const Lightbox = ({
     [index, images.length, onChange],
   );
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
+  const onKey = useCallback(
+    (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
       if (e.key === "ArrowRight") go(1);
       if (e.key === "ArrowLeft") go(-1);
-    };
-    window.addEventListener("keydown", onKey);
-
-    // Trava o scroll da página (inclusive o Lenis) enquanto o lightbox está aberto
-    const lenis = (window as any).__lenis;
-    lenis?.stop();
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      lenis?.start();
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [go, onClose]);
+    },
+    [go, onClose],
+  );
+  useOverlayLock(onKey);
 
   return createPortal(
     <motion.div
@@ -212,7 +318,9 @@ export const ProjectGallery = ({
   lang: Lang;
 }) => {
   const t = LABELS[lang];
-  const hasMobile = gallery.mobile.length > 0;
+  const video = gallery.video;
+  const videoSrc = video ? (mode: Mode) => (mode === "mobile" ? video.mobile : video.desktop) : undefined;
+  const hasMobile = video ? !!video.mobile : gallery.mobile.length > 0;
   const [mode, setMode] = useState<Mode>("desktop");
   const [index, setIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -257,7 +365,7 @@ export const ProjectGallery = ({
                 )}
                 <Icon className="relative w-4 h-4" />
                 <span className="relative">{t[m]}</span>
-                <span className="relative tabular-nums opacity-70">{gallery[m].length}</span>
+                {!video && <span className="relative tabular-nums opacity-70">{gallery[m].length}</span>}
               </button>
             );
           })}
@@ -295,6 +403,15 @@ export const ProjectGallery = ({
                 </div>
               </div>
 
+              {video ? (
+                <button
+                  onClick={() => setLightboxOpen(true)}
+                  aria-label={`${t.expand}: ${title}`}
+                  className="relative block w-full aspect-[16/10] overflow-hidden cursor-zoom-in bg-black"
+                >
+                  <ProjectVideo src={video.desktop} title={title} className="absolute inset-0 w-full h-full object-cover object-top" />
+                </button>
+              ) : (
               <button
                 onClick={() => openAt(index)}
                 aria-label={`${t.expand}: ${title}`}
@@ -346,10 +463,11 @@ export const ProjectGallery = ({
                   </>
                 )}
               </button>
+              )}
             </div>
 
             {/* Miniaturas */}
-            {images.length > 1 && (
+            {!video && images.length > 1 && (
               <div className="flex gap-2 overflow-x-auto pb-1">
                 {images.map((src, i) => (
                   <button
@@ -375,8 +493,22 @@ export const ProjectGallery = ({
             transition={{ duration: 0.25 }}
             className="flex gap-4 md:gap-5 overflow-x-auto snap-x snap-mandatory pb-2 md:justify-center"
           >
+            {/* Vídeo numa moldura de celular única */}
+            {video?.mobile && (
+              <button
+                onClick={() => setLightboxOpen(true)}
+                aria-label={`${t.expand}: ${title} — ${t.mobile}`}
+                className="shrink-0 mx-auto w-[56%] sm:w-[220px] md:w-[200px] p-2 rounded-[30px] bg-neutral-900 border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)] cursor-zoom-in"
+              >
+                <div className="relative overflow-hidden rounded-[22px] aspect-[390/844] bg-black">
+                  <span className="absolute top-1 left-1/2 -translate-x-1/2 w-9 h-2.5 rounded-full bg-black/90 z-10" />
+                  <ProjectVideo src={video.mobile} title={`${title} — ${t.mobile}`} className="w-full h-full object-cover object-top" />
+                </div>
+              </button>
+            )}
+
             {/* Molduras de celular lado a lado */}
-            {gallery.mobile.map((src, i) => (
+            {!video && gallery.mobile.map((src, i) => (
               <button
                 key={src}
                 onClick={() => openAt(i)}
@@ -399,7 +531,10 @@ export const ProjectGallery = ({
       </AnimatePresence>
 
       <AnimatePresence>
-        {lightboxOpen && (
+        {lightboxOpen && videoSrc?.(mode) && (
+          <VideoLightbox src={videoSrc(mode)!} mode={mode} title={title} lang={lang} onClose={() => setLightboxOpen(false)} />
+        )}
+        {lightboxOpen && !video && (
           <Lightbox
             images={images}
             index={Math.min(index, images.length - 1)}

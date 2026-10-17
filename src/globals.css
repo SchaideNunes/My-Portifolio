@@ -78,12 +78,3 @@ html {
   }
 }
 
-/* Órbitas da seção Habilidades: pausam no hover e respeitam "reduzir movimento" */
-.orbit-system:hover .orbit-anim {
-  animation-play-state: paused !important;
-}
-@media (prefers-reduced-motion: reduce) {
-  .orbit-anim {
-    animation: none !important;
-  }
-}

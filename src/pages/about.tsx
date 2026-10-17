@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import {
   ArrowDownTrayIcon,
   ArrowRightIcon,
@@ -18,55 +18,75 @@ import { useLang } from "@/lib/lang-context";
 
 type Lang = "PT" | "EN";
 
-// Fotos do "O que eu amo": span define o tamanho no mosaico
-const INTERESTS = [
-  { label: { PT: "Games", EN: "Games" }, image: "/images/about/SetupEldenring.webp", span: "col-span-2 row-span-2" },
-  { label: { PT: "Música", EN: "Music" }, image: "/images/about/ShowGuns.webp", span: "row-span-2" },
-  { label: { PT: "Cozinhar", EN: "Cooking" }, image: "/images/about/Carbonara.webp", span: "" },
-  { label: { PT: "Academia", EN: "Gym" }, image: "/images/about/EspelhoGuns.webp", span: "" },
-  { label: { PT: "Gatos", EN: "Cats" }, image: "/images/about/Gatos.webp", span: "" },
-  { label: { PT: "Thor", EN: "Thor" }, image: "/images/about/GatoThor.webp", span: "row-span-2" },
-  { label: { PT: "Vôlei", EN: "Volleyball" }, image: "/images/about/Volley.webp", span: "col-span-2" },
-  { label: { PT: "Fogueira", EN: "Campfire" }, image: "/images/about/Fogueira.webp", span: "" },
-  { label: { PT: "Estrada", EN: "Road trips" }, image: "/images/about/SelfieCarro.webp", span: "col-span-2" },
+/* ------------------------------------------------------------------ */
+/* Colagem "arte moderna": posição, tamanho, giro e velocidade de       */
+/* parallax de cada foto no desktop (% da largura do container)         */
+/* ------------------------------------------------------------------ */
+const COLLAGE = [
+  { image: "/images/about/SetupEldenring.webp", left: "1%", top: 20, width: "21%", rotate: -6, speed: 70 },
+  { image: "/images/about/ShowGuns.webp", left: "27%", top: 110, width: "15%", rotate: 4, speed: -50, tall: true },
+  { image: "/images/about/Carbonara.webp", left: "48%", top: 0, width: "19%", rotate: -3, speed: 90 },
+  { image: "/images/about/EspelhoGuns.webp", left: "74%", top: 80, width: "22%", rotate: 5, speed: -40 },
+  { image: "/images/about/Gatos.webp", left: "7%", top: 470, width: "18%", rotate: 5, speed: -60 },
+  { image: "/images/about/GatoThor.webp", left: "31%", top: 560, width: "20%", rotate: -5, speed: 50 },
+  { image: "/images/about/Volley.webp", left: "57%", top: 450, width: "17%", rotate: 7, speed: -80 },
+  { image: "/images/about/Fogueira.webp", left: "79%", top: 520, width: "17%", rotate: -4, speed: 60 },
+  { image: "/images/about/SelfieCarro.webp", left: "46%", top: 780, width: "15%", rotate: 7, speed: -30 },
 ];
 
-// Linha do tempo (datas conferidas com o currículo)
-const JOURNEY: Record<Lang, { year: string; title: string; text: string; tags?: string[] }[]> = {
+// Pequenas estrelas espalhadas pela colagem (essência espacial do site)
+const SPARKLES = [
+  { left: "24%", top: 40, size: 18 },
+  { left: "70%", top: 400, size: 14 },
+  { left: "12%", top: 880, size: 16 },
+  { left: "82%", top: 900, size: 20 },
+  { left: "40%", top: 470, size: 12 },
+];
+
+/* ------------------------------------------------------------------ */
+/* Jornada em "notas" soltas, com anotações à mão                       */
+/* ------------------------------------------------------------------ */
+const JOURNEY: Record<Lang, { year: string; title: string; text: string; note: string; tags?: string[] }[]> = {
   PT: [
     {
       year: "2023",
       title: "Primeiras linhas de código",
       text: "Decidi levar a programação a sério: estudos diários, projetos pessoais e muita lógica até o código começar a virar produto.",
+      note: "onde tudo começou",
       tags: ["Python", "JavaScript", "SQL"],
     },
     {
       year: "2024",
       title: "Jovem Aprendiz – EquinoxGold",
       text: "Primeira experiência corporativa, em uma mineradora: rotinas administrativas, documentação rigorosa e trabalho com equipes multidisciplinares.",
+      note: "primeiro crachá!",
     },
     {
       year: "2025",
-      title: "Engenharia de Software + estágio na CMOC",
-      text: "Entrei na UNIASSELVI e no estágio da CMOC, onde crio do zero sistemas corporativos que substituem planilhas e controles manuais da manutenção.",
-      tags: ["Power Apps", "Power Automate", "Power BI", "Python"],
+      title: "Engenharia de Software + CMOC",
+      text: "Entrei na UNIASSELVI e comecei a desenvolver soluções para a CMOC: sistemas corporativos que substituem planilhas e controles manuais da manutenção.",
+      note: "código que vira ferramenta",
+      tags: ["Power Apps", "Power BI", "Python"],
     },
     {
       year: "2026",
       title: "Primeiros clientes",
       text: "A plataforma da Barbearia Atual Estilo trouxe 46% mais clientes, e o site da Milena Reis fechou 8 clientes em 3 meses.",
-      tags: ["React", "PHP", "MySQL", "GSAP"],
+      note: "clientes de verdade :)",
+      tags: ["React", "PHP", "MySQL"],
     },
     {
       year: "2026",
-      title: "Sistemas completos de ponta a ponta",
+      title: "Sistemas de ponta a ponta",
       text: "Flow-Zap automatizou a cobrança de uma loja pelo WhatsApp, e o Club Maravilha passou a gerir mais de 300 sócios com Pix e reservas online.",
-      tags: ["TypeScript", "FastAPI", "PostgreSQL", "Docker"],
+      note: "agora é sério",
+      tags: ["TypeScript", "FastAPI", "PostgreSQL"],
     },
     {
       year: "Hoje",
       title: "O próximo passo",
-      text: "8 sistemas em produção e buscando minha primeira vaga júnior, de preferência remota, para crescer em um time de produto.",
+      text: "Mais de 10 sistemas em produção e muita vontade de continuar construindo produtos que resolvem problemas reais.",
+      note: "isso é só o começo...",
     },
   ],
   EN: [
@@ -74,110 +94,77 @@ const JOURNEY: Record<Lang, { year: string; title: string; text: string; tags?: 
       year: "2023",
       title: "First lines of code",
       text: "I decided to take programming seriously: daily study, personal projects and a lot of logic until code started turning into products.",
+      note: "where it all began",
       tags: ["Python", "JavaScript", "SQL"],
     },
     {
       year: "2024",
       title: "Young Apprentice – EquinoxGold",
       text: "My first corporate experience, at a mining company: administrative workflows, strict documentation and multidisciplinary teamwork.",
+      note: "first badge!",
     },
     {
       year: "2025",
-      title: "Software Engineering + CMOC internship",
-      text: "I started at UNIASSELVI and joined CMOC, where I build enterprise systems from scratch that replace spreadsheets and manual maintenance controls.",
-      tags: ["Power Apps", "Power Automate", "Power BI", "Python"],
+      title: "Software Engineering + CMOC",
+      text: "I started at UNIASSELVI and began building solutions for CMOC: enterprise systems that replace spreadsheets and manual maintenance controls.",
+      note: "code that becomes tools",
+      tags: ["Power Apps", "Power BI", "Python"],
     },
     {
       year: "2026",
       title: "First clients",
       text: "Atual Estilo's booking platform brought in 46% more customers, and Milena Reis's website closed 8 clients in 3 months.",
-      tags: ["React", "PHP", "MySQL", "GSAP"],
+      note: "real clients :)",
+      tags: ["React", "PHP", "MySQL"],
     },
     {
       year: "2026",
       title: "End-to-end systems",
       text: "Flow-Zap automated a store's billing over WhatsApp, and Club Maravilha now manages 300+ members with Pix and online booking.",
-      tags: ["TypeScript", "FastAPI", "PostgreSQL", "Docker"],
+      note: "now it's serious",
+      tags: ["TypeScript", "FastAPI", "PostgreSQL"],
     },
     {
       year: "Today",
       title: "The next step",
-      text: "8 systems in production and looking for my first junior role, ideally remote, to grow within a product team.",
+      text: "10+ systems in production and plenty of drive to keep building products that solve real problems.",
+      note: "just getting started...",
     },
   ],
 };
 
-// Tecnologias que orbitam a foto (as que domino com segurança)
-const ORBIT_TECH = ["Python", "React", "SQL"];
+// Giro e deslocamento de cada nota no desktop, para parecerem "jogadas" na mesa
+const NOTE_LAYOUT = [
+  { rotate: -2.5, y: 0 },
+  { rotate: 1.8, y: 70 },
+  { rotate: -1.2, y: 20 },
+  { rotate: 2.2, y: 40 },
+  { rotate: -2, y: 100 },
+  { rotate: 1.4, y: 30 },
+];
 
-/* ------------------------------------------------------------------ */
-/* Foto em órbita                                                       */
-/* ------------------------------------------------------------------ */
-const OrbitPhoto = () => {
-  const reduceMotion = useReducedMotion();
-  const spin = reduceMotion ? {} : { animate: { rotate: 360 }, transition: { duration: 40, repeat: Infinity, ease: "linear" as const } };
-  const counterSpin = reduceMotion ? {} : { animate: { rotate: -360 }, transition: { duration: 40, repeat: Infinity, ease: "linear" as const } };
+/* Seta desenhada à mão entre as notas */
+const DoodleArrow = ({ className, flip = false }: { className?: string; flip?: boolean }) => (
+  <svg aria-hidden viewBox="0 0 120 60" className={className} style={flip ? { transform: "scaleX(-1)" } : undefined}>
+    <path
+      d="M4 40 C 30 6, 70 4, 104 26"
+      fill="none"
+      stroke="#f59e0b"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeDasharray="1 7"
+    />
+    <path d="M92 16 L106 27 L90 34" fill="none" stroke="#f59e0b" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
 
-  return (
-    <div className="relative w-[280px] sm:w-[360px] lg:w-[420px] aspect-square mx-auto">
-      {/* Brilho âmbar atrás da foto, como o eclipse do hero */}
-      <div aria-hidden className="absolute inset-[12%] rounded-full bg-amber-500/25 blur-[70px]" />
-
-      {/* Órbitas */}
-      <div aria-hidden className="absolute inset-0 rounded-full border border-dashed border-white/15" />
-      <div aria-hidden className="absolute inset-[9%] rounded-full border border-amber-500/20" />
-
-      {/* Tecnologias orbitando (o texto gira ao contrário para ficar sempre em pé) */}
-      <motion.div aria-hidden className="absolute inset-0" {...spin}>
-        {ORBIT_TECH.map((tech, i) => {
-          const angle = (i / ORBIT_TECH.length) * 2 * Math.PI - Math.PI / 2;
-          return (
-            <div
-              key={tech}
-              className="absolute"
-              style={{ left: `${50 + 50 * Math.cos(angle)}%`, top: `${50 + 50 * Math.sin(angle)}%` }}
-            >
-              <motion.span
-                {...counterSpin}
-                className="-translate-x-1/2 -translate-y-1/2 flex items-center gap-1.5 px-3 py-1 rounded-full border border-amber-500/40 bg-black/80 backdrop-blur text-xs font-bold text-amber-300 shadow-[0_0_15px_rgba(245,158,11,0.35)] whitespace-nowrap"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-                {tech}
-              </motion.span>
-            </div>
-          );
-        })}
-      </motion.div>
-
-      {/* Pequeno planeta na órbita interna */}
-      <motion.div
-        aria-hidden
-        className="absolute inset-[9%]"
-        {...(reduceMotion ? {} : { animate: { rotate: -360 }, transition: { duration: 22, repeat: Infinity, ease: "linear" as const } })}
-      >
-        <span className="absolute left-1/2 -top-2 w-4 h-4 rounded-full bg-gradient-to-br from-amber-200 to-amber-700 shadow-[0_0_12px_rgba(251,191,36,0.8)]" />
-      </motion.div>
-
-      {/* Foto */}
-      <div className="absolute inset-[18%] rounded-full overflow-hidden border-2 border-amber-500/40 shadow-[0_0_50px_rgba(245,158,11,0.35)]">
-        <Image src="/images/about/Selfie.webp" alt="Schaide Nunes" fill priority className="object-cover object-top" />
-      </div>
-    </div>
-  );
-};
-
-/* ------------------------------------------------------------------ */
-/* Linha do tempo com a mesma linguagem de constelação dos projetos     */
-/* ------------------------------------------------------------------ */
 const Journey = ({ lang }: { lang: Lang }) => {
   const t = TRANSLATIONS[lang].about;
-  const ref = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 75%", "end 60%"] });
-  const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 24, restDelta: 0.001 });
+  const steps = JOURNEY[lang];
 
   return (
-    <section className="flex flex-col gap-14">
+    <section className="flex flex-col gap-16">
       <div className="flex flex-col gap-4">
         <span className="self-start px-3 py-1 rounded-full border border-amber-500/40 bg-amber-500/5 text-amber-400 text-xs font-bold uppercase tracking-[0.25em]">
           {t.journeyTag}
@@ -187,54 +174,153 @@ const Journey = ({ lang }: { lang: Lang }) => {
         </h3>
       </div>
 
-      <div ref={ref} className="relative">
-        {/* Trilha pontilhada + trecho aceso pelo scroll */}
-        <div aria-hidden className="absolute top-0 bottom-0 left-[11px] md:left-1/2 md:-translate-x-1/2 w-px border-l border-dashed border-white/20" />
-        <motion.div
-          aria-hidden
-          style={{ scaleY: reduceMotion ? 1 : progress }}
-          className="absolute top-0 bottom-0 left-[10px] md:left-1/2 md:-translate-x-1/2 w-[3px] origin-top rounded-full bg-gradient-to-b from-amber-200 via-amber-500 to-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.8)]"
-        />
-
-        <ol className="flex flex-col gap-12 md:gap-16">
-          {JOURNEY[lang].map((step, i) => {
-            const right = i % 2 === 1;
-            return (
-              <li key={`${step.year}-${step.title}`} className="relative md:grid md:grid-cols-2 md:gap-16 pl-12 md:pl-0">
-                {/* Estrela no ponto da linha */}
-                <span aria-hidden className="absolute left-[11px] md:left-1/2 top-6 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
-                  <span className="absolute w-6 h-6 rounded-full bg-amber-500/20 animate-ping" />
-                  <span className="relative w-3 h-3 rounded-full bg-amber-100 shadow-[0_0_12px_rgba(251,191,36,1)]" />
+      <ol className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-14 gap-y-20 md:gap-y-24 pb-16">
+        {steps.map((step, i) => {
+          const layout = NOTE_LAYOUT[i % NOTE_LAYOUT.length];
+          const last = i === steps.length - 1;
+          // Na grade de 3 colunas, a seta aponta para a direita, exceto no fim da linha
+          const endOfRow = (i + 1) % 3 === 0;
+          return (
+            <motion.li
+              key={`${step.year}-${step.title}`}
+              initial={reduceMotion ? false : { opacity: 0, y: 40, rotate: 0 }}
+              whileInView={{ opacity: 1, y: 0, rotate: layout.rotate }}
+              whileHover={reduceMotion ? undefined : { rotate: 0, scale: 1.03 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ type: "spring", stiffness: 120, damping: 16, delay: (i % 3) * 0.08 }}
+              // Deslocamento vertical só no desktop (3 colunas), para as notas ficarem desalinhadas
+              style={{ ["--offset" as string]: `${layout.y}px` }}
+              className="group relative lg:mt-[var(--offset)]"
+            >
+              <div className="relative">
+                {/* Ano gigante em contorno, atrás da nota */}
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute -top-14 -left-3 text-[96px] md:text-[110px] font-black leading-none text-transparent [-webkit-text-stroke:1.5px_rgba(245,158,11,0.35)] select-none"
+                >
+                  {step.year}
                 </span>
 
-                <motion.div
-                  initial={reduceMotion ? false : { opacity: 0, x: right ? 40 : -40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  className={`group rounded-2xl border border-white/10 bg-white/[0.03] p-6 md:p-7 hover:border-amber-500/40 hover:bg-amber-500/[0.04] transition-colors duration-300 ${
-                    right ? "md:col-start-2" : "md:col-start-1 md:text-right"
-                  }`}
-                >
-                  <span className="font-mono text-sm tracking-widest text-amber-500">{step.year}</span>
-                  <h4 className="mt-2 text-xl md:text-2xl font-semibold text-white group-hover:text-amber-300 transition-colors">
-                    {step.title}
-                  </h4>
+                <div className="relative rounded-2xl border border-white/10 bg-[#0b0b10]/90 backdrop-blur-sm p-6 md:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.6)] group-hover:border-amber-500/40 transition-colors">
+                  {/* "Fita adesiva" segurando a nota */}
+                  <span aria-hidden className="absolute -top-3 left-1/2 -translate-x-1/2 w-20 h-6 rotate-[-3deg] bg-amber-200/15 border border-amber-200/20 backdrop-blur-sm" />
+
+                  <h4 className="text-xl md:text-2xl font-semibold text-white">{step.title}</h4>
+                  <p className="cursive mt-1 text-xl text-amber-400">{step.note}</p>
                   <p className="mt-3 text-gray-400 leading-relaxed">{step.text}</p>
+
                   {step.tags && (
-                    <div className={`mt-4 flex flex-wrap gap-2 ${right ? "" : "md:justify-end"}`}>
-                      {step.tags.map((tag) => (
-                        <span key={tag} className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded border border-white/10 text-gray-400">
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {step.tags.map((tag, k) => (
+                        <span
+                          key={tag}
+                          style={{ transform: `rotate(${k % 2 === 0 ? -3 : 3}deg)` }}
+                          className="text-[11px] font-bold px-2.5 py-1 rounded-md bg-amber-500 text-black shadow-[0_4px_12px_rgba(245,158,11,0.3)]"
+                        >
                           {tag}
                         </span>
                       ))}
                     </div>
                   )}
-                </motion.div>
-              </li>
-            );
-          })}
-        </ol>
+                </div>
+
+                {/* Setas à mão: para a direita entre colunas (desktop), para baixo no celular */}
+                {!last && !endOfRow && (
+                  <DoodleArrow className="hidden lg:block absolute top-1/2 -right-14 w-16 rotate-[8deg]" />
+                )}
+                {!last && endOfRow && (
+                  <DoodleArrow className="hidden lg:block absolute -bottom-20 left-[-30%] w-28 rotate-[155deg]" flip />
+                )}
+                {!last && (
+                  <DoodleArrow className="lg:hidden absolute -bottom-16 left-1/2 -translate-x-1/2 w-16 rotate-[100deg]" />
+                )}
+              </div>
+            </motion.li>
+          );
+        })}
+      </ol>
+    </section>
+  );
+};
+
+/* ------------------------------------------------------------------ */
+/* Foto da colagem com parallax próprio                                 */
+/* ------------------------------------------------------------------ */
+const CollagePhoto = ({
+  item,
+  progress,
+  index,
+}: {
+  item: (typeof COLLAGE)[number];
+  progress: MotionValue<number>;
+  index: number;
+}) => {
+  const reduceMotion = useReducedMotion();
+  const y = useTransform(progress, [0, 1], reduceMotion ? [0, 0] : [item.speed, -item.speed]);
+
+  return (
+    <motion.div
+      style={{ left: item.left, top: item.top, width: item.width, y }}
+      className="absolute"
+    >
+      <motion.div
+        initial={reduceMotion ? false : { opacity: 0, scale: 0.85, rotate: 0 }}
+        whileInView={{ opacity: 1, scale: 1, rotate: item.rotate }}
+        whileHover={reduceMotion ? undefined : { rotate: 0, scale: 1.06, zIndex: 20 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ type: "spring", stiffness: 110, damping: 15, delay: (index % 4) * 0.07 }}
+        className={`relative overflow-hidden rounded-xl border border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.7)] hover:shadow-[0_25px_60px_rgba(245,158,11,0.25)] transition-shadow ${
+          item.tall ? "aspect-[9/16]" : "aspect-[3/4]"
+        }`}
+      >
+        <Image src={item.image} alt="" fill className="object-cover" />
+      </motion.div>
+    </motion.div>
+  );
+};
+
+const Collage = ({ lang }: { lang: Lang }) => {
+  const t = TRANSLATIONS[lang].about;
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+
+  return (
+    <section className="flex flex-col gap-12">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <h3 className="text-4xl md:text-6xl font-bold text-white tracking-tight">{t.whatILove}</h3>
+        <p className="cursive text-2xl md:text-3xl text-amber-400 md:text-right">{t.lovesDesc}</p>
+      </div>
+
+      {/* Desktop: fotos soltas, como uma colagem */}
+      <div ref={ref} className="relative hidden md:block h-[1100px]">
+        {SPARKLES.map((s, i) => (
+          <span
+            key={i}
+            aria-hidden
+            className="absolute text-amber-400/80 animate-pulse select-none"
+            style={{ left: s.left, top: s.top, fontSize: s.size, animationDelay: `${i * 0.4}s` }}
+          >
+            ✦
+          </span>
+        ))}
+        {COLLAGE.map((item, i) => (
+          <CollagePhoto key={item.image} item={item} progress={scrollYProgress} index={i} />
+        ))}
+      </div>
+
+      {/* Celular: duas colunas desencontradas, levemente giradas */}
+      <div className="grid md:hidden grid-cols-2 gap-x-4 gap-y-6">
+        {COLLAGE.map((item, i) => (
+          <div
+            key={item.image}
+            style={{ transform: `rotate(${item.rotate * 0.6}deg)` }}
+            className={`relative overflow-hidden rounded-xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)] aspect-[3/4] ${
+              i % 2 === 1 ? "mt-10" : ""
+            }`}
+          >
+            <Image src={item.image} alt="" fill className="object-cover" />
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -247,10 +333,10 @@ export default function AboutPage() {
   const cvHref = lang === "PT" ? "/Curriculo_Schaide_Nunes_2026.pdf" : "/Resume_Schaide_Nunes_2026.pdf";
 
   const stats = [
-    { value: "2023", label: t.statSince },
-    { value: "8", label: t.statSystems },
-    { value: "CMOC", label: t.statCmoc },
+    { value: "10+", label: t.statSystems },
     { value: "C1", label: t.statEnglish },
+    { value: "CMOC", label: t.statCmoc },
+    { value: "2023", label: t.statSince },
   ];
 
   return (
@@ -258,8 +344,8 @@ export default function AboutPage() {
       {/* Brilho de fundo no tom do site */}
       <div aria-hidden className="pointer-events-none absolute -top-40 right-0 w-[700px] h-[500px] rounded-full bg-amber-500/10 blur-[140px]" />
 
-      {/* Hero: texto + foto em órbita */}
-      <section className="relative grid grid-cols-1 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] gap-14 lg:gap-10 items-center">
+      {/* Hero: texto + foto grande */}
+      <section className="relative grid grid-cols-1 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-14 lg:gap-16 items-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -280,19 +366,10 @@ export default function AboutPage() {
           </h2>
           <p className="text-gray-400 text-base md:text-lg leading-relaxed max-w-2xl">{t.summary}</p>
 
-          <div className="flex flex-wrap gap-3">
-            <span className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 text-sm text-gray-300">
-              <MapPinIcon className="w-4 h-4 text-amber-400" />
-              {t.location}
-            </span>
-            <span className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-green-500/30 bg-green-500/5 text-sm text-green-300">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
-              </span>
-              {t.available}
-            </span>
-          </div>
+          <span className="self-start flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 text-sm text-gray-300">
+            <MapPinIcon className="w-4 h-4 text-amber-400" />
+            {t.location}
+          </span>
 
           <div className="flex flex-wrap gap-3 mt-2">
             <a
@@ -313,13 +390,18 @@ export default function AboutPage() {
           </div>
         </motion.div>
 
+        {/* Foto grande, sem moldura de órbita */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, scale: 0.95, rotate: 0 }}
+          animate={{ opacity: 1, scale: 1, rotate: reduceMotion ? 0 : 2 }}
+          whileHover={reduceMotion ? undefined : { rotate: 0 }}
           transition={{ duration: 0.9, delay: 0.2 }}
-          className="order-1 lg:order-2 py-6"
+          className="order-1 lg:order-2 relative w-full max-w-[340px] sm:max-w-[400px] lg:max-w-[480px] mx-auto"
         >
-          <OrbitPhoto />
+          <div aria-hidden className="absolute inset-[8%] rounded-[2rem] bg-amber-500/30 blur-[80px]" />
+          <div className="relative aspect-[3/4] rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_30px_80px_rgba(0,0,0,0.7)]">
+            <Image src="/images/about/Selfie.webp" alt="Schaide Nunes" fill priority className="object-cover object-top" />
+          </div>
         </motion.div>
       </section>
 
@@ -335,49 +417,19 @@ export default function AboutPage() {
             className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 md:p-6 hover:border-amber-500/40 transition-colors"
           >
             <p className="text-3xl md:text-4xl font-bold text-white">
-              {s.value}
-              {s.value === "8" && <span className="text-amber-500">+</span>}
+              {s.value.replace("+", "")}
+              {s.value.endsWith("+") && <span className="text-amber-500">+</span>}
             </p>
             <p className="mt-1 text-xs md:text-sm uppercase tracking-[0.15em] text-gray-500">{s.label}</p>
           </motion.div>
         ))}
       </section>
 
-      {/* Linha do tempo */}
+      {/* Jornada em notas soltas */}
       <Journey lang={lang} />
 
-      {/* O que eu amo: mosaico de fotos */}
-      <section className="flex flex-col gap-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <h3 className="text-4xl md:text-6xl font-bold text-white tracking-tight">{t.whatILove}</h3>
-          <p className="text-gray-400 text-lg max-w-sm md:text-right">{t.lovesDesc}</p>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[150px] sm:auto-rows-[190px] md:auto-rows-[210px] gap-3 md:gap-4 grid-flow-dense">
-          {INTERESTS.map((item, i) => (
-            <motion.figure
-              key={item.image}
-              initial={reduceMotion ? false : { opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: (i % 4) * 0.06 }}
-              className={`group relative overflow-hidden rounded-2xl border border-white/10 ${item.span}`}
-            >
-              <Image
-                src={item.image}
-                alt={item.label[lang]}
-                fill
-                className="object-cover grayscale-[70%] brightness-75 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-              <figcaption className="absolute left-4 bottom-4 flex items-center gap-2 text-sm md:text-base font-semibold text-white">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.9)]" />
-                {item.label[lang]}
-              </figcaption>
-            </motion.figure>
-          ))}
-        </div>
-      </section>
+      {/* O que eu amo: colagem de fotos soltas */}
+      <Collage lang={lang} />
 
       {/* Depoimentos */}
       <section className="flex flex-col gap-12 pt-4">

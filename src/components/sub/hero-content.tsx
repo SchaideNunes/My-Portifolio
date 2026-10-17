@@ -95,7 +95,7 @@ export const HeroContent = () => {
   }, [isReady, lang]);
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText("schaidenunes@gmail.com");
+    navigator.clipboard.writeText("schaidenunes.dev@gmail.com");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };

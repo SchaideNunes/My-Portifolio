@@ -617,7 +617,7 @@ export default function WorkPage() {
             {t.ctaWhatsapp}
           </a>
           <a
-            href="mailto:schaidenunes@gmail.com"
+            href="mailto:schaidenunes.dev@gmail.com"
             className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-white/15 text-white font-bold hover:bg-white hover:text-black transition-colors"
           >
             <EnvelopeIcon className="w-5 h-5" />

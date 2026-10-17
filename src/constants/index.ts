@@ -444,9 +444,9 @@ export const FOOTER_DATA = [
     title: "Contact",
     data: [
       {
-        name: "schaidenunes@gmail.com",
+        name: "schaidenunes.dev@gmail.com",
         icon: null,
-        link: "mailto:schaidenunes@gmail.com",
+        link: "mailto:schaidenunes.dev@gmail.com",
       },
       {
         name: "+55 (75) 99150-3949",

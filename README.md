@@ -70,7 +70,7 @@
  
  I'm always open to new opportunities and collaborations. Feel free to reach out!
  
- - **Email:** [schaidenunes@gmail.com](mailto:[schaidenunes@gmail.com])
+ - **Email:** [schaidenunes.dev@gmail.com](mailto:schaidenunes.dev@gmail.com)
  - **LinkedIn:** [linkedin.com/in/schaidenunes](https://www.linkedin.com/in/schaidenunes/)
  - **Instagram:** [@schaide_nunes](https://www.instagram.com/schaide_nunes/)
  

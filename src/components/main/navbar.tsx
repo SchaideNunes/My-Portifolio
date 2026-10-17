@@ -36,7 +36,7 @@ export const Navbar = () => {
           </Link>
 
           {/* Web Navbar Pill */}
-          <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-full flex-row items-center justify-center">
+          <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-full flex-row items-center justify-center">
             <div className="relative flex items-center justify-center group bg-[#0300145e] backdrop-blur-md rounded-full shadow-[0_0_15px_rgba(245,158,11,0.05)]">
               
               {/* Masked Spinning Border */}
@@ -53,7 +53,7 @@ export const Navbar = () => {
               </div>
               
               {/* Inner content */}
-              <div className="relative flex items-center gap-14 h-auto px-[40px] py-[12px] rounded-full text-gray-200 z-10">
+              <div className="relative flex items-center gap-8 xl:gap-14 h-auto px-[28px] xl:px-[40px] py-[12px] rounded-full text-gray-200 z-10">
                 {navLinks.map((link) => (
                   <Link
                     key={link.title}
@@ -68,7 +68,7 @@ export const Navbar = () => {
           </div>
 
           {/* Right Section: Social Icons + Language Toggle (Web) */}
-          <div className="hidden md:flex flex-row items-center gap-5">
+          <div className="hidden lg:flex flex-row items-center gap-5">
             {SOCIALS.map(({ link, name, icon: Icon }) => (
               <Link
                 href={link}
@@ -118,7 +118,7 @@ export const Navbar = () => {
 
           {/* 2x2 grid dots → X menu button */}
           <button
-            className="md:hidden focus:outline-none z-[60] relative flex items-center justify-center w-9 h-9 transition-all duration-300"
+            className="lg:hidden focus:outline-none z-[60] relative flex items-center justify-center w-9 h-9 transition-all duration-300"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -173,7 +173,7 @@ export const Navbar = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[55] bg-black/40 md:hidden"
+            className="fixed inset-0 z-[55] bg-black/40 lg:hidden"
             onClick={() => setIsMobileMenuOpen(false)}
           />
         )}
@@ -188,7 +188,7 @@ export const Navbar = () => {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed top-0 right-0 h-full w-[40%] max-w-[160px] z-[58] md:hidden
+            className="fixed top-0 right-0 h-full w-[40%] max-w-[160px] z-[58] lg:hidden
                        bg-[#03001480] backdrop-blur-2xl border-l border-[#f59e0b]/10
                        flex flex-col justify-center items-center gap-8 shadow-2xl"
           >

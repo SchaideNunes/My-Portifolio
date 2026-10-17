@@ -19,28 +19,28 @@ import { useLang } from "@/lib/lang-context";
 type Lang = "PT" | "EN";
 
 /* ------------------------------------------------------------------ */
-/* Colagem "arte moderna": posição, tamanho, giro e velocidade de       */
-/* parallax de cada foto no desktop (% da largura do container)         */
+/* Colagem "arte moderna": posição (% de um quadro 1280x1100), tamanho, */
+/* giro e velocidade de parallax de cada foto no desktop                */
 /* ------------------------------------------------------------------ */
 const COLLAGE = [
-  { image: "/images/about/SetupEldenring.webp", left: "1%", top: 20, width: "21%", rotate: -6, speed: 70 },
-  { image: "/images/about/ShowGuns.webp", left: "27%", top: 110, width: "15%", rotate: 4, speed: -50, tall: true },
-  { image: "/images/about/Carbonara.webp", left: "48%", top: 0, width: "19%", rotate: -3, speed: 90 },
-  { image: "/images/about/EspelhoGuns.webp", left: "74%", top: 80, width: "22%", rotate: 5, speed: -40 },
-  { image: "/images/about/Gatos.webp", left: "7%", top: 470, width: "18%", rotate: 5, speed: -60 },
-  { image: "/images/about/GatoThor.webp", left: "31%", top: 560, width: "20%", rotate: -5, speed: 50 },
-  { image: "/images/about/Volley.webp", left: "57%", top: 450, width: "17%", rotate: 7, speed: -80 },
-  { image: "/images/about/Fogueira.webp", left: "79%", top: 520, width: "17%", rotate: -4, speed: 60 },
-  { image: "/images/about/SelfieCarro.webp", left: "46%", top: 780, width: "15%", rotate: 7, speed: -30 },
+  { image: "/images/about/SetupEldenring.webp", left: "1%", top: "1.8%", width: "21%", rotate: -6, speed: 70 },
+  { image: "/images/about/ShowGuns.webp", left: "27%", top: "10.0%", width: "15%", rotate: 4, speed: -50, tall: true },
+  { image: "/images/about/Carbonara.webp", left: "48%", top: "0.0%", width: "19%", rotate: -3, speed: 90 },
+  { image: "/images/about/EspelhoGuns.webp", left: "74%", top: "7.3%", width: "22%", rotate: 5, speed: -40 },
+  { image: "/images/about/Gatos.webp", left: "7%", top: "42.7%", width: "18%", rotate: 5, speed: -60 },
+  { image: "/images/about/GatoThor.webp", left: "31%", top: "50.9%", width: "20%", rotate: -5, speed: 50 },
+  { image: "/images/about/Volley.webp", left: "57%", top: "40.9%", width: "17%", rotate: 7, speed: -80 },
+  { image: "/images/about/Fogueira.webp", left: "79%", top: "47.3%", width: "17%", rotate: -4, speed: 60 },
+  { image: "/images/about/SelfieCarro.webp", left: "46%", top: "70.9%", width: "15%", rotate: 7, speed: -30 },
 ];
 
 // Pequenas estrelas espalhadas pela colagem (essência espacial do site)
 const SPARKLES = [
-  { left: "24%", top: 40, size: 18 },
-  { left: "70%", top: 400, size: 14 },
-  { left: "12%", top: 880, size: 16 },
-  { left: "82%", top: 900, size: 20 },
-  { left: "40%", top: 470, size: 12 },
+  { left: "24%", top: "3.6%", size: 18 },
+  { left: "70%", top: "36.4%", size: 14 },
+  { left: "12%", top: "80.0%", size: 16 },
+  { left: "82%", top: "81.8%", size: 20 },
+  { left: "40%", top: "42.7%", size: 12 },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -135,12 +135,12 @@ const JOURNEY: Record<Lang, { year: string; title: string; text: string; note: s
 
 // Giro e deslocamento de cada nota no desktop, para parecerem "jogadas" na mesa
 const NOTE_LAYOUT = [
-  { rotate: -2.5, y: 0 },
-  { rotate: 1.8, y: 70 },
-  { rotate: -1.2, y: 20 },
-  { rotate: 2.2, y: 40 },
-  { rotate: -2, y: 100 },
-  { rotate: 1.4, y: 30 },
+  { rotate: -1.2, y: 0 },
+  { rotate: 1, y: 70 },
+  { rotate: -0.8, y: 20 },
+  { rotate: 1.1, y: 40 },
+  { rotate: -1, y: 100 },
+  { rotate: 0.8, y: 30 },
 ];
 
 /* Seta desenhada à mão entre as notas */
@@ -174,7 +174,7 @@ const Journey = ({ lang }: { lang: Lang }) => {
         </h3>
       </div>
 
-      <ol className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-14 gap-y-20 md:gap-y-24 pb-16">
+      <ol className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-14 gap-y-28 md:gap-y-32 pt-14 pb-16">
         {steps.map((step, i) => {
           const layout = NOTE_LAYOUT[i % NOTE_LAYOUT.length];
           const last = i === steps.length - 1;
@@ -196,26 +196,26 @@ const Journey = ({ lang }: { lang: Lang }) => {
                 {/* Ano gigante em contorno, atrás da nota */}
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute -top-14 -left-3 text-[96px] md:text-[110px] font-black leading-none text-transparent [-webkit-text-stroke:1.5px_rgba(245,158,11,0.35)] select-none"
+                  className="pointer-events-none absolute -top-[4.6rem] md:-top-[5.2rem] -left-2 text-[88px] md:text-[104px] font-black leading-none tracking-tight text-amber-500/[0.07] [-webkit-text-stroke:2px_rgba(245,158,11,0.75)] drop-shadow-[0_0_18px_rgba(245,158,11,0.25)] select-none"
                 >
                   {step.year}
                 </span>
 
                 <div className="relative rounded-2xl border border-white/10 bg-[#0b0b10]/90 backdrop-blur-sm p-6 md:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.6)] group-hover:border-amber-500/40 transition-colors">
                   {/* "Fita adesiva" segurando a nota */}
-                  <span aria-hidden className="absolute -top-3 left-1/2 -translate-x-1/2 w-20 h-6 rotate-[-3deg] bg-amber-200/15 border border-amber-200/20 backdrop-blur-sm" />
+                  <span aria-hidden className="absolute -top-3 right-8 w-20 h-6 rotate-[4deg] bg-amber-200/15 border border-amber-200/20 backdrop-blur-sm" />
 
                   <h4 className="text-xl md:text-2xl font-semibold text-white">{step.title}</h4>
-                  <p className="cursive mt-1 text-xl text-amber-400">{step.note}</p>
-                  <p className="mt-3 text-gray-400 leading-relaxed">{step.text}</p>
+                  <p className="handwritten mt-1 text-2xl font-bold text-amber-400">{step.note}</p>
+                  <p className="mt-3 text-[15px] md:text-base text-gray-300 leading-relaxed">{step.text}</p>
 
                   {step.tags && (
                     <div className="mt-5 flex flex-wrap gap-2">
                       {step.tags.map((tag, k) => (
                         <span
                           key={tag}
-                          style={{ transform: `rotate(${k % 2 === 0 ? -3 : 3}deg)` }}
-                          className="text-[11px] font-bold px-2.5 py-1 rounded-md bg-amber-500 text-black shadow-[0_4px_12px_rgba(245,158,11,0.3)]"
+                          style={{ transform: `rotate(${k % 2 === 0 ? -2 : 2}deg)` }}
+                          className="text-xs font-bold px-2.5 py-1 rounded-md bg-amber-500 text-black shadow-[0_4px_12px_rgba(245,158,11,0.3)]"
                         >
                           {tag}
                         </span>
@@ -288,11 +288,11 @@ const Collage = ({ lang }: { lang: Lang }) => {
     <section className="flex flex-col gap-12">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <h3 className="text-4xl md:text-6xl font-bold text-white tracking-tight">{t.whatILove}</h3>
-        <p className="cursive text-2xl md:text-3xl text-amber-400 md:text-right">{t.lovesDesc}</p>
+        <p className="handwritten text-3xl md:text-4xl font-bold text-amber-400 md:text-right">{t.lovesDesc}</p>
       </div>
 
       {/* Desktop: fotos soltas, como uma colagem */}
-      <div ref={ref} className="relative hidden md:block h-[1100px]">
+      <div ref={ref} className="relative hidden lg:block aspect-[1280/1100]">
         {SPARKLES.map((s, i) => (
           <span
             key={i}
@@ -308,14 +308,14 @@ const Collage = ({ lang }: { lang: Lang }) => {
         ))}
       </div>
 
-      {/* Celular: duas colunas desencontradas, levemente giradas */}
-      <div className="grid md:hidden grid-cols-2 gap-x-4 gap-y-6">
+      {/* Celular e tablet: colunas desencontradas, levemente giradas */}
+      <div className="grid lg:hidden grid-cols-2 md:grid-cols-3 gap-x-4 md:gap-x-6 gap-y-6">
         {COLLAGE.map((item, i) => (
           <div
             key={item.image}
             style={{ transform: `rotate(${item.rotate * 0.6}deg)` }}
             className={`relative overflow-hidden rounded-xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.6)] aspect-[3/4] ${
-              i % 2 === 1 ? "mt-10" : ""
+              i % 2 === 1 ? "mt-10" : ""} ${i % 3 === 1 ? "md:mt-14" : "md:mt-0"
             }`}
           >
             <Image src={item.image} alt="" fill className="object-cover" />
@@ -433,14 +433,14 @@ export default function AboutPage() {
 
       {/* Depoimentos */}
       <section className="flex flex-col gap-12 pt-4">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <h2 className="text-4xl md:text-6xl font-bold text-white leading-tight tracking-tight">
             {t.trust} <span className="text-amber-500">{t.trust2}</span> {t.trust3}
           </h2>
-          <p className="text-gray-400 text-lg max-w-md md:text-right">{t.trustDesc}</p>
+          <p className="text-gray-400 text-lg max-w-md lg:text-right">{t.trustDesc}</p>
         </div>
 
-        <div className="flex md:grid md:grid-cols-3 gap-5 md:gap-6 overflow-x-auto snap-x snap-mandatory pb-2 -mx-[6%] px-[6%] md:mx-0 md:px-0">
+        <div className="flex lg:grid lg:grid-cols-3 gap-5 lg:gap-6 overflow-x-auto snap-x snap-mandatory pb-2 -mx-[6%] px-[6%] md:-mx-20 md:px-20 lg:mx-0 lg:px-0">
           {TESTIMONIALS[lang].map((testimonial, index) => (
             <motion.div
               key={testimonial.author}
@@ -448,7 +448,7 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative snap-center shrink-0 w-[85%] sm:w-[60%] md:w-auto bg-white/[0.03] border border-white/10 p-7 md:p-8 rounded-[2rem] flex flex-col gap-6 group/card hover:shadow-[0_0_25px_rgba(245,158,11,0.2)] transition-shadow duration-300 overflow-hidden"
+              className="relative snap-center shrink-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-auto bg-white/[0.03] border border-white/10 p-7 md:p-8 rounded-[2rem] flex flex-col gap-6 group/card hover:shadow-[0_0_25px_rgba(245,158,11,0.2)] transition-shadow duration-300 overflow-hidden"
             >
               {/* Borda âmbar girando (marca do site) */}
               <div
@@ -480,7 +480,7 @@ export default function AboutPage() {
       </section>
 
       {/* Convite final */}
-      <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-amber-500/[0.08] via-transparent to-transparent px-8 py-14 md:px-16 md:py-16 flex flex-col md:flex-row md:items-center justify-between gap-10">
+      <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-amber-500/[0.08] via-transparent to-transparent px-8 py-14 md:px-16 md:py-16 flex flex-col lg:flex-row lg:items-center justify-between gap-10">
         <div aria-hidden className="pointer-events-none absolute -right-24 -top-24 w-80 h-80">
           <div className="absolute inset-0 rounded-full border border-amber-500/20" />
           <motion.div

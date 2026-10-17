@@ -128,7 +128,7 @@ const ProjectCard = ({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className={`relative z-10 ${featured ? "md:col-span-2" : ""}`}
+      className={`relative z-10 ${featured ? "lg:col-span-2" : ""}`}
     >
       <div
         ref={cardRef}
@@ -145,7 +145,7 @@ const ProjectCard = ({
 
         <div
           className={`relative h-full rounded-2xl bg-[#07070a]/95 backdrop-blur-sm overflow-hidden flex flex-col ${
-            featured ? "md:grid md:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]" : ""
+            featured ? "lg:grid lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]" : ""
           }`}
         >
           {/* Número grande em contorno, ao fundo */}
@@ -157,7 +157,7 @@ const ProjectCard = ({
           </span>
 
           {/* Vitrine: telas desktop em rotação + celular saindo pelo canto */}
-          <div className={`relative ${featured ? "p-5 md:p-8" : "p-5 pb-0"}`}>
+          <div className={`relative ${featured ? "p-5 lg:p-8" : "p-5 pb-0"}`}>
             <button
               onClick={() => onOpen("desktop", shot)}
               aria-label={`${t.viewScreens}: ${project.title}`}
@@ -216,7 +216,7 @@ const ProjectCard = ({
           </div>
 
           {/* Informações */}
-          <div className={`relative z-10 flex flex-col gap-3 ${featured ? "p-6 md:p-8 md:pl-2 justify-center" : "p-6 pt-8"}`}>
+          <div className={`relative z-10 flex flex-col gap-3 ${featured ? "p-6 pt-8 lg:p-8 lg:pl-2 justify-center" : "p-6 pt-8"}`}>
             {featured && (
               <span className="self-start flex items-center gap-2 px-3 py-1 rounded-full border border-amber-500/40 bg-amber-500/10 text-amber-400 text-[11px] font-bold uppercase tracking-widest">
                 <span className="relative flex h-2 w-2">
@@ -227,7 +227,7 @@ const ProjectCard = ({
               </span>
             )}
 
-            <div className="flex items-baseline justify-between gap-3 pr-[26%] md:pr-0">
+            <div className="flex items-baseline justify-between gap-3 pr-[26%] lg:pr-0">
               <h3
                 className={`font-semibold text-white tracking-tight group-hover:text-amber-400 transition-colors duration-300 ${
                   featured ? "text-3xl md:text-4xl" : "text-2xl"
@@ -565,7 +565,7 @@ export default function WorkPage() {
       <LayoutGroup>
         <section
           ref={gridRef}
-          className="relative grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-24 md:gap-y-28 pt-4"
+          className="relative grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-24 lg:gap-y-28 pt-4"
         >
           <Constellation containerRef={gridRef} cards={cardEls} version={visible.map((p) => p.title).join("|")} />
           <AnimatePresence mode="popLayout">
@@ -588,7 +588,7 @@ export default function WorkPage() {
       </LayoutGroup>
 
       {/* Convite final */}
-      <section className="relative mt-16 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-amber-500/[0.08] via-transparent to-transparent px-8 py-16 md:px-16 md:py-20 flex flex-col md:flex-row md:items-center justify-between gap-10">
+      <section className="relative mt-16 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-amber-500/[0.08] via-transparent to-transparent px-8 py-16 md:px-16 md:py-20 flex flex-col lg:flex-row lg:items-center justify-between gap-10">
         {/* Planeta orbitando, como o indicador da home */}
         <div aria-hidden className="pointer-events-none absolute -right-24 -top-24 w-80 h-80">
           <div className="absolute inset-0 rounded-full border border-amber-500/20" />

@@ -10,7 +10,7 @@ import { TRANSLATIONS } from "@/constants/translations";
 import { useLang } from "@/lib/lang-context";
 
 // Ícone de uma tecnologia: imagem em /images/skills ou ícone do react-icons
-type Tech = { name: string; image?: string; icon?: IconType; color?: string; daily?: boolean };
+type Tech = { name: string; image?: string; icon?: IconType; color?: string };
 type CardKey = "cardFrontend" | "cardBackend" | "cardDatabase" | "cardTools";
 
 const CARDS: { title: (t: (typeof TRANSLATIONS)["PT"]["skills"]) => string; desc: CardKey; techs: Tech[] }[] = [
@@ -18,7 +18,7 @@ const CARDS: { title: (t: (typeof TRANSLATIONS)["PT"]["skills"]) => string; desc
     title: () => "Frontend",
     desc: "cardFrontend",
     techs: [
-      { name: "React", image: "react.webp", daily: true },
+      { name: "React", image: "react.webp" },
       { name: "TypeScript", image: "ts.webp" },
       { name: "JavaScript", image: "js.webp" },
       { name: "Tailwind", image: "tailwind.webp" },
@@ -31,7 +31,7 @@ const CARDS: { title: (t: (typeof TRANSLATIONS)["PT"]["skills"]) => string; desc
     title: () => "Backend",
     desc: "cardBackend",
     techs: [
-      { name: "Python", image: "python.svg", daily: true },
+      { name: "Python", image: "python.svg" },
       { name: "FastAPI", image: "fastapi.svg" },
       { name: "Node.js", image: "nodejs.svg" },
       { name: "Express", image: "express.svg" },
@@ -42,7 +42,7 @@ const CARDS: { title: (t: (typeof TRANSLATIONS)["PT"]["skills"]) => string; desc
     title: (t) => t.database,
     desc: "cardDatabase",
     techs: [
-      { name: "SQL", image: "postgresql.webp", daily: true },
+      { name: "SQL", image: "postgresql.webp" },
       { name: "MySQL", image: "mysql.webp" },
       { name: "MongoDB", image: "mongodb.webp" },
       { name: "Supabase", icon: SiSupabase, color: "#3FCF8E" },
@@ -73,22 +73,15 @@ const TechIcon = ({ tech, index }: { tech: Tech; index: number }) => {
       className="group/skill flex flex-col items-center gap-2 w-16"
     >
       <div
-        className={`relative flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300 group-hover/skill:-translate-y-1 ${
-          tech.daily
-            ? "bg-amber-500/10 ring-1 ring-amber-500/50 shadow-[0_0_15px_rgba(245,158,11,0.25)]"
-            : "bg-white/[0.04] ring-1 ring-white/10 group-hover/skill:ring-amber-500/40"
-        }`}
+        className="relative flex items-center justify-center w-12 h-12 rounded-xl bg-white/[0.04] ring-1 ring-white/10 group-hover/skill:ring-amber-500/40 transition-all duration-300 group-hover/skill:-translate-y-1"
       >
         {tech.image ? (
           <Image src={`/images/skills/${tech.image}`} alt={tech.name} width={30} height={30} className="w-[30px] h-[30px] object-contain" />
         ) : (
           Icon && <Icon className="w-7 h-7" style={{ color: tech.color }} />
         )}
-        {tech.daily && (
-          <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.9)]" />
-        )}
       </div>
-      <span className={`text-[11px] text-center leading-tight ${tech.daily ? "text-amber-300 font-semibold" : "text-gray-400 group-hover/skill:text-white"} transition-colors`}>
+      <span className="text-[11px] text-center leading-tight text-gray-400 group-hover/skill:text-white transition-colors">
         {tech.name}
       </span>
     </motion.div>
@@ -118,10 +111,6 @@ export const Skills = () => {
             {t.title1} <span className="text-amber-500">{t.title2}</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-xl">{t.subtitle}</p>
-          <span className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-gray-500">
-            <span className="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.9)]" />
-            {t.daily}
-          </span>
         </motion.div>
 
         {/* Cards */}

@@ -146,10 +146,7 @@ export const Skills = () => {
               </span>
 
               <div className="relative z-10 flex flex-col gap-1.5">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-xl font-bold text-amber-400 uppercase tracking-wide">{card.title(t)}</h3>
-                  <span className="text-xs font-mono text-gray-500">{card.techs.length}</span>
-                </div>
+                <h3 className="text-xl font-bold text-amber-400 uppercase tracking-wide">{card.title(t)}</h3>
                 <p className="text-sm text-gray-400 leading-relaxed">{t[card.desc]}</p>
               </div>
 

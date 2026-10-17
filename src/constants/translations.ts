@@ -16,7 +16,9 @@ export const TRANSLATIONS = {
       chipCmoc: "enterprise solutions",
       copyEmail: "schaidenunes@gmail.com",
       copied: "Email copied!",
-      downloadCV: "Download Resume (PDF)",
+      downloadCV: "Download resume",
+      seeProjects: "See projects",
+      copyEmailHint: "Click to copy",
     },
     about: {
       tag: "About me",
@@ -111,7 +113,9 @@ export const TRANSLATIONS = {
       chipCmoc: "soluções corporativas",
       copyEmail: "schaidenunes@gmail.com",
       copied: "Email copiado!",
-      downloadCV: "Baixar Currículo (PDF)",
+      downloadCV: "Baixar currículo",
+      seeProjects: "Ver projetos",
+      copyEmailHint: "Clique para copiar",
     },
     about: {
       tag: "Sobre mim",

@@ -1,6 +1,7 @@
 "use client";
 
-import { DocumentDuplicateIcon, CheckIcon, ArrowDownTrayIcon } from "@heroicons/react/24/outline";
+import { DocumentDuplicateIcon, CheckIcon, ArrowDownTrayIcon, ArrowRightIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
@@ -16,8 +17,16 @@ import { TRANSLATIONS } from "@/constants/translations";
 
 gsap.registerPlugin(TextPlugin);
 
+const CV_FILES = {
+  PT: "/Curriculo_Schaide_Nunes_2026.pdf",
+  EN: "/Resume_Schaide_Nunes_2026.pdf",
+} as const;
+
 export const HeroContent = () => {
-  const { lang, setLang } = useLang();
+  const { lang } = useLang();
+  // Idioma do currículo a baixar (começa no idioma do site, mas pode ser trocado só para o download)
+  const [cvLang, setCvLang] = useState<"PT" | "EN">(lang);
+  useEffect(() => setCvLang(lang), [lang]);
   const [copied, setCopied] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const textRef = useRef<HTMLSpanElement>(null);
@@ -131,81 +140,73 @@ export const HeroContent = () => {
           {TRANSLATIONS[lang].hero.description}
         </motion.p>
 
-        {/* Action Buttons Centralizados */}
-        <motion.div
-          variants={slideInFromLeft(0.9)}
-          className="flex flex-wrap items-center justify-center gap-4 mt-3"
-        >
-          <button
-            onClick={handleCopyEmail}
-            className="flex items-center gap-3 px-5 py-3.5 rounded-xl bg-[#0300145e] hover:bg-[#f59e0b]/10 backdrop-blur-md transition-all text-gray-300 hover:text-white group border border-white/10 hover:border-[#f59e0b]/40 shadow-lg shadow-[#030014]/50"
-          >
-            {copied ? (
-              <CheckIcon className="w-5 h-5 text-green-500" />
-            ) : (
-              <DocumentDuplicateIcon className="w-5 h-5 text-amber-500 group-hover:scale-110 transition-transform" />
-            )}
-            <span className="font-mono text-sm sm:text-base tracking-wide">
-              {copied ? TRANSLATIONS[lang].hero.copied : TRANSLATIONS[lang].hero.copyEmail}
-            </span>
-          </button>
-
-          <div className="inline-flex items-stretch rounded-xl bg-[#0300145e] backdrop-blur-md border border-white/10 hover:border-[#f59e0b]/40 shadow-lg shadow-[#030014]/50 transition-all group overflow-hidden">
-            <a
-              href={lang === "PT" ? "/Curriculo_Schaide_Nunes_2026.pdf" : "/Resume_Schaide_Nunes_2026.pdf"}
-              download={lang === "PT" ? "Curriculo_Schaide_Nunes_2026.pdf" : "Resume_Schaide_Nunes_2026.pdf"}
-              className="flex items-center gap-3 px-5 py-3.5 hover:bg-[#f59e0b]/10 text-gray-300 hover:text-white transition-all"
-            >
-              <ArrowDownTrayIcon className="w-5 h-5 text-amber-500 group-hover:scale-110 transition-transform" />
-              <span className="font-mono text-sm sm:text-base tracking-wide">
+        {/* Ações: currículo (principal), projetos (secundário) e e-mail */}
+        <motion.div variants={slideInFromLeft(0.9)} className="flex flex-col items-center gap-5 mt-4">
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {/* Botão principal com a escolha do idioma do currículo acoplada */}
+            <div className="inline-flex items-stretch rounded-xl bg-amber-500 text-black shadow-[0_0_25px_rgba(245,158,11,0.25)] hover:shadow-[0_0_35px_rgba(245,158,11,0.5)] transition-shadow overflow-hidden">
+              <a
+                href={CV_FILES[cvLang]}
+                download={CV_FILES[cvLang].slice(1)}
+                className="group flex items-center gap-2.5 pl-5 pr-4 py-3.5 font-bold hover:bg-amber-400 transition-colors"
+              >
+                <ArrowDownTrayIcon className="w-5 h-5 transition-transform group-hover:translate-y-0.5" />
                 {TRANSLATIONS[lang].hero.downloadCV}
-              </span>
-            </a>
-            <div className="w-[1px] bg-white/10 my-2" />
-            <div className="flex items-center px-2 gap-1 text-xs font-mono">
-              <a
-                href="/Curriculo_Schaide_Nunes_2026.pdf"
-                download="Curriculo_Schaide_Nunes_2026.pdf"
-                title="Download em Português"
-                onClick={() => setLang("PT")}
-                className={`relative px-2 py-1 rounded-md transition-colors duration-200 z-10 ${
-                  lang === "PT"
-                    ? "text-amber-400 font-bold"
-                    : "text-gray-400 hover:text-white"
-                }`}
-              >
-                PT
-                {lang === "PT" && (
-                  <motion.div
-                    layoutId="activeResumeBadge"
-                    className="absolute inset-0 rounded-md bg-[#f59e0b]/20 border border-[#f59e0b]/40 shadow-[0_0_8px_rgba(245,158,11,0.25)] -z-10"
-                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
-                  />
-                )}
               </a>
-              <span className="text-gray-600">/</span>
-              <a
-                href="/Resume_Schaide_Nunes_2026.pdf"
-                download="Resume_Schaide_Nunes_2026.pdf"
-                title="Download in English"
-                onClick={() => setLang("EN")}
-                className={`relative px-2 py-1 rounded-md transition-colors duration-200 z-10 ${
-                  lang === "EN"
-                    ? "text-amber-400 font-bold"
-                    : "text-gray-400 hover:text-white"
-                }`}
-              >
-                EN
-                {lang === "EN" && (
-                  <motion.div
-                    layoutId="activeResumeBadge"
-                    className="absolute inset-0 rounded-md bg-[#f59e0b]/20 border border-[#f59e0b]/40 shadow-[0_0_8px_rgba(245,158,11,0.25)] -z-10"
-                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
-                  />
-                )}
-              </a>
+              <div className="flex items-center gap-0.5 px-1.5 bg-black/15" role="group" aria-label="PT / EN">
+                {(["PT", "EN"] as const).map((l) => (
+                  <button
+                    key={l}
+                    type="button"
+                    onClick={() => setCvLang(l)}
+                    aria-pressed={cvLang === l}
+                    title={l === "PT" ? "Currículo em português" : "Resume in English"}
+                    className={`relative px-2 py-1 rounded-md text-xs font-bold transition-colors ${
+                      cvLang === l ? "text-amber-400" : "text-black/60 hover:text-black"
+                    }`}
+                  >
+                    {cvLang === l && (
+                      <motion.span
+                        layoutId="cvLangBadge"
+                        className="absolute inset-0 rounded-md bg-black"
+                        transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                      />
+                    )}
+                    <span className="relative">{l}</span>
+                  </button>
+                ))}
+              </div>
             </div>
+
+            <Link
+              to="/work"
+              className="group flex items-center gap-2 px-5 py-3.5 rounded-xl border border-white/15 bg-black/30 backdrop-blur-md text-white font-bold hover:bg-white hover:text-black transition-colors"
+            >
+              {TRANSLATIONS[lang].hero.seeProjects}
+              <ArrowRightIcon className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </Link>
           </div>
+
+          {/* E-mail como link discreto, com cópia em um clique */}
+          <button
+            type="button"
+            onClick={handleCopyEmail}
+            title={TRANSLATIONS[lang].hero.copyEmailHint}
+            className="group flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+          >
+            <EnvelopeIcon className="w-4 h-4 text-amber-500" />
+            <span className="underline decoration-white/20 underline-offset-4 group-hover:decoration-amber-500">
+              {TRANSLATIONS[lang].hero.copyEmail}
+            </span>
+            {copied ? (
+              <span className="flex items-center gap-1 text-green-400">
+                <CheckIcon className="w-4 h-4" />
+                {TRANSLATIONS[lang].hero.copied}
+              </span>
+            ) : (
+              <DocumentDuplicateIcon className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" />
+            )}
+          </button>
         </motion.div>
       </div>
     </motion.div>

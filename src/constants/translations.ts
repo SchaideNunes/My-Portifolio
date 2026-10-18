@@ -125,7 +125,7 @@ export const TRANSLATIONS = {
       location: "Barrocas, Bahia · Brasil",
       downloadCV: "Baixar currículo",
       seeProjects: "Ver projetos",
-      statSince: "anos na área",
+      statSince: "anos na área de tecnologia",
       statSystems: "sistemas em produção",
       statCmoc: "desenvolvendo soluções para a CMOC",
       statEnglish: "inglês avançado",

@@ -336,7 +336,8 @@ export default function AboutPage() {
     { value: "10+", label: t.statSystems },
     { value: "C1", label: t.statEnglish },
     { value: "CMOC", label: t.statCmoc },
-    { value: "2023", label: t.statSince },
+    // Anos desde que comecei a programar com foco (2023)
+    { value: `${new Date().getFullYear() - 2023}+`, label: t.statSince },
   ];
 
   return (

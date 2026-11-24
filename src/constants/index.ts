@@ -67,7 +67,7 @@ export const PROJECTS = {
       industry: "Serviços / Beleza",
       tags: ["React", "PHP", "MySQL", "JWT", "Vitest"],
       description:
-        "Plataforma de agendamento online da barbearia: o cliente escolhe barbeiro, serviço e horário em poucos toques, e a equipe gerencia tudo num painel administrativo. Desde o lançamento, a base de clientes cresceu 46% e passou de 30 agendamentos automáticos por dia.",
+        "A barbearia dependia de agendamentos manuais. Criei uma plataforma em que o cliente escolhe barbeiro, serviço e horário em poucos toques, com validação contra horários duplicados e um painel administrativo para a equipe. Resultado: a base de clientes cresceu 46% e passou de 30 agendamentos automáticos por dia.",
       technologies: ["React", "PHP", "MySQL"],
       image: GALLERIES.atualEstilo.desktop[0],
       gallery: GALLERIES.atualEstilo,
@@ -86,7 +86,7 @@ export const PROJECTS = {
       industry: "Arquitetura / Design",
       tags: ["JavaScript", "GSAP", "Tailwind CSS", "Vercel Functions"],
       description:
-        "Portfólio interativo com animação 3D guiada pelo scroll, galeria arrastável e orçamento em 3 etapas direto no WhatsApp, além de um painel para a arquiteta publicar projetos sozinha. Trouxe 8 clientes fechados em 3 meses.",
+        "A arquiteta precisava de um site que transformasse visitas em clientes. Criei um portfólio interativo com animação 3D guiada pelo scroll, galeria arrastável, orçamento em 3 etapas direto no WhatsApp e um painel para ela publicar projetos sozinha. Resultado: 8 clientes fechados em 3 meses.",
       technologies: ["JavaScript", "GSAP", "Tailwind CSS"],
       image: GALLERIES.milena.desktop[0],
       gallery: GALLERIES.milena,
@@ -105,7 +105,7 @@ export const PROJECTS = {
       industry: "Varejo / Cobrança",
       tags: ["React", "TypeScript", "Node.js", "Supabase", "WhatsApp", "TDD"],
       description:
-        "Sistema de cobrança de vendas parceladas da A&V Store: envia lembretes automáticos pelo WhatsApp antes do vencimento, organiza quem deve e mostra o caixa do mês. Cobra cerca de 30 parcelas por mês sem o dono precisar conferir nada. As imagens usam a loja de demonstração, com dados fictícios.",
+        "O dono da A&V Store conferia todo dia quem devia as parcelas. Criei um sistema que envia lembretes automáticos pelo WhatsApp antes do vencimento, organiza quem deve e mostra o caixa do mês, validado por 347 testes automatizados. Resultado: cerca de 30 parcelas cobradas por mês sem conferência manual. As imagens usam a loja de demonstração, com dados fictícios.",
       technologies: ["React", "TypeScript", "Node.js", "Supabase"],
       image: GALLERIES.flowZap.desktop[0],
       gallery: GALLERIES.flowZap,
@@ -116,12 +116,12 @@ export const PROJECTS = {
       title: "Club Maravilha",
       timeframe: "2026",
       discipline: "Desenvolvimento Full Stack",
-      tools: "React, Python, FastAPI, PostgreSQL",
+      tools: "Java 21, Spring Boot, React, PostgreSQL",
       industry: "Esporte / Lazer",
-      tags: ["React", "Python", "FastAPI", "PostgreSQL", "Docker", "Pix"],
+      tags: ["Java 21", "Spring Boot", "PostgreSQL", "Flyway", "Testcontainers", "Docker", "GitHub Actions", "Pix"],
       description:
-        "Plataforma do clube com site público, área do associado e painel da diretoria: cobrança por Pix com baixa automática, lembretes no WhatsApp, reserva de quadras sem conflito e carteirinha digital para mais de 300 sócios. Os dados das imagens são fictícios.",
-      technologies: ["React", "FastAPI", "PostgreSQL"],
+        "Muitos dos mais de 400 associados atrasavam a mensalidade por esquecimento. Criei a plataforma do clube (site público, área do associado e painel da diretoria) com API em Java 21 e Spring Boot, rodando numa VPS: agendamento de quadras e eventos, régua de cobrança no WhatsApp, Mercado Pago integrado com baixa do Pix em menos de 2 s e carteirinha digital. Resultado: cobrança e reservas no automático, com confiabilidade garantida por 119 testes de integração e CI no GitHub Actions. Os dados das imagens são fictícios.",
+      technologies: ["Java", "Spring Boot", "React", "PostgreSQL"],
       image: GALLERIES.clubMaravilha.desktop[0],
       gallery: GALLERIES.clubMaravilha,
       link: "https://club-maravilha.vercel.app/",
@@ -135,7 +135,7 @@ export const PROJECTS = {
       industry: "Alimentação / Delivery",
       tags: ["React", "TypeScript", "Tailwind CSS", "Node.js", "MongoDB"],
       description:
-        "Cardápio digital mobile-first: o cliente monta o açaí em etapas (tamanho, sabor, complementos e entrega) ou escolhe um pronto, vê o total na hora e envia o pedido completo para o WhatsApp da loja. Inclui painel administrativo para preços, estoque e pedidos.",
+        "Para agilizar os pedidos da loja, criei um cardápio digital mobile-first: o cliente monta o açaí em etapas (tamanho, sabor, complementos e entrega) ou escolhe um pronto e vê o total na hora. Resultado: o pedido chega completo ao WhatsApp da loja, e a equipe controla preços, estoque e pedidos num painel administrativo.",
       technologies: ["React", "TypeScript", "MongoDB"],
       image: GALLERIES.acaiCardapio.desktop[0],
       gallery: GALLERIES.acaiCardapio,
@@ -150,7 +150,7 @@ export const PROJECTS = {
       industry: "Franquias / Alimentação",
       tags: ["React", "TypeScript", "GSAP", "Tailwind CSS", "Canvas"],
       description:
-        "Landing page para atrair novos franqueados da rede: números da marca, formatos de loja, vitrine de produtos e formulário que leva o interessado direto ao WhatsApp da expansão, com uma animação de 120 quadros guiada pelo scroll.",
+        "A rede precisava atrair novos franqueados. Criei uma landing page com números da marca, formatos de loja, vitrine de produtos e uma animação de 120 quadros guiada pelo scroll. Resultado: o interessado preenche um formulário curto e cai direto no WhatsApp da equipe de expansão.",
       technologies: ["React", "GSAP", "Tailwind CSS"],
       image: GALLERIES.acaiLanding.desktop[0],
       gallery: GALLERIES.acaiLanding,
@@ -165,7 +165,7 @@ export const PROJECTS = {
       industry: "Mineração / Uso Interno",
       tags: ["Power Apps", "Power Fx", "SharePoint", "Power Automate", "Teams"],
       description:
-        "App interno que substituiu agendas pessoais e planilhas no controle das pendências da equipe: quadro Kanban, alertas de prazo, ações privadas, histórico de cada alteração e aprovação de mudanças críticas por cartões no Microsoft Teams.",
+        "Os gestores controlavam cerca de 600 pendências por mês em agendas pessoais, e-mail e planilhas. Criei um app interno com quadro Kanban, alertas de prazo, ações privadas, histórico de cada alteração e aprovação de mudanças críticas por cartões no Microsoft Teams. Resultado: todas as demandas da equipe centralizadas num só lugar, com auditoria completa.",
       technologies: ["Power Apps", "SharePoint", "Power Automate", "Teams"],
       image: GALLERIES.gestaoAcoes.desktop[0],
       gallery: GALLERIES.gestaoAcoes,
@@ -182,7 +182,7 @@ export const PROJECTS = {
       industry: "Service / Grooming",
       tags: ["React", "PHP", "MySQL", "JWT", "Vitest"],
       description:
-        "Online booking platform for a barbershop: clients pick a barber, service, and time slot in a few taps, and the team manages everything from an admin panel. Since launch, the customer base grew 46% and it handles 30+ automated bookings a day.",
+        "The barbershop relied on manual booking. I built a platform where clients pick a barber, service, and time slot in a few taps, with double-booking protection and an admin panel for the team. Result: the customer base grew 46% and it now handles 30+ automated bookings a day.",
       technologies: ["React", "PHP", "MySQL"],
       image: GALLERIES.atualEstilo.desktop[0],
       gallery: GALLERIES.atualEstilo,
@@ -201,7 +201,7 @@ export const PROJECTS = {
       industry: "Architecture / Design",
       tags: ["JavaScript", "GSAP", "Tailwind CSS", "Vercel Functions"],
       description:
-        "Interactive portfolio with a scroll-driven 3D animation, a draggable gallery, and a 3-step quote form that goes straight to WhatsApp, plus an admin panel so the architect can publish projects on her own. It brought in 8 closed clients in 3 months.",
+        "The architect needed a website that turned visits into clients. I built an interactive portfolio with a scroll-driven 3D animation, a draggable gallery, a 3-step quote form that goes straight to WhatsApp, and a panel so she can publish projects on her own. Result: 8 closed clients in 3 months.",
       technologies: ["JavaScript", "GSAP", "Tailwind CSS"],
       image: GALLERIES.milena.desktop[0],
       gallery: GALLERIES.milena,
@@ -220,7 +220,7 @@ export const PROJECTS = {
       industry: "Retail / Billing",
       tags: ["React", "TypeScript", "Node.js", "Supabase", "WhatsApp", "TDD"],
       description:
-        "Installment billing system for A&V Store: it sends automated WhatsApp reminders before each due date, tracks who owes what, and shows the month's cash flow. It collects about 30 installments a month without the owner checking anything by hand. Screenshots use the demo store with fictional data.",
+        "The owner of A&V Store checked every day who owed installments. I built a system that sends automated WhatsApp reminders before each due date, tracks who owes what, and shows the month's cash flow, validated by 347 automated tests. Result: about 30 installments collected a month with no manual checking. Screenshots use the demo store with fictional data.",
       technologies: ["React", "TypeScript", "Node.js", "Supabase"],
       image: GALLERIES.flowZap.desktop[0],
       gallery: GALLERIES.flowZap,
@@ -231,12 +231,12 @@ export const PROJECTS = {
       title: "Club Maravilha",
       timeframe: "2026",
       discipline: "Full Stack Development",
-      tools: "React, Python, FastAPI, PostgreSQL",
+      tools: "Java 21, Spring Boot, React, PostgreSQL",
       industry: "Sports / Leisure",
-      tags: ["React", "Python", "FastAPI", "PostgreSQL", "Docker", "Pix"],
+      tags: ["Java 21", "Spring Boot", "PostgreSQL", "Flyway", "Testcontainers", "Docker", "GitHub Actions", "Pix"],
       description:
-        "Club platform with a public site, a member area, and a board dashboard: Pix billing with automatic reconciliation, WhatsApp reminders, conflict-free court booking, and digital membership cards for 300+ members. Screenshot data is fictional.",
-      technologies: ["React", "FastAPI", "PostgreSQL"],
+        "Many of the club's 400+ members paid their dues late because they forgot. I built the club's platform (public site, member area, and board dashboard) with a Java 21 and Spring Boot API running on a VPS: court and event booking, a WhatsApp billing schedule, integrated Mercado Pago with Pix reconciled in under 2 s, and digital membership cards. Result: billing and bookings on autopilot, backed by 119 integration tests and CI on GitHub Actions. Screenshot data is fictional.",
+      technologies: ["Java", "Spring Boot", "React", "PostgreSQL"],
       image: GALLERIES.clubMaravilha.desktop[0],
       gallery: GALLERIES.clubMaravilha,
       link: "https://club-maravilha.vercel.app/",
@@ -250,7 +250,7 @@ export const PROJECTS = {
       industry: "Food / Delivery",
       tags: ["React", "TypeScript", "Tailwind CSS", "Node.js", "MongoDB"],
       description:
-        "Mobile-first digital menu: customers build their açaí step by step (size, flavor, toppings, and delivery) or pick a ready-made one, see the total instantly, and send the complete order to the store's WhatsApp. Includes an admin panel for prices, stock, and orders.",
+        "To speed up the store's orders, I built a mobile-first digital menu: customers build their açaí step by step (size, flavor, toppings, and delivery) or pick a ready-made one and see the total instantly. Result: orders reach the store's WhatsApp complete, and the team manages prices, stock, and orders from an admin panel.",
       technologies: ["React", "TypeScript", "MongoDB"],
       image: GALLERIES.acaiCardapio.desktop[0],
       gallery: GALLERIES.acaiCardapio,
@@ -265,7 +265,7 @@ export const PROJECTS = {
       industry: "Franchising / Food",
       tags: ["React", "TypeScript", "GSAP", "Tailwind CSS", "Canvas"],
       description:
-        "Landing page to attract new franchisees: brand numbers, store formats, a product showcase, and a form that sends leads straight to the expansion team's WhatsApp, with a 120-frame scroll-driven animation.",
+        "The chain needed to attract new franchisees. I built a landing page with brand numbers, store formats, a product showcase, and a 120-frame scroll-driven animation. Result: prospects fill in a short form and land straight in the expansion team's WhatsApp.",
       technologies: ["React", "GSAP", "Tailwind CSS"],
       image: GALLERIES.acaiLanding.desktop[0],
       gallery: GALLERIES.acaiLanding,
@@ -280,7 +280,7 @@ export const PROJECTS = {
       industry: "Mining / Internal Tool",
       tags: ["Power Apps", "Power Fx", "SharePoint", "Power Automate", "Teams"],
       description:
-        "Internal app that replaced personal calendars and spreadsheets for tracking team action items: Kanban board, deadline alerts, private actions, a full history of every change, and Microsoft Teams adaptive-card approvals for critical edits.",
+        "Managers tracked about 600 tasks a month across personal calendars, email, and spreadsheets. I built an internal app with a Kanban board, deadline alerts, private actions, a full change history, and approval of critical changes through Microsoft Teams cards. Result: all of the team's requests centralized in one place, with a complete audit trail.",
       technologies: ["Power Apps", "SharePoint", "Power Automate", "Teams"],
       image: GALLERIES.gestaoAcoes.desktop[0],
       gallery: GALLERIES.gestaoAcoes,

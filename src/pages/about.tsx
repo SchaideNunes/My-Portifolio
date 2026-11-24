@@ -78,15 +78,16 @@ const JOURNEY: Record<Lang, { year: string; title: string; text: string; note: s
     {
       year: "2026",
       title: "Sistemas de ponta a ponta",
-      text: "Flow-Zap automatizou a cobrança de uma loja pelo WhatsApp, e o Club Maravilha passou a gerir mais de 300 sócios com Pix e reservas online.",
+      text: "Flow-Zap automatizou a cobrança de uma loja pelo WhatsApp, e o Club Maravilha passou a gerir mais de 400 associados com Pix, reservas de quadras e eventos.",
       note: "agora é sério",
-      tags: ["TypeScript", "FastAPI", "PostgreSQL"],
+      tags: ["Python", "FastAPI", "PostgreSQL"],
     },
     {
       year: "Hoje",
       title: "O próximo passo",
-      text: "Mais de 10 sistemas em produção e muita vontade de continuar construindo produtos que resolvem problemas reais.",
+      text: "Mais de 10 sistemas em produção e uma nova stack: Java e Spring Boot no backend, com AWS, mensageria e observabilidade.",
       note: "isso é só o começo...",
+      tags: ["Java", "Spring Boot", "AWS"],
     },
   ],
   EN: [
@@ -120,15 +121,16 @@ const JOURNEY: Record<Lang, { year: string; title: string; text: string; note: s
     {
       year: "2026",
       title: "End-to-end systems",
-      text: "Flow-Zap automated a store's billing over WhatsApp, and Club Maravilha now manages 300+ members with Pix and online booking.",
+      text: "Flow-Zap automated a store's billing over WhatsApp, and Club Maravilha now manages 400+ members with Pix, court and event booking.",
       note: "now it's serious",
-      tags: ["TypeScript", "FastAPI", "PostgreSQL"],
+      tags: ["Python", "FastAPI", "PostgreSQL"],
     },
     {
       year: "Today",
       title: "The next step",
-      text: "10+ systems in production and plenty of drive to keep building products that solve real problems.",
+      text: "10+ systems in production and a new stack: Java and Spring Boot on the backend, with AWS, messaging and observability.",
       note: "just getting started...",
+      tags: ["Java", "Spring Boot", "AWS"],
     },
   ],
 };

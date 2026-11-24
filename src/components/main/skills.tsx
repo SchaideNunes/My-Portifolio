@@ -2,8 +2,21 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import type { IconType } from "react-icons";
-import { SiGit, SiPhp, SiSupabase, SiVercel } from "react-icons/si";
-import { TbApps, TbChartBar } from "react-icons/tb";
+import { FaAws, FaJava } from "react-icons/fa";
+import {
+  SiApachekafka,
+  SiGit,
+  SiGithubactions,
+  SiGrafana,
+  SiNewrelic,
+  SiPhp,
+  SiRedis,
+  SiSpringboot,
+  SiSupabase,
+  SiTerraform,
+  SiVercel,
+} from "react-icons/si";
+import { TbApps, TbBroadcast, TbChartBar, TbDatabase, TbHexagonLetterM, TbStack2 } from "react-icons/tb";
 
 import { Image } from "@/components/ui/image";
 import { TRANSLATIONS } from "@/constants/translations";
@@ -11,15 +24,59 @@ import { useLang } from "@/lib/lang-context";
 
 // Ícone de uma tecnologia: imagem em /images/skills ou ícone do react-icons
 type Tech = { name: string; image?: string; icon?: IconType; color?: string };
-type CardKey = "cardFrontend" | "cardBackend" | "cardDatabase" | "cardTools";
+type CardKey = "cardFrontend" | "cardBackend" | "cardDatabase" | "cardCloud" | "cardDevops" | "cardTools";
 
 const CARDS: { title: (t: (typeof TRANSLATIONS)["PT"]["skills"]) => string; desc: CardKey; techs: Tech[] }[] = [
+  {
+    title: () => "Backend",
+    desc: "cardBackend",
+    techs: [
+      { name: "Java", icon: FaJava, color: "#F89820" },
+      { name: "Spring Boot", icon: SiSpringboot, color: "#6DB33F" },
+      { name: "Micronaut", icon: TbHexagonLetterM, color: "#A9A9A9" },
+      { name: "Python", image: "python.svg" },
+      { name: "FastAPI", image: "fastapi.svg" },
+      { name: "PHP", icon: SiPhp, color: "#8892BF" },
+    ],
+  },
+  {
+    title: (t) => t.cloud,
+    desc: "cardCloud",
+    techs: [
+      { name: "AWS", icon: FaAws, color: "#FF9900" },
+      { name: "SQS", icon: TbStack2, color: "#FF4F8B" },
+      { name: "SNS", icon: TbBroadcast, color: "#FF4F8B" },
+      { name: "Kafka", icon: SiApachekafka, color: "#ffffff" },
+    ],
+  },
+  {
+    title: (t) => t.devops,
+    desc: "cardDevops",
+    techs: [
+      { name: "Terraform", icon: SiTerraform, color: "#844FBA" },
+      { name: "Docker", image: "docker.webp" },
+      { name: "GitHub Actions", icon: SiGithubactions, color: "#2088FF" },
+      { name: "Grafana", icon: SiGrafana, color: "#F46800" },
+      { name: "New Relic", icon: SiNewrelic, color: "#1CE783" },
+    ],
+  },
+  {
+    title: (t) => t.database,
+    desc: "cardDatabase",
+    techs: [
+      { name: "PostgreSQL", image: "postgresql.webp" },
+      { name: "MySQL", image: "mysql.webp" },
+      { name: "MongoDB", image: "mongodb.webp" },
+      { name: "DynamoDB", icon: TbDatabase, color: "#4053D6" },
+      { name: "Redis", icon: SiRedis, color: "#FF4438" },
+      { name: "Supabase", icon: SiSupabase, color: "#3FCF8E" },
+    ],
+  },
   {
     title: () => "Frontend",
     desc: "cardFrontend",
     techs: [
       { name: "React", image: "react.webp" },
-      { name: "TypeScript", image: "ts.webp" },
       { name: "JavaScript", image: "js.webp" },
       { name: "Tailwind", image: "tailwind.webp" },
       { name: "GSAP", image: "gsap.svg" },
@@ -28,31 +85,9 @@ const CARDS: { title: (t: (typeof TRANSLATIONS)["PT"]["skills"]) => string; desc
     ],
   },
   {
-    title: () => "Backend",
-    desc: "cardBackend",
-    techs: [
-      { name: "Python", image: "python.svg" },
-      { name: "FastAPI", image: "fastapi.svg" },
-      { name: "Node.js", image: "nodejs.svg" },
-      { name: "Express", image: "express.svg" },
-      { name: "PHP", icon: SiPhp, color: "#8892BF" },
-    ],
-  },
-  {
-    title: (t) => t.database,
-    desc: "cardDatabase",
-    techs: [
-      { name: "SQL", image: "postgresql.webp" },
-      { name: "MySQL", image: "mysql.webp" },
-      { name: "MongoDB", image: "mongodb.webp" },
-      { name: "Supabase", icon: SiSupabase, color: "#3FCF8E" },
-    ],
-  },
-  {
     title: (t) => t.tools,
     desc: "cardTools",
     techs: [
-      { name: "Docker", image: "docker.webp" },
       { name: "Git", icon: SiGit, color: "#F05032" },
       { name: "Vercel", icon: SiVercel, color: "#ffffff" },
       { name: "Power Apps", icon: TbApps, color: "#D45DBF" },
@@ -114,7 +149,7 @@ export const Skills = () => {
         </motion.div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 w-full">
           {CARDS.map((card, ci) => (
             <motion.div
               key={card.desc}

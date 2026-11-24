@@ -85,8 +85,9 @@ const JOURNEY: Record<Lang, { year: string; title: string; text: string; note: s
     {
       year: "Hoje",
       title: "O próximo passo",
-      text: "Mais de 10 sistemas em produção e muita vontade de continuar construindo produtos que resolvem problemas reais.",
+      text: "Mais de 10 sistemas em produção e uma nova stack: estou migrando meus projetos para Java e Spring Boot, começando pelo Club Maravilha, e me aprofundando em AWS, mensageria e observabilidade.",
       note: "isso é só o começo...",
+      tags: ["Java", "Spring Boot", "AWS"],
     },
   ],
   EN: [
@@ -127,8 +128,9 @@ const JOURNEY: Record<Lang, { year: string; title: string; text: string; note: s
     {
       year: "Today",
       title: "The next step",
-      text: "10+ systems in production and plenty of drive to keep building products that solve real problems.",
+      text: "10+ systems in production and a new stack: I'm migrating my projects to Java and Spring Boot, starting with Club Maravilha, and going deeper into AWS, messaging and observability.",
       note: "just getting started...",
+      tags: ["Java", "Spring Boot", "AWS"],
     },
   ],
 };

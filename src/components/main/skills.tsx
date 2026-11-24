@@ -36,7 +36,6 @@ const CARDS: { title: (t: (typeof TRANSLATIONS)["PT"]["skills"]) => string; desc
       { name: "Micronaut", icon: TbHexagonLetterM, color: "#A9A9A9" },
       { name: "Python", image: "python.svg" },
       { name: "FastAPI", image: "fastapi.svg" },
-      { name: "Node.js", image: "nodejs.svg" },
       { name: "PHP", icon: SiPhp, color: "#8892BF" },
     ],
   },
@@ -78,7 +77,6 @@ const CARDS: { title: (t: (typeof TRANSLATIONS)["PT"]["skills"]) => string; desc
     desc: "cardFrontend",
     techs: [
       { name: "React", image: "react.webp" },
-      { name: "TypeScript", image: "ts.webp" },
       { name: "JavaScript", image: "js.webp" },
       { name: "Tailwind", image: "tailwind.webp" },
       { name: "GSAP", image: "gsap.svg" },

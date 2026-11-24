@@ -120,7 +120,7 @@ export const PROJECTS = {
       industry: "Esporte / Lazer",
       tags: ["Java 21", "Spring Boot", "PostgreSQL", "Flyway", "Testcontainers", "Docker", "GitHub Actions", "Pix"],
       description:
-        "Muitos dos mais de 300 sócios atrasavam a mensalidade por esquecimento. Criei a plataforma do clube (site público, área do associado e painel da diretoria) com API em Java 21 e Spring Boot: régua de cobrança diária no WhatsApp, Pix do Mercado Pago com baixa automática em menos de 2 s e carteirinha digital. Resultado: cobrança no automático, com confiabilidade garantida por 119 testes de integração e CI no GitHub Actions. Os dados das imagens são fictícios.",
+        "Muitos dos mais de 400 associados atrasavam a mensalidade por esquecimento. Criei a plataforma do clube (site público, área do associado e painel da diretoria) com API em Java 21 e Spring Boot, rodando numa VPS: agendamento de quadras e eventos, régua de cobrança no WhatsApp, Mercado Pago integrado com baixa do Pix em menos de 2 s e carteirinha digital. Resultado: cobrança e reservas no automático, com confiabilidade garantida por 119 testes de integração e CI no GitHub Actions. Os dados das imagens são fictícios.",
       technologies: ["Java", "Spring Boot", "React", "PostgreSQL"],
       image: GALLERIES.clubMaravilha.desktop[0],
       gallery: GALLERIES.clubMaravilha,
@@ -235,7 +235,7 @@ export const PROJECTS = {
       industry: "Sports / Leisure",
       tags: ["Java 21", "Spring Boot", "PostgreSQL", "Flyway", "Testcontainers", "Docker", "GitHub Actions", "Pix"],
       description:
-        "Many of the club's 300+ members paid their dues late because they forgot. I built the club's platform (public site, member area, and board dashboard) with a Java 21 and Spring Boot API: a daily WhatsApp billing schedule, Mercado Pago Pix reconciled automatically in under 2 s, and digital membership cards. Result: billing on autopilot, backed by 119 integration tests and CI on GitHub Actions. Screenshot data is fictional.",
+        "Many of the club's 400+ members paid their dues late because they forgot. I built the club's platform (public site, member area, and board dashboard) with a Java 21 and Spring Boot API running on a VPS: court and event booking, a WhatsApp billing schedule, integrated Mercado Pago with Pix reconciled in under 2 s, and digital membership cards. Result: billing and bookings on autopilot, backed by 119 integration tests and CI on GitHub Actions. Screenshot data is fictional.",
       technologies: ["Java", "Spring Boot", "React", "PostgreSQL"],
       image: GALLERIES.clubMaravilha.desktop[0],
       gallery: GALLERIES.clubMaravilha,

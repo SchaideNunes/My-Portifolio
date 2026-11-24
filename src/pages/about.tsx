@@ -78,7 +78,7 @@ const JOURNEY: Record<Lang, { year: string; title: string; text: string; note: s
     {
       year: "2026",
       title: "Sistemas de ponta a ponta",
-      text: "Flow-Zap automatizou a cobrança de uma loja pelo WhatsApp, e o Club Maravilha passou a gerir mais de 300 sócios com Pix e reservas online.",
+      text: "Flow-Zap automatizou a cobrança de uma loja pelo WhatsApp, e o Club Maravilha passou a gerir mais de 400 associados com Pix, reservas de quadras e eventos.",
       note: "agora é sério",
       tags: ["Python", "FastAPI", "PostgreSQL"],
     },
@@ -121,7 +121,7 @@ const JOURNEY: Record<Lang, { year: string; title: string; text: string; note: s
     {
       year: "2026",
       title: "End-to-end systems",
-      text: "Flow-Zap automated a store's billing over WhatsApp, and Club Maravilha now manages 300+ members with Pix and online booking.",
+      text: "Flow-Zap automated a store's billing over WhatsApp, and Club Maravilha now manages 400+ members with Pix, court and event booking.",
       note: "now it's serious",
       tags: ["Python", "FastAPI", "PostgreSQL"],
     },
